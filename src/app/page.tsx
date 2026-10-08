@@ -4,6 +4,7 @@ import { Hero } from '@/components/home/Hero'
 import { ProofBar } from '@/components/home/ProofBar'
 import { ServicesGrid } from '@/components/home/ServicesGrid'
 import { CaseStudies } from '@/components/home/CaseStudies'
+import { EngineeringFaq } from '@/components/home/EngineeringFaq'
 import { ClosingCta } from '@/components/home/ClosingCta'
 
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ export default function HomePage() {
       <ProofBar />
       <ServicesGrid />
       <CaseStudies featuredOnly />
+      <EngineeringFaq />
       <ClosingCta />
     </PageShell>
   )
