@@ -13,6 +13,7 @@
 
 import { useState, useRef, useEffect, useMemo } from 'react'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { trackEvent } from '@/lib/analytics'
 
 interface ChatHubProps {
@@ -25,6 +26,7 @@ interface ChatHubProps {
 export default function ChatHub({ whatsappHref, contactEmail, defaultMessage }: ChatHubProps) {
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
 
   const channels = useMemo(
     () => [
@@ -88,6 +90,9 @@ export default function ChatHub({ whatsappHref, contactEmail, defaultMessage }: 
     document.addEventListener('keydown', handleKey)
     return () => document.removeEventListener('keydown', handleKey)
   }, [open])
+
+  // Keep credential and verification forms unobstructed.
+  if (pathname?.startsWith('/auth')) return null
 
   return (
     <div ref={containerRef} className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 pointer-events-none">
