@@ -403,7 +403,7 @@ export function PermissionProvider({ children }: { children: React.ReactNode }) 
     }
 
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'rt_permission_sync' || e.key === 'rt_auth_token') {
+      if (e.key === 'dt_permission_sync' || e.key === 'dt_auth_token') {
         lastFetchedTokenRef.current = null
         fetchPermissions(true)
       }
@@ -515,7 +515,7 @@ export function notifyPermissionChange() {
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new Event('permission-change'))
     try {
-      localStorage.setItem('rt_permission_sync', String(Date.now()))
+      localStorage.setItem('dt_permission_sync', String(Date.now()))
     } catch {
       // ignore
     }

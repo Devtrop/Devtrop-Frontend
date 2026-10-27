@@ -271,7 +271,7 @@ export async function deleteApplication(id: string) {
 }
 
 export function getDocumentDownloadUrl(applicationId: string, filename: string): string {
-  const token = typeof window !== 'undefined' ? localStorage.getItem('rt_auth_token') : null
+  const token = typeof window !== 'undefined' ? localStorage.getItem('dt_auth_token') : null
 
   // Use relative path that will be proxied by Next.js
   const downloadUrl = `/api/v1/applications/admin/download/${applicationId}/${encodeURIComponent(filename)}`
@@ -291,7 +291,7 @@ export async function downloadDocument(
   displayName?: string,
 ) {
   try {
-    const token = typeof window !== 'undefined' ? localStorage.getItem('rt_auth_token') : null
+    const token = typeof window !== 'undefined' ? localStorage.getItem('dt_auth_token') : null
 
     // Use relative path that will be proxied by Next.js
     const downloadUrl = `/api/v1/applications/admin/download/${applicationId}/${encodeURIComponent(filename)}`

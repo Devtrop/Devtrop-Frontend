@@ -106,7 +106,7 @@ export interface OnboardingPersistentState {
   cachedAt: number
 }
 
-const ONBOARDING_CACHE_KEY = 'rt_onboarding_nav_cache'
+const ONBOARDING_CACHE_KEY = 'dt_onboarding_nav_cache'
 let globalOnboardingCache: OnboardingPersistentState | null = null
 
 function getInitialOnboardingCache(): OnboardingPersistentState | null {
@@ -224,9 +224,9 @@ export function OnboardingProvider({
   const [displayedCount, setDisplayedCount] = useState(() => initialCache?.displayedCount ?? 20)
   const [selectedCandidateIds, setSelectedCandidateIds] = useState<string[]>(() => {
     if (typeof window !== 'undefined') {
-      const returnId = sessionStorage.getItem('rt_onboarding_return_from_viewer')
+      const returnId = sessionStorage.getItem('dt_onboarding_return_from_viewer')
       if (returnId) {
-        sessionStorage.removeItem('rt_onboarding_return_from_viewer')
+        sessionStorage.removeItem('dt_onboarding_return_from_viewer')
         return [returnId]
       }
     }
@@ -272,13 +272,13 @@ export function OnboardingProvider({
     // Only restore selection if one-time returnFromViewer flag is present
     const returnFromViewer =
       typeof window !== 'undefined'
-        ? sessionStorage.getItem('rt_onboarding_return_from_viewer')
+        ? sessionStorage.getItem('dt_onboarding_return_from_viewer')
         : null
 
     if (returnFromViewer) {
       setLastViewedCandidateId(returnFromViewer)
       setSelectedCandidateIds([returnFromViewer])
-      sessionStorage.removeItem('rt_onboarding_return_from_viewer')
+      sessionStorage.removeItem('dt_onboarding_return_from_viewer')
     }
   }, [])
 
@@ -546,7 +546,7 @@ export function OnboardingProvider({
     setLastViewedCandidateId(null)
     if (typeof window !== 'undefined') {
       try {
-        sessionStorage.removeItem('rt_onboarding_return_from_viewer')
+        sessionStorage.removeItem('dt_onboarding_return_from_viewer')
         const stored = sessionStorage.getItem(ONBOARDING_CACHE_KEY)
         if (stored) {
           const parsed = JSON.parse(stored)
@@ -580,7 +580,7 @@ export function OnboardingProvider({
 
       if (typeof window !== 'undefined') {
         try {
-          sessionStorage.setItem('rt_onboarding_return_from_viewer', candidate.id)
+          sessionStorage.setItem('dt_onboarding_return_from_viewer', candidate.id)
         } catch {
           // ignore
         }

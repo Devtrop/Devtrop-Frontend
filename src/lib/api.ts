@@ -15,9 +15,9 @@ const getBaseUrl = () => {
 
 const BASE_URL = getBaseUrl()
 
-const AUTH_TOKEN_KEY = 'rt_auth_token'
-const REFRESH_TOKEN_KEY = 'rt_refresh_token'
-const AUTH_USER_KEY = 'rt_auth_user'
+const AUTH_TOKEN_KEY = 'dt_auth_token'
+const REFRESH_TOKEN_KEY = 'dt_refresh_token'
+const AUTH_USER_KEY = 'dt_auth_user'
 
 /**
  * Custom API Error class for better error handling.
@@ -450,13 +450,13 @@ class ApiClient {
       localStorage.setItem('token', accessToken)
       localStorage.setItem('accessToken', accessToken)
 
-      document.cookie = `rt_auth_token=${encodeURIComponent(accessToken)}; path=/; max-age=86400; SameSite=Lax`
+      document.cookie = `dt_auth_token=${encodeURIComponent(accessToken)}; path=/; max-age=86400; SameSite=Lax`
       document.cookie = `access_token=${encodeURIComponent(accessToken)}; path=/; max-age=86400; SameSite=Lax`
     }
 
     if (refreshToken) {
       localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken)
-      localStorage.setItem('rt_auth_refresh_token', refreshToken)
+      localStorage.setItem('dt_auth_refresh_token', refreshToken)
       localStorage.setItem('refresh_token', refreshToken)
     }
   }

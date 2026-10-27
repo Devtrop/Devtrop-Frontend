@@ -7,7 +7,7 @@ import { env } from '@/config/env'
 export async function getServerAuthToken(): Promise<string | null> {
   try {
     const cookieStore = await cookies()
-    return cookieStore.get('rt_auth_token')?.value || cookieStore.get('access_token')?.value || null
+    return cookieStore.get('dt_auth_token')?.value || cookieStore.get('access_token')?.value || null
   } catch {
     return null
   }

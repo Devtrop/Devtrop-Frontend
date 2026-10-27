@@ -138,7 +138,7 @@ export function CandidateDocumentsViewer() {
   useEffect(() => {
     if (!candidateId || typeof window === 'undefined') return
     try {
-      sessionStorage.setItem('rt_onboarding_return_from_viewer', candidateId)
+      sessionStorage.setItem('dt_onboarding_return_from_viewer', candidateId)
     } catch {
       // ignore
     }
@@ -170,7 +170,7 @@ export function CandidateDocumentsViewer() {
   const handleBack = useCallback(() => {
     if (candidateId && typeof window !== 'undefined') {
       try {
-        sessionStorage.setItem('rt_onboarding_return_from_viewer', candidateId)
+        sessionStorage.setItem('dt_onboarding_return_from_viewer', candidateId)
       } catch {
         // ignore
       }
@@ -291,14 +291,14 @@ export function CandidateDocumentsViewer() {
 
       if (typeof window !== 'undefined') {
         try {
-          const stored = sessionStorage.getItem('rt_onboarding_nav_cache')
+          const stored = sessionStorage.getItem('dt_onboarding_nav_cache')
           if (stored) {
             const parsed = JSON.parse(stored)
             if (Array.isArray(parsed.rawCandidates)) {
               parsed.rawCandidates = parsed.rawCandidates.map((c: OnboardingCandidate) =>
                 c.id === candidate.id ? { ...c, docsVerifiedAt: now } : c,
               )
-              sessionStorage.setItem('rt_onboarding_nav_cache', JSON.stringify(parsed))
+              sessionStorage.setItem('dt_onboarding_nav_cache', JSON.stringify(parsed))
             }
           }
         } catch {

@@ -55,8 +55,8 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-const AUTH_TOKEN_KEY = 'rt_auth_token'
-const AUTH_USER_KEY = 'rt_auth_user'
+const AUTH_TOKEN_KEY = 'dt_auth_token'
+const AUTH_USER_KEY = 'dt_auth_user'
 
 function subscribeToAuth(callback: () => void): () => void {
   window.addEventListener('auth-change', callback)
@@ -136,11 +136,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (token) {
-        document.cookie = `rt_auth_token=${encodeURIComponent(token)}; path=/; max-age=86400; SameSite=Lax`
+        document.cookie = `dt_auth_token=${encodeURIComponent(token)}; path=/; max-age=86400; SameSite=Lax`
         document.cookie = `access_token=${encodeURIComponent(token)}; path=/; max-age=86400; SameSite=Lax`
       } else {
         document.cookie =
-          'rt_auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax'
+          'dt_auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax'
         document.cookie =
           'access_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax'
       }
@@ -164,7 +164,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
     lastFetchedTokenRef.current = null
     localStorage.removeItem(AUTH_TOKEN_KEY)
-    localStorage.removeItem('rt_auth_refresh_token')
+    localStorage.removeItem('dt_auth_refresh_token')
     localStorage.removeItem('rt_refresh_token')
     localStorage.removeItem('refresh_token')
     localStorage.removeItem('access_token')
@@ -237,7 +237,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem('token', extractedToken)
       localStorage.setItem('accessToken', extractedToken)
       if (typeof window !== 'undefined') {
-        document.cookie = `rt_auth_token=${encodeURIComponent(extractedToken)}; path=/; max-age=86400; SameSite=Lax`
+        document.cookie = `dt_auth_token=${encodeURIComponent(extractedToken)}; path=/; max-age=86400; SameSite=Lax`
         document.cookie = `access_token=${encodeURIComponent(extractedToken)}; path=/; max-age=86400; SameSite=Lax`
       }
     }
@@ -269,7 +269,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem('token', extractedToken)
         localStorage.setItem('accessToken', extractedToken)
         if (typeof window !== 'undefined') {
-          document.cookie = `rt_auth_token=${encodeURIComponent(extractedToken)}; path=/; max-age=86400; SameSite=Lax`
+          document.cookie = `dt_auth_token=${encodeURIComponent(extractedToken)}; path=/; max-age=86400; SameSite=Lax`
           document.cookie = `access_token=${encodeURIComponent(extractedToken)}; path=/; max-age=86400; SameSite=Lax`
         }
       }

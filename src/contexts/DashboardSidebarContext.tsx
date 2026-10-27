@@ -34,7 +34,7 @@ interface DashboardSidebarContextType {
 
 const DashboardSidebarContext = createContext<DashboardSidebarContextType | undefined>(undefined)
 
-const PINNED_STORAGE_KEY = 'rt_dashboard_sidebar_pinned'
+const PINNED_STORAGE_KEY = 'dt_dashboard_sidebar_pinned'
 
 function subscribeToPinned(callback: () => void): () => void {
   window.addEventListener('dashboard-sidebar-pinned-change', callback)

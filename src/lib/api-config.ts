@@ -20,7 +20,7 @@ export const SITE_URL = env.NEXT_PUBLIC_SITE_URL
 export function getAuthToken(): string | null {
   if (typeof window === 'undefined') return null
   return (
-    localStorage.getItem('rt_auth_token') ||
+    localStorage.getItem('dt_auth_token') ||
     localStorage.getItem('access_token') ||
     localStorage.getItem('token') ||
     localStorage.getItem('accessToken')
@@ -29,10 +29,10 @@ export function getAuthToken(): string | null {
 
 export function setAuthToken(token: string) {
   if (typeof window !== 'undefined') {
-    localStorage.setItem('rt_auth_token', token)
+    localStorage.setItem('dt_auth_token', token)
     localStorage.setItem('access_token', token)
     localStorage.setItem('token', token)
-    document.cookie = `rt_auth_token=${encodeURIComponent(token)}; path=/; max-age=86400; SameSite=Lax`
+    document.cookie = `dt_auth_token=${encodeURIComponent(token)}; path=/; max-age=86400; SameSite=Lax`
     document.cookie = `access_token=${encodeURIComponent(token)}; path=/; max-age=86400; SameSite=Lax`
     window.dispatchEvent(new Event('auth-change'))
   }
@@ -40,12 +40,12 @@ export function setAuthToken(token: string) {
 
 export function removeAuthToken() {
   if (typeof window !== 'undefined') {
-    localStorage.removeItem('rt_auth_token')
+    localStorage.removeItem('dt_auth_token')
     localStorage.removeItem('access_token')
     localStorage.removeItem('token')
     localStorage.removeItem('accessToken')
     // Clear SSR cookies
-    document.cookie = 'rt_auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax'
+    document.cookie = 'dt_auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax'
     document.cookie = 'access_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax'
     window.dispatchEvent(new Event('auth-change'))
   }
@@ -68,8 +68,8 @@ export async function refreshAccessToken(): Promise<string | null> {
   refreshPromise = (async () => {
     try {
       const storedRefreshToken =
-        localStorage.getItem('rt_refresh_token') ||
-        localStorage.getItem('rt_auth_refresh_token') ||
+        localStorage.getItem('dt_refresh_token') ||
+        localStorage.getItem('dt_auth_refresh_token') ||
         localStorage.getItem('refresh_token')
 
       const res = await fetch(`${API_BASE_URL}/auth/refresh`, {
@@ -81,9 +81,9 @@ export async function refreshAccessToken(): Promise<string | null> {
       if (!res.ok) {
         // Refresh failed - clear everything to prevent auto-login loop
         removeAuthToken()
-        localStorage.removeItem('rt_auth_user')
-        localStorage.removeItem('rt_refresh_token')
-        localStorage.removeItem('rt_auth_refresh_token')
+        localStorage.removeItem('dt_auth_user')
+        localStorage.removeItem('dt_refresh_token')
+        localStorage.removeItem('dt_auth_refresh_token')
         localStorage.removeItem('refresh_token')
         return null
       }
@@ -103,8 +103,8 @@ export async function refreshAccessToken(): Promise<string | null> {
       if (token && typeof token === 'string') {
         setAuthToken(token)
         if (newRefreshToken && typeof newRefreshToken === 'string') {
-          localStorage.setItem('rt_refresh_token', newRefreshToken)
-          localStorage.setItem('rt_auth_refresh_token', newRefreshToken)
+          localStorage.setItem('dt_refresh_token', newRefreshToken)
+          localStorage.setItem('dt_auth_refresh_token', newRefreshToken)
           localStorage.setItem('refresh_token', newRefreshToken)
         }
         return token
