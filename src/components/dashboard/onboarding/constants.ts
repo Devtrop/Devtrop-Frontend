@@ -11,18 +11,18 @@ export const ONBOARDING_STAGE_CONFIGS: Record<
   },
   OFFER_SENT: {
     label: 'Offer Sent',
-    color: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
-    dotColor: 'bg-blue-400',
+    color: 'text-accent bg-accent-soft/10 border-blue-500/20',
+    dotColor: 'bg-accent-soft',
   },
   DOCS_SUBMITTED: {
     label: 'Docs Submitted',
-    color: 'text-purple-400 bg-purple-500/10 border-purple-500/20',
-    dotColor: 'bg-purple-400',
+    color: 'text-accent bg-accent-soft/10 border-purple-500/20',
+    dotColor: 'bg-accent-soft',
   },
   HIRED: {
     label: 'Hired',
-    color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
-    dotColor: 'bg-emerald-400',
+    color: 'text-accent bg-accent-soft border-accent',
+    dotColor: 'bg-accent',
   },
   REJECTED: {
     label: 'Rejected',

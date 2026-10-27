@@ -10,8 +10,8 @@ export const APPLICATION_STATUS_OPTIONS: ApplicationStatusOption[] = [
   {
     value: 'SELECTED',
     label: 'Selected',
-    color: 'text-blue-400 border-blue-500/30 bg-blue-500/10',
-    dotColor: 'bg-blue-400',
+    color: 'text-accent border-blue-500/30 bg-accent-soft/10',
+    dotColor: 'bg-accent-soft',
   },
   {
     value: 'TASK_ASSIGNED',
@@ -22,8 +22,8 @@ export const APPLICATION_STATUS_OPTIONS: ApplicationStatusOption[] = [
   {
     value: 'TASK_SUBMITTED',
     label: 'Task Submitted',
-    color: 'text-purple-400 border-purple-500/30 bg-purple-500/10',
-    dotColor: 'bg-purple-400',
+    color: 'text-accent border-purple-500/30 bg-accent-soft/10',
+    dotColor: 'bg-accent-soft',
   },
   {
     value: 'INTERVIEW_SELECTED',
@@ -40,14 +40,14 @@ export const APPLICATION_STATUS_OPTIONS: ApplicationStatusOption[] = [
   {
     value: 'INTERVIEW_COMPLETED',
     label: 'Completed',
-    color: 'text-teal-400 border-teal-500/30 bg-teal-500/10',
-    dotColor: 'bg-teal-400',
+    color: 'text-accent border-teal-500/30 bg-accent-soft/10',
+    dotColor: 'bg-accent-soft',
   },
   {
     value: 'OFFER_PENDING',
     label: 'Offer Pending',
-    color: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
-    dotColor: 'bg-emerald-400',
+    color: 'text-accent border-accent bg-accent-soft',
+    dotColor: 'bg-accent',
   },
   {
     value: 'OFFER_SENT',
@@ -70,7 +70,7 @@ export const APPLICATION_STATUS_OPTIONS: ApplicationStatusOption[] = [
   {
     value: 'CLOSED',
     label: 'Closed',
-    color: 'text-zinc-400 border-zinc-500/30 bg-zinc-500/10',
+    color: 'text-muted border-hairline-light/30 bg-zinc-500/10',
     dotColor: 'bg-zinc-400',
   },
 ]
@@ -86,13 +86,13 @@ export const SCHEDULE_STATUS_CONFIG: Record<
   },
   SCHEDULED: {
     label: 'Scheduled',
-    color: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
-    dot: 'bg-emerald-400',
+    color: 'text-accent border-accent bg-accent-soft',
+    dot: 'bg-accent',
   },
   COMPLETED: {
     label: 'Completed',
-    color: 'text-blue-400 border-blue-500/30 bg-blue-500/10',
-    dot: 'bg-blue-400',
+    color: 'text-accent border-blue-500/30 bg-accent-soft/10',
+    dot: 'bg-accent-soft',
   },
   CANCELLED: {
     label: 'Cancelled',

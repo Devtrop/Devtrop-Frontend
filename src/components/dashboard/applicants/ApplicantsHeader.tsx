@@ -23,7 +23,7 @@ export function ApplicantsHeader({
             Applicants
           </h1>
           {totalCount !== undefined && (
-            <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-400 border border-emerald-500/20">
+            <span className="rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-semibold text-accent border border-accent">
               {totalCount} Total
             </span>
           )}
@@ -37,7 +37,7 @@ export function ApplicantsHeader({
         <Button
           onClick={onExport}
           disabled={isExporting}
-          className="bg-emerald-600 hover:bg-emerald-500 text-white font-medium shadow-sm transition-all flex items-center gap-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
+          className="bg-accent hover:bg-accent text-white font-medium transition-all flex items-center gap-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
         >
           {isExporting ? (
             <>

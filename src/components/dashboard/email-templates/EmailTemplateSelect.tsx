@@ -90,7 +90,7 @@ export function EmailTemplateSelect({
     <div className={`flex flex-col gap-1.5 ${className}`}>
       <div className="flex items-center justify-between text-xs">
         <label className="font-semibold text-foreground flex items-center gap-1.5">
-          <Mail className="size-3.5 text-emerald-500" />
+          <Mail className="size-3.5 text-accent" />
           <span>{label}</span>
         </label>
       </div>
@@ -100,7 +100,7 @@ export function EmailTemplateSelect({
         onValueChange={handleSelect}
         disabled={disabled || loading}
       >
-        <SelectTrigger className="h-9 text-xs bg-background/60 w-full rounded-lg">
+        <SelectTrigger className="h-9 text-xs bg-background/60 w-full rounded-none">
           <SelectValue placeholder={loading ? 'Loading templates...' : 'Select an email template'}>
             {selectedTemplate ? (
               <span className="font-medium truncate">{selectedTemplate.name}</span>
@@ -124,7 +124,7 @@ export function EmailTemplateSelect({
                 <div className="flex items-center justify-between gap-2 w-full">
                   <span className="truncate">{tmpl.name}</span>
                   {tmpl.isDefault && (
-                    <span className="text-[10px] text-emerald-500 font-medium shrink-0">
+                    <span className="text-[10px] text-accent font-medium shrink-0">
                       (Default)
                     </span>
                   )}

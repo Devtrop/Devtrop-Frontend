@@ -121,7 +121,7 @@ function DatePickerFilter({
           disabled={disabled}
           type="button"
           className={cn(
-            'w-full justify-between bg-zinc-900/80 border-border/70 text-xs px-3 font-normal cursor-pointer hover:bg-zinc-800/80 transition-colors group',
+            'w-full justify-between bg-subtle/80 border-border/70 text-xs px-3 font-normal cursor-pointer hover:bg-muted/80 transition-colors group',
             !value && 'text-muted-foreground',
             className,
           )}
@@ -131,18 +131,18 @@ function DatePickerFilter({
             {value && (
               <span
                 onClick={handleClear}
-                className="p-0.5 rounded-sm hover:bg-zinc-700/60 text-zinc-400 hover:text-zinc-200 transition-colors"
+                className="p-0.5 rounded-sm hover:bg-subtle/60 text-muted hover:text-muted transition-colors"
                 title="Clear date"
               >
                 <X className="size-3" />
               </span>
             )}
-            <CalendarIcon className="size-4 text-emerald-400 group-hover:text-emerald-300 transition-colors" />
+            <CalendarIcon className="size-4 text-accent group-hover:text-accent transition-colors" />
           </div>
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="w-auto p-0 border-zinc-800 bg-zinc-950 shadow-2xl z-50"
+        className="w-auto p-0 border-hairline-light bg-canvas z-50"
         align="start"
       >
         <Calendar
@@ -165,11 +165,11 @@ function DatePickerFilter({
             if (maxDateObj && date > maxDateObj) return true
             return false
           }}
-          className="rounded-md border-0 bg-zinc-950 p-3 text-zinc-200"
+          className="rounded-none border-0 bg-canvas p-3 text-muted"
         />
         {value && (
-          <div className="flex items-center justify-between border-t border-zinc-800 px-3 py-2 text-xs bg-zinc-900/50">
-            <span className="text-zinc-400">{formattedDisplay}</span>
+          <div className="flex items-center justify-between border-t border-hairline-light px-3 py-2 text-xs bg-subtle/50">
+            <span className="text-muted">{formattedDisplay}</span>
             <Button
               variant="ghost"
               size="sm"
@@ -177,7 +177,7 @@ function DatePickerFilter({
                 onChange('')
                 setOpen(false)
               }}
-              className="h-6 px-2 text-[11px] text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 cursor-pointer"
+              className="h-6 px-2 text-[11px] text-muted hover:text-muted hover:bg-muted cursor-pointer"
             >
               Clear
             </Button>
@@ -227,7 +227,7 @@ export function ApplicantsFilters({
   }
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-border/60 bg-zinc-950/60 p-4 shadow-sm backdrop-blur-md">
+    <div className="flex flex-col gap-3 rounded-none border border-border/60 bg-canvas/60 p-4 backdrop-blur-md">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {/* Search Input */}
         <div className="relative lg:col-span-2">
@@ -236,7 +236,7 @@ export function ApplicantsFilters({
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search applicants..."
-            className="h-9 pl-9 text-xs bg-zinc-900/80 border-border/70 focus:border-emerald-500/50"
+            className="h-9 pl-9 text-xs bg-subtle/80 border-border/70 focus:border-accent"
           />
         </div>
 
@@ -246,10 +246,10 @@ export function ApplicantsFilters({
             value={jobId || 'ALL'}
             onValueChange={handleJobSelect}
           >
-            <SelectTrigger className="h-9 text-xs bg-zinc-900/80 border-border/70">
+            <SelectTrigger className="h-9 text-xs bg-subtle/80 border-border/70">
               <SelectValue placeholder="All Jobs" />
             </SelectTrigger>
-            <SelectContent className="bg-zinc-900 border-zinc-800 text-xs">
+            <SelectContent className="bg-subtle border-hairline-light text-xs">
               <SelectItem value="ALL">All Jobs</SelectItem>
               {jobs.map((job) => (
                 <SelectItem key={job.id} value={job.id}>
@@ -266,10 +266,10 @@ export function ApplicantsFilters({
             value={status || 'ALL'}
             onValueChange={(val) => onStatusChange(val === 'ALL' ? '' : val)}
           >
-            <SelectTrigger className="h-9 text-xs bg-zinc-900/80 border-border/70">
+            <SelectTrigger className="h-9 text-xs bg-subtle/80 border-border/70">
               <SelectValue placeholder="All Statuses" />
             </SelectTrigger>
-            <SelectContent className="bg-zinc-900 border-zinc-800 text-xs max-h-60">
+            <SelectContent className="bg-subtle border-hairline-light text-xs max-h-60">
               {APPLICANT_STATUS_OPTIONS.map((opt) => (
                 <SelectItem key={opt.value} value={opt.value}>
                   {opt.label}
@@ -283,22 +283,22 @@ export function ApplicantsFilters({
       {/* Filter Toolbar Footer: Date Range & Reset */}
       <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-border/30">
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <span className="text-[11px] font-medium text-zinc-400">Date Range:</span>
+          <span className="text-[11px] font-medium text-muted">Date Range:</span>
           <div className="flex items-center gap-2">
             <DatePickerFilter
               value={dateFrom}
               onChange={onDateFromChange}
               placeholder="Select date"
               maxDate={dateTo}
-              className="h-8 text-[11px] w-38 bg-zinc-900/80 border-border/70"
+              className="h-8 text-[11px] w-38 bg-subtle/80 border-border/70"
             />
-            <span className="text-zinc-600">to</span>
+            <span className="text-muted">to</span>
             <DatePickerFilter
               value={dateTo}
               onChange={onDateToChange}
               placeholder="Select date"
               minDate={dateFrom}
-              className="h-8 text-[11px] w-38 bg-zinc-900/80 border-border/70"
+              className="h-8 text-[11px] w-38 bg-subtle/80 border-border/70"
             />
           </div>
         </div>
@@ -309,7 +309,7 @@ export function ApplicantsFilters({
               variant="outline"
               size="sm"
               onClick={onReset}
-              className="h-8 text-xs gap-1.5 border-border/70 hover:bg-zinc-800 text-zinc-300 cursor-pointer"
+              className="h-8 text-xs gap-1.5 border-border/70 hover:bg-muted text-muted cursor-pointer"
             >
               <RotateCcw className="size-3.5" />
               <span>Reset</span>

@@ -24,11 +24,11 @@ export function AdminSectionSkeleton({
       {/* Header Skeleton */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="space-y-1.5">
-          <Skeleton className={`h-7 ${titleWidth} rounded-xl`} />
-          <Skeleton className="h-4 w-72 rounded-lg" />
+          <Skeleton className={`h-7 ${titleWidth} rounded-none`} />
+          <Skeleton className="h-4 w-72 rounded-none" />
         </div>
         <div className="flex items-center gap-2">
-          <Skeleton className={`h-9 ${actionButtonWidth} rounded-xl`} />
+          <Skeleton className={`h-9 ${actionButtonWidth} rounded-none`} />
         </div>
       </div>
 
@@ -42,15 +42,15 @@ export function AdminSectionSkeleton({
           {Array.from({ length: statCardsCount! }).map((_, i) => (
             <div
               key={i}
-              className="p-4 sm:p-5 rounded-2xl border border-border/80 bg-card/60 shadow-xs space-y-3"
+              className="p-4 sm:p-5 rounded-none border border-border/80 bg-card/60 space-y-3"
             >
               <div className="flex items-center justify-between">
-                <Skeleton className="h-4 w-20 rounded-md" />
-                <Skeleton className="size-8 rounded-xl" />
+                <Skeleton className="h-4 w-20 rounded-none" />
+                <Skeleton className="size-8 rounded-none" />
               </div>
               <div className="space-y-1">
-                <Skeleton className="h-7 w-14 rounded-md" />
-                <Skeleton className="h-3 w-28 rounded-md" />
+                <Skeleton className="h-7 w-14 rounded-none" />
+                <Skeleton className="h-3 w-28 rounded-none" />
               </div>
             </div>
           ))}
@@ -58,18 +58,18 @@ export function AdminSectionSkeleton({
       )}
 
       {/* Filter / Search Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3 rounded-2xl border border-border bg-card/60">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3 rounded-none border border-border bg-card/60">
         <div className="flex items-center gap-2 flex-1 max-w-md">
-          <Skeleton className="h-9 w-full rounded-xl" />
+          <Skeleton className="h-9 w-full rounded-none" />
         </div>
         <div className="flex items-center gap-2">
-          <Skeleton className="h-9 w-32 rounded-xl" />
-          <Skeleton className="h-9 w-28 rounded-xl" />
+          <Skeleton className="h-9 w-32 rounded-none" />
+          <Skeleton className="h-9 w-28 rounded-none" />
         </div>
       </div>
 
       {/* Table Skeleton */}
-      <div className="overflow-hidden rounded-xl border border-border bg-card">
+      <div className="overflow-hidden rounded-none border border-border bg-card">
         <Table>
           <TableHeader>
             <TableRow>

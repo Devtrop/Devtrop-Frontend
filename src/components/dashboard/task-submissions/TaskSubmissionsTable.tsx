@@ -77,7 +77,7 @@ export function getSubmissionStatusInfo(sub: TaskSubmissionDetail) {
       type: 'PASS' as const,
       label: 'Pass',
       sublabel: 'Interview Ready',
-      badgeClass: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-emerald-500/30 border border-emerald-500/30',
+      badgeClass: 'bg-accent-soft text-accent dark:text-accent ring-accent border border-accent',
       icon: CheckCircle,
     }
   }
@@ -120,7 +120,7 @@ export function getSubmissionStatusInfo(sub: TaskSubmissionDetail) {
     type: 'SENT' as const,
     label: 'Task Sent',
     sublabel: 'Pending',
-    badgeClass: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 ring-blue-500/30 border border-blue-500/30',
+    badgeClass: 'bg-accent-soft/10 text-accent dark:text-accent ring-blue-500/30 border border-blue-500/30',
     icon: Mail,
   }
 }
@@ -141,35 +141,35 @@ export function TaskSubmissionsTable({
   if (loading) {
     return (
       <div className="space-y-3">
-        <div className="hidden md:block rounded-2xl border border-border/80 bg-card shadow-xs overflow-hidden w-full">
+        <div className="hidden md:block rounded-none border border-border/80 bg-card overflow-hidden w-full">
           <div className="overflow-x-auto w-full">
             <div className="w-full p-3.5 border-b border-border/80 bg-muted/40 flex items-center justify-between gap-4">
-              <Skeleton className="h-4 w-32 rounded-md min-w-[180px] flex-1" />
-              <Skeleton className="h-4 w-28 rounded-md min-w-[160px]" />
-              <Skeleton className="h-4 w-20 rounded-md min-w-[110px]" />
-              <Skeleton className="h-4 w-24 rounded-md min-w-[130px]" />
-              <Skeleton className="h-4 w-12 rounded-md min-w-[70px]" />
+              <Skeleton className="h-4 w-32 rounded-none min-w-[180px] flex-1" />
+              <Skeleton className="h-4 w-28 rounded-none min-w-[160px]" />
+              <Skeleton className="h-4 w-20 rounded-none min-w-[110px]" />
+              <Skeleton className="h-4 w-24 rounded-none min-w-[130px]" />
+              <Skeleton className="h-4 w-12 rounded-none min-w-[70px]" />
             </div>
             <div className="divide-y divide-border/60">
               {Array.from({ length: 6 }).map((_, i) => (
                 <div key={i} className="w-full p-4 flex items-center justify-between gap-4">
                   <div className="space-y-1 min-w-[180px] flex-1">
-                    <Skeleton className="h-4 w-36 rounded-md" />
-                    <Skeleton className="h-3 w-48 rounded-md" />
+                    <Skeleton className="h-4 w-36 rounded-none" />
+                    <Skeleton className="h-3 w-48 rounded-none" />
                   </div>
                   <div className="min-w-[160px] space-y-1">
-                    <Skeleton className="h-4 w-32 rounded-md" />
-                    <Skeleton className="h-3 w-20 rounded-md" />
+                    <Skeleton className="h-4 w-32 rounded-none" />
+                    <Skeleton className="h-3 w-20 rounded-none" />
                   </div>
                   <div className="min-w-[110px]">
                     <Skeleton className="h-5 w-20 rounded-full" />
                   </div>
                   <div className="min-w-[130px]">
-                    <Skeleton className="h-4 w-24 rounded-md" />
+                    <Skeleton className="h-4 w-24 rounded-none" />
                   </div>
                   <div className="min-w-[70px] flex justify-end gap-1.5">
-                    <Skeleton className="size-8 rounded-lg" />
-                    <Skeleton className="size-8 rounded-lg" />
+                    <Skeleton className="size-8 rounded-none" />
+                    <Skeleton className="size-8 rounded-none" />
                   </div>
                 </div>
               ))}
@@ -180,18 +180,18 @@ export function TaskSubmissionsTable({
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}
-              className="p-4 rounded-2xl border border-border/80 bg-card shadow-xs space-y-3"
+              className="p-4 rounded-none border border-border/80 bg-card space-y-3"
             >
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
-                  <Skeleton className="h-4 w-32 rounded-md" />
-                  <Skeleton className="h-3 w-44 rounded-md" />
+                  <Skeleton className="h-4 w-32 rounded-none" />
+                  <Skeleton className="h-3 w-44 rounded-none" />
                 </div>
                 <Skeleton className="h-5 w-16 rounded-full" />
               </div>
               <div className="pt-2 border-t border-border/60 flex items-center justify-between">
-                <Skeleton className="h-4 w-24 rounded-md" />
-                <Skeleton className="h-4 w-20 rounded-md" />
+                <Skeleton className="h-4 w-24 rounded-none" />
+                <Skeleton className="h-4 w-20 rounded-none" />
               </div>
             </div>
           ))}
@@ -202,7 +202,7 @@ export function TaskSubmissionsTable({
 
   if (submissions.length === 0) {
     return (
-      <div className="rounded-xl border border-border bg-card p-12 text-center">
+      <div className="rounded-none border border-border bg-card p-12 text-center">
         <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-muted text-2xl">
           📋
         </div>
@@ -217,7 +217,7 @@ export function TaskSubmissionsTable({
   return (
     <>
       {/* Desktop View */}
-      <div className="hidden lg:block rounded-xl border border-border bg-card shadow-xs overflow-hidden">
+      <div className="hidden lg:block rounded-none border border-border bg-card overflow-hidden">
         <div className="border-b border-border px-4 py-3.5 bg-muted/40">
           <h2 className="text-sm font-semibold text-foreground">Task Submissions</h2>
           <p className="mt-0.5 text-xs text-muted-foreground">
@@ -247,7 +247,7 @@ export function TaskSubmissionsTable({
                     {/* Applicant */}
                     <TableCell className="px-3 py-3">
                       <div className="flex items-center gap-2.5">
-                        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent-soft text-xs font-semibold text-accent dark:text-accent">
                           {sub.applicant?.name?.charAt(0).toUpperCase() || 'A'}
                         </div>
                         <div className="min-w-0">
@@ -302,7 +302,7 @@ export function TaskSubmissionsTable({
                     {/* Marks / Score */}
                     <TableCell className="px-3 py-3">
                       {sub.score !== null && sub.score !== undefined ? (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-bold text-xs bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-none font-bold text-xs bg-accent-soft text-accent dark:text-accent border border-accent">
                           <Award className="size-3" />
                           {sub.score} / 100
                         </span>
@@ -330,7 +330,7 @@ export function TaskSubmissionsTable({
                           onClick={() => onViewSubmission(sub)}
                           className="h-7 gap-1.5 text-[11px] border-border hover:bg-muted font-medium"
                         >
-                          <Eye className="size-3 text-emerald-500" />
+                          <Eye className="size-3 text-accent" />
                           Check & Mark
                         </Button>
                         {Boolean(
@@ -435,12 +435,12 @@ export function TaskSubmissionsTable({
           return (
             <div
               key={sub.id}
-              className="rounded-xl border border-border bg-card p-4 shadow-xs space-y-3"
+              className="rounded-none border border-border bg-card p-4 space-y-3"
             >
               {/* Applicant Header */}
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                  <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-accent-soft text-xs font-semibold text-accent dark:text-accent">
                     {sub.applicant?.name?.charAt(0).toUpperCase() || 'A'}
                   </div>
                   <div className="min-w-0">
@@ -455,7 +455,7 @@ export function TaskSubmissionsTable({
 
                 {/* Score badge in mobile */}
                 {sub.score !== null && sub.score !== undefined && (
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-bold text-xs bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-none font-bold text-xs bg-accent-soft text-accent dark:text-accent border border-accent">
                     <Award className="size-3" />
                     {sub.score} / 100
                   </span>
@@ -505,7 +505,7 @@ export function TaskSubmissionsTable({
                   onClick={() => onViewSubmission(sub)}
                   className="flex-1 h-8 gap-1.5 text-xs border-border px-1 font-medium"
                 >
-                  <Eye className="size-3.5 text-emerald-500" />
+                  <Eye className="size-3.5 text-accent" />
                   Check & Mark
                 </Button>
                 {Boolean(
@@ -630,7 +630,7 @@ function StatusChangeDropdown({
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="inline-flex items-center gap-1 rounded-md border border-border/60 bg-muted/50 px-1.5 py-0.5 text-[10px] text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1 rounded-none border border-border/60 bg-muted/50 px-1.5 py-0.5 text-[10px] text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-pointer"
           disabled={updating}
           title="Quick Status Change"
         >
@@ -646,7 +646,7 @@ function StatusChangeDropdown({
         <DropdownMenuItem
           onClick={() => handleAction('INTERVIEW_SELECTED')}
           disabled={updating}
-          className="gap-2 text-xs cursor-pointer text-emerald-600 dark:text-emerald-400 focus:text-emerald-500 font-medium"
+          className="gap-2 text-xs cursor-pointer text-accent dark:text-accent focus:text-accent font-medium"
         >
           <CheckCircle className="size-3.5" />
           Pass (Interview Ready)
@@ -670,7 +670,7 @@ function StatusChangeDropdown({
         <DropdownMenuItem
           onClick={() => handleAction('CLOSED')}
           disabled={updating}
-          className="gap-2 text-xs cursor-pointer text-zinc-400 focus:text-zinc-300"
+          className="gap-2 text-xs cursor-pointer text-muted focus:text-muted"
         >
           <XCircle className="size-3.5" />
           Close Application

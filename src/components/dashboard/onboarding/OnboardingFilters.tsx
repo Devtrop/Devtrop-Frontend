@@ -83,7 +83,7 @@ export function OnboardingFilters({
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search candidate name, email, or job title..."
-            className="pl-9 pr-8 text-xs h-9 bg-card/60 border-border/80 rounded-xl"
+            className="pl-9 pr-8 text-xs h-9 bg-card/60 border-border/80 rounded-none"
           />
           {search && (
             <button
@@ -101,9 +101,9 @@ export function OnboardingFilters({
             <Button
               variant="outline"
               size="sm"
-              className="h-9 px-3 text-xs gap-2 border-border/80 bg-card/60 rounded-xl shrink-0 cursor-pointer justify-between sm:justify-start"
+              className="h-9 px-3 text-xs gap-2 border-border/80 bg-card/60 rounded-none shrink-0 cursor-pointer justify-between sm:justify-start"
             >
-              <Briefcase className="size-3.5 text-emerald-500 shrink-0" />
+              <Briefcase className="size-3.5 text-accent shrink-0" />
               <span className="truncate max-w-[150px]">
                 {selectedJob ? selectedJob.title : 'All Positions'}
               </span>
@@ -112,7 +112,7 @@ export function OnboardingFilters({
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="end"
-            className="w-56 max-h-64 overflow-y-auto bg-popover border-border text-foreground rounded-xl shadow-xl p-1"
+            className="w-56 max-h-64 overflow-y-auto bg-popover border-border text-foreground rounded-none p-1"
           >
             <DropdownMenuItem
               onClick={() => onJobChange('ALL')}
@@ -138,7 +138,7 @@ export function OnboardingFilters({
             <Button
               variant="outline"
               size="sm"
-              className="h-9 px-3 text-xs gap-2 border-border/80 bg-card/60 rounded-xl shrink-0 cursor-pointer justify-between sm:justify-start"
+              className="h-9 px-3 text-xs gap-2 border-border/80 bg-card/60 rounded-none shrink-0 cursor-pointer justify-between sm:justify-start"
             >
               <span className="truncate max-w-[160px]">
                 {SORT_OPTIONS.find((s) => s.value === sortOrder)?.label || 'Sort by'}
@@ -148,13 +148,13 @@ export function OnboardingFilters({
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="end"
-            className="w-56 rounded-xl text-xs bg-popover border-border p-1 shadow-xl"
+            className="w-56 rounded-none text-xs bg-popover border-border p-1"
           >
             {SORT_OPTIONS.map((opt) => (
               <DropdownMenuItem
                 key={opt.value}
                 onClick={() => onSortOrderChange(opt.value)}
-                className={`text-xs cursor-pointer rounded-lg gap-2 ${
+                className={`text-xs cursor-pointer rounded-none gap-2 ${
                   sortOrder === opt.value ? 'bg-primary/10 text-primary font-medium' : ''
                 }`}
               >
@@ -173,10 +173,10 @@ export function OnboardingFilters({
           size="sm"
           onClick={onRefresh}
           disabled={loading}
-          className="h-9 px-3 text-xs gap-1.5 border-border/80 bg-card/60 rounded-xl shrink-0 cursor-pointer"
+          className="h-9 px-3 text-xs gap-1.5 border-border/80 bg-card/60 rounded-none shrink-0 cursor-pointer"
           title="Refresh Data"
         >
-          <RefreshCw className={`size-3.5 ${loading ? 'animate-spin text-emerald-500' : ''}`} />
+          <RefreshCw className={`size-3.5 ${loading ? 'animate-spin text-accent' : ''}`} />
           <span className="hidden sm:inline">Refresh</span>
         </Button>
       </div>

@@ -31,7 +31,7 @@ export function JobsHeader({ onToggleSort, sort = 'latest', sortOrder }: JobsHea
             variant="outline"
             size="sm"
             onClick={onToggleSort}
-            className="gap-1.5 border-border hover:bg-muted text-xs h-8 px-3 rounded-xl"
+            className="gap-1.5 border-border hover:bg-muted text-xs h-8 px-3 rounded-none"
             title={`Sort by ${currentSort === 'latest' ? 'oldest' : 'latest'} first`}
           >
             <ArrowUpDown className="size-3.5" />
@@ -44,7 +44,7 @@ export function JobsHeader({ onToggleSort, sort = 'latest', sortOrder }: JobsHea
         <Link href="/dashboard/admin/jobs/create" className="w-full sm:w-auto">
           <Button
             size="sm"
-            className="gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer shadow-md text-xs h-8 px-3.5 rounded-xl w-full sm:w-auto"
+            className="gap-1.5 bg-accent hover:bg-accent text-white cursor-pointer text-xs h-8 px-3.5 rounded-none w-full sm:w-auto"
           >
             <Plus className="size-3.5" />
             <span>Create Job</span>

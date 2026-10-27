@@ -314,7 +314,7 @@ export function CandidateDocumentsViewer() {
 
   if (loadingCandidate) {
     return (
-      <div className="w-screen h-screen bg-zinc-950 flex flex-col items-center justify-center">
+      <div className="w-screen h-screen bg-canvas flex flex-col items-center justify-center">
         <BrandLoader size="lg" message="Loading candidate documents..." />
       </div>
     )
@@ -322,7 +322,7 @@ export function CandidateDocumentsViewer() {
 
   if (!candidate) {
     return (
-      <div className="w-screen h-screen bg-zinc-950 flex flex-col items-center justify-center space-y-4 text-center p-4">
+      <div className="w-screen h-screen bg-canvas flex flex-col items-center justify-center space-y-4 text-center p-4">
         <FileText className="size-12 text-muted-foreground/50" />
         <h2 className="text-base font-semibold text-foreground">Candidate Not Found</h2>
         <p className="text-xs text-muted-foreground">
@@ -340,27 +340,27 @@ export function CandidateDocumentsViewer() {
   const isPdf = activeDoc?.mimeType === 'application/pdf' || activeDoc?.storageKey?.endsWith('.pdf')
 
   return (
-    <div className="w-screen h-screen flex flex-col overflow-hidden bg-zinc-950 text-zinc-100">
+    <div className="w-screen h-screen flex flex-col overflow-hidden bg-canvas text-muted">
       {/* Top Header Bar - Single Ultra-Slim Row (Design 1) */}
-      <header className="h-10 sm:h-11 px-2.5 sm:px-3 border-b border-zinc-800 bg-zinc-900/95 flex items-center justify-between gap-2 shrink-0 z-10 select-none">
+      <header className="h-10 sm:h-11 px-2.5 sm:px-3 border-b border-hairline-light bg-subtle/95 flex items-center justify-between gap-2 shrink-0 z-10 select-none">
         {/* Left: Back Navigation & Candidate Info */}
         <div className="flex items-center gap-2 min-w-0 shrink-0">
           <Button
             variant="ghost"
             size="sm"
             onClick={handleBack}
-            className="h-7 px-2 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/80 cursor-pointer text-xs gap-1.5 shrink-0"
+            className="h-7 px-2 text-muted hover:text-muted hover:bg-muted/80 cursor-pointer text-xs gap-1.5 shrink-0"
             title="Back to Onboarding Hub (Esc)"
           >
             <ArrowLeft className="size-3.5" />
             <span className="hidden sm:inline font-medium">Back</span>
           </Button>
 
-          <div className="h-4 w-px bg-zinc-800 shrink-0" />
+          <div className="h-4 w-px bg-muted shrink-0" />
 
           <div className="flex items-center gap-1.5 min-w-0">
             <span
-              className="text-xs font-semibold text-zinc-100 truncate max-w-[100px] sm:max-w-[160px] md:max-w-[200px]"
+              className="text-xs font-semibold text-muted truncate max-w-[100px] sm:max-w-[160px] md:max-w-[200px]"
               title={candidate.applicant?.name}
             >
               {candidate.applicant?.name}
@@ -368,7 +368,7 @@ export function CandidateDocumentsViewer() {
             {candidate.docsVerifiedAt ? (
               <Badge
                 variant="outline"
-                className="text-[10px] py-0 px-1.5 text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shrink-0 gap-1 font-normal"
+                className="text-[10px] py-0 px-1.5 text-accent border-accent bg-accent-soft shrink-0 gap-1 font-normal"
               >
                 <CheckCircle2 className="size-2.5" />
                 <span className="hidden md:inline">Verified</span>
@@ -391,7 +391,7 @@ export function CandidateDocumentsViewer() {
             size="sm"
             onClick={() => setSelectedIndex((idx) => Math.max(0, idx - 1))}
             disabled={selectedIndex <= 0}
-            className="size-6 sm:size-7 p-0 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 disabled:opacity-20 cursor-pointer shrink-0"
+            className="size-6 sm:size-7 p-0 text-muted hover:text-muted hover:bg-muted disabled:opacity-20 cursor-pointer shrink-0"
             title="Previous Document (Left Arrow)"
           >
             <ChevronLeft className="size-3.5 sm:size-4" />
@@ -412,10 +412,10 @@ export function CandidateDocumentsViewer() {
                   type="button"
                   onClick={() => setSelectedIndex(idx)}
                   className={cn(
-                    'inline-flex items-center gap-1.5 h-6 sm:h-7 px-2 sm:px-2.5 rounded-md text-xs font-medium whitespace-nowrap transition-all shrink-0 cursor-pointer',
+                    'inline-flex items-center gap-1.5 h-6 sm:h-7 px-2 sm:px-2.5 rounded-none text-xs font-medium whitespace-nowrap transition-all shrink-0 cursor-pointer',
                     isSelected
-                      ? 'bg-emerald-600 text-white shadow-sm ring-1 ring-emerald-500'
-                      : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 bg-zinc-900/60 border border-zinc-800/80',
+                      ? 'bg-accent text-white ring-1 ring-accent'
+                      : 'text-muted hover:text-muted hover:bg-muted bg-subtle/60 border border-hairline-light/80',
                   )}
                   title={`${getDocLabel(doc.type, idx, documents)} (${formatBytes(doc.size)})`}
                 >
@@ -430,7 +430,7 @@ export function CandidateDocumentsViewer() {
                   <span
                     className={cn(
                       'text-[10px] font-mono hidden xl:inline',
-                      isSelected ? 'text-emerald-100' : 'text-zinc-500',
+                      isSelected ? 'text-accent' : 'text-muted',
                     )}
                   >
                     {formatBytes(doc.size)}
@@ -445,14 +445,14 @@ export function CandidateDocumentsViewer() {
             size="sm"
             onClick={() => setSelectedIndex((idx) => Math.min(documents.length - 1, idx + 1))}
             disabled={selectedIndex >= documents.length - 1}
-            className="size-6 sm:size-7 p-0 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 disabled:opacity-20 cursor-pointer shrink-0"
+            className="size-6 sm:size-7 p-0 text-muted hover:text-muted hover:bg-muted disabled:opacity-20 cursor-pointer shrink-0"
             title="Next Document (Right Arrow)"
           >
             <ChevronRight className="size-3.5 sm:size-4" />
           </Button>
 
           {documents.length > 0 && (
-            <span className="text-[10px] font-mono text-zinc-400 px-1 hidden sm:inline shrink-0 select-none">
+            <span className="text-[10px] font-mono text-muted px-1 hidden sm:inline shrink-0 select-none">
               {selectedIndex + 1}/{documents.length}
             </span>
           )}
@@ -462,13 +462,13 @@ export function CandidateDocumentsViewer() {
         <div className="flex items-center gap-1.5 shrink-0">
           {/* Zoom Controls (Images only) */}
           {isImage && (
-            <div className="hidden md:flex items-center gap-0.5 bg-zinc-800/60 rounded-md p-0.5 border border-zinc-700/60">
+            <div className="hidden md:flex items-center gap-0.5 bg-muted/60 rounded-none p-0.5 border border-hairline-light/60">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setZoomLevel((z) => Math.max(50, z - 25))}
                 disabled={zoomLevel <= 50}
-                className="size-6 p-0 text-zinc-400 hover:text-zinc-100 cursor-pointer disabled:opacity-40"
+                className="size-6 p-0 text-muted hover:text-muted cursor-pointer disabled:opacity-40"
                 title="Zoom Out"
               >
                 <ZoomOut className="size-3" />
@@ -476,7 +476,7 @@ export function CandidateDocumentsViewer() {
               <button
                 type="button"
                 onClick={() => setZoomLevel(100)}
-                className="text-[10px] font-mono px-1 text-zinc-300 hover:text-white min-w-[34px] text-center cursor-pointer transition-colors"
+                className="text-[10px] font-mono px-1 text-muted hover:text-white min-w-[34px] text-center cursor-pointer transition-colors"
                 title="Click to reset zoom"
               >
                 {zoomLevel}%
@@ -486,7 +486,7 @@ export function CandidateDocumentsViewer() {
                 size="sm"
                 onClick={() => setZoomLevel((z) => Math.min(300, z + 25))}
                 disabled={zoomLevel >= 300}
-                className="size-6 p-0 text-zinc-400 hover:text-zinc-100 cursor-pointer disabled:opacity-40"
+                className="size-6 p-0 text-muted hover:text-muted cursor-pointer disabled:opacity-40"
                 title="Zoom In"
               >
                 <ZoomIn className="size-3" />
@@ -512,7 +512,7 @@ export function CandidateDocumentsViewer() {
               size="sm"
               onClick={handleVerify}
               disabled={verifying || documents.length === 0}
-              className="h-7 px-2.5 text-xs gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium shadow-sm cursor-pointer disabled:opacity-50 shrink-0"
+              className="h-7 px-2.5 text-xs gap-1.5 bg-accent hover:bg-accent text-white font-medium cursor-pointer disabled:opacity-50 shrink-0"
               title="Approve & Verify Documents"
             >
               {verifying ? (
@@ -529,7 +529,7 @@ export function CandidateDocumentsViewer() {
           <Button
             size="sm"
             onClick={() => setIsOrientationOpen(true)}
-            className="h-7 px-2.5 text-xs gap-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-sm cursor-pointer shrink-0"
+            className="h-7 px-2.5 text-xs gap-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium cursor-pointer shrink-0"
             title="Proceed to Orientation"
           >
             <span className="hidden sm:inline">Orientation</span>
@@ -542,7 +542,7 @@ export function CandidateDocumentsViewer() {
               <Button
                 variant="outline"
                 size="sm"
-                className="size-7 p-0 border-zinc-700 bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white cursor-pointer shrink-0"
+                className="size-7 p-0 border-hairline-light bg-muted text-muted hover:bg-subtle hover:text-white cursor-pointer shrink-0"
                 title="More actions"
               >
                 <MoreHorizontal className="size-3.5" />
@@ -550,7 +550,7 @@ export function CandidateDocumentsViewer() {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="w-52 bg-zinc-900 border-zinc-800 text-zinc-200"
+              className="w-52 bg-subtle border-hairline-light text-muted"
             >
               <DropdownMenuItem
                 onClick={() => setIsResubmissionOpen(true)}
@@ -562,7 +562,7 @@ export function CandidateDocumentsViewer() {
               {blobUrl && (
                 <DropdownMenuItem
                   onClick={() => window.open(blobUrl, '_blank')}
-                  className="gap-2 text-xs text-zinc-300 focus:text-white focus:bg-zinc-800 cursor-pointer"
+                  className="gap-2 text-xs text-muted focus:text-white focus:bg-muted cursor-pointer"
                 >
                   <ExternalLink className="size-3.5" />
                   <span>Open in New Tab</span>
@@ -571,15 +571,15 @@ export function CandidateDocumentsViewer() {
               <DropdownMenuItem
                 onClick={handleDownloadActive}
                 disabled={!activeDoc}
-                className="gap-2 text-xs text-zinc-300 focus:text-white focus:bg-zinc-800 cursor-pointer"
+                className="gap-2 text-xs text-muted focus:text-white focus:bg-muted cursor-pointer"
               >
                 <Download className="size-3.5" />
                 <span>Download Document</span>
               </DropdownMenuItem>
-              <DropdownMenuSeparator className="bg-zinc-800" />
+              <DropdownMenuSeparator className="bg-muted" />
               <DropdownMenuItem
                 onClick={handleBack}
-                className="gap-2 text-xs text-zinc-400 focus:text-zinc-200 focus:bg-zinc-800 cursor-pointer"
+                className="gap-2 text-xs text-muted focus:text-muted focus:bg-muted cursor-pointer"
               >
                 <ArrowLeft className="size-3.5" />
                 <span>Back to Onboarding (Esc)</span>
@@ -590,9 +590,9 @@ export function CandidateDocumentsViewer() {
       </header>
 
       {/* Main Document Viewer Canvas - 100% Remaining Screen Height */}
-      <div className="flex-1 w-full bg-zinc-950 relative flex items-center justify-center overflow-hidden">
+      <div className="flex-1 w-full bg-canvas relative flex items-center justify-center overflow-hidden">
         {documents.length === 0 ? (
-          <div className="text-center text-zinc-500 space-y-2">
+          <div className="text-center text-muted space-y-2">
             <FileText className="size-12 mx-auto opacity-40" />
             <p className="text-sm font-medium">No documents uploaded by this candidate yet</p>
           </div>
@@ -604,7 +604,7 @@ export function CandidateDocumentsViewer() {
           <iframe
             key={activeDoc?.id || 'doc-iframe'}
             src={blobUrl}
-            className="w-full h-full rounded-none border-0 bg-zinc-900"
+            className="w-full h-full rounded-none border-0 bg-subtle"
             title="PDF Viewer"
           />
         ) : isImage && blobUrl ? (
@@ -620,21 +620,21 @@ export function CandidateDocumentsViewer() {
                 width: 'auto',
                 height: 'auto',
               }}
-              className="rounded-lg shadow-2xl object-contain transition-all duration-150 select-none shrink-0 m-auto cursor-zoom-in"
+              className="rounded-none object-contain transition-all duration-150 select-none shrink-0 m-auto cursor-zoom-in"
               title="Double-click to toggle zoom"
             />
           </div>
         ) : (
-          <div className="text-center space-y-3 p-6 max-w-md bg-zinc-900 border border-zinc-800 rounded-xl">
-            <FileText className="size-10 mx-auto text-emerald-400" />
-            <p className="text-xs font-semibold text-zinc-200">
+          <div className="text-center space-y-3 p-6 max-w-md bg-subtle border border-hairline-light rounded-none">
+            <FileText className="size-10 mx-auto text-accent" />
+            <p className="text-xs font-semibold text-muted">
               Preview not supported for this file format ({activeDoc?.mimeType})
             </p>
             <Button
               variant="outline"
               size="sm"
               onClick={handleDownloadActive}
-              className="gap-1.5 text-xs bg-zinc-800 border-zinc-700 text-zinc-200 cursor-pointer"
+              className="gap-1.5 text-xs bg-muted border-hairline-light text-muted cursor-pointer"
             >
               <Download className="size-3.5" />
               Download Document to View

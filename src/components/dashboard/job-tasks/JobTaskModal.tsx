@@ -99,7 +99,7 @@ export function JobTaskModal({
         <form id="job-task-form" onSubmit={handleSubmit} className="space-y-4 pt-2">
           {/* View mode: job + dates */}
           {mode === 'view' && (
-            <div className="space-y-2 rounded-xl border border-border bg-muted/30 p-3 text-xs">
+            <div className="space-y-2 rounded-none border border-border bg-muted/30 p-3 text-xs">
               <div>
                 <p className="text-[11px] uppercase tracking-wide text-muted-foreground">Job</p>
                 <p className="mt-1 font-medium text-foreground">
@@ -131,7 +131,7 @@ export function JobTaskModal({
               Title <span className="text-destructive">*</span>
             </Label>
             {mode === 'view' ? (
-              <div className="rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm text-foreground">
+              <div className="rounded-none border border-border bg-muted/30 px-3 py-2 text-sm text-foreground">
                 {title || '—'}
               </div>
             ) : (
@@ -153,7 +153,7 @@ export function JobTaskModal({
               Description <span className="text-destructive">*</span>
             </Label>
             {mode === 'view' ? (
-              <div className="min-h-[120px] rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm leading-6 text-foreground">
+              <div className="min-h-[120px] rounded-none border border-border bg-muted/30 px-3 py-2 text-sm leading-6 text-foreground">
                 <SanitizedHtml content={description} />
               </div>
             ) : (
@@ -181,7 +181,7 @@ export function JobTaskModal({
               form="job-task-form"
               size="sm"
               disabled={isSubmitting}
-              className="bg-emerald-600 hover:bg-emerald-500"
+              className="bg-accent hover:bg-accent"
             >
               {isSubmitting ? 'Saving...' : 'Save Changes'}
             </Button>

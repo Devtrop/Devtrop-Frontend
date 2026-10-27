@@ -212,7 +212,7 @@ export function AssignTaskModal({
 
         <div className="space-y-4 pt-2">
           {mixedJobWarning && (
-            <div className="flex items-start gap-2 rounded-lg border border-amber-500/30 bg-amber-500/5 p-3 text-xs">
+            <div className="flex items-start gap-2 rounded-none border border-amber-500/30 bg-amber-500/5 p-3 text-xs">
               <AlertCircle className="mt-0.5 size-4 shrink-0 text-amber-500" />
 
               <div>
@@ -232,7 +232,7 @@ export function AssignTaskModal({
               Selected Applicants ({selectedApplications.length})
             </Label>
 
-            <div className="max-h-40 overflow-y-auto rounded-lg border border-border bg-muted/30">
+            <div className="max-h-40 overflow-y-auto rounded-none border border-border bg-muted/30">
               {selectedApplications.map((application) => (
                 <div
                   key={application.id}
@@ -257,7 +257,7 @@ export function AssignTaskModal({
           </div>
 
           {commonJob && (
-            <div className="p-3 rounded-lg border border-border bg-muted/20">
+            <div className="p-3 rounded-none border border-border bg-muted/20">
               <EmailTemplateSelect
                 category="JOB_TASKS"
                 value={templateId}
@@ -271,7 +271,7 @@ export function AssignTaskModal({
             <div className="space-y-1.5">
               <Label className="text-xs font-medium">Job</Label>
 
-              <div className="rounded-lg border border-border bg-muted/30 px-3 py-2 text-xs font-medium text-foreground">
+              <div className="rounded-none border border-border bg-muted/30 px-3 py-2 text-xs font-medium text-foreground">
                 {commonJob.title}
 
                 {commonJob.jobCode && (
@@ -287,12 +287,12 @@ export function AssignTaskModal({
             </Label>
 
             {loadingTasks ? (
-              <div className="flex items-center gap-2 rounded-lg border border-border bg-muted/40 px-3 py-2 text-xs text-muted-foreground">
+              <div className="flex items-center gap-2 rounded-none border border-border bg-muted/40 px-3 py-2 text-xs text-muted-foreground">
                 <Loader2 className="size-3.5 animate-spin" />
                 Loading tasks...
               </div>
             ) : error && tasks.length === 0 ? (
-              <div className="rounded-lg border border-dashed border-border bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
+              <div className="rounded-none border border-dashed border-border bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
                 {error}
               </div>
             ) : (
@@ -327,7 +327,7 @@ export function AssignTaskModal({
           />
 
           {selectedTask && (
-            <div className="space-y-2 rounded-xl border border-border bg-muted/30 p-3 text-xs">
+            <div className="space-y-2 rounded-none border border-border bg-muted/30 p-3 text-xs">
               <div>
                 <p className="text-[11px] uppercase tracking-wide text-muted-foreground">Title</p>
 
@@ -355,7 +355,7 @@ export function AssignTaskModal({
             size="sm"
             onClick={() => void handleSubmit()}
             disabled={isSubmitting || !selectedTaskId || !commonJob || !deadline}
-            className="bg-emerald-600 hover:bg-emerald-500"
+            className="bg-accent hover:bg-accent"
           >
             {isSubmitting ? (
               <>

@@ -159,9 +159,9 @@ export function ApplicantsTable({
 
   if (loading) {
     return (
-      <div className="rounded-xl border border-border/60 bg-zinc-950/60 shadow-sm backdrop-blur-md overflow-hidden">
+      <div className="rounded-none border border-border/60 bg-canvas/60 backdrop-blur-md overflow-hidden">
         <Table>
-          <TableHeader className="bg-zinc-900/80">
+          <TableHeader className="bg-subtle/80">
             <TableRow className="border-border/60 hover:bg-transparent">
               <TableHead className="w-12 text-center">#</TableHead>
               <TableHead className="w-12"></TableHead>
@@ -196,9 +196,9 @@ export function ApplicantsTable({
                 </TableCell>
                 <TableCell><Skeleton className="h-5 w-32 rounded-full" /></TableCell>
                 <TableCell className="text-center"><Skeleton className="h-5 w-16 mx-auto rounded-full" /></TableCell>
-                <TableCell><Skeleton className="h-6 w-24 rounded-md" /></TableCell>
+                <TableCell><Skeleton className="h-6 w-24 rounded-none" /></TableCell>
                 <TableCell><Skeleton className="h-3.5 w-20" /></TableCell>
-                <TableCell><Skeleton className="h-8 w-8 rounded-md" /></TableCell>
+                <TableCell><Skeleton className="h-8 w-8 rounded-none" /></TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -209,8 +209,8 @@ export function ApplicantsTable({
 
   if (applicants.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-xl border border-border/60 bg-zinc-950/60 p-12 text-center shadow-sm backdrop-blur-md">
-        <div className="flex size-12 items-center justify-center rounded-full bg-zinc-900 border border-zinc-800 text-muted-foreground mb-3">
+      <div className="flex flex-col items-center justify-center rounded-none border border-border/60 bg-canvas/60 p-12 text-center backdrop-blur-md">
+        <div className="flex size-12 items-center justify-center rounded-full bg-subtle border border-hairline-light text-muted-foreground mb-3">
           <User className="size-6" />
         </div>
         <h3 className="text-base font-semibold text-foreground">No applicants found</h3>
@@ -222,7 +222,7 @@ export function ApplicantsTable({
             variant="outline"
             size="sm"
             onClick={onRetry}
-            className="mt-4 h-8 text-xs border-border/70 hover:bg-zinc-900 cursor-pointer"
+            className="mt-4 h-8 text-xs border-border/70 hover:bg-subtle cursor-pointer"
           >
             Refresh List
           </Button>
@@ -232,10 +232,10 @@ export function ApplicantsTable({
   }
 
   return (
-    <div className="rounded-xl border border-border/60 bg-zinc-950/60 shadow-sm backdrop-blur-md overflow-hidden">
+    <div className="rounded-none border border-border/60 bg-canvas/60 backdrop-blur-md overflow-hidden">
       <div className="overflow-x-auto">
         <Table>
-          <TableHeader className="bg-zinc-900/80 text-xs font-semibold text-zinc-400">
+          <TableHeader className="bg-subtle/80 text-xs font-semibold text-muted">
             <TableRow className="border-border/60 hover:bg-transparent">
               <TableHead className="w-10 text-center">
                 <Checkbox
@@ -273,8 +273,8 @@ export function ApplicantsTable({
                 <TableRow
                   key={applicant.id}
                   className={cn(
-                    'border-border/40 transition-colors hover:bg-zinc-900/40',
-                    isSelected && 'bg-emerald-500/5 hover:bg-emerald-500/10',
+                    'border-border/40 transition-colors hover:bg-subtle/40',
+                    isSelected && 'bg-accent-soft hover:bg-accent-soft',
                   )}
                 >
                   {/* Select Checkbox */}
@@ -297,8 +297,8 @@ export function ApplicantsTable({
                   {/* Applicant Name & Email */}
                   <TableCell>
                     <div className="flex items-center gap-3">
-                      <Avatar className="size-8 border border-border/60 bg-zinc-900">
-                        <AvatarFallback className="bg-emerald-500/10 text-[11px] font-bold text-emerald-400">
+                      <Avatar className="size-8 border border-border/60 bg-subtle">
+                        <AvatarFallback className="bg-accent-soft text-[11px] font-bold text-accent">
                           {getInitials(applicant.name)}
                         </AvatarFallback>
                       </Avatar>
@@ -307,7 +307,7 @@ export function ApplicantsTable({
                           {applicant.name}
                         </span>
                         <span className="text-[11px] text-muted-foreground truncate flex items-center gap-1">
-                          <Mail className="size-3 text-zinc-500 shrink-0" />
+                          <Mail className="size-3 text-muted shrink-0" />
                           {applicant.email}
                         </span>
                       </div>
@@ -319,7 +319,7 @@ export function ApplicantsTable({
                     <div className="flex flex-col gap-1 text-[11px]">
                       {applicant.phone ? (
                         <span className="text-foreground flex items-center gap-1">
-                          <Phone className="size-3 text-zinc-500 shrink-0" />
+                          <Phone className="size-3 text-muted shrink-0" />
                           {applicant.phone}
                         </span>
                       ) : (
@@ -330,7 +330,7 @@ export function ApplicantsTable({
                           {applicant.address}
                         </span>
                       ) : (
-                        <span className="text-zinc-600">No address</span>
+                        <span className="text-muted">No address</span>
                       )}
                     </div>
                   </TableCell>
@@ -346,7 +346,7 @@ export function ApplicantsTable({
                         {primaryJob && (
                           <Badge
                             variant="outline"
-                            className="bg-zinc-900/90 text-zinc-200 border-zinc-700/80 font-medium text-[11px] px-2 py-0.5 max-w-[180px] truncate"
+                            className="bg-subtle/90 text-muted border-hairline-light/80 font-medium text-[11px] px-2 py-0.5 max-w-[180px] truncate"
                             title={primaryJob.title}
                           >
                             {primaryJob.title}
@@ -358,20 +358,20 @@ export function ApplicantsTable({
                             <PopoverTrigger asChild>
                               <Badge
                                 variant="secondary"
-                                className="bg-emerald-500/15 text-emerald-400 hover:bg-emerald-500/25 border-emerald-500/30 text-[10px] font-bold cursor-pointer px-1.5 py-0.5"
+                                className="bg-accent-soft text-accent hover:bg-accent-soft border-accent text-[10px] font-bold cursor-pointer px-1.5 py-0.5"
                               >
                                 +{remainingJobsCount} more
                               </Badge>
                             </PopoverTrigger>
-                            <PopoverContent side="top" className="w-64 bg-zinc-900 border-zinc-800 p-3 shadow-xl">
-                              <p className="text-xs font-semibold text-zinc-300 mb-2 border-b border-zinc-800 pb-1.5">
+                            <PopoverContent side="top" className="w-64 bg-subtle border-hairline-light p-3">
+                              <p className="text-xs font-semibold text-muted mb-2 border-b border-hairline-light pb-1.5">
                                 All Applied Jobs ({apps.length})
                               </p>
                               <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
                                 {apps.map((app) => (
                                   <div
                                     key={app.id}
-                                    className="flex flex-col gap-0.5 bg-zinc-950/60 p-2 rounded border border-zinc-800/80 text-[11px]"
+                                    className="flex flex-col gap-0.5 bg-canvas/60 p-2 rounded border border-hairline-light/80 text-[11px]"
                                   >
                                     <div className="font-medium text-foreground">
                                       {app.job?.title || 'Unknown Job'}
@@ -399,8 +399,8 @@ export function ApplicantsTable({
                       className={cn(
                         'font-bold text-[11px] px-2.5 py-0.5',
                         apps.length > 0
-                          ? 'bg-zinc-900 text-emerald-400 border-emerald-500/30'
-                          : 'bg-zinc-900/50 text-muted-foreground border-zinc-800',
+                          ? 'bg-subtle text-accent border-accent'
+                          : 'bg-subtle/50 text-muted-foreground border-hairline-light',
                       )}
                     >
                       {apps.length} {apps.length === 1 ? 'app' : 'apps'}
@@ -418,7 +418,7 @@ export function ApplicantsTable({
                             href={githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex size-7 items-center justify-center rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors"
+                            className="inline-flex size-7 items-center justify-center rounded-none bg-subtle border border-hairline-light text-muted hover:text-white hover:bg-muted transition-colors"
                             title="GitHub Profile"
                           >
                             <GithubIcon className="size-3.5" />
@@ -430,7 +430,7 @@ export function ApplicantsTable({
                             href={linkedinUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex size-7 items-center justify-center rounded-md bg-zinc-900 border border-zinc-800 text-sky-400 hover:text-sky-300 hover:bg-zinc-800 transition-colors"
+                            className="inline-flex size-7 items-center justify-center rounded-none bg-subtle border border-hairline-light text-sky-400 hover:text-sky-300 hover:bg-muted transition-colors"
                             title="LinkedIn Profile"
                           >
                             <LinkedinIcon className="size-3.5" />
@@ -442,7 +442,7 @@ export function ApplicantsTable({
                             href={portfolioUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex size-7 items-center justify-center rounded-md bg-zinc-900 border border-zinc-800 text-emerald-400 hover:text-emerald-300 hover:bg-zinc-800 transition-colors"
+                            className="inline-flex size-7 items-center justify-center rounded-none bg-subtle border border-hairline-light text-accent hover:text-accent hover:bg-muted transition-colors"
                             title="Portfolio Website"
                           >
                             <Globe className="size-3.5" />
@@ -464,19 +464,19 @@ export function ApplicantsTable({
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="size-7 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 cursor-pointer"
+                          className="size-7 rounded-none text-muted hover:text-white hover:bg-muted cursor-pointer"
                         >
                           <MoreHorizontal className="size-4" />
                           <span className="sr-only">Open menu</span>
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="bg-zinc-900 border-zinc-800 text-xs w-44">
+                      <DropdownMenuContent align="end" className="bg-subtle border-hairline-light text-xs w-44">
                         <DropdownMenuItem
                           onClick={() => copyToClipboard(applicant.email, 'Email', applicant.id + '-email')}
                           className="cursor-pointer gap-2"
                         >
                           {copiedId === applicant.id + '-email' ? (
-                            <Check className="size-3.5 text-emerald-400" />
+                            <Check className="size-3.5 text-accent" />
                           ) : (
                             <Copy className="size-3.5" />
                           )}
@@ -489,7 +489,7 @@ export function ApplicantsTable({
                             className="cursor-pointer gap-2"
                           >
                             {copiedId === applicant.id + '-phone' ? (
-                              <Check className="size-3.5 text-emerald-400" />
+                              <Check className="size-3.5 text-accent" />
                             ) : (
                               <Phone className="size-3.5" />
                             )}
@@ -507,17 +507,17 @@ export function ApplicantsTable({
       </div>
 
       {/* Footer / Load More section */}
-      <div className="flex flex-col items-center justify-center gap-3 border-t border-border/40 px-4 py-4 bg-zinc-950/40">
+      <div className="flex flex-col items-center justify-center gap-3 border-t border-border/40 px-4 py-4 bg-canvas/40">
         {hasMore ? (
           <Button
             variant="outline"
             onClick={onLoadMore}
             disabled={loadingMore}
-            className="rounded-full px-7 py-2 h-9 text-xs font-medium border border-border/80 bg-zinc-900/80 backdrop-blur-xs hover:bg-emerald-500/10 hover:border-emerald-500/30 hover:text-emerald-300 transition-all shadow-xs gap-2 cursor-pointer"
+            className="rounded-full px-7 py-2 h-9 text-xs font-medium border border-border/80 bg-subtle/80 backdrop-blur-xs hover:bg-accent-soft hover:border-accent hover:text-accent transition-all gap-2 cursor-pointer"
           >
             {loadingMore ? (
               <>
-                <Loader2 className="size-3.5 animate-spin text-emerald-400" />
+                <Loader2 className="size-3.5 animate-spin text-accent" />
                 <span>Loading...</span>
               </>
             ) : (
@@ -528,7 +528,7 @@ export function ApplicantsTable({
             )}
           </Button>
         ) : applicants.length > 0 ? (
-          <div className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 bg-zinc-900/60 border border-zinc-800 text-[11px] font-medium text-muted-foreground">
+          <div className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 bg-subtle/60 border border-hairline-light text-[11px] font-medium text-muted-foreground">
             <span>All {total || applicants.length} applicants loaded</span>
           </div>
         ) : null}

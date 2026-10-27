@@ -15,7 +15,7 @@ export function NotificationsView() {
       desc: 'Candidate Rahim Ahmed booked a slot on Friday, 3:00 PM for Senior React Engineer.',
       time: '10 minutes ago',
       icon: Calendar,
-      color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
+      color: 'text-accent bg-accent-soft border-accent',
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ export function NotificationsView() {
       desc: 'Super Admin updated security role permissions for candidate evaluation access.',
       time: '1 hour ago',
       icon: ShieldCheck,
-      color: 'text-purple-400 bg-purple-500/10 border-purple-500/30',
+      color: 'text-accent bg-accent-soft/10 border-purple-500/30',
     },
     {
       id: 3,
@@ -41,7 +41,7 @@ export function NotificationsView() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-              <Bell className="size-6 text-emerald-400" />
+              <Bell className="size-6 text-accent" />
               Notifications & Activity Feed
             </h1>
             <p className="text-xs text-muted-foreground">
@@ -64,7 +64,7 @@ export function NotificationsView() {
                   className="p-4 flex items-start gap-3.5 hover:bg-muted/20 transition-colors"
                 >
                   <div
-                    className={`flex size-9 shrink-0 items-center justify-center rounded-xl border ${n.color}`}
+                    className={`flex size-9 shrink-0 items-center justify-center rounded-none border ${n.color}`}
                   >
                     <Icon className="size-4.5" />
                   </div>

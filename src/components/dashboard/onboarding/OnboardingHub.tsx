@@ -146,7 +146,7 @@ function OnboardingHubContent() {
       />
 
       {/* 3. Main Content: Mobile Card View (< md) + Desktop Table (>= md) */}
-      <div className="rounded-2xl border border-border/80 bg-card/40 backdrop-blur-sm overflow-hidden shadow-xs">
+      <div className="rounded-none border border-border/80 bg-card/40 backdrop-blur-sm overflow-hidden">
         {loading && candidates.length === 0 ? (
           <div className="py-16 text-center text-muted-foreground">
             <div className="flex flex-col items-center justify-center gap-2.5">
@@ -198,7 +198,7 @@ function OnboardingHubContent() {
                           aria-label={`Select ${candidate.applicant?.name}`}
                           className="shrink-0"
                         />
-                        <div className="size-8 rounded-xl bg-primary/10 border border-primary/20 text-primary font-bold text-[11px] flex items-center justify-center shrink-0">
+                        <div className="size-8 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[11px] flex items-center justify-center shrink-0">
                           {getInitials(candidate.applicant?.name)}
                         </div>
                         <div className="min-w-0 flex-1">
@@ -237,7 +237,7 @@ function OnboardingHubContent() {
                         ) : (
                           <button
                             onClick={() => openViewer(candidate)}
-                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 cursor-pointer"
+                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-none text-[11px] font-medium bg-accent-soft text-accent border border-accent cursor-pointer"
                           >
                             <FileText className="size-3" />
                             <span>
@@ -248,7 +248,7 @@ function OnboardingHubContent() {
                         {candidate.docsVerifiedAt && (
                           <Badge
                             variant="outline"
-                            className="text-[10px] text-emerald-400 border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0"
+                            className="text-[10px] text-accent border-accent bg-accent-soft px-1.5 py-0"
                           >
                             Verified
                           </Badge>
@@ -325,7 +325,7 @@ function OnboardingHubContent() {
                 <button
                   type="button"
                   onClick={loadMore}
-                  className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+                  className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
                 >
                   <span>Load more</span>
                   <CircleArrowDown className="size-3.5 shrink-0 text-muted-foreground group-hover:text-foreground transition-colors" />

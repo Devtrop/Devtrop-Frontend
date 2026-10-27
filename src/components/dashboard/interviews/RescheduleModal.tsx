@@ -111,7 +111,7 @@ export function RescheduleModal({ isOpen, interview, onClose, onSuccess }: Resch
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 py-2">
           {/* Current schedule info */}
-          <div className="flex items-center justify-between p-3 rounded-xl border border-border/80 bg-muted/20 text-xs">
+          <div className="flex items-center justify-between p-3 rounded-none border border-border/80 bg-muted/20 text-xs">
             <span className="text-muted-foreground font-medium">Current Assigned Slot</span>
             <span className="font-semibold text-foreground font-mono">{currentSlotTime}</span>
           </div>
@@ -131,7 +131,7 @@ export function RescheduleModal({ isOpen, interview, onClose, onSuccess }: Resch
                 slots...
               </div>
             ) : availableSlots.length === 0 ? (
-              <div className="p-6 rounded-xl border border-dashed border-border/80 text-xs text-muted-foreground text-center">
+              <div className="p-6 rounded-none border border-dashed border-border/80 text-xs text-muted-foreground text-center">
                 No open slots found for this role. Generate new slots first.
               </div>
             ) : (
@@ -151,9 +151,9 @@ export function RescheduleModal({ isOpen, interview, onClose, onSuccess }: Resch
                       key={s.id}
                       type="button"
                       onClick={() => setSelectedSlotId(s.id)}
-                      className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                      className={`p-3 rounded-none border text-left transition-all cursor-pointer ${
                         isSelected
-                          ? 'border-sky-500 bg-sky-500/10 text-sky-300 ring-1 ring-sky-500/40 shadow-xs'
+                          ? 'border-sky-500 bg-sky-500/10 text-sky-300 ring-1 ring-sky-500/40'
                           : 'border-border/80 bg-card hover:bg-muted/40 text-foreground'
                       }`}
                     >

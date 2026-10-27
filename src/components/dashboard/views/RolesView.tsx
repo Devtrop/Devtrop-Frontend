@@ -546,13 +546,13 @@ function RoleFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm bg-zinc-950 border-zinc-800 text-zinc-100">
+      <DialogContent className="max-w-sm bg-canvas border-hairline-light text-muted">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2">
-            <Shield className="size-4 text-purple-400" />
+            <Shield className="size-4 text-accent" />
             {isEditing ? 'Edit Role' : 'Create New Role'}
           </DialogTitle>
-          <DialogDescription className="text-xs text-zinc-400">
+          <DialogDescription className="text-xs text-muted">
             {isEditing
               ? 'Update the role name and description.'
               : 'Create a new role. You can assign permissions after creation.'}
@@ -561,7 +561,7 @@ function RoleFormDialog({
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-1">
           {error && (
-            <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-950/20 px-3 py-2 text-xs text-red-400">
+            <div className="flex items-center gap-2 rounded-none border border-red-500/30 bg-red-950/20 px-3 py-2 text-xs text-red-400">
               <AlertTriangle className="size-3.5 shrink-0" />
               {error}
             </div>
@@ -570,13 +570,13 @@ function RoleFormDialog({
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center justify-between">
               <Label className="text-xs">Role Name *</Label>
-              <span className="text-[10px] text-zinc-500 font-mono">UPPER_SNAKE_CASE</span>
+              <span className="text-[10px] text-muted font-mono">UPPER_SNAKE_CASE</span>
             </div>
             <Input
               value={name}
               onChange={(e) => setName(normalizeRoleNameInput(e.target.value))}
               placeholder="e.g. HR_MANAGEMENT, RECRUITER"
-              className="text-xs h-9 bg-zinc-900 border-zinc-700 font-mono"
+              className="text-xs h-9 bg-subtle border-hairline-light font-mono"
               required
             />
           </div>
@@ -587,7 +587,7 @@ function RoleFormDialog({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Brief description of this role"
-              className="text-xs h-9 bg-zinc-900 border-zinc-700"
+              className="text-xs h-9 bg-subtle border-hairline-light"
             />
           </div>
 
@@ -605,7 +605,7 @@ function RoleFormDialog({
               type="submit"
               size="sm"
               disabled={isSaving}
-              className="bg-purple-600 hover:bg-purple-500 text-white cursor-pointer gap-2"
+              className="bg-accent-soft hover:bg-accent-soft text-white cursor-pointer gap-2"
             >
               {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
               {isEditing ? 'Save Changes' : 'Create Role'}
@@ -644,15 +644,15 @@ function DeleteRoleDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm bg-zinc-950 border-zinc-800 text-zinc-100">
+      <DialogContent className="max-w-sm bg-canvas border-hairline-light text-muted">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2">
             <AlertTriangle className="size-4 text-red-400" />
             Delete Role
           </DialogTitle>
-          <DialogDescription className="text-xs text-zinc-400">
+          <DialogDescription className="text-xs text-muted">
             This will permanently delete the role{' '}
-            <span className="font-semibold text-zinc-200">
+            <span className="font-semibold text-muted">
               &quot;{role?.name || role?.roleName}&quot;
             </span>
             . Users assigned to this role will lose its permissions. This action cannot be undone.
@@ -1072,23 +1072,23 @@ function PermissionsPanel({
       <SheetContent
         side="right"
         showCloseButton={false}
-        className="w-full max-w-full sm:max-w-[92vw] md:max-w-[760px] lg:max-w-[820px] bg-zinc-950 border-l border-zinc-800 text-zinc-100 flex flex-col p-0 gap-0 h-full max-h-screen overflow-hidden"
+        className="w-full max-w-full sm:max-w-[92vw] md:max-w-[760px] lg:max-w-[820px] bg-canvas border-l border-hairline-light text-muted flex flex-col p-0 gap-0 h-full max-h-screen overflow-hidden"
       >
-        <SheetHeader className="border-b border-zinc-800 p-3.5 sm:p-5 pb-3 shrink-0">
+        <SheetHeader className="border-b border-hairline-light p-3.5 sm:p-5 pb-3 shrink-0">
           <div className="flex items-center justify-between gap-2 sm:gap-3">
             <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
               <Button
                 variant="ghost"
                 size="icon-sm"
                 onClick={onClose}
-                className="size-7 shrink-0 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800/80 cursor-pointer -ml-1 sm:-ml-1.5 transition-colors"
+                className="size-7 shrink-0 rounded-none text-muted hover:text-white hover:bg-muted/80 cursor-pointer -ml-1 sm:-ml-1.5 transition-colors"
                 title="Close"
               >
                 <X className="size-4" />
                 <span className="sr-only">Close</span>
               </Button>
               <SheetTitle className="text-sm sm:text-base text-white flex items-center gap-1.5 sm:gap-2 truncate">
-                <Key className="size-4 text-purple-400 shrink-0" />
+                <Key className="size-4 text-accent shrink-0" />
                 <span className="truncate">Manage Permissions</span>
               </SheetTitle>
             </div>
@@ -1097,15 +1097,15 @@ function PermissionsPanel({
               size="sm"
               onClick={fetchSystemPermissions}
               disabled={isLoadingPerms}
-              className="h-7 px-2 text-[11px] text-zinc-400 hover:text-white shrink-0"
+              className="h-7 px-2 text-[11px] text-muted hover:text-white shrink-0"
             >
               <RefreshCw className={cn('size-3 mr-1', isLoadingPerms && 'animate-spin')} />
               Refresh
             </Button>
           </div>
-          <SheetDescription className="text-xs text-zinc-400">
+          <SheetDescription className="text-xs text-muted">
             Assign permissions to{' '}
-            <span className="font-semibold text-zinc-200">{role?.name || role?.roleName}</span>
+            <span className="font-semibold text-muted">{role?.name || role?.roleName}</span>
           </SheetDescription>
 
           <div className="pt-2">
@@ -1113,7 +1113,7 @@ function PermissionsPanel({
               placeholder="Search permissions (e.g. user, job_post, interview, task)..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="h-8 text-xs bg-zinc-900/60 border-zinc-800 placeholder:text-zinc-500 w-full"
+              className="h-8 text-xs bg-subtle/60 border-hairline-light placeholder:text-muted w-full"
             />
           </div>
 
@@ -1124,11 +1124,11 @@ function PermissionsPanel({
                 setSectionFilter(val)
               }}
             >
-              <SelectTrigger className="h-7 text-[11px] bg-zinc-900/60 border-zinc-800 text-zinc-300 flex-1 min-w-0">
-                <Filter className="size-3 mr-1 text-zinc-500 shrink-0" />
+              <SelectTrigger className="h-7 text-[11px] bg-subtle/60 border-hairline-light text-muted flex-1 min-w-0">
+                <Filter className="size-3 mr-1 text-muted shrink-0" />
                 <SelectValue placeholder="All Sections" />
               </SelectTrigger>
-              <SelectContent className="bg-zinc-900 border-zinc-800 text-zinc-100 max-h-64">
+              <SelectContent className="bg-subtle border-hairline-light text-muted max-h-64">
                 <SelectItem value="all" className="text-xs font-medium">
                   All Sections (1 - 4)
                 </SelectItem>
@@ -1154,11 +1154,11 @@ function PermissionsPanel({
                 setPage(1)
               }}
             >
-              <SelectTrigger className="h-7 text-[11px] bg-zinc-900/60 border-zinc-800 text-zinc-300 w-full sm:w-36 shrink-0">
-                <ArrowUpDown className="size-3 mr-1 text-zinc-500 shrink-0" />
+              <SelectTrigger className="h-7 text-[11px] bg-subtle/60 border-hairline-light text-muted w-full sm:w-36 shrink-0">
+                <ArrowUpDown className="size-3 mr-1 text-muted shrink-0" />
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-zinc-900 border-zinc-800 text-zinc-100">
+              <SelectContent className="bg-subtle border-hairline-light text-muted">
                 <SelectItem value="asc" className="text-xs">
                   Name (A → Z)
                 </SelectItem>
@@ -1169,8 +1169,8 @@ function PermissionsPanel({
             </Select>
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-y-1.5 gap-x-2 text-[11px] text-zinc-400 pt-1">
-            <span className="font-mono text-purple-400 font-medium truncate">
+          <div className="flex flex-wrap items-center justify-between gap-y-1.5 gap-x-2 text-[11px] text-muted pt-1">
+            <span className="font-mono text-accent font-medium truncate">
               Total: {totalCount} permissions{' '}
               {totalSelectedCount > 0 && `(${totalSelectedCount} assigned)`}
             </span>
@@ -1178,15 +1178,15 @@ function PermissionsPanel({
               <button
                 type="button"
                 onClick={selectAllCurrentPage}
-                className="text-purple-400 hover:text-purple-300 font-medium cursor-pointer text-[11px]"
+                className="text-accent hover:text-accent font-medium cursor-pointer text-[11px]"
               >
                 Select All
               </button>
-              <span className="text-zinc-600">•</span>
+              <span className="text-muted">•</span>
               <button
                 type="button"
                 onClick={deselectAllCurrentPage}
-                className="text-zinc-400 hover:text-zinc-200 cursor-pointer text-[11px]"
+                className="text-muted hover:text-muted cursor-pointer text-[11px]"
               >
                 Deselect All
               </button>
@@ -1195,8 +1195,8 @@ function PermissionsPanel({
         </SheetHeader>
 
         {isLoading || isLoadingPerms ? (
-          <div className="flex items-center justify-center flex-1 min-h-0 gap-2 text-zinc-400 text-xs">
-            <Loader2 className="size-4 animate-spin text-purple-400" />
+          <div className="flex items-center justify-center flex-1 min-h-0 gap-2 text-muted text-xs">
+            <Loader2 className="size-4 animate-spin text-accent" />
             Loading permissions from server...
           </div>
         ) : (
@@ -1208,10 +1208,10 @@ function PermissionsPanel({
                   { bg: string; border: string; text: string; dot: string }
                 > = {
                   1: {
-                    bg: 'bg-emerald-500/10',
-                    border: 'border-emerald-500/30',
-                    text: 'text-emerald-300',
-                    dot: 'bg-emerald-400',
+                    bg: 'bg-accent-soft',
+                    border: 'border-accent',
+                    text: 'text-accent',
+                    dot: 'bg-accent',
                   },
                   2: {
                     bg: 'bg-sky-500/10',
@@ -1226,15 +1226,15 @@ function PermissionsPanel({
                     dot: 'bg-amber-400',
                   },
                   4: {
-                    bg: 'bg-purple-500/10',
+                    bg: 'bg-accent-soft/10',
                     border: 'border-purple-500/30',
-                    text: 'text-purple-300',
-                    dot: 'bg-purple-400',
+                    text: 'text-accent',
+                    dot: 'bg-accent-soft',
                   },
                   5: {
                     bg: 'bg-zinc-500/10',
-                    border: 'border-zinc-500/30',
-                    text: 'text-zinc-300',
+                    border: 'border-hairline-light/30',
+                    text: 'text-muted',
                     dot: 'bg-zinc-400',
                   },
                 }
@@ -1243,7 +1243,7 @@ function PermissionsPanel({
                 return (
                   <div
                     key={section.id}
-                    className="rounded-xl border border-zinc-800/90 bg-zinc-950/80 overflow-hidden shadow-xs"
+                    className="rounded-none border border-hairline-light/90 bg-canvas/80 overflow-hidden"
                   >
                     <div
                       className={cn(
@@ -1282,11 +1282,11 @@ function PermissionsPanel({
                         >
                           Select All
                         </button>
-                        <span className="text-zinc-600">•</span>
+                        <span className="text-muted">•</span>
                         <button
                           type="button"
                           onClick={() => deselectSection(section)}
-                          className="text-zinc-400 hover:underline cursor-pointer"
+                          className="text-muted hover:underline cursor-pointer"
                         >
                           Deselect All
                         </button>
@@ -1298,16 +1298,16 @@ function PermissionsPanel({
                         return (
                           <div
                             key={mod.key}
-                            className="rounded-lg border border-zinc-800/80 bg-zinc-900/40 p-2 sm:p-3 flex flex-col gap-2"
+                            className="rounded-none border border-hairline-light/80 bg-subtle/40 p-2 sm:p-3 flex flex-col gap-2"
                           >
-                            <div className="flex items-center justify-between border-b border-zinc-800/60 pb-1.5">
+                            <div className="flex items-center justify-between border-b border-hairline-light/60 pb-1.5">
                               <div className="flex items-center gap-1.5 min-w-0">
-                                <span className="text-xs font-semibold text-zinc-200 capitalize truncate">
+                                <span className="text-xs font-semibold text-muted capitalize truncate">
                                   {mod.title}
                                 </span>
                                 <Badge
                                   variant="outline"
-                                  className="text-[9px] h-4 px-1 py-0 text-zinc-400 border-zinc-700 shrink-0 font-mono"
+                                  className="text-[9px] h-4 px-1 py-0 text-muted border-hairline-light shrink-0 font-mono"
                                 >
                                   {mod.permissions.filter((p) => isPermissionChecked(p)).length}/
                                   {mod.permissions.length}
@@ -1317,15 +1317,15 @@ function PermissionsPanel({
                                 <button
                                   type="button"
                                   onClick={() => selectModule(mod)}
-                                  className="text-purple-400 hover:underline cursor-pointer"
+                                  className="text-accent hover:underline cursor-pointer"
                                 >
                                   Select All
                                 </button>
-                                <span className="text-zinc-600">•</span>
+                                <span className="text-muted">•</span>
                                 <button
                                   type="button"
                                   onClick={() => deselectModule(mod)}
-                                  className="text-zinc-400 hover:underline cursor-pointer"
+                                  className="text-muted hover:underline cursor-pointer"
                                 >
                                   Deselect All
                                 </button>
@@ -1338,17 +1338,17 @@ function PermissionsPanel({
                                   <div
                                     key={perm.id || perm.name}
                                     className={cn(
-                                      'flex items-start gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-lg border transition-colors cursor-pointer',
+                                      'flex items-start gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-none border transition-colors cursor-pointer',
                                       isChecked
-                                        ? 'border-purple-500/40 bg-purple-500/10'
-                                        : 'border-zinc-800/60 bg-zinc-900/30 hover:bg-zinc-800/40',
+                                        ? 'border-purple-500/40 bg-accent-soft/10'
+                                        : 'border-hairline-light/60 bg-subtle/30 hover:bg-muted/40',
                                     )}
                                     onClick={() => togglePermission(perm)}
                                   >
                                     <Checkbox
                                       checked={isChecked}
                                       onCheckedChange={() => togglePermission(perm)}
-                                      className="mt-0.5 shrink-0 border-zinc-600 data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
+                                      className="mt-0.5 shrink-0 border-hairline-light data-[state=checked]:bg-accent-soft data-[state=checked]:border-purple-600"
                                     />
                                     <div className="flex flex-col gap-0.5 min-w-0 flex-1">
                                       <div className="flex items-center justify-between gap-2">
@@ -1356,8 +1356,8 @@ function PermissionsPanel({
                                           className={cn(
                                             'text-[11px] sm:text-xs font-mono break-all',
                                             isChecked
-                                              ? 'font-semibold text-purple-300'
-                                              : 'text-zinc-300',
+                                              ? 'font-semibold text-accent'
+                                              : 'text-muted',
                                           )}
                                         >
                                           {perm.name}
@@ -1365,14 +1365,14 @@ function PermissionsPanel({
                                         {isChecked && (
                                           <Badge
                                             variant="outline"
-                                            className="text-[9px] h-4 px-1.5 py-0 shrink-0 bg-purple-500/20 text-purple-300 border-purple-500/30"
+                                            className="text-[9px] h-4 px-1.5 py-0 shrink-0 bg-accent-soft/20 text-accent border-purple-500/30"
                                           >
                                             Assigned
                                           </Badge>
                                         )}
                                       </div>
                                       {perm.description && perm.description !== perm.name && (
-                                        <span className="text-[10px] text-zinc-500 leading-relaxed break-words">
+                                        <span className="text-[10px] text-muted leading-relaxed break-words">
                                           {perm.description}
                                         </span>
                                       )}
@@ -1391,7 +1391,7 @@ function PermissionsPanel({
 
               {panelPerms.length === 0 && (
                 <div className="flex flex-col items-center justify-center gap-3 py-12 text-center">
-                  <span className="text-xs text-zinc-500">
+                  <span className="text-xs text-muted">
                     No permissions found matching your criteria.
                   </span>
                   <Button
@@ -1411,10 +1411,10 @@ function PermissionsPanel({
         )}
 
         {!isLoading && !isLoadingPerms && totalPages > 1 && (
-          <div className="border-t border-zinc-800 px-3 sm:px-5 py-2 flex flex-wrap items-center justify-between gap-2 bg-zinc-950 shrink-0">
-            <span className="text-[11px] text-zinc-500">
+          <div className="border-t border-hairline-light px-3 sm:px-5 py-2 flex flex-wrap items-center justify-between gap-2 bg-canvas shrink-0">
+            <span className="text-[11px] text-muted">
               Page {page} of {totalPages}
-              <span className="ml-1 text-zinc-600">({totalCount} total)</span>
+              <span className="ml-1 text-muted">({totalCount} total)</span>
             </span>
             <div className="flex items-center gap-1">
               <Button
@@ -1422,7 +1422,7 @@ function PermissionsPanel({
                 size="sm"
                 disabled={page <= 1}
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
-                className="h-7 w-7 p-0 text-zinc-400 hover:text-white cursor-pointer"
+                className="h-7 w-7 p-0 text-muted hover:text-white cursor-pointer"
               >
                 <ChevronLeft className="size-3.5" />
               </Button>
@@ -1435,7 +1435,7 @@ function PermissionsPanel({
                 }, [])
                 .map((p, i) =>
                   p === '...' ? (
-                    <span key={`ellipsis-${i}`} className="text-[11px] text-zinc-600 px-1">
+                    <span key={`ellipsis-${i}`} className="text-[11px] text-muted px-1">
                       …
                     </span>
                   ) : (
@@ -1445,8 +1445,8 @@ function PermissionsPanel({
                       className={cn(
                         'h-7 w-7 text-[11px] rounded font-medium transition-colors cursor-pointer',
                         page === p
-                          ? 'bg-purple-600 text-white'
-                          : 'text-zinc-400 hover:bg-zinc-800 hover:text-white',
+                          ? 'bg-accent-soft text-white'
+                          : 'text-muted hover:bg-muted hover:text-white',
                       )}
                     >
                       {p}
@@ -1458,7 +1458,7 @@ function PermissionsPanel({
                 size="sm"
                 disabled={page >= totalPages}
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                className="h-7 w-7 p-0 text-zinc-400 hover:text-white cursor-pointer"
+                className="h-7 w-7 p-0 text-muted hover:text-white cursor-pointer"
               >
                 <ChevronRight className="size-3.5" />
               </Button>
@@ -1466,8 +1466,8 @@ function PermissionsPanel({
           </div>
         )}
 
-        <div className="border-t border-zinc-800 p-3.5 sm:p-4 bg-zinc-950 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0">
-          <div className="text-xs text-zinc-400 text-center sm:text-left">
+        <div className="border-t border-hairline-light p-3.5 sm:p-4 bg-canvas flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0">
+          <div className="text-xs text-muted text-center sm:text-left">
             <span className="font-semibold text-white font-mono">{totalSelectedCount}</span>{' '}
             permissions assigned
           </div>
@@ -1477,7 +1477,7 @@ function PermissionsPanel({
               size="sm"
               onClick={onClose}
               disabled={isSaving}
-              className="text-xs cursor-pointer border-zinc-800 flex-1 sm:flex-none"
+              className="text-xs cursor-pointer border-hairline-light flex-1 sm:flex-none"
             >
               Cancel
             </Button>
@@ -1485,7 +1485,7 @@ function PermissionsPanel({
               size="sm"
               onClick={handleSave}
               disabled={isSaving}
-              className="text-xs bg-purple-600 hover:bg-purple-500 text-white cursor-pointer gap-1.5 flex-1 sm:flex-none"
+              className="text-xs bg-accent-soft hover:bg-accent-soft text-white cursor-pointer gap-1.5 flex-1 sm:flex-none"
             >
               {isSaving && <Loader2 className="size-3.5 animate-spin" />}
               Save Permissions
@@ -1585,7 +1585,7 @@ export function RolesView() {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-              <Shield className="size-6 text-purple-400" />
+              <Shield className="size-6 text-accent" />
               Roles & Permissions
             </h1>
             <p className="text-xs text-muted-foreground mt-0.5">
@@ -1610,7 +1610,7 @@ export function RolesView() {
               <Button
                 size="sm"
                 onClick={() => setShowCreate(true)}
-                className="gap-2 bg-purple-600 hover:bg-purple-500 text-white cursor-pointer"
+                className="gap-2 bg-accent-soft hover:bg-accent-soft text-white cursor-pointer"
               >
                 <Plus className="size-3.5" />
                 New Role
@@ -1625,21 +1625,21 @@ export function RolesView() {
             {Array.from({ length: 6 }).map((_, i) => (
               <div
                 key={i}
-                className="rounded-2xl border border-border/80 bg-card/60 p-5 space-y-4 shadow-xs"
+                className="rounded-none border border-border/80 bg-card/60 p-5 space-y-4"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="space-y-2 flex-1">
-                    <Skeleton className="h-5 w-32 rounded-md" />
-                    <Skeleton className="h-3 w-48 rounded-md" />
-                    <Skeleton className="h-3 w-36 rounded-md" />
+                    <Skeleton className="h-5 w-32 rounded-none" />
+                    <Skeleton className="h-3 w-48 rounded-none" />
+                    <Skeleton className="h-3 w-36 rounded-none" />
                   </div>
                   <Skeleton className="h-5 w-16 rounded-full" />
                 </div>
                 <div className="pt-3 border-t border-border/60 flex items-center justify-between gap-2">
-                  <Skeleton className="h-8 w-32 rounded-lg" />
+                  <Skeleton className="h-8 w-32 rounded-none" />
                   <div className="flex items-center gap-1.5">
-                    <Skeleton className="size-8 rounded-lg" />
-                    <Skeleton className="size-8 rounded-lg" />
+                    <Skeleton className="size-8 rounded-none" />
+                    <Skeleton className="size-8 rounded-none" />
                   </div>
                 </div>
               </div>
@@ -1648,7 +1648,7 @@ export function RolesView() {
         ) : roles.length === 0 ? (
           <Card className="border-border/80 bg-card/60">
             <CardContent className="flex flex-col items-center justify-center h-48 gap-3">
-              <Shield className="size-8 text-zinc-600" />
+              <Shield className="size-8 text-muted" />
               <p className="text-xs text-muted-foreground">
                 No roles found. Create your first role to get started.
               </p>
@@ -1656,7 +1656,7 @@ export function RolesView() {
                 <Button
                   size="sm"
                   onClick={() => setShowCreate(true)}
-                  className="gap-2 bg-purple-600 hover:bg-purple-500 text-white cursor-pointer"
+                  className="gap-2 bg-accent-soft hover:bg-accent-soft text-white cursor-pointer"
                 >
                   <Plus className="size-3.5" />
                   Create First Role
@@ -1690,7 +1690,7 @@ export function RolesView() {
                       {permCount !== null && (
                         <Badge
                           variant="outline"
-                          className="text-[9px] shrink-0 bg-purple-500/10 text-purple-400 border-purple-500/30"
+                          className="text-[9px] shrink-0 bg-accent-soft/10 text-accent border-purple-500/30"
                         >
                           {permCount} perm{permCount !== 1 ? 's' : ''}
                         </Badge>
@@ -1706,7 +1706,7 @@ export function RolesView() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="gap-1.5 text-[11px] text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 cursor-pointer h-7 px-2"
+                        className="gap-1.5 text-[11px] text-accent hover:text-accent hover:bg-accent-soft/10 cursor-pointer h-7 px-2"
                         onClick={() => {
                           setPermRole(role)
                           setShowPerms(true)
@@ -1724,7 +1724,7 @@ export function RolesView() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="size-7 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60 cursor-pointer"
+                          className="size-7 text-muted hover:text-muted hover:bg-muted/60 cursor-pointer"
                           onClick={() => {
                             setEditRole(role)
                             setShowEdit(true)

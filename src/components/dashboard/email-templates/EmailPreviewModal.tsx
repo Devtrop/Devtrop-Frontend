@@ -53,7 +53,7 @@ export function EmailPreviewModal({ isOpen, onClose, template }: EmailPreviewMod
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-4xl w-[90vw] max-w-[90vw] sm:w-[90vw] p-0 gap-0 overflow-hidden rounded-2xl border border-border/80 shadow-2xl bg-card">
+      <DialogContent className="sm:max-w-4xl w-[90vw] max-w-[90vw] sm:w-[90vw] p-0 gap-0 overflow-hidden rounded-none border border-border/80 bg-card">
         {/* Header */}
         <DialogHeader className="pl-5 pr-14 py-3.5 border-b border-border/70 bg-muted/30 flex flex-row items-center justify-between shrink-0">
           <div className="flex items-center gap-3 min-w-0">
@@ -80,13 +80,13 @@ export function EmailPreviewModal({ isOpen, onClose, template }: EmailPreviewMod
           </div>
 
           {/* Viewport Toggle */}
-          <div className="flex items-center gap-1 bg-background/90 p-1 rounded-xl border border-border/70 shadow-xs shrink-0">
+          <div className="flex items-center gap-1 bg-background/90 p-1 rounded-none border border-border/70 shrink-0">
             <button
               type="button"
               onClick={() => setViewport('desktop')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 ${
+              className={`px-2.5 py-1 rounded-none text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 ${
                 viewport === 'desktop'
-                  ? 'bg-card text-foreground shadow-xs font-semibold'
+                  ? 'bg-card text-foreground font-semibold'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -96,9 +96,9 @@ export function EmailPreviewModal({ isOpen, onClose, template }: EmailPreviewMod
             <button
               type="button"
               onClick={() => setViewport('tablet')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 ${
+              className={`px-2.5 py-1 rounded-none text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 ${
                 viewport === 'tablet'
-                  ? 'bg-card text-foreground shadow-xs font-semibold'
+                  ? 'bg-card text-foreground font-semibold'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -108,9 +108,9 @@ export function EmailPreviewModal({ isOpen, onClose, template }: EmailPreviewMod
             <button
               type="button"
               onClick={() => setViewport('mobile')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 ${
+              className={`px-2.5 py-1 rounded-none text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 ${
                 viewport === 'mobile'
-                  ? 'bg-card text-foreground shadow-xs font-semibold'
+                  ? 'bg-card text-foreground font-semibold'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -132,7 +132,7 @@ export function EmailPreviewModal({ isOpen, onClose, template }: EmailPreviewMod
         <div className="p-4 sm:p-6 bg-muted/20 min-h-[480px] max-h-[70vh] flex items-center justify-center overflow-auto">
           {loading ? (
             <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground text-xs">
-              <Loader2 className="size-6 animate-spin text-emerald-500" />
+              <Loader2 className="size-6 animate-spin text-accent" />
               <span>Rendering preview with master layout...</span>
             </div>
           ) : error ? (
@@ -142,7 +142,7 @@ export function EmailPreviewModal({ isOpen, onClose, template }: EmailPreviewMod
             </div>
           ) : (
             <div
-              className={`transition-all duration-300 rounded-xl overflow-hidden shadow-lg border border-border/70 bg-white h-[500px] ${
+              className={`transition-all duration-300 rounded-none overflow-hidden border border-border/70 bg-white h-[500px] ${
                 viewport === 'mobile'
                   ? 'w-[375px] shrink-0'
                   : viewport === 'tablet'

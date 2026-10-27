@@ -112,7 +112,7 @@ export default function ApplicationDetailPage() {
 
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
-      APPLIED: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
+      APPLIED: 'bg-accent-soft/10 text-accent dark:text-accent border-blue-500/20',
       SELECTED: 'bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20',
       TASK_ASSIGNED: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
       TASK_SUBMITTED: 'bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20',
@@ -121,9 +121,9 @@ export default function ApplicationDetailPage() {
       INTERVIEW_SCHEDULED:
         'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20',
       INTERVIEW_COMPLETED: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20',
-      HIRED: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
+      HIRED: 'bg-accent-soft text-accent dark:text-accent border-accent',
       REJECTED: 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20',
-      CLOSED: 'bg-zinc-500/10 text-zinc-500 dark:text-zinc-400 border-zinc-500/20',
+      CLOSED: 'bg-zinc-500/10 text-muted dark:text-muted border-hairline-light/20',
     }
     return colors[status] || 'bg-muted text-muted-foreground border-border'
   }
@@ -255,12 +255,12 @@ export default function ApplicationDetailPage() {
                   {application.applicant.name}
                 </h1>
                 {application.applicationCode && (
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs font-mono font-semibold">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-soft text-accent dark:text-accent border border-accent text-xs font-mono font-semibold">
                     <span>App Code: #{application.applicationCode}</span>
                     <button
                       type="button"
                       onClick={handleCopyApplicationCode}
-                      className="text-emerald-600 dark:text-emerald-400 hover:opacity-75 p-0.5 cursor-pointer"
+                      className="text-accent dark:text-accent hover:opacity-75 p-0.5 cursor-pointer"
                       title="Copy application code"
                     >
                       {copiedCode ? <Check className="size-3" /> : <Copy className="size-3" />}
@@ -294,7 +294,7 @@ export default function ApplicationDetailPage() {
           {/* Main Content - 2 columns */}
           <div className="space-y-6 lg:col-span-2">
             {/* Job Info */}
-            <Card className="border-border bg-card shadow-xs">
+            <Card className="border-border bg-card">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Briefcase className="size-4 text-muted-foreground" />
@@ -304,7 +304,7 @@ export default function ApplicationDetailPage() {
               <CardContent>
                 <Link
                   href={`/dashboard/admin/jobs/${application.job.id}/applications`}
-                  className="text-lg font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                  className="text-lg font-semibold text-accent dark:text-accent hover:text-accent dark:hover:text-accent transition-colors"
                 >
                   {application.job.title}
                 </Link>
@@ -315,7 +315,7 @@ export default function ApplicationDetailPage() {
             </Card>
 
             {/* Applicant Info */}
-            <Card className="border-border bg-card shadow-xs">
+            <Card className="border-border bg-card">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base">Applicant Information</CardTitle>
               </CardHeader>
@@ -338,7 +338,7 @@ export default function ApplicationDetailPage() {
                       <p className="text-xs font-medium text-muted-foreground">Email Address</p>
                       <a
                         href={`mailto:${application.applicant.email}`}
-                        className="text-sm text-emerald-600 dark:text-emerald-400 hover:underline break-all"
+                        className="text-sm text-accent dark:text-accent hover:underline break-all"
                       >
                         {application.applicant.email}
                       </a>
@@ -351,7 +351,7 @@ export default function ApplicationDetailPage() {
                       <p className="text-xs font-medium text-muted-foreground">Phone Number</p>
                       <a
                         href={`tel:${application.applicant.phone}`}
-                        className="text-sm text-emerald-600 dark:text-emerald-400 hover:underline"
+                        className="text-sm text-accent dark:text-accent hover:underline"
                       >
                         {application.applicant.phone}
                       </a>
@@ -418,7 +418,7 @@ export default function ApplicationDetailPage() {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              <Globe className="size-3.5 text-emerald-500" />
+                              <Globe className="size-3.5 text-accent" />
                               <span>View Portfolio</span>
                               <ExternalLink className="size-3 text-muted-foreground" />
                             </a>
@@ -456,7 +456,7 @@ export default function ApplicationDetailPage() {
             </Card>
 
             {/* Status History Timeline Card */}
-            <Card className="border-border bg-card shadow-xs">
+            <Card className="border-border bg-card">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Calendar className="size-4 text-muted-foreground" />
@@ -476,7 +476,7 @@ export default function ApplicationDetailPage() {
           {/* Sidebar - 1 column */}
           <div className="space-y-6">
             {/* Documents */}
-            <Card className="border-border bg-card shadow-xs">
+            <Card className="border-border bg-card">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base flex items-center gap-2">
                   <FileText className="size-4 text-muted-foreground" />
@@ -493,11 +493,11 @@ export default function ApplicationDetailPage() {
                     {application.documents.map((doc) => (
                       <div
                         key={doc.id}
-                        className="flex items-center justify-between gap-3 rounded-lg border border-border bg-muted/30 p-3 hover:bg-muted/50 transition-colors"
+                        className="flex items-center justify-between gap-3 rounded-none border border-border bg-muted/30 p-3 hover:bg-muted/50 transition-colors"
                       >
                         <div className="flex items-center gap-3 min-w-0">
-                          <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10">
-                            <FileText className="size-4 text-emerald-600 dark:text-emerald-400" />
+                          <div className="flex size-9 shrink-0 items-center justify-center rounded-none bg-accent-soft">
+                            <FileText className="size-4 text-accent dark:text-accent" />
                           </div>
                           <div className="min-w-0">
                             <p className="truncate text-xs font-medium text-foreground">
@@ -525,7 +525,7 @@ export default function ApplicationDetailPage() {
             </Card>
 
             {/* Actions */}
-            <Card className="border-border bg-card shadow-xs">
+            <Card className="border-border bg-card">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base">Update Status</CardTitle>
               </CardHeader>
@@ -560,7 +560,7 @@ export default function ApplicationDetailPage() {
                 <Button
                   onClick={handleUpdateStatus}
                   disabled={updating || !selectedStatus || selectedStatus === application.status}
-                  className="w-full gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs"
+                  className="w-full gap-2 bg-accent hover:bg-accent text-white text-xs"
                 >
                   {updating ? (
                     <>

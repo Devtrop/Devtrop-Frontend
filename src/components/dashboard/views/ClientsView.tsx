@@ -226,7 +226,7 @@ export function ClientsView() {
   if (isError) {
     return (
       <div className="p-4">
-        <div className="rounded-lg border border-destructive/50 bg-destructive/5 p-6">
+        <div className="rounded-none border border-destructive/50 bg-destructive/5 p-6">
           <p className="font-semibold text-destructive">Error</p>
           <p className="mt-2 text-sm text-muted-foreground">
             Failed to load clients. Please try again.
@@ -296,7 +296,7 @@ export function ClientsView() {
               </Label>
               <div className="space-y-3">
                 {imagePreview && (
-                  <div className="relative w-full h-32 rounded-lg border border-border bg-muted flex items-center justify-center overflow-hidden">
+                  <div className="relative w-full h-32 rounded-none border border-border bg-muted flex items-center justify-center overflow-hidden">
                     <Image
                       src={imagePreview}
                       alt="Preview"
@@ -433,7 +433,7 @@ export function ClientsView() {
             </Button>
             <Button
               onClick={() => handleOpenDialog()}
-              className="gap-2 bg-emerald-600 hover:bg-emerald-700 h-8 text-xs"
+              className="gap-2 bg-accent hover:bg-accent h-8 text-xs"
             >
               <Plus className="size-4" />
               Add Client
@@ -443,10 +443,10 @@ export function ClientsView() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4">
-          <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+          <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10">
-                <Building2 className="size-4 sm:size-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-accent-soft">
+                <Building2 className="size-4 sm:size-5 text-accent dark:text-accent" />
               </div>
               <div className="min-w-0">
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
@@ -459,10 +459,10 @@ export function ClientsView() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+          <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10">
-                <Eye className="size-4 sm:size-5 text-blue-600 dark:text-blue-400" />
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-accent-soft/10">
+                <Eye className="size-4 sm:size-5 text-accent dark:text-accent" />
               </div>
               <div className="min-w-0">
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
@@ -475,9 +475,9 @@ export function ClientsView() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+          <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/10">
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-amber-500/10">
                 <EyeOff className="size-4 sm:size-5 text-amber-600 dark:text-amber-400" />
               </div>
               <div className="min-w-0">
@@ -494,7 +494,7 @@ export function ClientsView() {
 
         {/* Table & Mobile Cards */}
         {clients.length === 0 ? (
-          <div className="rounded-xl border border-border bg-card p-12 text-center">
+          <div className="rounded-none border border-border bg-card p-12 text-center">
             <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-muted text-2xl">
               🏢
             </div>
@@ -511,7 +511,7 @@ export function ClientsView() {
         ) : (
           <>
             {/* Desktop Table */}
-            <div className="hidden lg:block rounded-xl border border-border bg-card shadow-xs overflow-hidden">
+            <div className="hidden lg:block rounded-none border border-border bg-card overflow-hidden">
               <div className="overflow-x-auto">
                 <Table className="text-xs min-w-[700px]">
                   <TableHeader>
@@ -553,7 +553,7 @@ export function ClientsView() {
                               Hidden
                             </span>
                           ) : (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-600">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-accent-soft text-accent">
                               <Eye className="size-3" />
                               Visible
                             </span>
@@ -615,7 +615,7 @@ export function ClientsView() {
               {clients.map((client) => (
                 <div
                   key={client.id}
-                  className="rounded-xl border border-border bg-card p-4 shadow-xs space-y-3"
+                  className="rounded-none border border-border bg-card p-4 space-y-3"
                 >
                   <div className="flex items-start gap-3">
                     <div className="relative w-16 h-16 rounded border border-border bg-muted flex items-center justify-center overflow-hidden shrink-0">
@@ -639,7 +639,7 @@ export function ClientsView() {
                             Hidden
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-600">
+                          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-accent-soft text-accent">
                             <Eye className="size-3" />
                             Visible
                           </span>

@@ -71,12 +71,12 @@ export function RequestResubmissionModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-lg bg-card border-border text-foreground p-0 overflow-hidden rounded-2xl shadow-2xl">
+      <DialogContent className="sm:max-w-lg bg-card border-border text-foreground p-0 overflow-hidden rounded-none">
         <form onSubmit={handleSubmit}>
           {/* Header matching SendOfferModal and SendOrientationModal */}
           <DialogHeader className="p-5 border-b border-border/80 bg-muted/20">
             <div className="flex items-center gap-2.5">
-              <div className="size-9 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+              <div className="size-9 rounded-none bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
                 <RotateCcw className="size-4" />
               </div>
               <div>
@@ -92,7 +92,7 @@ export function RequestResubmissionModal({
 
           <div className="p-5 space-y-4">
             {/* Email Template Selector */}
-            <div className="p-3 rounded-xl border border-border/80 bg-muted/20">
+            <div className="p-3 rounded-none border border-border/80 bg-muted/20">
               <EmailTemplateSelect
                 category="ONBOARDING_RESUBMIT"
                 value={templateId}
@@ -101,13 +101,13 @@ export function RequestResubmissionModal({
               />
             </div>
             {/* Selected Candidates Pills */}
-            <div className="p-3 rounded-xl border border-border/80 bg-muted/30 space-y-2">
+            <div className="p-3 rounded-none border border-border/80 bg-muted/30 space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground font-medium">Recipients</span>
                 <span className="text-[11px] font-semibold text-foreground">1 candidate</span>
               </div>
               <div className="flex flex-wrap gap-1.5 max-h-20 overflow-y-auto pr-1">
-                <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium bg-background border border-border/70 text-foreground">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-none text-[11px] font-medium bg-background border border-border/70 text-foreground">
                   {candidate.applicant?.name}
                 </span>
               </div>
@@ -164,7 +164,7 @@ export function RequestResubmissionModal({
               type="submit"
               size="sm"
               disabled={submitting || !notes.trim()}
-              className="text-xs h-8 gap-1.5 bg-amber-600 hover:bg-amber-500 text-white font-medium shadow-sm cursor-pointer"
+              className="text-xs h-8 gap-1.5 bg-amber-600 hover:bg-amber-500 text-white font-medium cursor-pointer"
             >
               {submitting ? (
                 <>

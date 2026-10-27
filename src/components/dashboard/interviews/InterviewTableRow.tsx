@@ -169,7 +169,7 @@ export function InterviewTableRow(props: RowProps) {
         <div className="flex items-center gap-2.5">
           <div
             onClick={() => openDrawer(item)}
-            className="size-8 rounded-xl bg-primary/10 border border-primary/20 text-primary font-bold text-[11px] flex items-center justify-center shrink-0 cursor-pointer hover:opacity-85 transition-opacity"
+            className="size-8 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[11px] flex items-center justify-center shrink-0 cursor-pointer hover:opacity-85 transition-opacity"
           >
             {getInitials(applicant?.name)}
           </div>
@@ -216,12 +216,12 @@ export function InterviewTableRow(props: RowProps) {
                 )}
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-48 text-xs rounded-xl">
+            <DropdownMenuContent align="start" className="w-48 text-xs rounded-none">
               {availableTransitions.map((opt) => (
                 <DropdownMenuItem
                   key={opt.value}
                   onClick={() => handleStatusChange(opt.value)}
-                  className="cursor-pointer gap-2 my-0.5 rounded-lg text-xs font-medium"
+                  className="cursor-pointer gap-2 my-0.5 rounded-none text-xs font-medium"
                 >
                   <span
                     className={`size-1.5 rounded-full ${opt.dotColor || 'bg-muted-foreground'} shrink-0`}
@@ -278,7 +278,7 @@ export function InterviewTableRow(props: RowProps) {
                       target="_blank"
                       rel="noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-1 rounded-md text-primary hover:bg-primary/10 transition-colors shrink-0"
+                      className="p-1 rounded-none text-primary hover:bg-primary/10 transition-colors shrink-0"
                       title="Open Google Meet"
                     >
                       <InterviewIcons.Video className="size-3.5" />
@@ -288,10 +288,10 @@ export function InterviewTableRow(props: RowProps) {
               </TooltipTrigger>
               <TooltipContent
                 side="top"
-                className="p-2.5 max-w-xs bg-zinc-950 border-zinc-800 text-zinc-100 shadow-xl rounded-lg text-xs space-y-0.5"
+                className="p-2.5 max-w-xs bg-canvas border-hairline-light text-muted rounded-none text-xs space-y-0.5"
               >
-                <div className="font-semibold text-zinc-200">Interview Session</div>
-                <div className="text-[11px] text-zinc-400 font-mono">
+                <div className="font-semibold text-muted">Interview Session</div>
+                <div className="text-[11px] text-muted font-mono">
                   {new Date(item.slot.startTime).toLocaleDateString(undefined, {
                     weekday: 'short',
                     month: 'short',
@@ -324,7 +324,7 @@ export function InterviewTableRow(props: RowProps) {
               </TooltipTrigger>
               <TooltipContent
                 side="top"
-                className="p-2 text-xs bg-zinc-950 border-zinc-800 text-zinc-200"
+                className="p-2 text-xs bg-canvas border-hairline-light text-muted"
               >
                 Pending Booking
               </TooltipContent>
@@ -355,14 +355,14 @@ export function InterviewTableRow(props: RowProps) {
                 </TooltipTrigger>
                 <TooltipContent
                   side="top"
-                  className="p-2.5 max-w-xs bg-zinc-950 border-zinc-800 text-zinc-100 shadow-xl rounded-lg text-xs space-y-0.5 text-left"
+                  className="p-2.5 max-w-xs bg-canvas border-hairline-light text-muted rounded-none text-xs space-y-0.5 text-left"
                 >
                   <div className="font-semibold text-amber-400">Evaluation: {avgScore}/5</div>
-                  <div className="text-[11px] text-zinc-400">
+                  <div className="text-[11px] text-muted">
                     Tech: {item.feedback.technicalSkill}/5 · Comm: {item.feedback.communication}/5
                   </div>
                   {item.feedback.comments && (
-                    <div className="text-[10px] text-zinc-400 italic pt-0.5">
+                    <div className="text-[10px] text-muted italic pt-0.5">
                       &quot;{item.feedback.comments}&quot;
                     </div>
                   )}
@@ -373,7 +373,7 @@ export function InterviewTableRow(props: RowProps) {
             <button
               type="button"
               onClick={() => onOpenFeedback(item)}
-              className="p-1 rounded-md text-muted-foreground/60 hover:text-amber-400 hover:bg-amber-500/10 transition-colors cursor-pointer"
+              className="p-1 rounded-none text-muted-foreground/60 hover:text-amber-400 hover:bg-amber-500/10 transition-colors cursor-pointer"
               title="Score candidate"
             >
               <InterviewIcons.Star className="size-4" />
@@ -393,7 +393,7 @@ export function InterviewTableRow(props: RowProps) {
               variant="ghost"
               size="icon-xs"
               onClick={() => onRescheduleInterview(item)}
-              className="h-7 w-7 rounded-lg text-muted-foreground hover:text-foreground cursor-pointer shrink-0"
+              className="h-7 w-7 rounded-none text-muted-foreground hover:text-foreground cursor-pointer shrink-0"
               title="Reschedule interview"
             >
               <InterviewIcons.Calendar className="size-3.5" />
@@ -404,7 +404,7 @@ export function InterviewTableRow(props: RowProps) {
               variant="ghost"
               size="icon-xs"
               onClick={() => openDrawer(item)}
-              className="h-7 w-7 rounded-lg text-muted-foreground hover:text-foreground cursor-pointer shrink-0"
+              className="h-7 w-7 rounded-none text-muted-foreground hover:text-foreground cursor-pointer shrink-0"
               title="View Details"
             >
               <InterviewIcons.Eye className="size-3.5" />
@@ -421,7 +421,7 @@ export function InterviewTableRow(props: RowProps) {
                   variant="ghost"
                   size="icon-xs"
                   onClick={() => sendInvitations(job.id, [targetAppId])}
-                  className="h-7 w-7 rounded-lg text-emerald-500/70 hover:text-emerald-400 hover:bg-emerald-500/10 cursor-pointer shrink-0"
+                  className="h-7 w-7 rounded-none text-accent/70 hover:text-accent hover:bg-accent-soft cursor-pointer shrink-0"
                   title={item.token ? 'Resend Invitation' : 'Send Invitation'}
                 >
                   <InterviewIcons.MailPlus className="size-3.5" />
@@ -440,7 +440,7 @@ export function InterviewTableRow(props: RowProps) {
                     forceResend: true,
                   })
                 }
-                className="h-7 w-7 rounded-lg text-purple-400/70 hover:text-purple-300 hover:bg-purple-500/10 cursor-pointer shrink-0"
+                className="h-7 w-7 rounded-none text-accent/70 hover:text-accent hover:bg-accent-soft/10 cursor-pointer shrink-0"
                 title="Dispatch Rejection"
               >
                 <InterviewIcons.Send className="size-3.5" />
@@ -452,7 +452,7 @@ export function InterviewTableRow(props: RowProps) {
               variant="ghost"
               size="icon-xs"
               onClick={() => deleteInterview(item.id)}
-              className="h-7 w-7 rounded-lg text-rose-500/70 hover:text-rose-500 hover:bg-rose-500/10 cursor-pointer shrink-0"
+              className="h-7 w-7 rounded-none text-rose-500/70 hover:text-rose-500 hover:bg-rose-500/10 cursor-pointer shrink-0"
               title="Delete Interview"
             >
               <InterviewIcons.Trash className="size-3.5" />

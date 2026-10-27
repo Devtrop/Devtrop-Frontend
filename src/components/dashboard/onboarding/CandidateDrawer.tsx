@@ -71,7 +71,7 @@ export function CandidateDrawer({
           <Button
             size="sm"
             onClick={() => onSendOffer(candidate)}
-            className="h-8 gap-1.5 text-xs font-medium rounded-lg border-emerald-500/30 text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 cursor-pointer shadow-xs"
+            className="h-8 gap-1.5 text-xs font-medium rounded-none border-accent text-accent bg-accent-soft hover:bg-accent-soft cursor-pointer"
           >
             <Mail className="size-3.5" />
             <span>Send Offer Letter</span>
@@ -81,7 +81,7 @@ export function CandidateDrawer({
             variant="outline"
             disabled={updating}
             onClick={handleRejectCandidate}
-            className="h-8 gap-1.5 text-xs font-medium rounded-lg border-zinc-800 bg-zinc-900/90 hover:bg-zinc-800 text-rose-400 hover:text-rose-300 cursor-pointer shadow-xs"
+            className="h-8 gap-1.5 text-xs font-medium rounded-none border-hairline-light bg-subtle/90 hover:bg-muted text-rose-400 hover:text-rose-300 cursor-pointer"
           >
             <UserX className="size-3.5" />
             <span>Reject</span>
@@ -95,7 +95,7 @@ export function CandidateDrawer({
             size="sm"
             variant="outline"
             onClick={() => onSendOffer(candidate)}
-            className="h-8 gap-1.5 text-xs font-medium rounded-lg border-zinc-800 bg-zinc-900/90 hover:bg-zinc-800 text-zinc-200 cursor-pointer shadow-xs"
+            className="h-8 gap-1.5 text-xs font-medium rounded-none border-hairline-light bg-subtle/90 hover:bg-muted text-muted cursor-pointer"
           >
             <Mail className="size-3.5" />
             <span>Resend Offer Letter</span>
@@ -105,7 +105,7 @@ export function CandidateDrawer({
             variant="outline"
             disabled={updating}
             onClick={handleRejectCandidate}
-            className="h-8 gap-1.5 text-xs font-medium rounded-lg border-zinc-800 bg-zinc-900/90 hover:bg-zinc-800 text-rose-400 hover:text-rose-300 cursor-pointer shadow-xs"
+            className="h-8 gap-1.5 text-xs font-medium rounded-none border-hairline-light bg-subtle/90 hover:bg-muted text-rose-400 hover:text-rose-300 cursor-pointer"
           >
             <UserX className="size-3.5" />
             <span>Reject</span>
@@ -118,7 +118,7 @@ export function CandidateDrawer({
           <Button
             size="sm"
             onClick={() => onSendOrientation(candidate)}
-            className="h-8 gap-1.5 text-xs font-medium rounded-lg border-indigo-500/30 text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 cursor-pointer shadow-xs"
+            className="h-8 gap-1.5 text-xs font-medium rounded-none border-indigo-500/30 text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 cursor-pointer"
           >
             <Video className="size-3.5" />
             <span>Send Orientation & Hire</span>
@@ -128,7 +128,7 @@ export function CandidateDrawer({
               size="sm"
               variant="outline"
               onClick={() => onRequestResubmission(candidate)}
-              className="h-8 gap-1.5 text-xs font-medium rounded-lg border-amber-500/30 text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 cursor-pointer shadow-xs"
+              className="h-8 gap-1.5 text-xs font-medium rounded-none border-amber-500/30 text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 cursor-pointer"
             >
               <RotateCcw className="size-3.5" />
               <span>Request Resubmission</span>
@@ -139,7 +139,7 @@ export function CandidateDrawer({
             variant="outline"
             disabled={updating}
             onClick={handleRejectCandidate}
-            className="h-8 gap-1.5 text-xs font-medium rounded-lg border-zinc-800 bg-zinc-900/90 hover:bg-zinc-800 text-rose-400 hover:text-rose-300 cursor-pointer shadow-xs"
+            className="h-8 gap-1.5 text-xs font-medium rounded-none border-hairline-light bg-subtle/90 hover:bg-muted text-rose-400 hover:text-rose-300 cursor-pointer"
           >
             <UserX className="size-3.5" />
             <span>Reject</span>
@@ -152,7 +152,7 @@ export function CandidateDrawer({
           size="sm"
           variant="outline"
           onClick={() => onSendOrientation(candidate)}
-          className="h-8 gap-1.5 text-xs font-medium rounded-lg border-indigo-500/30 text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 cursor-pointer shadow-xs"
+          className="h-8 gap-1.5 text-xs font-medium rounded-none border-indigo-500/30 text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 cursor-pointer"
         >
           <Video className="size-3.5" />
           <span>Resend Orientation</span>
@@ -164,7 +164,7 @@ export function CandidateDrawer({
           size="sm"
           variant="outline"
           onClick={() => onSendRejection(candidate)}
-          className="h-8 gap-1.5 text-xs font-medium rounded-lg border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 cursor-pointer shadow-xs"
+          className="h-8 gap-1.5 text-xs font-medium rounded-none border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 cursor-pointer"
         >
           <Mail className="size-3.5" />
           <span>Resend Rejection Notice</span>

@@ -14,12 +14,12 @@ export function BlogsSkeleton() {
       {/* Header Skeleton */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="space-y-1.5">
-          <Skeleton className="h-7 w-48 rounded-xl" />
-          <Skeleton className="h-4 w-72 rounded-lg" />
+          <Skeleton className="h-7 w-48 rounded-none" />
+          <Skeleton className="h-4 w-72 rounded-none" />
         </div>
         <div className="flex items-center gap-2">
-          <Skeleton className="h-8 w-28 rounded-xl" />
-          <Skeleton className="h-8 w-32 rounded-xl" />
+          <Skeleton className="h-8 w-28 rounded-none" />
+          <Skeleton className="h-8 w-32 rounded-none" />
         </div>
       </div>
 
@@ -28,45 +28,45 @@ export function BlogsSkeleton() {
         {Array.from({ length: 4 }).map((_, i) => (
           <div
             key={i}
-            className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs flex items-center gap-2.5 sm:gap-3"
+            className="rounded-none border border-border bg-card p-3 sm:p-4 flex items-center gap-2.5 sm:gap-3"
           >
-            <Skeleton className="size-8 sm:size-10 rounded-lg shrink-0" />
+            <Skeleton className="size-8 sm:size-10 rounded-none shrink-0" />
             <div className="space-y-1.5 flex-1 min-w-0">
-              <Skeleton className="h-3 w-16 sm:w-20 rounded-md" />
-              <Skeleton className="h-5 sm:h-6 w-10 sm:w-12 rounded-md" />
+              <Skeleton className="h-3 w-16 sm:w-20 rounded-none" />
+              <Skeleton className="h-5 sm:h-6 w-10 sm:w-12 rounded-none" />
             </div>
           </div>
         ))}
       </div>
 
       {/* Filters Card Skeleton */}
-      <div className="rounded-xl border border-border bg-card p-4 shadow-xs space-y-4">
+      <div className="rounded-none border border-border bg-card p-4 space-y-4">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-2">
-            <Skeleton className="h-3.5 w-16 rounded-md" />
-            <Skeleton className="h-9 w-full rounded-md" />
+            <Skeleton className="h-3.5 w-16 rounded-none" />
+            <Skeleton className="h-9 w-full rounded-none" />
           </div>
           <div className="space-y-2">
-            <Skeleton className="h-3.5 w-16 rounded-md" />
-            <Skeleton className="h-9 w-full rounded-md" />
+            <Skeleton className="h-3.5 w-16 rounded-none" />
+            <Skeleton className="h-9 w-full rounded-none" />
           </div>
           <div className="space-y-2">
-            <Skeleton className="h-3.5 w-16 rounded-md" />
-            <Skeleton className="h-9 w-full rounded-md" />
+            <Skeleton className="h-3.5 w-16 rounded-none" />
+            <Skeleton className="h-9 w-full rounded-none" />
           </div>
           <div className="space-y-2">
-            <Skeleton className="h-3.5 w-16 rounded-md" />
-            <Skeleton className="h-9 w-full rounded-md" />
+            <Skeleton className="h-3.5 w-16 rounded-none" />
+            <Skeleton className="h-9 w-full rounded-none" />
           </div>
         </div>
         <div className="flex items-center justify-between">
-          <Skeleton className="h-4 w-52 rounded-md" />
-          <Skeleton className="h-8 w-20 rounded-md" />
+          <Skeleton className="h-4 w-52 rounded-none" />
+          <Skeleton className="h-8 w-20 rounded-none" />
         </div>
       </div>
 
       {/* Blog Posts Table Skeleton */}
-      <div className="hidden lg:block rounded-xl border border-border bg-card shadow-xs overflow-hidden w-full">
+      <div className="hidden lg:block rounded-none border border-border bg-card overflow-hidden w-full">
         <div className="overflow-x-auto">
           <Table className="text-xs">
             <TableHeader>
@@ -83,26 +83,26 @@ export function BlogsSkeleton() {
               {Array.from({ length: 8 }).map((_, i) => (
                 <TableRow key={`blog-skel-row-${i}`}>
                   <TableCell className="px-3 py-3">
-                    <Skeleton className="h-4 w-6 rounded-md" />
+                    <Skeleton className="h-4 w-6 rounded-none" />
                   </TableCell>
                   <TableCell className="px-3 py-3">
                     <div className="space-y-1.5">
-                      <Skeleton className="h-4 w-52 rounded-md" />
-                      <Skeleton className="h-3 w-32 rounded-md" />
+                      <Skeleton className="h-4 w-52 rounded-none" />
+                      <Skeleton className="h-3 w-32 rounded-none" />
                     </div>
                   </TableCell>
                   <TableCell className="px-3 py-3">
-                    <Skeleton className="h-5 w-20 rounded-md" />
+                    <Skeleton className="h-5 w-20 rounded-none" />
                   </TableCell>
                   <TableCell className="px-3 py-3">
-                    <Skeleton className="h-4 w-24 rounded-md" />
+                    <Skeleton className="h-4 w-24 rounded-none" />
                   </TableCell>
                   <TableCell className="px-3 py-3">
                     <Skeleton className="h-6 w-16 rounded-full" />
                   </TableCell>
                   <TableCell className="px-3 py-3 text-right">
                     <div className="flex justify-end gap-1">
-                      <Skeleton className="size-7 rounded-md" />
+                      <Skeleton className="size-7 rounded-none" />
                     </div>
                   </TableCell>
                 </TableRow>
@@ -117,15 +117,15 @@ export function BlogsSkeleton() {
         {Array.from({ length: 4 }).map((_, i) => (
           <div
             key={`blog-card-skel-${i}`}
-            className="rounded-xl border border-border bg-card p-4 shadow-xs space-y-3"
+            className="rounded-none border border-border bg-card p-4 space-y-3"
           >
             <div className="flex items-start justify-between gap-3">
-              <Skeleton className="h-4 w-44 rounded-md" />
+              <Skeleton className="h-4 w-44 rounded-none" />
               <Skeleton className="h-5 w-16 rounded-full" />
             </div>
             <div className="space-y-2 pt-2 border-t border-border">
-              <Skeleton className="h-3 w-28 rounded-md" />
-              <Skeleton className="h-3 w-32 rounded-md" />
+              <Skeleton className="h-3 w-28 rounded-none" />
+              <Skeleton className="h-3 w-32 rounded-none" />
             </div>
           </div>
         ))}

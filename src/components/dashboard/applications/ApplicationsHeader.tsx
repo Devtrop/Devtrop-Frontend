@@ -22,7 +22,7 @@ export function ApplicationsHeader() {
           <Button
             variant="outline"
             size="sm"
-            className="gap-1.5 border-border hover:bg-muted text-xs h-8 px-3 rounded-xl w-full sm:w-auto"
+            className="gap-1.5 border-border hover:bg-muted text-xs h-8 px-3 rounded-none w-full sm:w-auto"
           >
             <Briefcase className="size-3.5" />
             <span>Manage Jobs</span>

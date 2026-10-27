@@ -49,7 +49,7 @@ export function InterviewTable(props: InterviewTableProps) {
       {/* =================================================================== */}
       {/* 1. DESKTOP VIEW (lg+): 5-Column Notion-Style Minimalist Grid        */}
       {/* =================================================================== */}
-      <div className="hidden lg:block rounded-2xl border border-border bg-card shadow-xs overflow-hidden w-full">
+      <div className="hidden lg:block rounded-none border border-border bg-card overflow-hidden w-full">
         <Table containerClassName="overflow-hidden" className="w-full text-xs">
             <TableHeader>
               <TableRow className="bg-muted/40 hover:bg-muted/40 border-b border-border">
@@ -126,10 +126,10 @@ export function InterviewTable(props: InterviewTableProps) {
                 key={item.id}
                 data-state={isSelected ? 'selected' : undefined}
                 onClick={() => openDrawer(item)}
-                className={`p-3.5 rounded-2xl border transition-all space-y-2.5 cursor-pointer ${
+                className={`p-3.5 rounded-none border transition-all space-y-2.5 cursor-pointer ${
                   isSelected
-                    ? 'border-primary/50 bg-primary/5 shadow-xs'
-                    : 'border-border bg-card shadow-xs hover:border-border/80 hover:bg-muted/20'
+                    ? 'border-primary/50 bg-primary/5'
+                    : 'border-border bg-card hover:border-border/80 hover:bg-muted/20'
                 }`}
               >
                 {/* Header Row: Checkbox + Name & Position */}
@@ -143,7 +143,7 @@ export function InterviewTable(props: InterviewTableProps) {
                         aria-label={`Select ${applicant?.name}`}
                       />
                     </div>
-                    <div className="size-8 rounded-xl bg-primary/10 border border-primary/20 text-primary font-bold text-[11px] flex items-center justify-center shrink-0">
+                    <div className="size-8 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[11px] flex items-center justify-center shrink-0">
                       {getInitials(applicant?.name)}
                     </div>
                     <div className="min-w-0">
@@ -158,7 +158,7 @@ export function InterviewTable(props: InterviewTableProps) {
 
                   {/* Evaluation Score if available */}
                   {item.feedback && (
-                    <div className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold text-amber-400 bg-amber-500/10 border border-amber-500/20 shrink-0">
+                    <div className="inline-flex items-center px-1.5 py-0.5 rounded-none text-[11px] font-semibold text-amber-400 bg-amber-500/10 border border-amber-500/20 shrink-0">
                       <span>
                         {((item.feedback.technicalSkill + item.feedback.communication) / 2).toFixed(
                           1,

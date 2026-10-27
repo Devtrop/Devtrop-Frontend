@@ -190,12 +190,12 @@ export function SendOfferModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-lg bg-card border-border text-foreground p-0 overflow-hidden rounded-2xl shadow-2xl">
+      <DialogContent className="sm:max-w-lg bg-card border-border text-foreground p-0 overflow-hidden rounded-none">
         <form onSubmit={handleSubmit}>
           {/* Header */}
           <DialogHeader className="p-5 border-b border-border/80 bg-muted/20">
             <div className="flex items-center gap-2.5">
-              <div className="size-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <div className="size-9 rounded-none bg-accent-soft border border-accent text-accent flex items-center justify-center">
                 <Mail className="size-4" />
               </div>
               <div>
@@ -211,7 +211,7 @@ export function SendOfferModal({
 
           <div className="p-5 space-y-4 max-h-[75vh] overflow-y-auto">
             {/* Email Template Selector */}
-            <div className="p-3 rounded-xl border border-border/80 bg-muted/20">
+            <div className="p-3 rounded-none border border-border/80 bg-muted/20">
               <EmailTemplateSelect
                 category="ONBOARDING_OFFER"
                 value={templateId}
@@ -221,16 +221,16 @@ export function SendOfferModal({
             </div>
 
             {/* Recipients Section with Interactive Picker */}
-            <div className="p-3.5 rounded-xl border border-border/80 bg-muted/20 space-y-2.5">
+            <div className="p-3.5 rounded-none border border-border/80 bg-muted/20 space-y-2.5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-                    <Users className="size-3.5 text-emerald-400" />
+                    <Users className="size-3.5 text-accent" />
                     <span>Recipients</span>
                   </span>
                   <Badge
                     variant="secondary"
-                    className="text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5"
+                    className="text-[11px] font-semibold bg-accent-soft text-accent border border-accent px-2 py-0.5"
                   >
                     {selectedCandidates.length} candidate{selectedCandidates.length === 1 ? '' : 's'}
                   </Badge>
@@ -260,7 +260,7 @@ export function SendOfferModal({
                   {selectedCandidates.map((c) => (
                     <span
                       key={c.id}
-                      className="inline-flex items-center gap-1 pl-2 pr-1 py-0.5 rounded-md text-[11px] font-medium bg-background border border-border/70 text-foreground group"
+                      className="inline-flex items-center gap-1 pl-2 pr-1 py-0.5 rounded-none text-[11px] font-medium bg-background border border-border/70 text-foreground group"
                     >
                       <span className="truncate max-w-[130px]">
                         {c.applicant?.name || 'Candidate'}
@@ -280,7 +280,7 @@ export function SendOfferModal({
                   ))}
                 </div>
               ) : (
-                <div className="p-2.5 rounded-lg border border-dashed border-amber-500/40 bg-amber-500/5 text-amber-300 text-xs flex items-center justify-between">
+                <div className="p-2.5 rounded-none border border-dashed border-amber-500/40 bg-amber-500/5 text-amber-300 text-xs flex items-center justify-between">
                   <span>No candidates selected. Please choose recipients below.</span>
                   {candidatePool.length > 0 && (
                     <Button
@@ -316,7 +316,7 @@ export function SendOfferModal({
                         variant="ghost"
                         size="sm"
                         onClick={selectAllFiltered}
-                        className="h-7 text-[10px] px-2 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 cursor-pointer"
+                        className="h-7 text-[10px] px-2 text-accent hover:text-accent hover:bg-accent-soft cursor-pointer"
                       >
                         Select All
                       </Button>
@@ -333,7 +333,7 @@ export function SendOfferModal({
                   </div>
 
                   {/* Scrollable candidates list */}
-                  <div className="max-h-40 overflow-y-auto rounded-lg border border-border/70 bg-background divide-y divide-border/50">
+                  <div className="max-h-40 overflow-y-auto rounded-none border border-border/70 bg-background divide-y divide-border/50">
                     {filteredPool.length === 0 ? (
                       <div className="py-4 text-center text-xs text-muted-foreground">
                         No candidates match your search
@@ -352,7 +352,7 @@ export function SendOfferModal({
                             onClick={() => toggleCandidate(c.id)}
                             className={cn(
                               'flex items-center justify-between p-2 hover:bg-muted/40 transition-colors cursor-pointer text-xs',
-                              isChecked && 'bg-emerald-500/5',
+                              isChecked && 'bg-accent-soft',
                             )}
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
@@ -362,7 +362,7 @@ export function SendOfferModal({
                                 onClick={(e) => e.stopPropagation()}
                                 className="cursor-pointer"
                               />
-                              <div className="size-6 rounded-lg bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] flex items-center justify-center shrink-0">
+                              <div className="size-6 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] flex items-center justify-center shrink-0">
                                 {getInitials(c.applicant?.name)}
                               </div>
                               <div className="min-w-0">
@@ -397,14 +397,14 @@ export function SendOfferModal({
 
             {/* Attachments Section */}
             {loadingTemplates ? (
-              <div className="flex items-center gap-2 p-3 rounded-xl border border-border/80 bg-muted/20 text-xs text-muted-foreground">
+              <div className="flex items-center gap-2 p-3 rounded-none border border-border/80 bg-muted/20 text-xs text-muted-foreground">
                 <Loader2 className="size-3.5 animate-spin" />
                 Loading templates...
               </div>
             ) : hasSavedTemplates && !showOverride ? (
-              <div className="flex items-center justify-between p-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 text-xs">
+              <div className="flex items-center justify-between p-3 rounded-none border border-accent bg-accent-soft text-xs">
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="size-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+                  <div className="size-7 rounded-none bg-accent-soft text-accent flex items-center justify-center shrink-0">
                     <FileCheck2 className="size-3.5" />
                   </div>
                   <div className="min-w-0">
@@ -450,7 +450,7 @@ export function SendOfferModal({
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  <div className="p-3 rounded-xl border border-dashed border-border/80 bg-muted/10 space-y-1.5 text-center">
+                  <div className="p-3 rounded-none border border-dashed border-border/80 bg-muted/10 space-y-1.5 text-center">
                     <p className="text-[11px] font-semibold text-foreground">Offer Letter (PDF)</p>
                     <Input
                       type="file"
@@ -460,7 +460,7 @@ export function SendOfferModal({
                       className="text-xs h-8 cursor-pointer file:cursor-pointer"
                     />
                   </div>
-                  <div className="p-3 rounded-xl border border-dashed border-border/80 bg-muted/10 space-y-1.5 text-center">
+                  <div className="p-3 rounded-none border border-dashed border-border/80 bg-muted/10 space-y-1.5 text-center">
                     <p className="text-[11px] font-semibold text-foreground">Agreement (PDF)</p>
                     <Input
                       type="file"
@@ -520,7 +520,7 @@ export function SendOfferModal({
               type="submit"
               size="sm"
               disabled={submitting || selectedCandidates.length === 0 || !canSubmit}
-              className="text-xs h-8 gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium shadow-sm disabled:opacity-50 cursor-pointer"
+              className="text-xs h-8 gap-1.5 bg-accent hover:bg-accent text-white font-medium disabled:opacity-50 cursor-pointer"
             >
               {submitting ? (
                 <>

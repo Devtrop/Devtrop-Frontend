@@ -146,7 +146,7 @@ export function BlogCategoriesView() {
   if (isError) {
     return (
       <div className="p-4">
-        <div className="rounded-lg border border-destructive/50 bg-destructive/5 p-6">
+        <div className="rounded-none border border-destructive/50 bg-destructive/5 p-6">
           <p className="font-semibold text-destructive">Error</p>
           <p className="mt-2 text-sm text-muted-foreground">
             Failed to load categories. Please try again.
@@ -308,7 +308,7 @@ export function BlogCategoriesView() {
             </Button>
             <Button
               onClick={() => handleOpenDialog()}
-              className="gap-2 bg-emerald-600 hover:bg-emerald-700 h-8 text-xs"
+              className="gap-2 bg-accent hover:bg-accent h-8 text-xs"
             >
               <Plus className="size-4" />
               Create Category
@@ -318,10 +318,10 @@ export function BlogCategoriesView() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4">
-          <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+          <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10">
-                <FolderOpen className="size-4 sm:size-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-accent-soft">
+                <FolderOpen className="size-4 sm:size-5 text-accent dark:text-accent" />
               </div>
               <div className="min-w-0">
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
@@ -332,10 +332,10 @@ export function BlogCategoriesView() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+          <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10">
-                <FolderOpen className="size-4 sm:size-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-accent-soft">
+                <FolderOpen className="size-4 sm:size-5 text-accent dark:text-accent" />
               </div>
               <div className="min-w-0">
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
@@ -348,10 +348,10 @@ export function BlogCategoriesView() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+          <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-lg bg-zinc-500/10">
-                <FolderOpen className="size-4 sm:size-5 text-zinc-600 dark:text-zinc-400" />
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-zinc-500/10">
+                <FolderOpen className="size-4 sm:size-5 text-muted dark:text-muted" />
               </div>
               <div className="min-w-0">
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
@@ -367,7 +367,7 @@ export function BlogCategoriesView() {
 
         {/* Table & Mobile Cards */}
         {categories.length === 0 ? (
-          <div className="rounded-xl border border-border bg-card p-12 text-center">
+          <div className="rounded-none border border-border bg-card p-12 text-center">
             <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-muted text-2xl">
               📁
             </div>
@@ -382,7 +382,7 @@ export function BlogCategoriesView() {
         ) : (
           <>
             {/* Desktop Table */}
-            <div className="hidden lg:block rounded-xl border border-border bg-card shadow-xs overflow-hidden">
+            <div className="hidden lg:block rounded-none border border-border bg-card overflow-hidden">
               <div className="overflow-x-auto">
                 <Table className="text-xs min-w-[750px]">
                   <TableHeader>
@@ -414,11 +414,11 @@ export function BlogCategoriesView() {
                         </TableCell>
                         <TableCell className="px-4 py-3">
                           {category.isActive ? (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-medium">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-accent-soft text-accent dark:text-accent text-[10px] font-medium">
                               Active
                             </span>
                           ) : (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 text-[10px] font-medium">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-zinc-500/10 text-muted dark:text-muted text-[10px] font-medium">
                               Inactive
                             </span>
                           )}
@@ -460,7 +460,7 @@ export function BlogCategoriesView() {
               {categories.map((category, index) => (
                 <div
                   key={category.id}
-                  className="rounded-xl border border-border bg-card p-4 shadow-xs space-y-3"
+                  className="rounded-none border border-border bg-card p-4 space-y-3"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex-1">
@@ -479,11 +479,11 @@ export function BlogCategoriesView() {
                       </div>
                     </div>
                     {category.isActive ? (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-medium shrink-0">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-accent-soft text-accent dark:text-accent text-[10px] font-medium shrink-0">
                         Active
                       </span>
                     ) : (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 text-[10px] font-medium shrink-0">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-zinc-500/10 text-muted dark:text-muted text-[10px] font-medium shrink-0">
                         Inactive
                       </span>
                     )}

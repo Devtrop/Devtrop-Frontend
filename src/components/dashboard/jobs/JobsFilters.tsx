@@ -39,7 +39,7 @@ export function JobsFilters({
   loading,
 }: JobsFiltersProps) {
   return (
-    <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+    <div className="rounded-none border border-border bg-card p-3 sm:p-4">
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
         {/* Search Input */}
         <div className="relative flex-1">
@@ -49,7 +49,7 @@ export function JobsFilters({
             placeholder="Search by title, job code..."
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="pl-9 h-9 text-xs rounded-lg border-border"
+            className="pl-9 h-9 text-xs rounded-none border-border"
           />
         </div>
 
@@ -58,7 +58,7 @@ export function JobsFilters({
           value={jobTypeFilter || 'ALL'}
           onValueChange={(val) => onJobTypeChange(val === 'ALL' ? '' : (val as JobType))}
         >
-          <SelectTrigger className="w-full sm:w-36 h-9 text-xs rounded-lg border-border">
+          <SelectTrigger className="w-full sm:w-36 h-9 text-xs rounded-none border-border">
             <SelectValue placeholder="All Work Modes" />
           </SelectTrigger>
           <SelectContent>
@@ -74,7 +74,7 @@ export function JobsFilters({
           value={statusFilter || 'ALL'}
           onValueChange={(val) => onStatusChange(val === 'ALL' ? '' : (val as JobStatus))}
         >
-          <SelectTrigger className="w-full sm:w-36 h-9 text-xs rounded-lg border-border">
+          <SelectTrigger className="w-full sm:w-36 h-9 text-xs rounded-none border-border">
             <SelectValue placeholder="All Statuses" />
           </SelectTrigger>
           <SelectContent>
@@ -87,7 +87,7 @@ export function JobsFilters({
 
         {/* Sort Filter */}
         <Select value={sort} onValueChange={(val) => onSortChange(val as 'latest' | 'oldest')}>
-          <SelectTrigger className="w-full sm:w-32 h-9 text-xs rounded-lg border-border">
+          <SelectTrigger className="w-full sm:w-32 h-9 text-xs rounded-none border-border">
             <SelectValue placeholder="Sort by" />
           </SelectTrigger>
           <SelectContent>
@@ -103,7 +103,7 @@ export function JobsFilters({
           size="sm"
           onClick={onReset}
           disabled={loading}
-          className="gap-1.5 h-9 px-3 text-xs rounded-lg border-border hover:bg-muted"
+          className="gap-1.5 h-9 px-3 text-xs rounded-none border-border hover:bg-muted"
         >
           <RefreshCw className={`size-3.5 ${loading ? 'animate-spin' : ''}`} />
           <span className="hidden sm:inline">Reset</span>

@@ -26,7 +26,7 @@ const TiptapEditor = dynamic(
   () => import('@/components/editor/TiptapEditor').then((mod) => ({ default: mod.TiptapEditor })),
   {
     loading: () => (
-      <div className="w-full min-h-[300px] rounded-md border border-input bg-muted/50 flex items-center justify-center">
+      <div className="w-full min-h-[300px] rounded-none border border-input bg-muted/50 flex items-center justify-center">
         <Loader2 className="size-6 animate-spin text-muted-foreground" />
       </div>
     ),
@@ -163,7 +163,7 @@ export function CreateJobTaskView() {
               <Button
                 type="submit"
                 disabled={createMutation.isPending || !jobId}
-                className="gap-2 bg-emerald-600 hover:bg-emerald-500"
+                className="gap-2 bg-accent hover:bg-accent"
               >
                 {createMutation.isPending ? (
                   <>
@@ -189,12 +189,12 @@ export function CreateJobTaskView() {
             </CardHeader>
             <CardContent>
               {jobsLoading ? (
-                <div className="flex items-center gap-2 rounded-lg border border-border bg-muted/40 px-3 py-2 text-xs text-muted-foreground">
+                <div className="flex items-center gap-2 rounded-none border border-border bg-muted/40 px-3 py-2 text-xs text-muted-foreground">
                   <span className="inline-block size-3.5 animate-spin rounded-full border-2 border-solid border-primary border-r-transparent" />
                   Loading jobs...
                 </div>
               ) : jobs.length === 0 ? (
-                <div className="rounded-lg border border-dashed border-border bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
+                <div className="rounded-none border border-dashed border-border bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
                   No jobs available. Create a job first.
                 </div>
               ) : (

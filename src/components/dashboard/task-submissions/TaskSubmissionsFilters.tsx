@@ -76,7 +76,7 @@ export function TaskSubmissionsFilters({
           placeholder="Search candidates..."
           value={search}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="h-10 text-xs rounded-xl border-border pl-9 pr-8 bg-card shadow-xs transition-all focus-visible:ring-1 focus-visible:ring-emerald-500"
+          className="h-10 text-xs rounded-none border-border pl-9 pr-8 bg-card transition-all focus-visible:ring-1 focus-visible:ring-accent"
         />
         {search && (
           <button
@@ -95,7 +95,7 @@ export function TaskSubmissionsFilters({
         value={jobId || 'ALL'}
         onValueChange={(val) => onJobChange(val === 'ALL' ? '' : val)}
       >
-        <SelectTrigger className="h-10 w-full sm:w-48 text-xs rounded-xl border-border bg-card shadow-xs transition-all focus:ring-1 focus:ring-emerald-500">
+        <SelectTrigger className="h-10 w-full sm:w-48 text-xs rounded-none border-border bg-card transition-all focus:ring-1 focus:ring-accent">
           <SelectValue placeholder={jobsLoading ? 'Loading jobs...' : 'All Jobs'} />
         </SelectTrigger>
         <SelectContent className="bg-popover border-border">
@@ -113,7 +113,7 @@ export function TaskSubmissionsFilters({
         value={evaluationStatus || 'ALL'}
         onValueChange={onEvaluationStatusChange}
       >
-        <SelectTrigger className="h-10 w-full sm:w-44 text-xs rounded-xl border-border bg-card shadow-xs transition-all focus:ring-1 focus:ring-emerald-500">
+        <SelectTrigger className="h-10 w-full sm:w-44 text-xs rounded-none border-border bg-card transition-all focus:ring-1 focus:ring-accent">
           <SelectValue placeholder="All Results" />
         </SelectTrigger>
         <SelectContent className="bg-popover border-border">
@@ -132,7 +132,7 @@ export function TaskSubmissionsFilters({
           size="sm"
           onClick={onReset}
           disabled={loading}
-          className="h-10 px-3 text-xs rounded-xl border-border bg-card hover:bg-muted shadow-xs transition-colors shrink-0 gap-1.5"
+          className="h-10 px-3 text-xs rounded-none border-border bg-card hover:bg-muted transition-colors shrink-0 gap-1.5"
           title="Reset Filters"
         >
           <RotateCcw className="size-3.5 text-muted-foreground" />

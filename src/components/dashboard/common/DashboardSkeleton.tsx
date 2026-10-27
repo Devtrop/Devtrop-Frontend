@@ -78,7 +78,7 @@ export function DashboardGridSkeleton({ cards = 3 }: { cards?: number }) {
       {Array.from({ length: cards }).map((_, i) => (
         <Card key={i}>
           <CardContent className="pt-6 space-y-3">
-            <Skeleton className="h-12 w-12 rounded-lg" />
+            <Skeleton className="h-12 w-12 rounded-none" />
             <Skeleton className="h-5 w-32" />
             <Skeleton className="h-8 w-20" />
           </CardContent>

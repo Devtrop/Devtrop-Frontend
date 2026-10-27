@@ -135,9 +135,9 @@ export function EmailLayoutsTab() {
                 fetchLayouts(false, true)
               }}
               disabled={loading}
-              className="text-xs h-8 gap-1.5 cursor-pointer rounded-lg"
+              className="text-xs h-8 gap-1.5 cursor-pointer rounded-none"
             >
-              <RotateCcw className={`size-3.5 ${loading ? 'animate-spin text-emerald-500' : ''}`} />
+              <RotateCcw className={`size-3.5 ${loading ? 'animate-spin text-accent' : ''}`} />
               <span>Refresh</span>
             </Button>
 
@@ -150,7 +150,7 @@ export function EmailLayoutsTab() {
                 }
                 router.push('/dashboard/email-templates/layouts/new')
               }}
-              className="text-xs h-8 gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium cursor-pointer rounded-lg"
+              className="text-xs h-8 gap-1.5 bg-accent hover:bg-accent text-white font-medium cursor-pointer rounded-none"
             >
               <Plus className="size-3.5" />
               <span>New Layout</span>
@@ -161,11 +161,11 @@ export function EmailLayoutsTab() {
         {/* Layouts Grid */}
         {loading ? (
           <div className="py-16 text-center text-muted-foreground text-xs flex flex-col items-center justify-center gap-2">
-            <RotateCcw className="size-5 animate-spin text-emerald-500" />
+            <RotateCcw className="size-5 animate-spin text-accent" />
             <span>Loading layouts...</span>
           </div>
         ) : layouts.length === 0 ? (
-          <div className="py-16 text-center text-muted-foreground text-xs flex flex-col items-center justify-center gap-2.5 rounded-xl border border-dashed border-border/80 p-8">
+          <div className="py-16 text-center text-muted-foreground text-xs flex flex-col items-center justify-center gap-2.5 rounded-none border border-dashed border-border/80 p-8">
             <div className="font-semibold text-foreground">No custom layouts yet</div>
             <Button
               size="sm"
@@ -175,7 +175,7 @@ export function EmailLayoutsTab() {
                 }
                 router.push('/dashboard/email-templates/layouts/new')
               }}
-              className="text-xs h-8 gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer mt-1 rounded-lg"
+              className="text-xs h-8 gap-1.5 bg-accent hover:bg-accent text-white cursor-pointer mt-1 rounded-none"
             >
               <Plus className="size-3.5" />
               <span>Create Layout</span>
@@ -187,7 +187,7 @@ export function EmailLayoutsTab() {
               return (
                 <div
                   key={layout.id}
-                  className="group relative rounded-xl border border-border/80 bg-card p-4 hover:border-emerald-500/40 hover:shadow-xs transition-all flex flex-col justify-between gap-3"
+                  className="group relative rounded-none border border-border/80 bg-card p-4 hover:border-accent hover:shadow-xs transition-all flex flex-col justify-between gap-3"
                 >
                   <div>
                     {/* Header */}
@@ -201,21 +201,21 @@ export function EmailLayoutsTab() {
                             }
                             router.push(`/dashboard/email-templates/layouts/${layout.id}`)
                           }}
-                          className="font-semibold text-sm text-foreground hover:text-emerald-500 transition-colors truncate text-left cursor-pointer"
+                          className="font-semibold text-sm text-foreground hover:text-accent transition-colors truncate text-left cursor-pointer"
                         >
                           {layout.name}
                         </button>
                       </div>
 
                       {layout.isDefault ? (
-                        <span className="text-[11px] text-emerald-500 font-medium shrink-0">
+                        <span className="text-[11px] text-accent font-medium shrink-0">
                           Default
                         </span>
                       ) : (
                         <button
                           type="button"
                           onClick={() => handleSetDefault(layout)}
-                          className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] text-muted-foreground hover:text-emerald-500 hover:underline cursor-pointer shrink-0"
+                          className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] text-muted-foreground hover:text-accent hover:underline cursor-pointer shrink-0"
                           title="Set as default layout"
                         >
                           Make Default
@@ -226,7 +226,7 @@ export function EmailLayoutsTab() {
                     {/* Preview Mini Frame */}
                     <div
                       onClick={() => setPreviewLayout(layout)}
-                      className="mt-3 rounded-lg border border-border/60 bg-muted/20 overflow-hidden h-28 relative cursor-pointer hover:opacity-90 transition-opacity"
+                      className="mt-3 rounded-none border border-border/60 bg-muted/20 overflow-hidden h-28 relative cursor-pointer hover:opacity-90 transition-opacity"
                     >
                       <iframe
                         title={layout.name}
@@ -242,7 +242,7 @@ export function EmailLayoutsTab() {
 
                     {/* Slots info */}
                     <div className="mt-2.5 flex items-center gap-3 text-[11px] text-muted-foreground font-mono">
-                      <span className="text-emerald-500">{'{{content}}'}</span>
+                      <span className="text-accent">{'{{content}}'}</span>
                       {layout.htmlContent.includes('{{button}}') && (
                         <span className="text-muted-foreground">{'{{button}}'}</span>
                       )}
@@ -258,7 +258,7 @@ export function EmailLayoutsTab() {
                           variant="ghost"
                           size="sm"
                           onClick={() => setPreviewLayout(layout)}
-                          className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground cursor-pointer rounded-md"
+                          className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground cursor-pointer rounded-none"
                         >
                           <Eye className="size-3.5" />
                         </Button>
@@ -280,7 +280,7 @@ export function EmailLayoutsTab() {
                             }
                             router.push(`/dashboard/email-templates/layouts/${layout.id}`)
                           }}
-                          className="h-7 px-2 text-xs text-muted-foreground hover:text-emerald-500 cursor-pointer rounded-md"
+                          className="h-7 px-2 text-xs text-muted-foreground hover:text-accent cursor-pointer rounded-none"
                         >
                           <Edit className="size-3.5" />
                         </Button>
@@ -298,7 +298,7 @@ export function EmailLayoutsTab() {
                             variant="ghost"
                             size="sm"
                             onClick={() => setDeleteTarget(layout)}
-                            className="h-7 px-2 text-xs text-muted-foreground hover:text-rose-500 cursor-pointer rounded-md"
+                            className="h-7 px-2 text-xs text-muted-foreground hover:text-rose-500 cursor-pointer rounded-none"
                           >
                             <Trash2 className="size-3.5" />
                           </Button>
@@ -321,20 +321,20 @@ export function EmailLayoutsTab() {
             open={Boolean(previewLayout)}
             onOpenChange={(open) => !open && setPreviewLayout(null)}
           >
-            <DialogContent className="sm:max-w-5xl w-[95vw] max-w-[95vw] sm:w-[95vw] p-0 gap-0 overflow-hidden rounded-2xl border border-border/80 shadow-2xl bg-card">
+            <DialogContent className="sm:max-w-5xl w-[95vw] max-w-[95vw] sm:w-[95vw] p-0 gap-0 overflow-hidden rounded-none border border-border/80 bg-card">
               <DialogHeader className="pl-5 pr-14 py-3.5 border-b border-border/70 bg-muted/20 flex flex-row items-center justify-between shrink-0">
                 <DialogTitle className="text-sm font-bold text-foreground">
                   {previewLayout.name}
                 </DialogTitle>
 
                 {/* Viewport Toggles: Desktop, Tablet, Mobile */}
-                <div className="flex items-center gap-1 bg-background p-0.5 rounded-lg border border-border/60">
+                <div className="flex items-center gap-1 bg-background p-0.5 rounded-none border border-border/60">
                   <button
                     type="button"
                     onClick={() => setPreviewViewport('desktop')}
-                    className={`px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1 cursor-pointer ${
+                    className={`px-2.5 py-1 text-xs rounded-none transition-all flex items-center gap-1 cursor-pointer ${
                       previewViewport === 'desktop'
-                        ? 'bg-card text-foreground font-semibold shadow-xs'
+                        ? 'bg-card text-foreground font-semibold'
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
@@ -344,9 +344,9 @@ export function EmailLayoutsTab() {
                   <button
                     type="button"
                     onClick={() => setPreviewViewport('tablet')}
-                    className={`px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1 cursor-pointer ${
+                    className={`px-2.5 py-1 text-xs rounded-none transition-all flex items-center gap-1 cursor-pointer ${
                       previewViewport === 'tablet'
-                        ? 'bg-card text-foreground font-semibold shadow-xs'
+                        ? 'bg-card text-foreground font-semibold'
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
@@ -356,9 +356,9 @@ export function EmailLayoutsTab() {
                   <button
                     type="button"
                     onClick={() => setPreviewViewport('mobile')}
-                    className={`px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1 cursor-pointer ${
+                    className={`px-2.5 py-1 text-xs rounded-none transition-all flex items-center gap-1 cursor-pointer ${
                       previewViewport === 'mobile'
-                        ? 'bg-card text-foreground font-semibold shadow-xs'
+                        ? 'bg-card text-foreground font-semibold'
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
@@ -370,7 +370,7 @@ export function EmailLayoutsTab() {
 
               <div className="p-4 sm:p-6 bg-muted/20 min-h-[500px] max-h-[75vh] flex items-center justify-center overflow-auto">
                 <div
-                  className={`transition-all duration-300 rounded-xl overflow-hidden shadow-lg border border-border/70 bg-white h-[500px] ${
+                  className={`transition-all duration-300 rounded-none overflow-hidden border border-border/70 bg-white h-[500px] ${
                     previewViewport === 'mobile'
                       ? 'w-[375px] shrink-0'
                       : previewViewport === 'tablet'
@@ -406,7 +406,7 @@ export function EmailLayoutsTab() {
             open={Boolean(deleteTarget)}
             onOpenChange={(open) => !open && setDeleteTarget(null)}
           >
-            <DialogContent className="max-w-md text-xs rounded-xl border border-border/80">
+            <DialogContent className="max-w-md text-xs rounded-none border border-border/80">
               <DialogHeader>
                 <DialogTitle className="text-base font-bold text-foreground">
                   Delete Layout?
@@ -423,7 +423,7 @@ export function EmailLayoutsTab() {
                   size="sm"
                   onClick={() => setDeleteTarget(null)}
                   disabled={deleting}
-                  className="text-xs cursor-pointer rounded-lg"
+                  className="text-xs cursor-pointer rounded-none"
                 >
                   Cancel
                 </Button>
@@ -433,7 +433,7 @@ export function EmailLayoutsTab() {
                   size="sm"
                   onClick={handleDelete}
                   disabled={deleting}
-                  className="text-xs gap-1.5 cursor-pointer rounded-lg"
+                  className="text-xs gap-1.5 cursor-pointer rounded-none"
                 >
                   <Trash2 className="size-3.5" />
                   {deleting ? 'Deleting...' : 'Confirm Delete'}

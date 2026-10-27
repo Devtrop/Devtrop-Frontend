@@ -351,7 +351,7 @@ export function CreateSlotsModal({
               </DialogDescription>
             </div>
             {estimatedSlots > 0 && (
-              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-semibold self-start sm:self-auto">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent-soft border border-accent text-accent text-[11px] font-semibold self-start sm:self-auto">
                 <InterviewIcons.Sparkles className="size-3" />
                 <span>~{estimatedSlots} slots estimated</span>
               </div>
@@ -360,7 +360,7 @@ export function CreateSlotsModal({
         </DialogHeader>
 
         {error && (
-          <div className="p-2.5 text-xs rounded-xl bg-destructive/10 text-destructive border border-destructive/20">
+          <div className="p-2.5 text-xs rounded-none bg-destructive/10 text-destructive border border-destructive/20">
             {error}
           </div>
         )}
@@ -383,7 +383,7 @@ export function CreateSlotsModal({
                     <Button
                       variant="outline"
                       size="sm"
-                      className="w-full h-8 px-3 rounded-xl border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40"
+                      className="w-full h-8 px-3 rounded-none border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40"
                     >
                       <span className="truncate text-foreground font-semibold">
                         {selectedJobTitle}
@@ -393,13 +393,13 @@ export function CreateSlotsModal({
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="start"
-                    className="w-80 rounded-xl text-xs max-h-60 overflow-y-auto"
+                    className="w-80 rounded-none text-xs max-h-60 overflow-y-auto"
                   >
                     {jobs.map((job) => (
                       <DropdownMenuItem
                         key={job.id}
                         onClick={() => setSelectedJobId(job.id)}
-                        className="cursor-pointer gap-2 rounded-lg"
+                        className="cursor-pointer gap-2 rounded-none"
                       >
                         <span className="truncate">{job.title}</span>
                         {activeJobId === job.id && (
@@ -427,7 +427,7 @@ export function CreateSlotsModal({
                   }}
                   readOnly={effectiveMode === 'extend'}
                   required
-                  className={`h-8 flex-1 rounded-xl bg-card text-xs font-medium border-border ${
+                  className={`h-8 flex-1 rounded-none bg-card text-xs font-medium border-border ${
                     effectiveMode === 'extend' ? 'text-sky-400 border-sky-500/40' : ''
                   }`}
                 />
@@ -438,23 +438,23 @@ export function CreateSlotsModal({
                         variant="outline"
                         size="sm"
                         aria-label="Choose slot batch"
-                        className="h-8 w-8 p-0 shrink-0 rounded-xl border border-border bg-card/80 cursor-pointer hover:bg-muted/40"
+                        className="h-8 w-8 p-0 shrink-0 rounded-none border border-border bg-card/80 cursor-pointer hover:bg-muted/40"
                       >
                         <InterviewIcons.ChevronDown className="size-3.5 text-muted-foreground opacity-70" />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                       align="end"
-                      className="w-80 rounded-xl text-xs max-h-60 overflow-y-auto"
+                      className="w-80 rounded-none text-xs max-h-60 overflow-y-auto"
                     >
                       <DropdownMenuItem
                         onClick={() => {
                           setGroupMode('new')
                           setGroupName('')
                         }}
-                        className="cursor-pointer gap-2 rounded-lg"
+                        className="cursor-pointer gap-2 rounded-none"
                       >
-                        <InterviewIcons.Plus className="size-3 text-emerald-400 shrink-0" />
+                        <InterviewIcons.Plus className="size-3 text-accent shrink-0" />
                         <span>Create new group</span>
                         {effectiveMode === 'new' && (
                           <InterviewIcons.Check className="size-3 ml-auto text-primary shrink-0" />
@@ -467,7 +467,7 @@ export function CreateSlotsModal({
                             setGroupMode('extend')
                             setGroupName(grp.groupName)
                           }}
-                          className="cursor-pointer gap-2 rounded-lg"
+                          className="cursor-pointer gap-2 rounded-none"
                         >
                           <InterviewIcons.Layers className="size-3 text-sky-400 shrink-0" />
                           <span className="truncate">{grp.groupName}</span>
@@ -487,7 +487,7 @@ export function CreateSlotsModal({
           </div>
 
           {effectiveMode === 'extend' && selectedGroupStats && (
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 px-3 py-2 rounded-xl border border-sky-500/30 bg-sky-500/10 text-[11px] text-sky-400">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 px-3 py-2 rounded-none border border-sky-500/30 bg-sky-500/10 text-[11px] text-sky-400">
               <span className="font-semibold text-foreground">Managing batch</span>
               <span>{selectedGroupStats.totalSlots} slots total</span>
               <span>{selectedGroupStats.bookedSlots} booked</span>
@@ -512,31 +512,31 @@ export function CreateSlotsModal({
           )}
 
           {/* 2. Date Range & Selectable Weekends */}
-          <div className="flex flex-col gap-2 p-3 rounded-xl border border-border/80 bg-muted/20 text-xs">
+          <div className="flex flex-col gap-2 p-3 rounded-none border border-border/80 bg-muted/20 text-xs">
             <div className="flex items-center justify-between">
               <span className="font-semibold text-foreground flex items-center gap-1.5 text-xs">
-                <InterviewIcons.Calendar className="size-3.5 text-emerald-400" /> Date Range &
+                <InterviewIcons.Calendar className="size-3.5 text-accent" /> Date Range &
                 Off-Days
               </span>
               <div className="flex items-center gap-1">
                 <button
                   type="button"
                   onClick={() => handleDatePreset(2)}
-                  className="px-2 py-0.5 rounded-md bg-card border border-border/60 hover:bg-muted text-[10px] font-medium text-muted-foreground hover:text-foreground cursor-pointer"
+                  className="px-2 py-0.5 rounded-none bg-card border border-border/60 hover:bg-muted text-[10px] font-medium text-muted-foreground hover:text-foreground cursor-pointer"
                 >
                   2d
                 </button>
                 <button
                   type="button"
                   onClick={() => handleDatePreset(4)}
-                  className="px-2 py-0.5 rounded-md bg-card border border-border/60 hover:bg-muted text-[10px] font-medium text-muted-foreground hover:text-foreground cursor-pointer"
+                  className="px-2 py-0.5 rounded-none bg-card border border-border/60 hover:bg-muted text-[10px] font-medium text-muted-foreground hover:text-foreground cursor-pointer"
                 >
                   4d
                 </button>
                 <button
                   type="button"
                   onClick={() => handleDatePreset(7)}
-                  className="px-2 py-0.5 rounded-md bg-card border border-border/60 hover:bg-muted text-[10px] font-medium text-muted-foreground hover:text-foreground cursor-pointer"
+                  className="px-2 py-0.5 rounded-none bg-card border border-border/60 hover:bg-muted text-[10px] font-medium text-muted-foreground hover:text-foreground cursor-pointer"
                 >
                   1w
                 </button>
@@ -565,9 +565,9 @@ export function CreateSlotsModal({
                         key={day}
                         type="button"
                         onClick={() => toggleDayExclusion(day)}
-                        className={`size-6 rounded-md text-[10px] font-semibold transition-all cursor-pointer ${
+                        className={`size-6 rounded-none text-[10px] font-semibold transition-all cursor-pointer ${
                           !isExcluded
-                            ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                            ? 'bg-accent-soft text-accent border border-accent'
                             : 'bg-card text-muted-foreground/50 border border-border/40 line-through hover:text-muted-foreground'
                         }`}
                         title={isExcluded ? `${label} is excluded (off-day)` : `${label} is active`}
@@ -625,7 +625,7 @@ export function CreateSlotsModal({
           {/* 3. Working Hours & Dedicated Break Form */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Working Hours */}
-            <div className="flex flex-col gap-1.5 p-3 rounded-xl border border-border/80 bg-muted/20 text-xs">
+            <div className="flex flex-col gap-1.5 p-3 rounded-none border border-border/80 bg-muted/20 text-xs">
               <div className="flex items-center justify-between">
                 <span className="font-semibold text-foreground flex items-center gap-1.5 text-xs">
                   <InterviewIcons.Clock className="size-3.5 text-sky-400" /> Daily Hours
@@ -671,7 +671,7 @@ export function CreateSlotsModal({
             </div>
 
             {/* Single Specific Break Time Form */}
-            <div className="flex flex-col gap-1.5 p-3 rounded-xl border border-border/80 bg-muted/20 text-xs">
+            <div className="flex flex-col gap-1.5 p-3 rounded-none border border-border/80 bg-muted/20 text-xs">
               <div className="flex items-center justify-between">
                 <label className="font-semibold text-foreground flex items-center gap-1.5 text-xs cursor-pointer">
                   <input
@@ -712,7 +712,7 @@ export function CreateSlotsModal({
                   />
                 </div>
               ) : (
-                <div className="py-2.5 text-center text-[11px] text-muted-foreground/60 italic border border-dashed border-border/40 rounded-lg">
+                <div className="py-2.5 text-center text-[11px] text-muted-foreground/60 italic border border-dashed border-border/40 rounded-none">
                   No daily break window configured (continuous slots).
                 </div>
               )}
@@ -729,7 +729,7 @@ export function CreateSlotsModal({
                     key={dur}
                     type="button"
                     onClick={() => setSlotDurationMinutes(dur)}
-                    className={`flex-1 py-1 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                    className={`flex-1 py-1 rounded-none text-xs font-semibold border transition-all cursor-pointer ${
                       slotDurationMinutes === dur
                         ? 'border-primary bg-primary/20 text-primary'
                         : 'border-border/60 bg-card text-muted-foreground hover:bg-muted'
@@ -751,7 +751,7 @@ export function CreateSlotsModal({
                     key={buf}
                     type="button"
                     onClick={() => setBufferMinutes(buf)}
-                    className={`flex-1 py-1 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                    className={`flex-1 py-1 rounded-none text-xs font-semibold border transition-all cursor-pointer ${
                       bufferMinutes === buf
                         ? 'border-sky-500 bg-sky-500/20 text-sky-400'
                         : 'border-border/60 bg-card text-muted-foreground hover:bg-muted'
@@ -777,7 +777,7 @@ export function CreateSlotsModal({
                 value={meetingUrl}
                 onChange={(e) => setMeetingUrl(e.target.value)}
                 required
-                className="pl-8 h-8 rounded-xl bg-card text-xs font-mono border-border"
+                className="pl-8 h-8 rounded-none bg-card text-xs font-mono border-border"
               />
             </div>
           </div>
@@ -810,7 +810,7 @@ export function CreateSlotsModal({
                 type="submit"
                 disabled={isSubmitting || !activeJobId}
                 size="sm"
-                className="flex-1 sm:flex-initial gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs h-8 px-4 cursor-pointer"
+                className="flex-1 sm:flex-initial gap-1.5 bg-accent hover:bg-accent text-white text-xs h-8 px-4 cursor-pointer"
               >
                 {isSubmitting ? (
                   <>

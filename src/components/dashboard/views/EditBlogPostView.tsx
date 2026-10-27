@@ -44,7 +44,7 @@ const TiptapEditor = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full min-h-[400px] rounded-md border border-input bg-muted/50 flex items-center justify-center">
+      <div className="w-full min-h-[400px] rounded-none border border-input bg-muted/50 flex items-center justify-center">
         <Loader2 className="size-6 animate-spin text-muted-foreground" />
       </div>
     ),
@@ -362,7 +362,7 @@ export function EditBlogPostView({ postId }: EditBlogPostViewProps) {
               <Button
                 type="submit"
                 disabled={updateMutation.isPending}
-                className="gap-2 bg-emerald-600 hover:bg-emerald-700"
+                className="gap-2 bg-accent hover:bg-accent"
               >
                 {updateMutation.isPending ? (
                   <>
@@ -465,7 +465,7 @@ export function EditBlogPostView({ postId }: EditBlogPostViewProps) {
 
               <CardContent className="space-y-4">
                 {imagePreview || existingImage ? (
-                  <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-border bg-muted">
+                  <div className="relative aspect-video w-full overflow-hidden rounded-none border border-border bg-muted">
                     <Image
                       src={imagePreview || existingImage}
                       alt="Featured image"
@@ -496,7 +496,7 @@ export function EditBlogPostView({ postId }: EditBlogPostViewProps) {
 
                     <label
                       htmlFor="featured-image"
-                      className="flex flex-col items-center justify-center aspect-video w-full rounded-lg border-2 border-dashed border-border bg-muted/50 hover:bg-muted cursor-pointer transition-colors"
+                      className="flex flex-col items-center justify-center aspect-video w-full rounded-none border-2 border-dashed border-border bg-muted/50 hover:bg-muted cursor-pointer transition-colors"
                     >
                       <Upload className="size-8 text-muted-foreground mb-2" />
 
@@ -593,9 +593,9 @@ export function EditBlogPostView({ postId }: EditBlogPostViewProps) {
                         key={tag.id}
                         type="button"
                         onClick={() => toggleTag(tag.id)}
-                        className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                        className={`px-3 py-1.5 rounded-none text-xs font-medium transition-colors ${
                           selected
-                            ? 'bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 border'
+                            ? 'bg-accent-soft text-accent dark:text-accent border-accent border'
                             : 'bg-muted text-muted-foreground hover:bg-muted/80 border border-transparent'
                         }`}
                       >

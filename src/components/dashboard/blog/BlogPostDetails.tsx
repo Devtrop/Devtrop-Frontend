@@ -180,7 +180,7 @@ export default function BlogPostDetailPage() {
             <div className="space-y-6 lg:col-span-2">
               {/* Excerpt */}
               {post.excerpt && (
-                <Card className="border-border bg-card shadow-xs">
+                <Card className="border-border bg-card">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-base">Excerpt</CardTitle>
                   </CardHeader>
@@ -191,7 +191,7 @@ export default function BlogPostDetailPage() {
               )}
 
               {/* Content */}
-              <Card className="border-border bg-card shadow-xs">
+              <Card className="border-border bg-card">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-base">Content</CardTitle>
                 </CardHeader>
@@ -207,7 +207,7 @@ export default function BlogPostDetailPage() {
             {/* Sidebar */}
             <div className="space-y-6">
               {/* Meta Information */}
-              <Card className="border-border bg-card shadow-xs">
+              <Card className="border-border bg-card">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-base">Post Information</CardTitle>
                 </CardHeader>
@@ -235,7 +235,7 @@ export default function BlogPostDetailPage() {
               </Card>
 
               {/* Category */}
-              <Card className="border-border bg-card shadow-xs">
+              <Card className="border-border bg-card">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-base flex items-center gap-2">
                     <FolderOpen className="size-4 text-muted-foreground" />
@@ -243,7 +243,7 @@ export default function BlogPostDetailPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <span className="inline-flex items-center px-3 py-1.5 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
+                  <span className="inline-flex items-center px-3 py-1.5 rounded-none bg-accent-soft text-accent dark:text-accent text-sm font-medium">
                     {post.category.name}
                   </span>
                 </CardContent>
@@ -251,7 +251,7 @@ export default function BlogPostDetailPage() {
 
               {/* Tags */}
               {normalizedTags.length > 0 && (
-                <Card className="border-border bg-card shadow-xs">
+                <Card className="border-border bg-card">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-base flex items-center gap-2">
                       <Tags className="size-4 text-muted-foreground" />
@@ -263,7 +263,7 @@ export default function BlogPostDetailPage() {
                       {normalizedTags.map((tag) => (
                         <span
                           key={tag.id}
-                          className="inline-flex items-center px-2.5 py-1 rounded-md bg-muted text-muted-foreground text-xs font-medium"
+                          className="inline-flex items-center px-2.5 py-1 rounded-none bg-muted text-muted-foreground text-xs font-medium"
                         >
                           {tag.name}
                         </span>

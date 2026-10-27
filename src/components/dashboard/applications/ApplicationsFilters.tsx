@@ -132,7 +132,7 @@ export function ApplicationsFilters({
   }
 
   return (
-    <div className="rounded-xl border border-border bg-card p-3 shadow-xs sm:p-4">
+    <div className="rounded-none border border-border bg-card p-3 sm:p-4">
       <div className="grid grid-cols-1 gap-2.5 sm:gap-3 md:grid-cols-2 lg:grid-cols-7">
         {/* 1. Applicant Name / Email (First) */}
         <Input
@@ -142,7 +142,7 @@ export function ApplicationsFilters({
           onChange={(event) => {
             onSearchChange(event.target.value)
           }}
-          className="h-9 rounded-lg border-border text-xs"
+          className="h-9 rounded-none border-border text-xs"
         />
 
         {/* 2. Application Code */}
@@ -153,7 +153,7 @@ export function ApplicationsFilters({
           onChange={(event) => {
             onApplicationCodeChange?.(event.target.value)
           }}
-          className="h-9 rounded-lg border-border text-xs"
+          className="h-9 rounded-none border-border text-xs"
         />
 
         {/* 3. Job Code (Third) */}
@@ -164,7 +164,7 @@ export function ApplicationsFilters({
           onChange={(event) => {
             handleJobCodeChange(event.target.value)
           }}
-          className="h-9 rounded-lg border-border text-xs"
+          className="h-9 rounded-none border-border text-xs"
         />
 
         {/* 3. Job Name dropdown (Third) */}
@@ -174,7 +174,7 @@ export function ApplicationsFilters({
             onJobSearchChange(value === 'ALL' ? '' : value)
           }}
         >
-          <SelectTrigger className="h-9 rounded-lg border-border text-xs">
+          <SelectTrigger className="h-9 rounded-none border-border text-xs">
             <SelectValue placeholder="All Jobs" />
           </SelectTrigger>
 
@@ -195,7 +195,7 @@ export function ApplicationsFilters({
             onStatusChange(value === 'ALL' ? '' : (value as ApplicationStatus))
           }}
         >
-          <SelectTrigger className="h-9 rounded-lg border-border text-xs">
+          <SelectTrigger className="h-9 rounded-none border-border text-xs">
             <SelectValue placeholder="All Statuses" />
           </SelectTrigger>
 
@@ -215,7 +215,7 @@ export function ApplicationsFilters({
             onSortChange(value as ApplicationSortOrder)
           }}
         >
-          <SelectTrigger className="h-9 rounded-lg border-border text-xs">
+          <SelectTrigger className="h-9 rounded-none border-border text-xs">
             <SelectValue placeholder="Sort by" />
           </SelectTrigger>
 
@@ -232,7 +232,7 @@ export function ApplicationsFilters({
           variant="outline"
           onClick={onReset}
           disabled={loading}
-          className="h-9 w-full gap-1.5 rounded-lg border-border text-xs hover:bg-muted"
+          className="h-9 w-full gap-1.5 rounded-none border-border text-xs hover:bg-muted"
         >
           <RotateCcw className="size-3.5" />
 

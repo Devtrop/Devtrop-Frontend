@@ -246,7 +246,7 @@ export function SlotsViewerModal({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="w-full h-9 px-3 rounded-xl border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40"
+                  className="w-full h-9 px-3 rounded-none border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40"
                 >
                   <span className="truncate text-foreground font-semibold">{selectedJobTitle}</span>
                   <InterviewIcons.ChevronDown className="size-3.5 text-muted-foreground shrink-0 opacity-70" />
@@ -254,13 +254,13 @@ export function SlotsViewerModal({
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align="start"
-                className="w-80 rounded-xl text-xs max-h-60 overflow-y-auto"
+                className="w-80 rounded-none text-xs max-h-60 overflow-y-auto"
               >
                 {jobs.map((job) => (
                   <DropdownMenuItem
                     key={job.id}
                     onClick={() => setSelectedJobId(job.id)}
-                    className="cursor-pointer gap-2 rounded-lg"
+                    className="cursor-pointer gap-2 rounded-none"
                   >
                     <span className="truncate">{job.title}</span>
                     {activeJobId === job.id && (
@@ -275,7 +275,7 @@ export function SlotsViewerModal({
 
         {/* 2. Slot Group Filter Tabs & Bulk Delete Action */}
         {groups.length > 0 && (
-          <div className="flex flex-col gap-2 p-2.5 rounded-xl border border-border/80 bg-muted/20">
+          <div className="flex flex-col gap-2 p-2.5 rounded-none border border-border/80 bg-muted/20">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                 Slot Batches / Groups ({groups.length})
@@ -300,7 +300,7 @@ export function SlotsViewerModal({
               <button
                 type="button"
                 onClick={() => setSelectedGroup('ALL')}
-                className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                className={`px-2.5 py-1 rounded-none text-xs font-semibold border transition-all cursor-pointer ${
                   selectedGroup === 'ALL'
                     ? 'border-primary bg-primary/20 text-primary'
                     : 'border-border/60 bg-card text-muted-foreground hover:bg-muted'
@@ -313,9 +313,9 @@ export function SlotsViewerModal({
                   key={grp.groupName}
                   type="button"
                   onClick={() => setSelectedGroup(grp.groupName)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all cursor-pointer flex items-center gap-1.5 ${
+                  className={`px-2.5 py-1 rounded-none text-xs font-semibold border transition-all cursor-pointer flex items-center gap-1.5 ${
                     selectedGroup === grp.groupName
-                      ? 'border-emerald-500 bg-emerald-500/20 text-emerald-400'
+                      ? 'border-accent bg-accent-soft text-accent'
                       : 'border-border/60 bg-card text-muted-foreground hover:bg-muted'
                   }`}
                 >
@@ -344,11 +344,11 @@ export function SlotsViewerModal({
               calendar...
             </div>
           ) : filteredSlots.length === 0 ? (
-            <div className="py-12 text-center text-xs text-muted-foreground rounded-xl border border-dashed border-border/80 p-6">
+            <div className="py-12 text-center text-xs text-muted-foreground rounded-none border border-dashed border-border/80 p-6">
               No interview slots found for this selection.
             </div>
           ) : (
-            <div className="divide-y divide-border/60 rounded-xl border border-border/80 overflow-hidden max-h-[45vh] overflow-y-auto">
+            <div className="divide-y divide-border/60 rounded-none border border-border/80 overflow-hidden max-h-[45vh] overflow-y-auto">
               {filteredSlots.map((slot) => {
                 const start = new Date(slot.startTime)
                 const end = new Date(slot.endTime)
@@ -383,7 +383,7 @@ export function SlotsViewerModal({
                         className={`text-[10px] ${
                           slot.isBooked
                             ? 'text-rose-400 border-rose-500/30 bg-rose-500/10'
-                            : 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10'
+                            : 'text-accent border-accent bg-accent-soft'
                         }`}
                       >
                         {slot.isBooked ? 'Claimed' : 'Open'}
@@ -431,7 +431,7 @@ export function SlotsViewerModal({
           }}
         >
           <div
-            className="relative w-full max-w-sm sm:max-w-md bg-card border border-border/80 rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col items-center text-center animate-in zoom-in-95 duration-150"
+            className="relative w-full max-w-sm sm:max-w-md bg-card border border-border/80 rounded-none p-5 sm:p-6 flex flex-col items-center text-center animate-in zoom-in-95 duration-150"
             onClick={(e) => e.stopPropagation()}
           >
             <Button
@@ -439,13 +439,13 @@ export function SlotsViewerModal({
               size="icon-xs"
               disabled={deletingGroup || !!deletingId}
               onClick={() => setConfirmDelete(null)}
-              className="absolute top-3 right-3 text-muted-foreground hover:text-foreground cursor-pointer rounded-lg"
+              className="absolute top-3 right-3 text-muted-foreground hover:text-foreground cursor-pointer rounded-none"
               title="Close confirmation"
             >
               <InterviewIcons.X className="size-4" />
             </Button>
 
-            <div className="size-11 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-500 flex items-center justify-center mb-3 shadow-xs shrink-0">
+            <div className="size-11 rounded-none bg-rose-500/10 border border-rose-500/20 text-rose-500 flex items-center justify-center mb-3 shrink-0">
               <InterviewIcons.Trash className="size-5" />
             </div>
 
@@ -464,7 +464,7 @@ export function SlotsViewerModal({
                 size="sm"
                 disabled={deletingGroup || !!deletingId}
                 onClick={() => setConfirmDelete(null)}
-                className="text-xs px-4 h-9 rounded-xl cursor-pointer"
+                className="text-xs px-4 h-9 rounded-none cursor-pointer"
               >
                 Cancel
               </Button>
@@ -474,7 +474,7 @@ export function SlotsViewerModal({
                 size="sm"
                 disabled={deletingGroup || !!deletingId}
                 onClick={handleConfirmDelete}
-                className="text-xs px-4 h-9 rounded-xl gap-1.5 cursor-pointer bg-rose-600 hover:bg-rose-500 text-white shadow-xs font-semibold"
+                className="text-xs px-4 h-9 rounded-none gap-1.5 cursor-pointer bg-rose-600 hover:bg-rose-500 text-white font-semibold"
               >
                 {deletingGroup || !!deletingId ? (
                   <>

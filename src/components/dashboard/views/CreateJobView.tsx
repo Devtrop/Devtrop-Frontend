@@ -57,7 +57,7 @@ export function CreateJobView() {
               <Button
                 variant="outline"
                 size="sm"
-                className="gap-1.5 border-border hover:bg-muted text-xs h-8 px-3 rounded-xl w-full sm:w-auto"
+                className="gap-1.5 border-border hover:bg-muted text-xs h-8 px-3 rounded-none w-full sm:w-auto"
               >
                 <ArrowLeft className="size-3.5" />
                 <span>Back to Jobs</span>
@@ -67,7 +67,7 @@ export function CreateJobView() {
         </div>
 
         {/* Form Card */}
-        <Card className="border-border bg-card shadow-xs rounded-xl overflow-hidden">
+        <Card className="border-border bg-card rounded-none overflow-hidden">
           <CardHeader className="border-b border-border bg-muted/40 px-4 sm:px-6 py-4">
             <h2 className="text-sm font-semibold text-foreground">Job Information</h2>
             <p className="mt-1 text-xs text-muted-foreground">
@@ -81,13 +81,13 @@ export function CreateJobView() {
         </Card>
 
         {/* Tip Card */}
-        <Card className="border-emerald-500/20 bg-emerald-500/5 shadow-xs rounded-xl overflow-hidden">
+        <Card className="border-accent bg-accent-soft rounded-none overflow-hidden">
           <CardContent className="p-4 flex gap-3">
-            <div className="p-2 rounded-lg bg-emerald-500/10 shrink-0 h-fit">
-              <Lightbulb className="size-4 text-emerald-600 dark:text-emerald-400" />
+            <div className="p-2 rounded-none bg-accent-soft shrink-0 h-fit">
+              <Lightbulb className="size-4 text-accent dark:text-accent" />
             </div>
             <div>
-              <p className="text-xs font-medium text-emerald-800 dark:text-emerald-300">
+              <p className="text-xs font-medium text-accent dark:text-accent">
                 <span className="font-semibold">Tip:</span> Save the job as Draft if you're not
                 ready to publish it. You can publish it later from the Jobs page.
               </p>

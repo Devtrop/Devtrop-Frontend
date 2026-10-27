@@ -125,7 +125,7 @@ export default function DeleteJobPage() {
         </div>
 
         {/* Delete Confirmation Card */}
-        <Card className="overflow-hidden border-destructive/30 bg-card shadow-sm">
+        <Card className="overflow-hidden border-destructive/30 bg-card">
           <CardHeader className="border-b border-destructive/20 bg-destructive/5 pb-4">
             <div className="flex items-center gap-3">
               <div className="flex size-10 items-center justify-center rounded-full bg-destructive/10">
@@ -140,7 +140,7 @@ export default function DeleteJobPage() {
 
           <CardContent className="p-6 space-y-6">
             {/* Job Details */}
-            <div className="rounded-lg border border-border bg-muted/50 p-4 space-y-3">
+            <div className="rounded-none border border-border bg-muted/50 p-4 space-y-3">
               <h2 className="font-semibold text-foreground">{job.title}</h2>
               <div className="flex flex-wrap gap-2">
                 <Badge variant="outline" className="text-xs font-mono">
@@ -153,13 +153,13 @@ export default function DeleteJobPage() {
                 )}
                 <Badge
                   variant="secondary"
-                  className="text-xs border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
+                  className="text-xs border-accent bg-accent-soft text-accent"
                 >
                   {formatJobLocation(job)}
                 </Badge>
               </div>
               {job._count && job._count.applications > 0 && (
-                <div className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3">
+                <div className="mt-3 rounded-none border border-amber-500/30 bg-amber-500/10 p-3">
                   <div className="flex gap-2">
                     <AlertTriangle className="size-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
                     <div className="space-y-1">
@@ -193,7 +193,7 @@ export default function DeleteJobPage() {
 
             {/* Error Message */}
             {error && (
-              <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-4">
+              <div className="rounded-none border border-destructive/30 bg-destructive/10 p-4">
                 <div className="flex gap-2">
                   <AlertTriangle className="size-4 text-destructive shrink-0 mt-0.5" />
                   <div className="space-y-1">

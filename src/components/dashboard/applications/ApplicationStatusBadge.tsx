@@ -9,19 +9,19 @@ interface ApplicationStatusBadgeProps {
 
 export function ApplicationStatusBadge({ status }: ApplicationStatusBadgeProps) {
   const styles: Record<ApplicationStatus, string> = {
-    APPLIED: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 ring-blue-500/20',
+    APPLIED: 'bg-accent-soft/10 text-accent dark:text-accent ring-blue-500/20',
     SELECTED: 'bg-violet-500/10 text-violet-600 dark:text-violet-400 ring-violet-500/20',
     TASK_ASSIGNED: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-amber-500/20',
     TASK_SUBMITTED: 'bg-orange-500/10 text-orange-600 dark:text-orange-400 ring-orange-500/20',
     INTERVIEW_SELECTED: 'bg-violet-500/10 text-violet-600 dark:text-violet-400 ring-violet-500/20',
     INTERVIEW_SCHEDULED: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 ring-cyan-500/20',
     INTERVIEW_COMPLETED: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 ring-indigo-500/20',
-    OFFER_PENDING: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-emerald-500/20',
-    OFFER_SENT: 'bg-teal-500/10 text-teal-600 dark:text-teal-400 ring-teal-500/20',
+    OFFER_PENDING: 'bg-accent-soft text-accent dark:text-accent ring-accent',
+    OFFER_SENT: 'bg-accent-soft/10 text-accent dark:text-accent ring-teal-500/20',
     DOCS_SUBMITTED: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-amber-500/20',
-    HIRED: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-emerald-500/20',
+    HIRED: 'bg-accent-soft text-accent dark:text-accent ring-accent',
     REJECTED: 'bg-red-500/10 text-red-600 dark:text-red-400 ring-red-500/20',
-    CLOSED: 'bg-zinc-500/10 text-zinc-500 dark:text-zinc-400 ring-zinc-500/20',
+    CLOSED: 'bg-zinc-500/10 text-muted dark:text-muted ring-zinc-500/20',
   }
 
   const labels: Record<ApplicationStatus, string> = {

@@ -123,10 +123,10 @@ import { createUserInvitationSchema } from '@/lib/validations'
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
-    ACTIVE: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
+    ACTIVE: 'text-accent bg-accent-soft border-accent',
     INACTIVE: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
     SUSPENDED: 'text-red-400 bg-red-500/10 border-red-500/30',
-    DELETED: 'text-zinc-400 bg-zinc-500/10 border-zinc-500/30',
+    DELETED: 'text-muted bg-zinc-500/10 border-hairline-light/30',
   }
   const cls = map[status?.toUpperCase()] || map.INACTIVE
   return (
@@ -141,7 +141,7 @@ function StatusBadge({ status }: { status: string }) {
 
 function InvitationBadge({ invitation }: { invitation?: UserInvitationSummary | null }) {
   if (!invitation) {
-    return <span className="text-zinc-500 text-xs">—</span>
+    return <span className="text-muted text-xs">—</span>
   }
 
   const status = (invitation.status || '').toUpperCase()
@@ -153,8 +153,8 @@ function InvitationBadge({ invitation }: { invitation?: UserInvitationSummary | 
     },
     ACCEPTED: {
       label: 'Accepted',
-      cls: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
-      dot: 'bg-emerald-400',
+      cls: 'text-accent bg-accent-soft border-accent',
+      dot: 'bg-accent',
     },
     EXPIRED: {
       label: 'Invitation Expired',
@@ -163,14 +163,14 @@ function InvitationBadge({ invitation }: { invitation?: UserInvitationSummary | 
     },
     REVOKED: {
       label: 'Invitation Revoked',
-      cls: 'text-zinc-400 bg-zinc-700/20 border-zinc-700/40',
+      cls: 'text-muted bg-zinc-700/20 border-hairline-light/40',
       dot: 'bg-zinc-500',
     },
   }
 
   const cfg = map[status] || {
     label: invitation.status || '—',
-    cls: 'text-zinc-400 bg-zinc-800/40 border-zinc-700',
+    cls: 'text-muted bg-muted/40 border-hairline-light',
     dot: 'bg-zinc-500',
   }
 
@@ -343,17 +343,17 @@ function UserDetailSheet({
     (user?.image as string | undefined)
 
   const statusColors: Record<string, { bg: string; text: string; dot: string }> = {
-    ACTIVE: { bg: 'bg-emerald-500/15', text: 'text-emerald-300', dot: 'bg-emerald-400' },
+    ACTIVE: { bg: 'bg-accent-soft', text: 'text-accent', dot: 'bg-accent' },
     INACTIVE: { bg: 'bg-amber-500/15', text: 'text-amber-300', dot: 'bg-amber-400' },
     SUSPENDED: { bg: 'bg-red-500/15', text: 'text-red-300', dot: 'bg-red-400' },
-    DELETED: { bg: 'bg-zinc-500/15', text: 'text-zinc-400', dot: 'bg-zinc-500' },
+    DELETED: { bg: 'bg-zinc-500/15', text: 'text-muted', dot: 'bg-zinc-500' },
   }
   const sColor = statusColors[(user?.status || '').toUpperCase()] || statusColors.INACTIVE
 
   const roleColors: Record<string, { bg: string; text: string }> = {
-    SUPER_ADMIN: { bg: 'bg-purple-500/15', text: 'text-purple-300' },
-    ADMIN: { bg: 'bg-blue-500/15', text: 'text-blue-300' },
-    USER: { bg: 'bg-zinc-500/15', text: 'text-zinc-400' },
+    SUPER_ADMIN: { bg: 'bg-accent-soft/15', text: 'text-accent' },
+    ADMIN: { bg: 'bg-accent-soft/15', text: 'text-accent' },
+    USER: { bg: 'bg-zinc-500/15', text: 'text-muted' },
   }
   const rKey = roleName ? roleName.toUpperCase().replace(/\s+/g, '_') : 'USER'
   const rColor = roleColors[rKey] || roleColors.USER
@@ -377,7 +377,7 @@ function UserDetailSheet({
     <Sheet open={open} onOpenChange={onClose}>
       <SheetContent
         side="right"
-        className="w-[360px] sm:w-[440px] bg-zinc-950 border-l border-zinc-800/70 text-zinc-100 flex flex-col p-0 gap-0"
+        className="w-[360px] sm:w-[440px] bg-canvas border-l border-hairline-light/70 text-muted flex flex-col p-0 gap-0"
       >
         <SheetHeader className="sr-only">
           <SheetTitle>User Details</SheetTitle>
@@ -385,30 +385,30 @@ function UserDetailSheet({
         </SheetHeader>
 
         {loading ? (
-          <div className="flex flex-col items-center justify-center flex-1 gap-3 text-zinc-400">
-            <Loader2 className="size-6 animate-spin text-emerald-400" />
+          <div className="flex flex-col items-center justify-center flex-1 gap-3 text-muted">
+            <Loader2 className="size-6 animate-spin text-accent" />
             <span className="text-xs">Loading profile...</span>
           </div>
         ) : !user ? (
-          <div className="flex flex-col items-center justify-center flex-1 gap-2 text-zinc-500">
+          <div className="flex flex-col items-center justify-center flex-1 gap-2 text-muted">
             <Eye className="size-8 opacity-30" />
             <span className="text-xs">User not found.</span>
           </div>
         ) : (
           <div className="flex flex-col flex-1 overflow-hidden">
-            <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800 px-6 pt-8 pb-6 border-b border-zinc-800/70">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-purple-500/5 pointer-events-none" />
+            <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800 px-6 pt-8 pb-6 border-b border-hairline-light/70">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-purple-500/5 pointer-events-none" />
               <div className="relative flex items-start gap-4">
                 <div className="relative shrink-0">
-                  <Avatar className="size-16 ring-2 ring-zinc-700/80 shadow-xl">
+                  <Avatar className="size-16 ring-2 ring-zinc-700/80">
                     <AvatarImage src={avatarSrc} alt={user.name} />
-                    <AvatarFallback className="bg-gradient-to-br from-emerald-700 to-teal-800 text-emerald-100 font-bold text-xl">
+                    <AvatarFallback className="bg-gradient-to-br from-accent to-teal-800 text-accent font-bold text-xl">
                       {initials}
                     </AvatarFallback>
                   </Avatar>
                   <span
                     className={cn(
-                      'absolute bottom-0.5 right-0.5 size-3 rounded-full border-2 border-zinc-900',
+                      'absolute bottom-0.5 right-0.5 size-3 rounded-full border-2 border-hairline-light',
                       sColor.dot,
                     )}
                   />
@@ -417,7 +417,7 @@ function UserDetailSheet({
                   <p className="font-bold text-base text-white truncate leading-tight">
                     {user.name}
                   </p>
-                  <p className="text-[11px] text-zinc-400 truncate">{user.email}</p>
+                  <p className="text-[11px] text-muted truncate">{user.email}</p>
                   <div className="flex flex-wrap items-center gap-1.5 mt-2">
                     <span
                       className={cn(
@@ -443,7 +443,7 @@ function UserDetailSheet({
                         'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold',
                         (user.isEmailVerified as boolean)
                           ? 'bg-sky-500/15 text-sky-300'
-                          : 'bg-zinc-700/40 text-zinc-500',
+                          : 'bg-zinc-700/40 text-muted',
                       )}
                     >
                       {(user.isEmailVerified as boolean) ? '✓ Verified' : '✗ Unverified'}
@@ -453,7 +453,7 @@ function UserDetailSheet({
               </div>
 
               {Boolean(rawUser?.deletedAt) && (
-                <div className="mt-4 p-3 rounded-lg bg-amber-500/15 border border-amber-500/40 flex items-center justify-between gap-3">
+                <div className="mt-4 p-3 rounded-none bg-amber-500/15 border border-amber-500/40 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5 text-xs text-amber-200">
                     <Archive className="size-4 shrink-0 text-amber-400" />
                     <div>
@@ -482,7 +482,7 @@ function UserDetailSheet({
                         })
                       }}
                       disabled={isRestoring}
-                      className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs h-7 gap-1.5 cursor-pointer shadow-sm"
+                      className="bg-accent hover:bg-accent text-white text-xs h-7 gap-1.5 cursor-pointer"
                     >
                       {isRestoring ? (
                         <Loader2 className="size-3 animate-spin" />
@@ -499,36 +499,36 @@ function UserDetailSheet({
             <div className="flex-1 overflow-y-auto">
               <div className="px-6 py-5 flex flex-col gap-5">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-3">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-muted mb-3">
                     Account Info
                   </p>
-                  <div className="rounded-xl border border-zinc-800/60 bg-zinc-900/40 overflow-hidden divide-y divide-zinc-800/50">
+                  <div className="rounded-none border border-hairline-light/60 bg-subtle/40 overflow-hidden divide-y divide-zinc-800/50">
                     <div className="px-4 py-3">
-                      <span className="text-[10px] uppercase font-semibold text-zinc-500 block mb-0.5">
+                      <span className="text-[10px] uppercase font-semibold text-muted block mb-0.5">
                         User ID
                       </span>
-                      <span className="text-[11px] text-zinc-300 font-mono break-all leading-relaxed">
+                      <span className="text-[11px] text-muted font-mono break-all leading-relaxed">
                         {user.id}
                       </span>
                     </div>
                     <div className="px-4 py-3">
-                      <span className="text-[10px] uppercase font-semibold text-zinc-500 block mb-0.5">
+                      <span className="text-[10px] uppercase font-semibold text-muted block mb-0.5">
                         Phone
                       </span>
-                      <span className="text-sm text-zinc-200">{user.phone || '—'}</span>
+                      <span className="text-sm text-muted">{user.phone || '—'}</span>
                     </div>
                     <div className="px-4 py-3">
-                      <span className="text-[10px] uppercase font-semibold text-zinc-500 block mb-0.5">
+                      <span className="text-[10px] uppercase font-semibold text-muted block mb-0.5">
                         Member Since
                       </span>
-                      <span className="text-sm text-zinc-200">{joinedDate}</span>
+                      <span className="text-sm text-muted">{joinedDate}</span>
                     </div>
                     {user.updatedAt && (
                       <div className="px-4 py-3">
-                        <span className="text-[10px] uppercase font-semibold text-zinc-500 block mb-0.5">
+                        <span className="text-[10px] uppercase font-semibold text-muted block mb-0.5">
                           Last Updated
                         </span>
-                        <span className="text-sm text-zinc-200">
+                        <span className="text-sm text-muted">
                           {new Date(user.updatedAt as string).toLocaleDateString('en-US', {
                             month: 'short',
                             day: 'numeric',
@@ -541,17 +541,17 @@ function UserDetailSheet({
                 </div>
 
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-3">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-muted mb-3">
                     Security &amp; Access
                   </p>
-                  <div className="rounded-xl border border-zinc-800/60 bg-zinc-900/40 overflow-hidden divide-y divide-zinc-800/50">
+                  <div className="rounded-none border border-hairline-light/60 bg-subtle/40 overflow-hidden divide-y divide-zinc-800/50">
                     <div className="flex items-center justify-between px-4 py-3">
-                      <span className="text-[10px] uppercase font-semibold text-zinc-500">
+                      <span className="text-[10px] uppercase font-semibold text-muted">
                         Role
                       </span>
                       <span
                         className={cn(
-                          'inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-bold',
+                          'inline-flex items-center px-2.5 py-1 rounded-none text-[11px] font-bold',
                           rColor.bg,
                           rColor.text,
                         )}
@@ -560,25 +560,25 @@ function UserDetailSheet({
                       </span>
                     </div>
                     <div className="flex items-center justify-between px-4 py-3">
-                      <span className="text-[10px] uppercase font-semibold text-zinc-500">
+                      <span className="text-[10px] uppercase font-semibold text-muted">
                         Email Verified
                       </span>
                       <span
                         className={cn(
                           'text-xs font-semibold',
-                          (user.isEmailVerified as boolean) ? 'text-emerald-400' : 'text-amber-400',
+                          (user.isEmailVerified as boolean) ? 'text-accent' : 'text-amber-400',
                         )}
                       >
                         {(user.isEmailVerified as boolean) ? 'Yes' : 'No'}
                       </span>
                     </div>
                     <div className="flex items-center justify-between px-4 py-3">
-                      <span className="text-[10px] uppercase font-semibold text-zinc-500">
+                      <span className="text-[10px] uppercase font-semibold text-muted">
                         Account Status
                       </span>
                       <span
                         className={cn(
-                          'inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold',
+                          'inline-flex items-center gap-1 px-2 py-0.5 rounded-none text-[11px] font-semibold',
                           sColor.bg,
                           sColor.text,
                         )}
@@ -592,12 +592,12 @@ function UserDetailSheet({
 
                 {Boolean(rawUser?.invitation) && (
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-3">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted mb-3">
                       Invitation &amp; Onboarding
                     </p>
-                    <div className="rounded-xl border border-zinc-800/60 bg-zinc-900/40 overflow-hidden divide-y divide-zinc-800/50">
+                    <div className="rounded-none border border-hairline-light/60 bg-subtle/40 overflow-hidden divide-y divide-zinc-800/50">
                       <div className="flex items-center justify-between px-4 py-3">
-                        <span className="text-[10px] uppercase font-semibold text-zinc-500">
+                        <span className="text-[10px] uppercase font-semibold text-muted">
                           Invitation Status
                         </span>
                         <InvitationBadge
@@ -606,10 +606,10 @@ function UserDetailSheet({
                       </div>
                       {(rawUser?.invitation as UserInvitationSummary)?.expiresAt && (
                         <div className="flex items-center justify-between px-4 py-3">
-                          <span className="text-[10px] uppercase font-semibold text-zinc-500">
+                          <span className="text-[10px] uppercase font-semibold text-muted">
                             Expires
                           </span>
-                          <span className="text-xs text-zinc-300">
+                          <span className="text-xs text-muted">
                             {new Date(
                               (rawUser?.invitation as UserInvitationSummary).expiresAt,
                             ).toLocaleDateString(undefined, {
@@ -623,7 +623,7 @@ function UserDetailSheet({
                         </div>
                       )}
                       {(rawUser?.invitation as UserInvitationSummary)?.status === 'PENDING' && (
-                        <div className="p-3 bg-zinc-900/60 flex items-center justify-end gap-2">
+                        <div className="p-3 bg-subtle/60 flex items-center justify-end gap-2">
                           {canResend && (
                             <Button
                               type="button"
@@ -669,21 +669,21 @@ function UserDetailSheet({
                   </div>
                 )}
 
-                <details className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 overflow-hidden text-xs">
-                  <summary className="px-4 py-3 cursor-pointer text-[10px] font-bold uppercase tracking-widest text-zinc-500 hover:text-zinc-300 transition select-none flex items-center justify-between">
+                <details className="group rounded-none border border-hairline-light/60 bg-subtle/30 overflow-hidden text-xs">
+                  <summary className="px-4 py-3 cursor-pointer text-[10px] font-bold uppercase tracking-widest text-muted hover:text-muted transition select-none flex items-center justify-between">
                     <span>Developer Data (JSON)</span>
-                    <span className="text-zinc-600 group-open:rotate-90 transition-transform">
+                    <span className="text-muted group-open:rotate-90 transition-transform">
                       ›
                     </span>
                   </summary>
-                  <pre className="p-4 text-[10px] text-zinc-400 font-mono overflow-x-auto bg-zinc-950 border-t border-zinc-800/60 leading-relaxed max-h-48">
+                  <pre className="p-4 text-[10px] text-muted font-mono overflow-x-auto bg-canvas border-t border-hairline-light/60 leading-relaxed max-h-48">
                     {JSON.stringify(sanitizedUser, null, 2)}
                   </pre>
                 </details>
               </div>
             </div>
 
-            <div className="p-4 border-t border-zinc-800/70 bg-zinc-900/40 flex items-center justify-between gap-2">
+            <div className="p-4 border-t border-hairline-light/70 bg-subtle/40 flex items-center justify-between gap-2">
               {rawUser?.deletedAt ? (
                 <PermissionGate permission="user.restore">
                   <Button
@@ -697,7 +697,7 @@ function UserDetailSheet({
                       })
                     }}
                     disabled={isRestoring}
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs h-8 gap-1.5 cursor-pointer"
+                    className="bg-accent hover:bg-accent text-white text-xs h-8 gap-1.5 cursor-pointer"
                   >
                     {isRestoring ? (
                       <Loader2 className="size-3.5 animate-spin" />
@@ -735,7 +735,7 @@ const STATUS_OPTIONS: ComboboxOption[] = [
     badge: (
       <Badge
         variant="outline"
-        className="text-[10px] font-semibold gap-1 text-emerald-400 bg-emerald-500/10 border-emerald-500/30"
+        className="text-[10px] font-semibold gap-1 text-accent bg-accent-soft border-accent"
       >
         <span className="size-1.5 rounded-full bg-current" />
         ACTIVE
@@ -816,12 +816,12 @@ function UpdateStatusDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm bg-zinc-950 border-zinc-800 text-zinc-100">
+      <DialogContent className="max-w-sm bg-canvas border-hairline-light text-muted">
         <DialogHeader>
           <DialogTitle className="text-sm">Update User Status</DialogTitle>
-          <DialogDescription className="text-xs text-zinc-400">
+          <DialogDescription className="text-xs text-muted">
             Change the account status for{' '}
-            <span className="font-semibold text-zinc-200">{user?.name}</span>.
+            <span className="font-semibold text-muted">{user?.name}</span>.
           </DialogDescription>
         </DialogHeader>
 
@@ -832,7 +832,7 @@ function UpdateStatusDialog({
               value={status}
               options={STATUS_OPTIONS}
               onValueChange={(v) => setStatus(v as UpdateUserStatusPayload['status'])}
-              triggerClassName="h-9 w-full bg-zinc-900 border-zinc-700 text-xs"
+              triggerClassName="h-9 w-full bg-subtle border-hairline-light text-xs"
               placeholder="Select status..."
               searchPlaceholder="Search status..."
             />
@@ -852,7 +852,7 @@ function UpdateStatusDialog({
               type="submit"
               size="sm"
               disabled={isSaving}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer gap-2"
+              className="bg-accent hover:bg-accent text-white cursor-pointer gap-2"
             >
               {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
               Save
@@ -959,11 +959,11 @@ function UpdateRoleDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm bg-zinc-950 border-zinc-800 text-zinc-100">
+      <DialogContent className="max-w-sm bg-canvas border-hairline-light text-muted">
         <DialogHeader>
           <DialogTitle className="text-sm">Update User Role</DialogTitle>
-          <DialogDescription className="text-xs text-zinc-400">
-            Assign a new role to <span className="font-semibold text-zinc-200">{user?.name}</span>.
+          <DialogDescription className="text-xs text-muted">
+            Assign a new role to <span className="font-semibold text-muted">{user?.name}</span>.
           </DialogDescription>
         </DialogHeader>
 
@@ -971,7 +971,7 @@ function UpdateRoleDialog({
           <div className="flex flex-col gap-1.5">
             <Label className="text-xs">Select Role</Label>
             {isLoadingRoles ? (
-              <div className="flex items-center gap-2 text-xs text-zinc-400 py-2">
+              <div className="flex items-center gap-2 text-xs text-muted py-2">
                 <Loader2 className="size-3.5 animate-spin" /> Loading roles...
               </div>
             ) : (
@@ -979,7 +979,7 @@ function UpdateRoleDialog({
                 value={selectedRoleId}
                 options={roleOptions}
                 onValueChange={setSelectedRoleId}
-                triggerClassName="h-9 w-full bg-zinc-900 border-zinc-700 text-xs"
+                triggerClassName="h-9 w-full bg-subtle border-hairline-light text-xs"
                 placeholder="Choose a role..."
                 searchPlaceholder="Search roles..."
                 emptyText="No roles found."
@@ -1001,7 +1001,7 @@ function UpdateRoleDialog({
               type="submit"
               size="sm"
               disabled={isSaving || !selectedRoleId}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer gap-2"
+              className="bg-accent hover:bg-accent text-white cursor-pointer gap-2"
             >
               {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
               Assign Role
@@ -1054,7 +1054,7 @@ function DeleteUserDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-zinc-950 border-zinc-800 text-zinc-100">
+      <DialogContent className="max-w-md bg-canvas border-hairline-light text-muted">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2">
             <AlertTriangle
@@ -1062,7 +1062,7 @@ function DeleteUserDialog({
             />
             {isPermanent ? 'Permanently Delete User?' : 'Soft Delete User?'}
           </DialogTitle>
-          <DialogDescription className="text-xs text-zinc-400">
+          <DialogDescription className="text-xs text-muted">
             {isPermanent
               ? 'This action permanently removes the user and cannot be undone.'
               : 'This will deactivate the user account and move it to the Deleted Users archive.'}
@@ -1070,7 +1070,7 @@ function DeleteUserDialog({
         </DialogHeader>
 
         {/* User preview */}
-        <div className="flex items-center gap-3 p-3 my-1 rounded-lg border border-zinc-800 bg-zinc-900/50">
+        <div className="flex items-center gap-3 p-3 my-1 rounded-none border border-hairline-light bg-subtle/50">
           <Avatar className="size-9 ring-1 ring-border">
             <AvatarImage
               src={user?.avatar || user?.avatarUrl || user?.image}
@@ -1081,19 +1081,19 @@ function DeleteUserDialog({
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col min-w-0">
-            <span className="text-xs font-semibold text-zinc-100 truncate">{user?.name}</span>
-            <span className="text-[11px] text-zinc-400 truncate">{user?.email}</span>
+            <span className="text-xs font-semibold text-muted truncate">{user?.name}</span>
+            <span className="text-[11px] text-muted truncate">{user?.email}</span>
           </div>
         </div>
 
         {isPermanent ? (
           <div className="flex flex-col gap-2 my-1">
-            <div className="p-2.5 rounded-lg border border-red-500/20 bg-red-950/20 text-red-300 text-[11px] leading-relaxed">
+            <div className="p-2.5 rounded-none border border-red-500/20 bg-red-950/20 text-red-300 text-[11px] leading-relaxed">
               Irreversibly wipes user from the database, removes storage files, and flushes cache.{' '}
               <span className="font-semibold text-red-400">Cannot be undone.</span>
             </div>
 
-            <div className="flex flex-col gap-1.5 p-3 rounded-lg border border-red-500/30 bg-red-950/20">
+            <div className="flex flex-col gap-1.5 p-3 rounded-none border border-red-500/30 bg-red-950/20">
               <Label className="text-xs text-red-300 font-medium">
                 To confirm permanent deletion, type{' '}
                 <span className="font-mono font-bold text-white bg-red-900/60 px-1 py-0.5 rounded">
@@ -1105,13 +1105,13 @@ function DeleteUserDialog({
                 value={confirmDeleteInput}
                 onChange={(e) => setConfirmDeleteInput(e.target.value)}
                 placeholder="Type DELETE to confirm"
-                className="h-8 text-xs bg-zinc-900 border-red-500/40 text-red-100 placeholder:text-zinc-600 focus-visible:ring-red-500"
+                className="h-8 text-xs bg-subtle border-red-500/40 text-red-100 placeholder:text-muted focus-visible:ring-red-500"
                 autoFocus
               />
             </div>
           </div>
         ) : (
-          <div className="p-2.5 rounded-lg border border-amber-500/20 bg-amber-950/20 text-amber-300 text-[11px] leading-relaxed my-1">
+          <div className="p-2.5 rounded-none border border-amber-500/20 bg-amber-950/20 text-amber-300 text-[11px] leading-relaxed my-1">
             The account status will be set to <strong>DELETED</strong>. User profile and data will
             be preserved in Deleted Users and can be restored at any time.
           </div>
@@ -1178,18 +1178,18 @@ function RestoreUserDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-zinc-950 border-zinc-800 text-zinc-100">
+      <DialogContent className="max-w-md bg-canvas border-hairline-light text-muted">
         <DialogHeader>
-          <DialogTitle className="text-sm flex items-center gap-2 text-emerald-400">
+          <DialogTitle className="text-sm flex items-center gap-2 text-accent">
             <RotateCcw className="size-4" />
             Restore User?
           </DialogTitle>
-          <DialogDescription className="text-xs text-zinc-400">
+          <DialogDescription className="text-xs text-muted">
             This will restore the user account and reactivate access to the platform.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="flex items-center gap-3 p-3 my-2 rounded-lg border border-zinc-800 bg-zinc-900/50">
+        <div className="flex items-center gap-3 p-3 my-2 rounded-none border border-hairline-light bg-subtle/50">
           <Avatar className="size-9 ring-1 ring-border">
             <AvatarImage
               src={user?.avatar || user?.avatarUrl || user?.image}
@@ -1200,8 +1200,8 @@ function RestoreUserDialog({
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col min-w-0">
-            <span className="text-xs font-semibold text-zinc-100 truncate">{user?.name}</span>
-            <span className="text-[11px] text-zinc-400 truncate">{user?.email}</span>
+            <span className="text-xs font-semibold text-muted truncate">{user?.name}</span>
+            <span className="text-[11px] text-muted truncate">{user?.email}</span>
           </div>
         </div>
 
@@ -1220,7 +1220,7 @@ function RestoreUserDialog({
             size="sm"
             disabled={isRestoring}
             onClick={handleConfirm}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white gap-2 cursor-pointer"
+            className="bg-accent hover:bg-accent text-white gap-2 cursor-pointer"
           >
             {isRestoring && <Loader2 className="size-3.5 animate-spin" />}
             Restore User
@@ -1300,20 +1300,20 @@ function CreateUserDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-zinc-950 border-zinc-800 text-zinc-100">
+      <DialogContent className="max-w-md bg-canvas border-hairline-light text-muted">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2 text-white">
-            <UserPlus className="size-4 text-emerald-400" />
+            <UserPlus className="size-4 text-accent" />
             Create User
           </DialogTitle>
-          <DialogDescription className="text-xs text-zinc-400">
+          <DialogDescription className="text-xs text-muted">
             An invitation email will be sent to the user&apos;s email address. They will create
             their own password using the invitation link.
           </DialogDescription>
         </DialogHeader>
 
         {formError && (
-          <div className="p-2.5 rounded-lg border border-red-500/30 bg-red-950/30 text-red-300 text-xs flex items-center gap-2">
+          <div className="p-2.5 rounded-none border border-red-500/30 bg-red-950/30 text-red-300 text-xs flex items-center gap-2">
             <AlertCircle className="size-4 text-red-400 shrink-0" />
             <span>{formError}</span>
           </div>
@@ -1321,20 +1321,20 @@ function CreateUserDialog({
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3.5 pt-1">
           <div className="flex flex-col gap-1.5">
-            <Label className="text-xs font-medium text-zinc-300">
+            <Label className="text-xs font-medium text-muted">
               Full Name <span className="text-red-400">*</span>
             </Label>
             <Input
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Rahim Chowdhury"
-              className="h-8 text-xs bg-zinc-900 border-zinc-700 text-zinc-100"
+              className="h-8 text-xs bg-subtle border-hairline-light text-muted"
               required
             />
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <Label className="text-xs font-medium text-zinc-300">
+            <Label className="text-xs font-medium text-muted">
               Email Address <span className="text-red-400">*</span>
             </Label>
             <Input
@@ -1342,40 +1342,40 @@ function CreateUserDialog({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="rahim@example.com"
-              className="h-8 text-xs bg-zinc-900 border-zinc-700 text-zinc-100"
+              className="h-8 text-xs bg-subtle border-hairline-light text-muted"
               required
             />
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <Label className="text-xs font-medium text-zinc-300">
-              Phone Number <span className="text-zinc-500 font-normal">(Optional)</span>
+            <Label className="text-xs font-medium text-muted">
+              Phone Number <span className="text-muted font-normal">(Optional)</span>
             </Label>
             <Input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="+8801712345678"
-              className="h-8 text-xs bg-zinc-900 border-zinc-700 text-zinc-100"
+              className="h-8 text-xs bg-subtle border-hairline-light text-muted"
             />
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <Label className="text-xs font-medium text-zinc-300">
+            <Label className="text-xs font-medium text-muted">
               Assign Role <span className="text-red-400">*</span>
             </Label>
             <Combobox
               value={roleId}
               options={roleOptions}
               onValueChange={setRoleId}
-              triggerClassName="h-8 w-full bg-zinc-900 border-zinc-700 text-xs"
+              triggerClassName="h-8 w-full bg-subtle border-hairline-light text-xs"
               placeholder="Select a role..."
               searchPlaceholder="Search roles..."
               emptyText="No roles found."
             />
           </div>
 
-          <div className="p-2.5 rounded-lg border border-emerald-500/20 bg-emerald-950/20 text-emerald-300 text-[11px] leading-relaxed flex items-start gap-2">
-            <Mail className="size-3.5 text-emerald-400 shrink-0 mt-0.5" />
+          <div className="p-2.5 rounded-none border border-accent bg-accent-soft text-accent text-[11px] leading-relaxed flex items-start gap-2">
+            <Mail className="size-3.5 text-accent shrink-0 mt-0.5" />
             <span>
               The user will be created with status <strong>INACTIVE</strong> until they accept the
               invitation and set up their password.
@@ -1397,7 +1397,7 @@ function CreateUserDialog({
               type="submit"
               size="sm"
               disabled={isCreating || !name.trim() || !email.trim() || !roleId}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer gap-2"
+              className="bg-accent hover:bg-accent text-white cursor-pointer gap-2"
             >
               {isCreating ? (
                 <Loader2 className="size-3.5 animate-spin" />
@@ -1440,19 +1440,19 @@ function ResendInvitationDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-zinc-950 border-zinc-800 text-zinc-100">
+      <DialogContent className="max-w-md bg-canvas border-hairline-light text-muted">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2 text-sky-400">
             <Mail className="size-4" />
             Resend Invitation?
           </DialogTitle>
-          <DialogDescription className="text-xs text-zinc-400">
+          <DialogDescription className="text-xs text-muted">
             A new invitation link will be sent to this user&apos;s email address. The previous
             invitation will be invalidated.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="flex items-center gap-3 p-3 my-2 rounded-lg border border-zinc-800 bg-zinc-900/50">
+        <div className="flex items-center gap-3 p-3 my-2 rounded-none border border-hairline-light bg-subtle/50">
           <Avatar className="size-9 ring-1 ring-border">
             <AvatarImage
               src={user?.avatar || user?.avatarUrl || user?.image}
@@ -1463,8 +1463,8 @@ function ResendInvitationDialog({
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col min-w-0">
-            <span className="text-xs font-semibold text-zinc-100 truncate">{user?.name}</span>
-            <span className="text-[11px] text-zinc-400 truncate">{user?.email}</span>
+            <span className="text-xs font-semibold text-muted truncate">{user?.name}</span>
+            <span className="text-[11px] text-muted truncate">{user?.email}</span>
           </div>
         </div>
 
@@ -1521,19 +1521,19 @@ function RevokeInvitationDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-zinc-950 border-zinc-800 text-zinc-100">
+      <DialogContent className="max-w-md bg-canvas border-hairline-light text-muted">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2 text-amber-400">
             <Ban className="size-4" />
             Revoke Invitation?
           </DialogTitle>
-          <DialogDescription className="text-xs text-zinc-400">
+          <DialogDescription className="text-xs text-muted">
             This will invalidate the current invitation link. The user will not be able to complete
             account setup using the existing link.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="flex items-center gap-3 p-3 my-2 rounded-lg border border-zinc-800 bg-zinc-900/50">
+        <div className="flex items-center gap-3 p-3 my-2 rounded-none border border-hairline-light bg-subtle/50">
           <Avatar className="size-9 ring-1 ring-border">
             <AvatarImage
               src={user?.avatar || user?.avatarUrl || user?.image}
@@ -1544,8 +1544,8 @@ function RevokeInvitationDialog({
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col min-w-0">
-            <span className="text-xs font-semibold text-zinc-100 truncate">{user?.name}</span>
-            <span className="text-[11px] text-zinc-400 truncate">{user?.email}</span>
+            <span className="text-xs font-semibold text-muted truncate">{user?.name}</span>
+            <span className="text-[11px] text-muted truncate">{user?.email}</span>
           </div>
         </div>
 
@@ -1974,9 +1974,9 @@ export function UserManagementView() {
       return <ArrowUpDown className="size-3 text-muted-foreground/60 group-hover:text-foreground" />
     }
     return sortOrder === 'asc' ? (
-      <ArrowUp className="size-3 text-emerald-400 font-bold" />
+      <ArrowUp className="size-3 text-accent font-bold" />
     ) : (
-      <ArrowDown className="size-3 text-emerald-400 font-bold" />
+      <ArrowDown className="size-3 text-accent font-bold" />
     )
   }
 
@@ -2062,7 +2062,7 @@ export function UserManagementView() {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-              <ShieldCheck className="size-6 text-purple-400" />
+              <ShieldCheck className="size-6 text-accent" />
               User Management
             </h1>
             <p className="text-xs text-muted-foreground mt-0.5">
@@ -2098,7 +2098,7 @@ export function UserManagementView() {
               <Button
                 size="sm"
                 onClick={() => setShowCreateUserDialog(true)}
-                className="gap-2 bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer h-8 text-xs font-semibold shadow-sm"
+                className="gap-2 bg-accent hover:bg-accent text-white cursor-pointer h-8 text-xs font-semibold"
               >
                 <UserPlus className="size-3.5" />
                 Create User
@@ -2183,7 +2183,7 @@ export function UserManagementView() {
                         setStatusFilter(val)
                         setPage(1)
                       }}
-                      triggerClassName="h-9 text-xs w-[130px] bg-zinc-900/70 border-zinc-800"
+                      triggerClassName="h-9 text-xs w-[130px] bg-subtle/70 border-hairline-light"
                       placeholder="All Status"
                       searchPlaceholder="Filter status..."
                       renderTrigger={(selected) => (
@@ -2206,7 +2206,7 @@ export function UserManagementView() {
                         setRoleFilter(val)
                         setPage(1)
                       }}
-                      triggerClassName="h-9 text-xs w-[145px] bg-zinc-900/70 border-zinc-800"
+                      triggerClassName="h-9 text-xs w-[145px] bg-subtle/70 border-hairline-light"
                       placeholder="All Roles"
                       searchPlaceholder="Search roles..."
                       renderTrigger={(selected) => (
@@ -2233,7 +2233,7 @@ export function UserManagementView() {
                         setPage(1)
                       }}
                     >
-                      <SelectTrigger className="h-9 text-xs w-[150px] bg-zinc-900/70 border-zinc-800">
+                      <SelectTrigger className="h-9 text-xs w-[150px] bg-subtle/70 border-hairline-light">
                         <div className="flex items-center gap-1.5 truncate">
                           <SlidersHorizontal className="size-3 text-muted-foreground" />
                           <span className="truncate">
@@ -2249,7 +2249,7 @@ export function UserManagementView() {
                           </span>
                         </div>
                       </SelectTrigger>
-                      <SelectContent className="bg-zinc-950 border-zinc-800 text-zinc-100 text-xs">
+                      <SelectContent className="bg-canvas border-hairline-light text-muted text-xs">
                         <SelectItem value="createdAt_desc">Newest First</SelectItem>
                         <SelectItem value="createdAt_asc">Oldest First</SelectItem>
                         <SelectItem value="name_asc">Name (A–Z)</SelectItem>
@@ -2287,10 +2287,10 @@ export function UserManagementView() {
                       setPage(1)
                     }}
                   >
-                    <SelectTrigger className="h-7 text-[11px] w-16 bg-zinc-900/70 border-zinc-800">
+                    <SelectTrigger className="h-7 text-[11px] w-16 bg-subtle/70 border-hairline-light">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-zinc-950 border-zinc-800 text-zinc-100 text-xs min-w-16">
+                    <SelectContent className="bg-canvas border-hairline-light text-muted text-xs min-w-16">
                       <SelectItem value="10">10</SelectItem>
                       <SelectItem value="20">20</SelectItem>
                       <SelectItem value="50">50</SelectItem>
@@ -2355,8 +2355,8 @@ export function UserManagementView() {
                             <div className="flex items-center gap-3">
                               <Skeleton className="size-8 rounded-full shrink-0" />
                               <div className="space-y-1">
-                                <Skeleton className="h-3.5 w-28 rounded-md" />
-                                <Skeleton className="h-2.5 w-36 rounded-md" />
+                                <Skeleton className="h-3.5 w-28 rounded-none" />
+                                <Skeleton className="h-2.5 w-36 rounded-none" />
                               </div>
                             </div>
                           </TableCell>
@@ -2367,16 +2367,16 @@ export function UserManagementView() {
                             <Skeleton className="h-4 w-16 rounded-full" />
                           </TableCell>
                           <TableCell>
-                            <Skeleton className="h-3.5 w-20 rounded-md" />
+                            <Skeleton className="h-3.5 w-20 rounded-none" />
                           </TableCell>
                           <TableCell>
                             <Skeleton className="h-4 w-24 rounded-full" />
                           </TableCell>
                           <TableCell>
-                            <Skeleton className="h-3.5 w-20 rounded-md" />
+                            <Skeleton className="h-3.5 w-20 rounded-none" />
                           </TableCell>
                           <TableCell className="text-right">
-                            <Skeleton className="size-7 rounded-lg ml-auto" />
+                            <Skeleton className="size-7 rounded-none ml-auto" />
                           </TableCell>
                         </TableRow>
                       ))
@@ -2387,14 +2387,14 @@ export function UserManagementView() {
                           className="h-36 text-center text-xs text-muted-foreground"
                         >
                           <div className="flex flex-col items-center justify-center gap-2">
-                            <AlertTriangle className="size-6 text-zinc-600" />
+                            <AlertTriangle className="size-6 text-muted" />
                             <span>No users found with the current filters.</span>
                             {isFilterActive && (
                               <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={handleResetFilters}
-                                className="text-xs mt-1 border-zinc-800"
+                                className="text-xs mt-1 border-hairline-light"
                               >
                                 Clear filters
                               </Button>
@@ -2459,7 +2459,7 @@ export function UserManagementView() {
                                     handleInlineRoleChange(user.id, newRoleId)
                                   }
                                   isLoading={updatingRoleUserId === user.id}
-                                  triggerClassName="h-7 w-auto min-w-[120px] max-w-[170px] px-2 py-0 text-xs border-border/70 hover:bg-muted/40 bg-zinc-900/60"
+                                  triggerClassName="h-7 w-auto min-w-[120px] max-w-[170px] px-2 py-0 text-xs border-border/70 hover:bg-muted/40 bg-subtle/60"
                                   placeholder="Select role"
                                   searchPlaceholder="Search roles..."
                                   emptyText="No role found."
@@ -2499,7 +2499,7 @@ export function UserManagementView() {
                                     handleInlineStatusChange(user.id, newStatus)
                                   }
                                   isLoading={updatingStatusUserId === user.id}
-                                  triggerClassName="h-7 w-auto min-w-[110px] max-w-[140px] px-2 py-0 text-xs border-border/70 hover:bg-muted/40 bg-zinc-900/60"
+                                  triggerClassName="h-7 w-auto min-w-[110px] max-w-[140px] px-2 py-0 text-xs border-border/70 hover:bg-muted/40 bg-subtle/60"
                                   placeholder="Select status"
                                   searchPlaceholder="Search status..."
                                   emptyText="No status found."
@@ -2612,25 +2612,25 @@ export function UserManagementView() {
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent
                                       align="end"
-                                      className="bg-zinc-950 border-zinc-800 text-zinc-100 text-xs w-56 p-1"
+                                      className="bg-canvas border-hairline-light text-muted text-xs w-56 p-1"
                                     >
                                       <DropdownMenuItem
-                                        className="flex items-start gap-2.5 p-2 cursor-pointer text-amber-400 focus:text-amber-300 focus:bg-amber-950/30 rounded-md"
+                                        className="flex items-start gap-2.5 p-2 cursor-pointer text-amber-400 focus:text-amber-300 focus:bg-amber-950/30 rounded-none"
                                         onClick={() => openAction(user, 'delete', false)}
                                       >
                                         <Archive className="size-4 mt-0.5 shrink-0" />
                                         <div className="flex flex-col">
                                           <span className="font-semibold text-xs">Soft Delete</span>
-                                          <span className="text-[10px] text-zinc-400 font-normal">
+                                          <span className="text-[10px] text-muted font-normal">
                                             Marks inactive &amp; archives account
                                           </span>
                                         </div>
                                       </DropdownMenuItem>
 
-                                      <DropdownMenuSeparator className="bg-zinc-800 my-1" />
+                                      <DropdownMenuSeparator className="bg-muted my-1" />
 
                                       <DropdownMenuItem
-                                        className="flex items-start gap-2.5 p-2 cursor-pointer text-red-400 focus:text-red-300 focus:bg-red-950/30 rounded-md"
+                                        className="flex items-start gap-2.5 p-2 cursor-pointer text-red-400 focus:text-red-300 focus:bg-red-950/30 rounded-none"
                                         onClick={() => openAction(user, 'delete', true)}
                                       >
                                         <Trash2 className="size-4 mt-0.5 shrink-0" />
@@ -2662,7 +2662,7 @@ export function UserManagementView() {
                   Page <strong className="text-foreground">{page}</strong> of{' '}
                   <strong className="text-foreground">{Math.max(1, totalPages)}</strong>
                   {total > 0 && (
-                    <span className="ml-1 text-zinc-500">
+                    <span className="ml-1 text-muted">
                       ({total} total user{total !== 1 ? 's' : ''})
                     </span>
                   )}
@@ -2704,7 +2704,7 @@ export function UserManagementView() {
                           className={cn(
                             'size-8 p-0 text-xs cursor-pointer',
                             page === pageNum
-                              ? 'bg-emerald-600 hover:bg-emerald-500 text-white font-bold'
+                              ? 'bg-accent hover:bg-accent text-white font-bold'
                               : 'border-border text-muted-foreground hover:text-foreground',
                           )}
                         >
@@ -2799,7 +2799,7 @@ export function UserManagementView() {
                           }}
                           className={cn(
                             'cursor-pointer text-xs justify-between',
-                            deletedLimit === l && 'font-bold text-emerald-400',
+                            deletedLimit === l && 'font-bold text-accent',
                           )}
                         >
                           {l} rows
@@ -2886,7 +2886,7 @@ export function UserManagementView() {
                             <Skeleton className="h-3 w-24" />
                           </TableCell>
                           <TableCell className="text-right">
-                            <Skeleton className="h-7 w-16 ml-auto rounded-md" />
+                            <Skeleton className="h-7 w-16 ml-auto rounded-none" />
                           </TableCell>
                         </TableRow>
                       ))
@@ -2944,7 +2944,7 @@ export function UserManagementView() {
                                   </AvatarFallback>
                                 </Avatar>
                                 <div className="flex flex-col min-w-0">
-                                  <span className="font-semibold text-xs text-foreground truncate group-hover:text-emerald-400 transition-colors">
+                                  <span className="font-semibold text-xs text-foreground truncate group-hover:text-accent transition-colors">
                                     {user.name || 'Unnamed User'}
                                   </span>
                                   <span className="text-[11px] text-muted-foreground truncate">
@@ -3023,7 +3023,7 @@ export function UserManagementView() {
                                       setUserToRestore(user)
                                       setShowRestoreDialog(true)
                                     }}
-                                    className="size-7 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 cursor-pointer transition-colors"
+                                    className="size-7 text-accent hover:text-accent hover:bg-accent-soft cursor-pointer transition-colors"
                                     title="Restore User"
                                   >
                                     <RotateCcw className="size-3.5" />
@@ -3073,7 +3073,7 @@ export function UserManagementView() {
                   Page <strong className="text-foreground">{deletedPage}</strong> of{' '}
                   <strong className="text-foreground">{Math.max(1, totalDeletedPages)}</strong>
                   {totalDeleted > 0 && (
-                    <span className="ml-1 text-zinc-500">
+                    <span className="ml-1 text-muted">
                       ({totalDeleted} deleted user{totalDeleted !== 1 ? 's' : ''})
                     </span>
                   )}
@@ -3115,7 +3115,7 @@ export function UserManagementView() {
                           className={cn(
                             'size-8 p-0 text-xs cursor-pointer',
                             deletedPage === pageNum
-                              ? 'bg-emerald-600 hover:bg-emerald-500 text-white font-bold'
+                              ? 'bg-accent hover:bg-accent text-white font-bold'
                               : 'border-border text-muted-foreground hover:text-foreground',
                           )}
                         >

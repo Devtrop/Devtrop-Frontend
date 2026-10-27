@@ -162,7 +162,7 @@ export function EmailLayoutEditor({ layoutId }: EmailLayoutEditorProps) {
   if (loading) {
     return (
       <div className="py-24 text-center text-muted-foreground text-xs flex flex-col items-center justify-center gap-2">
-        <Loader2 className="size-5 animate-spin text-emerald-500" />
+        <Loader2 className="size-5 animate-spin text-accent" />
         <span>Loading layout editor...</span>
       </div>
     )
@@ -180,7 +180,7 @@ export function EmailLayoutEditor({ layoutId }: EmailLayoutEditorProps) {
                 sessionStorage.setItem('email_templates_active_tab', 'LAYOUTS')
               }
             }}
-            className="p-1.5 rounded-lg border border-border/70 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            className="p-1.5 rounded-none border border-border/70 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="size-4" />
           </Link>
@@ -200,7 +200,7 @@ export function EmailLayoutEditor({ layoutId }: EmailLayoutEditorProps) {
               }
               router.push('/dashboard/email-templates?tab=layouts')
             }}
-            className="h-8 text-xs cursor-pointer rounded-lg"
+            className="h-8 text-xs cursor-pointer rounded-none"
           >
             Cancel
           </Button>
@@ -210,7 +210,7 @@ export function EmailLayoutEditor({ layoutId }: EmailLayoutEditorProps) {
             size="sm"
             onClick={handleSave}
             disabled={saving || !hasContentSlot}
-            className="h-8 text-xs gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium cursor-pointer rounded-lg"
+            className="h-8 text-xs gap-1.5 bg-accent hover:bg-accent text-white font-medium cursor-pointer rounded-none"
           >
             {saving ? <Loader2 className="size-3 animate-spin" /> : <Save className="size-3.5" />}
             <span>Save Layout</span>
@@ -228,16 +228,16 @@ export function EmailLayoutEditor({ layoutId }: EmailLayoutEditorProps) {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Modern Branded Card"
-              className="mt-1 h-9 text-xs bg-card/60 rounded-lg"
+              className="mt-1 h-9 text-xs bg-card/60 rounded-none"
             />
           </div>
 
           {/* Slots Validator Banner */}
-          <div className="flex items-center justify-between p-2.5 rounded-lg border border-border/80 bg-muted/40 text-xs">
+          <div className="flex items-center justify-between p-2.5 rounded-none border border-border/80 bg-muted/40 text-xs">
             <div className="flex items-center gap-3">
               <span
                 className={`flex items-center gap-1 font-medium ${
-                  hasContentSlot ? 'text-emerald-500' : 'text-rose-500'
+                  hasContentSlot ? 'text-accent' : 'text-rose-500'
                 }`}
               >
                 {hasContentSlot ? (
@@ -250,7 +250,7 @@ export function EmailLayoutEditor({ layoutId }: EmailLayoutEditorProps) {
 
               <span
                 className={`flex items-center gap-1 font-medium ${
-                  hasButtonSlot ? 'text-blue-400' : 'text-muted-foreground'
+                  hasButtonSlot ? 'text-accent' : 'text-muted-foreground'
                 }`}
               >
                 {hasButtonSlot ? <Check className="size-3.5" /> : <span>•</span>}
@@ -263,7 +263,7 @@ export function EmailLayoutEditor({ layoutId }: EmailLayoutEditorProps) {
                 type="checkbox"
                 checked={isDefault}
                 onChange={(e) => setIsDefault(e.target.checked)}
-                className="rounded border-border text-emerald-600 focus:ring-emerald-500 size-3.5"
+                className="rounded border-border text-accent focus:ring-accent size-3.5"
               />
               <span>Default Layout</span>
             </label>
@@ -277,24 +277,24 @@ export function EmailLayoutEditor({ layoutId }: EmailLayoutEditorProps) {
               onChange={(e) => setHtmlContent(e.target.value)}
               spellCheck={false}
               rows={24}
-              className="w-full p-3 font-mono text-[11px] leading-relaxed bg-neutral-950 text-neutral-100 rounded-lg border border-neutral-800 focus:outline-none focus:ring-1 focus:ring-emerald-500 resize-y min-h-[460px] scrollbar-slim"
+              className="w-full p-3 font-mono text-[11px] leading-relaxed bg-neutral-950 text-neutral-100 rounded-none border border-neutral-800 focus:outline-none focus:ring-1 focus:ring-accent resize-y min-h-[460px] scrollbar-slim"
             />
           </div>
         </div>
 
         {/* Right Column: Live Shell Preview (6 cols) */}
         <div className="lg:col-span-6 sticky top-4 space-y-3">
-          <div className="flex items-center justify-between gap-2 p-1 bg-card rounded-xl border border-border/70 shadow-xs">
+          <div className="flex items-center justify-between gap-2 p-1 bg-card rounded-none border border-border/70">
             <span className="text-xs font-semibold px-2 text-foreground">Live Shell Preview</span>
 
             {/* Viewport Toggles: Desktop, Tablet, Mobile */}
-            <div className="flex items-center gap-1 bg-muted/40 p-0.5 rounded-lg border border-border/60">
+            <div className="flex items-center gap-1 bg-muted/40 p-0.5 rounded-none border border-border/60">
               <button
                 type="button"
                 onClick={() => setViewport('desktop')}
-                className={`px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1 cursor-pointer ${
+                className={`px-2.5 py-1 text-xs rounded-none transition-all flex items-center gap-1 cursor-pointer ${
                   viewport === 'desktop'
-                    ? 'bg-card text-foreground font-semibold shadow-xs'
+                    ? 'bg-card text-foreground font-semibold'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -304,9 +304,9 @@ export function EmailLayoutEditor({ layoutId }: EmailLayoutEditorProps) {
               <button
                 type="button"
                 onClick={() => setViewport('tablet')}
-                className={`px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1 cursor-pointer ${
+                className={`px-2.5 py-1 text-xs rounded-none transition-all flex items-center gap-1 cursor-pointer ${
                   viewport === 'tablet'
-                    ? 'bg-card text-foreground font-semibold shadow-xs'
+                    ? 'bg-card text-foreground font-semibold'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -316,9 +316,9 @@ export function EmailLayoutEditor({ layoutId }: EmailLayoutEditorProps) {
               <button
                 type="button"
                 onClick={() => setViewport('mobile')}
-                className={`px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1 cursor-pointer ${
+                className={`px-2.5 py-1 text-xs rounded-none transition-all flex items-center gap-1 cursor-pointer ${
                   viewport === 'mobile'
-                    ? 'bg-card text-foreground font-semibold shadow-xs'
+                    ? 'bg-card text-foreground font-semibold'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -329,9 +329,9 @@ export function EmailLayoutEditor({ layoutId }: EmailLayoutEditorProps) {
           </div>
 
           {/* Viewport Frame */}
-          <div className="p-4 bg-muted/20 min-h-[520px] max-h-[75vh] flex items-center justify-center overflow-auto rounded-xl border border-border/70">
+          <div className="p-4 bg-muted/20 min-h-[520px] max-h-[75vh] flex items-center justify-center overflow-auto rounded-none border border-border/70">
             <div
-              className={`transition-all duration-300 rounded-xl overflow-hidden shadow-sm border border-border/80 bg-white h-[560px] ${
+              className={`transition-all duration-300 rounded-none overflow-hidden border border-border/80 bg-white h-[560px] ${
                 viewport === 'mobile'
                   ? 'w-[375px] shrink-0'
                   : viewport === 'tablet'

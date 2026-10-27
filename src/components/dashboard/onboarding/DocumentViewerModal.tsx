@@ -167,15 +167,15 @@ export function DocumentViewerModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[96vw] max-w-[96vw] sm:w-[92vw] sm:max-w-5xl lg:w-[85vw] lg:max-w-6xl h-[92vh] sm:h-[88vh] max-h-[92vh] sm:max-h-[88vh] p-0 flex flex-col overflow-hidden bg-zinc-950 border-zinc-800 text-zinc-100 shadow-2xl rounded-2xl">
+      <DialogContent className="w-[96vw] max-w-[96vw] sm:w-[92vw] sm:max-w-5xl lg:w-[85vw] lg:max-w-6xl h-[92vh] sm:h-[88vh] max-h-[92vh] sm:max-h-[88vh] p-0 flex flex-col overflow-hidden bg-canvas border-hairline-light text-muted rounded-none">
         {/* Top Header Bar (pr-10 for close button clearance) */}
-        <DialogHeader className="p-3 sm:p-4 pr-10 sm:pr-12 border-b border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 bg-zinc-900/90 shrink-0">
+        <DialogHeader className="p-3 sm:p-4 pr-10 sm:pr-12 border-b border-hairline-light flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 bg-subtle/90 shrink-0">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="flex size-9 sm:size-10 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 shrink-0">
+            <div className="flex size-9 sm:size-10 items-center justify-center rounded-none bg-accent-soft border border-accent text-accent shrink-0">
               <FileCheck className="size-4 sm:size-5" />
             </div>
             <div className="min-w-0">
-              <DialogTitle className="text-xs sm:text-sm font-semibold flex items-center gap-2 text-zinc-100 truncate">
+              <DialogTitle className="text-xs sm:text-sm font-semibold flex items-center gap-2 text-muted truncate">
                 <span className="truncate">
                   {activeDoc
                     ? getDocLabel(activeDoc.type, selectedIndex, documents)
@@ -183,22 +183,22 @@ export function DocumentViewerModal({
                 </span>
                 <Badge
                   variant="outline"
-                  className="text-[10px] text-zinc-400 border-zinc-700 bg-zinc-800/50 shrink-0"
+                  className="text-[10px] text-muted border-hairline-light bg-muted/50 shrink-0"
                 >
                   {selectedIndex + 1} of {documents.length}
                 </Badge>
                 {candidate?.docsVerifiedAt && (
                   <Badge
                     variant="outline"
-                    className="text-[10px] text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shrink-0"
+                    className="text-[10px] text-accent border-accent bg-accent-soft shrink-0"
                   >
                     <CheckCircle2 className="size-3 mr-1" /> Verified
                   </Badge>
                 )}
               </DialogTitle>
-              <p className="text-[11px] sm:text-xs text-zinc-400 mt-0.5 truncate">
+              <p className="text-[11px] sm:text-xs text-muted mt-0.5 truncate">
                 Candidate:{' '}
-                <span className="text-zinc-200 font-medium">{candidate?.applicant?.name}</span> •{' '}
+                <span className="text-muted font-medium">{candidate?.applicant?.name}</span> •{' '}
                 {candidate?.job?.title} {activeDoc ? `• ${formatBytes(activeDoc.size)}` : ''}
               </p>
             </div>
@@ -207,13 +207,13 @@ export function DocumentViewerModal({
           <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap justify-end shrink-0">
             {/* Zoom Controls for Images */}
             {isImage && (
-              <div className="flex items-center gap-1 bg-zinc-800/60 rounded-lg p-0.5 border border-zinc-700/60">
+              <div className="flex items-center gap-1 bg-muted/60 rounded-none p-0.5 border border-hairline-light/60">
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setZoomLevel((z) => Math.max(50, z - 25))}
                   disabled={zoomLevel <= 50}
-                  className="size-7 p-0 text-zinc-400 hover:text-zinc-100 cursor-pointer disabled:opacity-40"
+                  className="size-7 p-0 text-muted hover:text-muted cursor-pointer disabled:opacity-40"
                   title="Zoom Out"
                 >
                   <ZoomOut className="size-3.5" />
@@ -221,7 +221,7 @@ export function DocumentViewerModal({
                 <button
                   type="button"
                   onClick={() => setZoomLevel(100)}
-                  className="text-[11px] font-mono px-1.5 text-zinc-300 hover:text-white min-w-[42px] text-center cursor-pointer transition-colors"
+                  className="text-[11px] font-mono px-1.5 text-muted hover:text-white min-w-[42px] text-center cursor-pointer transition-colors"
                   title="Click to reset zoom"
                 >
                   {zoomLevel}%
@@ -231,7 +231,7 @@ export function DocumentViewerModal({
                   size="sm"
                   onClick={() => setZoomLevel((z) => Math.min(300, z + 25))}
                   disabled={zoomLevel >= 300}
-                  className="size-7 p-0 text-zinc-400 hover:text-zinc-100 cursor-pointer disabled:opacity-40"
+                  className="size-7 p-0 text-muted hover:text-muted cursor-pointer disabled:opacity-40"
                   title="Zoom In"
                 >
                   <ZoomIn className="size-3.5" />
@@ -245,7 +245,7 @@ export function DocumentViewerModal({
                 variant="outline"
                 size="sm"
                 onClick={() => window.open(blobUrl, '_blank')}
-                className="gap-1.5 text-xs h-8 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 border-zinc-700"
+                className="gap-1.5 text-xs h-8 bg-muted hover:bg-subtle text-muted border-hairline-light"
                 title="Open in new window"
               >
                 <ExternalLink className="size-3.5" />
@@ -259,7 +259,7 @@ export function DocumentViewerModal({
               size="sm"
               onClick={handleDownloadActive}
               disabled={!activeDoc}
-              className="gap-1.5 text-xs h-8 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 border-zinc-700"
+              className="gap-1.5 text-xs h-8 bg-muted hover:bg-subtle text-muted border-hairline-light"
             >
               <Download className="size-3.5" />
               Download
@@ -268,9 +268,9 @@ export function DocumentViewerModal({
         </DialogHeader>
 
         {/* Main Document Viewer Canvas */}
-        <div className="flex-1 w-full bg-zinc-950/90 relative flex items-center justify-center overflow-hidden">
+        <div className="flex-1 w-full bg-canvas/90 relative flex items-center justify-center overflow-hidden">
           {documents.length === 0 ? (
-            <div className="text-center text-zinc-500 space-y-2">
+            <div className="text-center text-muted space-y-2">
               <FileText className="size-12 mx-auto opacity-40" />
               <p className="text-sm font-medium">No documents uploaded by this candidate yet</p>
             </div>
@@ -281,7 +281,7 @@ export function DocumentViewerModal({
           ) : isPdf && blobUrl ? (
             <iframe
               src={blobUrl}
-              className="w-full h-full rounded-xl border border-zinc-800 bg-zinc-900 shadow-inner"
+              className="w-full h-full rounded-none border border-hairline-light bg-subtle"
               title="PDF Viewer"
             />
           ) : isImage && blobUrl ? (
@@ -297,21 +297,21 @@ export function DocumentViewerModal({
                   width: 'auto',
                   height: 'auto',
                 }}
-                className="rounded-lg shadow-2xl object-contain transition-all duration-150 select-none shrink-0 m-auto cursor-zoom-in"
+                className="rounded-none object-contain transition-all duration-150 select-none shrink-0 m-auto cursor-zoom-in"
                 title="Double-click to toggle zoom"
               />
             </div>
           ) : (
-            <div className="text-center space-y-3 p-6 max-w-md bg-zinc-900 border border-zinc-800 rounded-xl">
-              <FileText className="size-10 mx-auto text-emerald-400" />
-              <p className="text-xs font-semibold text-zinc-200">
+            <div className="text-center space-y-3 p-6 max-w-md bg-subtle border border-hairline-light rounded-none">
+              <FileText className="size-10 mx-auto text-accent" />
+              <p className="text-xs font-semibold text-muted">
                 Preview not supported for this file format ({activeDoc?.mimeType})
               </p>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleDownloadActive}
-                className="gap-1.5 text-xs bg-zinc-800 border-zinc-700 text-zinc-200"
+                className="gap-1.5 text-xs bg-muted border-hairline-light text-muted"
               >
                 <Download className="size-3.5" />
                 Download Document to View
@@ -321,7 +321,7 @@ export function DocumentViewerModal({
         </div>
 
         {/* Bottom Thumbnail Strip + Action Footer */}
-        <div className="border-t border-zinc-800 bg-zinc-900/90 p-3 pb-5 shrink-0 flex flex-col gap-3">
+        <div className="border-t border-hairline-light bg-subtle/90 p-3 pb-5 shrink-0 flex flex-col gap-3">
           {/* Thumbnails Carousel */}
           <div className="flex items-center gap-2.5 overflow-x-auto pb-1">
             {documents.map((doc, idx) => {
@@ -332,17 +332,17 @@ export function DocumentViewerModal({
                 <button
                   key={doc.id}
                   onClick={() => setSelectedIndex(idx)}
-                  className={`flex items-center gap-2.5 px-3 py-2 rounded-xl border text-left transition-all shrink-0 cursor-pointer ${
+                  className={`flex items-center gap-2.5 px-3 py-2 rounded-none border text-left transition-all shrink-0 cursor-pointer ${
                     isSelected
-                      ? 'border-emerald-500/80 bg-emerald-500/10 ring-2 ring-emerald-500/30 text-zinc-100 shadow-md'
-                      : 'border-zinc-800 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200'
+                      ? 'border-accent bg-accent-soft ring-2 ring-accent text-muted'
+                      : 'border-hairline-light bg-subtle/80 hover:bg-muted text-muted hover:text-muted'
                   }`}
                 >
                   <div
-                    className={`size-8 rounded-lg flex items-center justify-center shrink-0 ${
+                    className={`size-8 rounded-none flex items-center justify-center shrink-0 ${
                       isSelected
-                        ? 'bg-emerald-500/20 text-emerald-400'
-                        : 'bg-zinc-800 text-zinc-400'
+                        ? 'bg-accent-soft text-accent'
+                        : 'bg-muted text-muted'
                     }`}
                   >
                     {isDocImage ? (
@@ -355,7 +355,7 @@ export function DocumentViewerModal({
                     <p className="text-xs font-medium truncate max-w-[140px]">
                       {getDocLabel(doc.type, idx, documents)}
                     </p>
-                    <p className="text-[10px] text-zinc-500 font-mono">{formatBytes(doc.size)}</p>
+                    <p className="text-[10px] text-muted font-mono">{formatBytes(doc.size)}</p>
                   </div>
                 </button>
               )
@@ -363,8 +363,8 @@ export function DocumentViewerModal({
           </div>
 
           {/* Action Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1 border-t border-zinc-800/80">
-            <p className="text-[11px] sm:text-xs text-zinc-400">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1 border-t border-hairline-light/80">
+            <p className="text-[11px] sm:text-xs text-muted">
               {documents.length} document(s) uploaded •{' '}
               {candidate?.docsSubmittedAt
                 ? `Submitted ${new Date(candidate.docsSubmittedAt).toLocaleDateString()}`
@@ -376,7 +376,7 @@ export function DocumentViewerModal({
                 variant="outline"
                 size="sm"
                 onClick={() => onOpenChange(false)}
-                className="text-xs h-8 border-zinc-700 bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+                className="text-xs h-8 border-hairline-light bg-muted text-muted hover:bg-subtle"
               >
                 Close
               </Button>
@@ -401,7 +401,7 @@ export function DocumentViewerModal({
                   size="sm"
                   onClick={handleVerify}
                   disabled={verifying || documents.length === 0}
-                  className="text-xs h-8 gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium shadow-sm"
+                  className="text-xs h-8 gap-1.5 bg-accent hover:bg-accent text-white font-medium"
                 >
                   {verifying ? (
                     <Loader2 className="size-3.5 animate-spin" />
@@ -419,7 +419,7 @@ export function DocumentViewerModal({
                     onOpenChange(false)
                     onSendOrientation(candidate)
                   }}
-                  className="text-xs h-8 gap-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-sm"
+                  className="text-xs h-8 gap-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium"
                 >
                   <ExternalLink className="size-3.5" />
                   Proceed to Orientation

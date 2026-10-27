@@ -112,8 +112,8 @@ const STATUS_CONFIG: Record<string, { label: string; badge: string; dot: string 
   },
   SELECTED: {
     label: 'Selected',
-    badge: 'text-blue-400 border-blue-500/30 bg-blue-500/10 hover:bg-blue-500/20',
-    dot: 'bg-blue-400',
+    badge: 'text-accent border-blue-500/30 bg-accent-soft/10 hover:bg-accent-soft/20',
+    dot: 'bg-accent-soft',
   },
   TASK_ASSIGNED: {
     label: 'Task Assigned',
@@ -122,8 +122,8 @@ const STATUS_CONFIG: Record<string, { label: string; badge: string; dot: string 
   },
   TASK_SUBMITTED: {
     label: 'Task Submitted',
-    badge: 'text-purple-400 border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20',
-    dot: 'bg-purple-400',
+    badge: 'text-accent border-purple-500/30 bg-accent-soft/10 hover:bg-accent-soft/20',
+    dot: 'bg-accent-soft',
   },
   INTERVIEW_SELECTED: {
     label: 'Interview Ready',
@@ -137,13 +137,13 @@ const STATUS_CONFIG: Record<string, { label: string; badge: string; dot: string 
   },
   INTERVIEW_COMPLETED: {
     label: 'Completed',
-    badge: 'text-teal-400 border-teal-500/30 bg-teal-500/10 hover:bg-teal-500/20',
-    dot: 'bg-teal-400',
+    badge: 'text-accent border-teal-500/30 bg-accent-soft/10 hover:bg-accent-soft/20',
+    dot: 'bg-accent-soft',
   },
   OFFER_PENDING: {
     label: 'Offer Pending',
-    badge: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20',
-    dot: 'bg-emerald-400',
+    badge: 'text-accent border-accent bg-accent-soft hover:bg-accent-soft',
+    dot: 'bg-accent',
   },
   OFFER_SENT: {
     label: 'Offer Sent',
@@ -157,8 +157,8 @@ const STATUS_CONFIG: Record<string, { label: string; badge: string; dot: string 
   },
   HIRED: {
     label: 'Hired',
-    badge: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20',
-    dot: 'bg-emerald-400',
+    badge: 'text-accent border-accent bg-accent-soft hover:bg-accent-soft',
+    dot: 'bg-accent',
   },
   REJECTED: {
     label: 'Rejected',
@@ -167,7 +167,7 @@ const STATUS_CONFIG: Record<string, { label: string; badge: string; dot: string 
   },
   CLOSED: {
     label: 'Closed',
-    badge: 'text-zinc-400 border-zinc-500/30 bg-zinc-500/10 hover:bg-zinc-500/20',
+    badge: 'text-muted border-hairline-light/30 bg-zinc-500/10 hover:bg-subtle/20',
     dot: 'bg-zinc-400',
   },
 }
@@ -248,19 +248,19 @@ function ScrollableDocumentList({
           <div
             key={doc.id}
             onClick={onOpenViewer ? onOpenViewer : undefined}
-            className={`flex items-center justify-between p-2 rounded-xl border border-zinc-800 bg-zinc-900/70 ${
-              onOpenViewer ? 'hover:bg-zinc-800/80 cursor-pointer' : ''
+            className={`flex items-center justify-between p-2 rounded-none border border-hairline-light bg-subtle/70 ${
+              onOpenViewer ? 'hover:bg-muted/80 cursor-pointer' : ''
             } transition-colors`}
           >
             <div className="flex items-center gap-2 min-w-0">
-              <FileText className="size-3.5 text-emerald-400 shrink-0" />
-              <span className="text-xs text-zinc-200 font-medium truncate">
+              <FileText className="size-3.5 text-accent shrink-0" />
+              <span className="text-xs text-muted font-medium truncate">
                 {(doc.type ?? 'DOCUMENT').replace(/_/g, ' ')}
               </span>
             </div>
             <Badge
               variant="outline"
-              className="text-[9px] text-zinc-400 border-zinc-700 bg-zinc-800 py-0 h-4"
+              className="text-[9px] text-muted border-hairline-light bg-muted py-0 h-4"
             >
               {doc.mimeType?.split('/')[1]?.toUpperCase() || 'FILE'}
             </Badge>
@@ -275,9 +275,9 @@ function ScrollableDocumentList({
           className="absolute -bottom-1 inset-x-0 h-8 bg-gradient-to-t from-zinc-950 via-zinc-950/85 to-transparent flex items-end justify-center pb-0.5 cursor-pointer select-none"
           title="Scroll or click to reveal more documents"
         >
-          <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-zinc-900/95 border border-zinc-700/60 shadow-lg text-[10px] text-zinc-300 hover:text-emerald-400 hover:border-emerald-500/40 transition-colors">
-            <span className="text-[10px] font-medium text-zinc-400">More</span>
-            <ChevronDown className="size-3 text-emerald-400 animate-bounce" />
+          <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-subtle/95 border border-hairline-light/60 text-[10px] text-muted hover:text-accent hover:border-accent transition-colors">
+            <span className="text-[10px] font-medium text-muted">More</span>
+            <ChevronDown className="size-3 text-accent animate-bounce" />
           </div>
         </div>
       )}
@@ -331,7 +331,7 @@ export function CandidateDrawer({
       {
         value: 'CLOSED',
         label: 'Closed',
-        color: 'text-zinc-400 border-zinc-500/30 bg-zinc-500/10',
+        color: 'text-muted border-hairline-light/30 bg-zinc-500/10',
         dotColor: 'bg-zinc-400',
       },
     ]
@@ -372,7 +372,7 @@ export function CandidateDrawer({
 
   const statusConfig = STATUS_CONFIG[appStatus] || {
     label: appStatus.replace(/_/g, ' '),
-    badge: 'text-zinc-300 border-zinc-700/60 bg-zinc-800/80 hover:bg-zinc-800',
+    badge: 'text-muted border-hairline-light/60 bg-muted/80 hover:bg-muted',
     dot: 'bg-zinc-400',
   }
 
@@ -407,14 +407,14 @@ export function CandidateDrawer({
           }
           onOpenChange(false)
         }}
-        className="sm:max-w-md w-full bg-zinc-950 border-zinc-800 text-zinc-100 p-0 flex flex-col h-full overflow-hidden"
+        className="sm:max-w-md w-full bg-canvas border-hairline-light text-muted p-0 flex flex-col h-full overflow-hidden"
       >
         {/* Header */}
-        <SheetHeader className="pt-4 pb-3.5 px-5 pr-12 border-b border-zinc-800 bg-zinc-900/60 shrink-0 space-y-3">
+        <SheetHeader className="pt-4 pb-3.5 px-5 pr-12 border-b border-hairline-light bg-subtle/60 shrink-0 space-y-3">
           {/* Identity & Status */}
           <div className="flex items-start gap-3.5 min-w-0">
             {/* Initials Avatar */}
-            <div className="size-11 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 border border-zinc-700/70 text-zinc-100 font-bold text-sm flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+            <div className="size-11 rounded-none bg-gradient-to-br from-zinc-800 to-zinc-900 border border-hairline-light/70 text-muted font-bold text-sm flex items-center justify-center shrink-0 mt-0.5">
               {getInitials(applicant?.name)}
             </div>
 
@@ -432,7 +432,7 @@ export function CandidateDrawer({
                         type="button"
                         disabled={updating}
                         className={cn(
-                          'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold border transition-all cursor-pointer shadow-xs',
+                          'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold border transition-all cursor-pointer',
                           statusConfig.badge,
                           updating && 'opacity-60 cursor-not-allowed',
                         )}
@@ -444,13 +444,13 @@ export function CandidateDrawer({
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                       align="start"
-                      className="w-52 text-xs bg-zinc-900 border-zinc-800 text-zinc-100 shadow-xl"
+                      className="w-52 text-xs bg-subtle border-hairline-light text-muted"
                     >
                       {effectiveTransitions.map((opt) => (
                         <DropdownMenuItem
                           key={opt.value}
                           onClick={() => handleStatusSelect(opt.value)}
-                          className="cursor-pointer gap-2.5 my-0.5 rounded-lg text-xs font-medium focus:bg-zinc-800 focus:text-zinc-100"
+                          className="cursor-pointer gap-2.5 my-0.5 rounded-none text-xs font-medium focus:bg-muted focus:text-muted"
                         >
                           <span
                             className={cn(
@@ -478,10 +478,10 @@ export function CandidateDrawer({
               </div>
 
               {/* Subtitle with unclipped Job Title & Code */}
-              <div className="flex items-center gap-2 flex-wrap text-xs text-zinc-400">
-                <span className="text-zinc-300 font-medium">{job?.title || 'Job Application'}</span>
+              <div className="flex items-center gap-2 flex-wrap text-xs text-muted">
+                <span className="text-muted font-medium">{job?.title || 'Job Application'}</span>
                 {!hideJobCode && job?.jobCode && (
-                  <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono bg-zinc-800/80 text-zinc-400 border border-zinc-700/50 shrink-0">
+                  <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono bg-muted/80 text-muted border border-hairline-light/50 shrink-0">
                     #{job.jobCode}
                   </span>
                 )}
@@ -491,10 +491,10 @@ export function CandidateDrawer({
 
           {/* Clean Contact Metadata Line */}
           {(applicant?.email || applicant?.phone) && (
-            <div className="flex items-center gap-2 text-xs text-zinc-300 flex-wrap pt-0.5">
+            <div className="flex items-center gap-2 text-xs text-muted flex-wrap pt-0.5">
               {applicant?.email && (
                 <div className="flex items-center gap-1.5 group min-w-0">
-                  <Mail className="size-3.5 text-zinc-500 shrink-0 group-hover:text-emerald-400 transition-colors" />
+                  <Mail className="size-3.5 text-muted shrink-0 group-hover:text-accent transition-colors" />
                   <a
                     href={`mailto:${applicant.email}`}
                     className="hover:text-white transition-colors truncate text-xs"
@@ -505,11 +505,11 @@ export function CandidateDrawer({
                   <button
                     type="button"
                     onClick={() => handleCopyContact(applicant.email, 'email')}
-                    className="text-zinc-500 hover:text-emerald-400 opacity-40 group-hover:opacity-100 transition-opacity cursor-pointer p-0.5"
+                    className="text-muted hover:text-accent opacity-40 group-hover:opacity-100 transition-opacity cursor-pointer p-0.5"
                     title="Copy email"
                   >
                     {copiedContact === 'email' ? (
-                      <Check className="size-3 text-emerald-400" />
+                      <Check className="size-3 text-accent" />
                     ) : (
                       <Copy className="size-3" />
                     )}
@@ -518,12 +518,12 @@ export function CandidateDrawer({
               )}
 
               {applicant?.email && applicant?.phone && (
-                <span className="text-zinc-700 select-none mx-0.5">•</span>
+                <span className="text-muted select-none mx-0.5">•</span>
               )}
 
               {applicant?.phone && (
                 <div className="flex items-center gap-1.5 group">
-                  <Phone className="size-3.5 text-zinc-500 shrink-0 group-hover:text-emerald-400 transition-colors" />
+                  <Phone className="size-3.5 text-muted shrink-0 group-hover:text-accent transition-colors" />
                   <a
                     href={`tel:${applicant.phone}`}
                     className="hover:text-white transition-colors text-xs"
@@ -534,11 +534,11 @@ export function CandidateDrawer({
                   <button
                     type="button"
                     onClick={() => handleCopyContact(applicant.phone!, 'phone')}
-                    className="text-zinc-500 hover:text-emerald-400 opacity-40 group-hover:opacity-100 transition-opacity cursor-pointer p-0.5"
+                    className="text-muted hover:text-accent opacity-40 group-hover:opacity-100 transition-opacity cursor-pointer p-0.5"
                     title="Copy phone"
                   >
                     {copiedContact === 'phone' ? (
-                      <Check className="size-3 text-emerald-400" />
+                      <Check className="size-3 text-accent" />
                     ) : (
                       <Copy className="size-3" />
                     )}
@@ -556,7 +556,7 @@ export function CandidateDrawer({
                   href={/^https?:\/\//i.test(applicant.linkedin) ? applicant.linkedin : `https://${applicant.linkedin}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-zinc-800 bg-zinc-900/60 text-[11px] text-zinc-400 hover:text-blue-400 hover:border-blue-500/30 hover:bg-blue-500/10 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-none border border-hairline-light bg-subtle/60 text-[11px] text-muted hover:text-accent hover:border-blue-500/30 hover:bg-accent-soft/10 transition-colors"
                   title="LinkedIn Profile"
                 >
                   <svg className="size-3 shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -570,7 +570,7 @@ export function CandidateDrawer({
                   href={/^https?:\/\//i.test(applicant.github) ? applicant.github : `https://${applicant.github}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-zinc-800 bg-zinc-900/60 text-[11px] text-zinc-400 hover:text-white hover:border-zinc-600 hover:bg-zinc-800/80 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-none border border-hairline-light bg-subtle/60 text-[11px] text-muted hover:text-white hover:border-hairline-light hover:bg-muted/80 transition-colors"
                   title="GitHub Profile"
                 >
                   <svg className="size-3 shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -584,7 +584,7 @@ export function CandidateDrawer({
                   href={/^https?:\/\//i.test(applicant.portfolio) ? applicant.portfolio : `https://${applicant.portfolio}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-zinc-800 bg-zinc-900/60 text-[11px] text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/30 hover:bg-emerald-500/10 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-none border border-hairline-light bg-subtle/60 text-[11px] text-muted hover:text-accent hover:border-accent hover:bg-accent-soft transition-colors"
                   title="Portfolio"
                 >
                   <svg className="size-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -625,7 +625,7 @@ export function CandidateDrawer({
                   <button
                     type="button"
                     onClick={handleViewCV}
-                    className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border border-zinc-800 bg-zinc-900/60 text-[11px] text-zinc-400 hover:text-orange-400 hover:border-orange-500/30 hover:bg-orange-500/10 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-2 py-1 rounded-none border border-hairline-light bg-subtle/60 text-[11px] text-muted hover:text-orange-400 hover:border-orange-500/30 hover:bg-orange-500/10 transition-colors cursor-pointer"
                     title="View CV / Resume"
                   >
                     <ExternalLink className="size-3 shrink-0" />
@@ -638,7 +638,7 @@ export function CandidateDrawer({
 
           {/* Dedicated Action Toolbar (Separated by 1px hairline border) */}
           {headerActions && (
-            <div className="pt-2.5 border-t border-zinc-800/80 flex items-center gap-2 flex-wrap">
+            <div className="pt-2.5 border-t border-hairline-light/80 flex items-center gap-2 flex-wrap">
               {headerActions}
             </div>
           )}
@@ -648,15 +648,15 @@ export function CandidateDrawer({
         <div className="p-5 overflow-y-auto flex-1 flex flex-col gap-4 min-h-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {/* 1. Interview Schedule Card (Rendered if slot, token, or booking link exists) */}
           {(candidate.slot || candidate.token || bookingLink) && (
-            <div className="p-3.5 rounded-2xl border border-zinc-800 bg-zinc-900/40 space-y-2.5 shrink-0">
+            <div className="p-3.5 rounded-none border border-hairline-light bg-subtle/40 space-y-2.5 shrink-0">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
+                <span className="text-[11px] font-bold text-muted uppercase tracking-wider">
                   Interview Schedule
                 </span>
                 {candidate.slot ? (
                   <Badge
                     variant="outline"
-                    className="text-[10px] text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
+                    className="text-[10px] text-accent border-accent bg-accent-soft"
                   >
                     Confirmed
                   </Badge>
@@ -673,48 +673,48 @@ export function CandidateDrawer({
               {candidate.slot ? (
                 <div className="space-y-1.5 pt-1 text-xs">
                   <div className="flex items-center justify-between">
-                    <span className="text-zinc-400">Confirmed Slot:</span>
-                    <span className="font-semibold text-zinc-200">
+                    <span className="text-muted">Confirmed Slot:</span>
+                    <span className="font-semibold text-muted">
                       {formatFullDate(candidate.slot.startTime)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-zinc-400">Meeting Link:</span>
+                    <span className="text-muted">Meeting Link:</span>
                     {candidate.slot.meetingUrl ? (
                       <a
                         href={candidate.slot.meetingUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="font-mono text-emerald-400 hover:underline text-xs flex items-center gap-1"
+                        className="font-mono text-accent hover:underline text-xs flex items-center gap-1"
                       >
                         <span>Google Meet</span>
                         <ExternalLink className="size-2.5" />
                       </a>
                     ) : (
-                      <span className="text-zinc-500">Not configured</span>
+                      <span className="text-muted">Not configured</span>
                     )}
                   </div>
                 </div>
               ) : (
                 <div className="space-y-2 pt-1 text-xs">
-                  <p className="text-zinc-400">
+                  <p className="text-muted">
                     {!candidate.token
                       ? 'Candidate has not been issued a self-booking invitation token yet.'
                       : 'Candidate has received a booking token and has not selected a slot.'}
                   </p>
                   {bookingLink && (
-                    <div className="flex items-center gap-2 p-2 rounded-xl bg-zinc-900 border border-zinc-800">
-                      <span className="font-mono text-[11px] text-zinc-400 truncate flex-1">
+                    <div className="flex items-center gap-2 p-2 rounded-none bg-subtle border border-hairline-light">
+                      <span className="font-mono text-[11px] text-muted truncate flex-1">
                         {bookingLink}
                       </span>
                       <Button
                         size="xs"
                         variant="ghost"
                         onClick={handleCopy}
-                        className="h-6 px-2 text-[11px] gap-1 cursor-pointer shrink-0 text-zinc-300 hover:bg-zinc-800"
+                        className="h-6 px-2 text-[11px] gap-1 cursor-pointer shrink-0 text-muted hover:bg-muted"
                       >
                         {copied ? (
-                          <Check className="size-3 text-emerald-500" />
+                          <Check className="size-3 text-accent" />
                         ) : (
                           <Copy className="size-3" />
                         )}
@@ -729,9 +729,9 @@ export function CandidateDrawer({
 
           {/* 2. Interviewer Evaluation Card (Rendered if feedback exists or scoring is enabled) */}
           {(candidate.feedback || onScoreInterview) && (
-            <div className="p-3.5 rounded-2xl border border-zinc-800 bg-zinc-900/40 space-y-2.5 shrink-0">
+            <div className="p-3.5 rounded-none border border-hairline-light bg-subtle/40 space-y-2.5 shrink-0">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
+                <span className="text-[11px] font-bold text-muted uppercase tracking-wider">
                   Evaluation & Feedback
                 </span>
                 {avgScore && (
@@ -747,49 +747,49 @@ export function CandidateDrawer({
               {candidate.feedback ? (
                 <div className="space-y-2 pt-1 text-xs">
                   <div className="flex items-center justify-between">
-                    <span className="text-zinc-400">Technical Skill:</span>
+                    <span className="text-muted">Technical Skill:</span>
                     <div className="flex items-center gap-0.5 text-amber-400 font-bold">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star
                           key={i}
-                          className={`size-3.5 ${i < candidate.feedback!.technicalSkill ? 'fill-amber-400' : 'opacity-20 text-zinc-600'}`}
+                          className={`size-3.5 ${i < candidate.feedback!.technicalSkill ? 'fill-amber-400' : 'opacity-20 text-muted'}`}
                         />
                       ))}
-                      <span className="text-zinc-200 ml-1 font-mono">
+                      <span className="text-muted ml-1 font-mono">
                         {candidate.feedback.technicalSkill}/5
                       </span>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-zinc-400">Communication:</span>
+                    <span className="text-muted">Communication:</span>
                     <div className="flex items-center gap-0.5 text-amber-400 font-bold">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star
                           key={i}
-                          className={`size-3.5 ${i < candidate.feedback!.communication ? 'fill-amber-400' : 'opacity-20 text-zinc-600'}`}
+                          className={`size-3.5 ${i < candidate.feedback!.communication ? 'fill-amber-400' : 'opacity-20 text-muted'}`}
                         />
                       ))}
-                      <span className="text-zinc-200 ml-1 font-mono">
+                      <span className="text-muted ml-1 font-mono">
                         {candidate.feedback.communication}/5
                       </span>
                     </div>
                   </div>
 
                   {candidate.feedback.comments && (
-                    <div className="mt-2 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-300 leading-relaxed italic">
+                    <div className="mt-2 p-2.5 rounded-none bg-subtle border border-hairline-light text-xs text-muted leading-relaxed italic">
                       &quot;{candidate.feedback.comments}&quot;
                     </div>
                   )}
                 </div>
               ) : (
-                <div className="py-2 text-xs text-zinc-400 text-center">
+                <div className="py-2 text-xs text-muted text-center">
                   No evaluation recorded yet.{' '}
                   {onScoreInterview && (
                     <button
                       type="button"
                       onClick={onScoreInterview}
-                      className="text-emerald-400 underline font-medium cursor-pointer ml-1"
+                      className="text-accent underline font-medium cursor-pointer ml-1"
                     >
                       Score now
                     </button>
@@ -801,9 +801,9 @@ export function CandidateDrawer({
 
           {/* 3. Uploaded Documents Card (Rendered if candidate has documents or viewer exists) */}
           {(documents.length > 0 || onOpenViewer) && (
-            <div className="space-y-2.5 p-3.5 rounded-2xl border border-zinc-800 bg-zinc-900/40 shrink-0">
+            <div className="space-y-2.5 p-3.5 rounded-none border border-hairline-light bg-subtle/40 shrink-0">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
+                <span className="text-[11px] font-bold text-muted uppercase tracking-wider">
                   Uploaded Documents ({documents.length})
                 </span>
                 {documents.length > 0 && onOpenViewer && (
@@ -811,7 +811,7 @@ export function CandidateDrawer({
                     size="xs"
                     variant="outline"
                     onClick={onOpenViewer}
-                    className="h-6 px-2 text-[10px] gap-1 border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-lg cursor-pointer"
+                    className="h-6 px-2 text-[10px] gap-1 border-hairline-light bg-muted hover:bg-subtle text-muted rounded-none cursor-pointer"
                   >
                     View All
                   </Button>
@@ -819,7 +819,7 @@ export function CandidateDrawer({
               </div>
 
               {documents.length === 0 ? (
-                <div className="p-3 rounded-xl border border-dashed border-zinc-800 text-center text-zinc-500 text-xs">
+                <div className="p-3 rounded-none border border-dashed border-hairline-light text-center text-muted text-xs">
                   No documents uploaded yet.
                 </div>
               ) : (
@@ -838,7 +838,7 @@ export function CandidateDrawer({
 
         {/* Action Footer */}
         {footerActions && (
-          <div className="p-4 border-t border-zinc-800 bg-zinc-900/80 shrink-0 flex items-center gap-2">
+          <div className="p-4 border-t border-hairline-light bg-subtle/80 shrink-0 flex items-center gap-2">
             {footerActions}
           </div>
         )}

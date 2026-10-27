@@ -36,11 +36,11 @@ export function OnboardingHeader({
           size="sm"
           onClick={() => fetchCandidates(true)}
           disabled={loading}
-          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-xl flex-1 sm:flex-initial"
+          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-none flex-1 sm:flex-initial"
           title="Refresh Candidates"
         >
           <RotateCcw
-            className={`size-3.5 ${loading ? 'animate-spin text-emerald-500' : 'text-emerald-500'}`}
+            className={`size-3.5 ${loading ? 'animate-spin text-accent' : 'text-accent'}`}
           />
           <span>Refresh</span>
         </Button>
@@ -49,9 +49,9 @@ export function OnboardingHeader({
           variant="outline"
           size="sm"
           onClick={onOpenTemplates}
-          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-xl flex-1 sm:flex-initial"
+          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-none flex-1 sm:flex-initial"
         >
-          <Settings2 className="size-3.5 text-emerald-500" />
+          <Settings2 className="size-3.5 text-accent" />
           <span>Default Templates</span>
         </Button>
 
@@ -60,9 +60,9 @@ export function OnboardingHeader({
           variant="outline"
           size="sm"
           onClick={onOpenBulkOffer}
-          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-xl flex-1 sm:flex-initial"
+          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-none flex-1 sm:flex-initial"
         >
-          <Mail className="size-3.5 text-emerald-500" />
+          <Mail className="size-3.5 text-accent" />
           <span>Send / Resend Offer</span>
         </Button>
 
@@ -70,7 +70,7 @@ export function OnboardingHeader({
         <Button
           size="sm"
           onClick={onOpenBulkOrientation}
-          className="gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer shadow-sm text-xs h-8 px-3.5 rounded-xl w-full sm:w-auto"
+          className="gap-1.5 bg-accent hover:bg-accent text-white cursor-pointer text-xs h-8 px-3.5 rounded-none w-full sm:w-auto"
         >
           <FileText className="size-3.5" />
           <span>Send / Resend Orientation</span>

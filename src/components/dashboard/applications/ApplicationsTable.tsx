@@ -428,7 +428,7 @@ export function ApplicationsTable({
     return (
       <div className="space-y-3">
         {/* Desktop Table Skeleton */}
-        <div className="hidden lg:block overflow-hidden rounded-xl border border-border bg-card shadow-xs">
+        <div className="hidden lg:block overflow-hidden rounded-none border border-border bg-card">
           <div className="overflow-x-auto">
             <Table className="text-xs min-w-[950px]">
               <TableHeader>
@@ -467,7 +467,7 @@ export function ApplicationsTable({
                     </TableCell>
 
                     <TableCell className="px-3 py-3">
-                      <Skeleton className="h-7 w-28 rounded-md" />
+                      <Skeleton className="h-7 w-28 rounded-none" />
                     </TableCell>
 
                     <TableCell className="px-3 py-3">
@@ -479,12 +479,12 @@ export function ApplicationsTable({
                         <Skeleton className="size-6 rounded" />
                         <Skeleton className="size-6 rounded" />
                         <Skeleton className="size-6 rounded" />
-                        <Skeleton className="h-7 w-12 rounded-md" />
+                        <Skeleton className="h-7 w-12 rounded-none" />
                       </div>
                     </TableCell>
 
                     <TableCell className="px-3 py-3 text-right">
-                      <Skeleton className="ml-auto h-7 w-7 rounded-md" />
+                      <Skeleton className="ml-auto h-7 w-7 rounded-none" />
                     </TableCell>
                   </TableRow>
                 ))}
@@ -498,25 +498,25 @@ export function ApplicationsTable({
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={`app-card-skel-${i}`}
-              className="p-4 rounded-xl border border-border bg-card shadow-xs space-y-3"
+              className="p-4 rounded-none border border-border bg-card space-y-3"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-2.5 flex-1">
                   <Skeleton className="h-4 w-4 rounded-sm shrink-0" />
                   <div className="space-y-1.5 flex-1">
-                    <Skeleton className="h-4 w-36 rounded-md" />
-                    <Skeleton className="h-3 w-24 rounded-md" />
+                    <Skeleton className="h-4 w-36 rounded-none" />
+                    <Skeleton className="h-3 w-24 rounded-none" />
                   </div>
                 </div>
                 <Skeleton className="h-5 w-16 rounded-full shrink-0" />
               </div>
               <div className="grid grid-cols-2 gap-2 pt-2 border-t border-border">
-                <Skeleton className="h-3.5 w-28 rounded-md" />
-                <Skeleton className="h-3.5 w-20 rounded-md" />
+                <Skeleton className="h-3.5 w-28 rounded-none" />
+                <Skeleton className="h-3.5 w-20 rounded-none" />
               </div>
               <div className="flex items-center gap-2 pt-2 border-t border-border">
-                <Skeleton className="h-8 flex-1 rounded-md" />
-                <Skeleton className="h-8 w-16 rounded-md" />
+                <Skeleton className="h-8 flex-1 rounded-none" />
+                <Skeleton className="h-8 w-16 rounded-none" />
               </div>
             </div>
           ))}
@@ -530,7 +530,7 @@ export function ApplicationsTable({
    */
   if (!loading && applications.length === 0) {
     return (
-      <div className="rounded-xl border border-dashed border-border bg-card px-6 py-14 text-center">
+      <div className="rounded-none border border-dashed border-border bg-card px-6 py-14 text-center">
         <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-muted">
           <FileText className="size-5 text-muted-foreground" />
         </div>
@@ -547,7 +547,7 @@ export function ApplicationsTable({
   return (
     <>
       {/* Desktop View */}
-      <div className="hidden lg:block overflow-hidden rounded-xl border border-border bg-card shadow-xs">
+      <div className="hidden lg:block overflow-hidden rounded-none border border-border bg-card">
         <div className="overflow-x-auto">
           <Table className="text-xs min-w-[950px]">
             <TableHeader>
@@ -635,7 +635,7 @@ export function ApplicationsTable({
                         )}
 
                         {application.applicationCode ? (
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-accent-soft text-accent dark:text-accent border border-accent">
                             #{application.applicationCode}
                           </span>
                         ) : (
@@ -710,7 +710,7 @@ export function ApplicationsTable({
                             href={portfolioUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="text-muted-foreground hover:text-emerald-500 transition-colors p-1 hover:bg-muted/80 rounded"
+                            className="text-muted-foreground hover:text-accent transition-colors p-1 hover:bg-muted/80 rounded"
                             title="Portfolio Website"
                           >
                             <Globe className="size-4" />
@@ -807,11 +807,11 @@ export function ApplicationsTable({
               variant="outline"
               onClick={onLoadMore}
               disabled={loadingMore}
-              className="rounded-full px-7 py-2 h-9 text-xs font-medium border border-border/80 bg-card/80 backdrop-blur-xs hover:bg-emerald-500/10 hover:border-emerald-500/30 hover:text-emerald-300 transition-all shadow-xs gap-2 cursor-pointer"
+              className="rounded-full px-7 py-2 h-9 text-xs font-medium border border-border/80 bg-card/80 backdrop-blur-xs hover:bg-accent-soft hover:border-accent hover:text-accent transition-all gap-2 cursor-pointer"
             >
               {loadingMore ? (
                 <>
-                  <Loader2 className="size-3.5 animate-spin text-emerald-400" />
+                  <Loader2 className="size-3.5 animate-spin text-accent" />
                   <span>Loading...</span>
                 </>
               ) : (
@@ -854,7 +854,7 @@ export function ApplicationsTable({
       {/* Mobile View */}
       <div className="lg:hidden space-y-3">
         {/* Mobile Select All Header */}
-        <div className="flex items-center justify-between p-3 rounded-xl border border-border bg-card shadow-xs text-xs">
+        <div className="flex items-center justify-between p-3 rounded-none border border-border bg-card text-xs">
           <div className="flex items-center gap-2">
             <Checkbox
               id="mobile-select-all"
@@ -894,8 +894,8 @@ export function ApplicationsTable({
             <div
               key={application.id}
               className={cn(
-                'rounded-xl border border-border bg-card p-4 shadow-xs space-y-3 transition-colors',
-                isSelected && 'border-emerald-500/50 bg-emerald-500/[0.03]',
+                'rounded-none border border-border bg-card p-4 space-y-3 transition-colors',
+                isSelected && 'border-accent bg-accent/[0.03]',
               )}
             >
               {/* Header: Checkbox + Name + Code + Dropdown */}
@@ -921,7 +921,7 @@ export function ApplicationsTable({
                         {application.applicant.name}
                       </Link>
                       {application.applicationCode && (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-accent-soft text-accent dark:text-accent border border-accent">
                           #{application.applicationCode}
                         </span>
                       )}
@@ -1055,7 +1055,7 @@ export function ApplicationsTable({
                     href={portfolioUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-muted-foreground hover:text-emerald-500 transition-colors p-1 hover:bg-muted/80 rounded"
+                    className="text-muted-foreground hover:text-accent transition-colors p-1 hover:bg-muted/80 rounded"
                     title="Portfolio Website"
                   >
                     <Globe className="size-4" />
@@ -1078,7 +1078,7 @@ export function ApplicationsTable({
                     variant="outline"
                     size="sm"
                     onClick={() => onAssignTask(application)}
-                    className="h-8 gap-1.5 text-xs border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10"
+                    className="h-8 gap-1.5 text-xs border-accent text-accent dark:text-accent hover:bg-accent-soft"
                   >
                     <Send className="size-3.5" />
                     Send Task
@@ -1100,7 +1100,7 @@ export function ApplicationsTable({
         })}
 
         {/* Mobile Pagination & Count Footer */}
-        <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-xs">
+        <div className="flex flex-col gap-3 rounded-none border border-border bg-card p-4">
           <div className="text-center text-xs text-muted-foreground">
             {selectedIds.size > 0 ? (
               <>
@@ -1127,11 +1127,11 @@ export function ApplicationsTable({
                 variant="outline"
                 onClick={onLoadMore}
                 disabled={loadingMore}
-                className="rounded-full px-7 py-2 h-9 text-xs font-medium border border-border/80 bg-card/80 hover:bg-emerald-500/10 hover:border-emerald-500/30 hover:text-emerald-300 transition-all shadow-xs gap-2"
+                className="rounded-full px-7 py-2 h-9 text-xs font-medium border border-border/80 bg-card/80 hover:bg-accent-soft hover:border-accent hover:text-accent transition-all gap-2"
               >
                 {loadingMore ? (
                   <>
-                    <Loader2 className="size-3.5 animate-spin text-emerald-400" />
+                    <Loader2 className="size-3.5 animate-spin text-accent" />
                     <span>Loading...</span>
                   </>
                 ) : (

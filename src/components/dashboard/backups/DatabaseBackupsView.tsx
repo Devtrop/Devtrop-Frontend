@@ -257,7 +257,7 @@ export function DatabaseBackupsView() {
         {/* Header Section */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-3">
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 shadow-xs">
+            <div className="flex size-11 shrink-0 items-center justify-center rounded-none bg-accent-soft border border-accent text-accent">
               <Database className="size-6" />
             </div>
             <div>
@@ -281,7 +281,7 @@ export function DatabaseBackupsView() {
               className="h-9 px-3 text-xs gap-1.5 border-border/70 bg-card/60 hover:bg-card text-foreground"
             >
               <RefreshCw
-                className={`size-3.5 ${refreshing ? 'animate-spin text-emerald-400' : ''}`}
+                className={`size-3.5 ${refreshing ? 'animate-spin text-accent' : ''}`}
               />
               <span>Refresh</span>
             </Button>
@@ -300,7 +300,7 @@ export function DatabaseBackupsView() {
               size="sm"
               onClick={handleCreateBackup}
               disabled={creating}
-              className="h-9 px-4 text-xs gap-1.5 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold shadow-sm shadow-emerald-500/25 transition-all"
+              className="h-9 px-4 text-xs gap-1.5 bg-accent hover:bg-accent text-black font-semibold/25 transition-all"
             >
               {creating ? (
                 <>
@@ -320,7 +320,7 @@ export function DatabaseBackupsView() {
         {/* 3 KPI Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Card 1: Total Backups */}
-          <Card className="border border-border/40 bg-card/60 backdrop-blur-xs shadow-xs rounded-2xl">
+          <Card className="border border-border/40 bg-card/60 backdrop-blur-xs rounded-none">
             <CardContent className="p-5 flex items-center justify-between">
               <div className="space-y-1">
                 <p className="text-[10px] tracking-wider font-semibold uppercase text-muted-foreground">
@@ -331,14 +331,14 @@ export function DatabaseBackupsView() {
                 </div>
                 <p className="text-xs text-muted-foreground">Logged historical snapshots</p>
               </div>
-              <div className="flex size-11 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+              <div className="flex size-11 items-center justify-center rounded-none bg-accent-soft border border-accent text-accent">
                 <HardDrive className="size-5" />
               </div>
             </CardContent>
           </Card>
 
           {/* Card 2: Last Backup Date */}
-          <Card className="border border-border/40 bg-card/60 backdrop-blur-xs shadow-xs rounded-2xl">
+          <Card className="border border-border/40 bg-card/60 backdrop-blur-xs rounded-none">
             <CardContent className="p-5 flex items-center justify-between">
               <div className="space-y-1">
                 <p className="text-[10px] tracking-wider font-semibold uppercase text-muted-foreground">
@@ -356,20 +356,20 @@ export function DatabaseBackupsView() {
                       <span>•</span>
                     </>
                   ) : null}
-                  <span className="text-emerald-400 flex items-center gap-1">
+                  <span className="text-accent flex items-center gap-1">
                     <Cloud className="size-3" />
                     Cloud Protected (R2)
                   </span>
                 </div>
               </div>
-              <div className="flex size-11 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+              <div className="flex size-11 items-center justify-center rounded-none bg-accent-soft border border-accent text-accent">
                 <Cloud className="size-5" />
               </div>
             </CardContent>
           </Card>
 
           {/* Card 3: Auto-Backup Schedule */}
-          <Card className="border border-border/40 bg-card/60 backdrop-blur-xs shadow-xs rounded-2xl">
+          <Card className="border border-border/40 bg-card/60 backdrop-blur-xs rounded-none">
             <CardContent className="p-5 flex items-center justify-between">
               <div className="space-y-1">
                 <p className="text-[10px] tracking-wider font-semibold uppercase text-muted-foreground">
@@ -378,12 +378,12 @@ export function DatabaseBackupsView() {
                 <div className="text-base sm:text-lg font-bold tracking-tight text-foreground">
                   Daily at 02:00 AM BST
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-purple-400">
+                <div className="flex items-center gap-1.5 text-xs text-accent">
                   <CheckCircle2 className="size-3.5" />
                   <span>20:00 UTC (Bangladesh Time UTC+6)</span>
                 </div>
               </div>
-              <div className="flex size-11 items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
+              <div className="flex size-11 items-center justify-center rounded-none bg-accent-soft/10 border border-purple-500/20 text-accent">
                 <Calendar className="size-5" />
               </div>
             </CardContent>
@@ -391,7 +391,7 @@ export function DatabaseBackupsView() {
         </div>
 
         {/* Main Section: Backup History Logs */}
-        <Card className="border border-border/40 bg-card/50 backdrop-blur-xs shadow-xs rounded-2xl overflow-hidden">
+        <Card className="border border-border/40 bg-card/50 backdrop-blur-xs rounded-none overflow-hidden">
           {/* Section Header */}
           <div className="p-5 border-b border-border/40 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
@@ -411,7 +411,7 @@ export function DatabaseBackupsView() {
                 placeholder="Search filename or status..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-9 pl-8 text-xs bg-background/50 border-border/50 rounded-xl"
+                className="h-9 pl-8 text-xs bg-background/50 border-border/50 rounded-none"
               />
             </div>
           </div>
@@ -432,7 +432,7 @@ export function DatabaseBackupsView() {
                 {loading ? (
                   <tr>
                     <td colSpan={5} className="py-12 text-center text-muted-foreground">
-                      <Loader2 className="size-6 animate-spin text-emerald-400 mx-auto mb-2" />
+                      <Loader2 className="size-6 animate-spin text-accent mx-auto mb-2" />
                       <span>Loading backup logs from Cloudflare R2...</span>
                     </td>
                   </tr>
@@ -460,7 +460,7 @@ export function DatabaseBackupsView() {
                     >
                       {/* Filename / Key */}
                       <td className="py-3.5 px-5 font-mono text-[11px] text-foreground font-medium flex items-center gap-2.5">
-                        <div className="size-6 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                        <div className="size-6 rounded-none bg-accent-soft border border-accent text-accent flex items-center justify-center shrink-0">
                           <Database className="size-3" />
                         </div>
                         <span className="truncate max-w-xs sm:max-w-md">{item.fileName}</span>
@@ -468,7 +468,7 @@ export function DatabaseBackupsView() {
 
                       {/* Status */}
                       <td className="py-3.5 px-4">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold border border-accent bg-accent-soft text-accent">
                           <CheckCircle2 className="size-3" />
                           Success
                         </span>
@@ -497,7 +497,7 @@ export function DatabaseBackupsView() {
                             size="sm"
                             onClick={() => handleDownload(item)}
                             title="Download backup file"
-                            className="h-8 px-2.5 text-xs text-muted-foreground hover:text-foreground hover:bg-muted/30 gap-1 rounded-lg"
+                            className="h-8 px-2.5 text-xs text-muted-foreground hover:text-foreground hover:bg-muted/30 gap-1 rounded-none"
                           >
                             <Download className="size-3.5" />
                             <span className="hidden sm:inline">Download</span>
@@ -511,7 +511,7 @@ export function DatabaseBackupsView() {
                               setRestoreModalOpen(true)
                             }}
                             title="Restore database from this snapshot"
-                            className="h-8 px-2.5 text-xs text-muted-foreground hover:text-amber-400 hover:bg-amber-500/10 gap-1 rounded-lg"
+                            className="h-8 px-2.5 text-xs text-muted-foreground hover:text-amber-400 hover:bg-amber-500/10 gap-1 rounded-none"
                           >
                             <RotateCcw className="size-3.5" />
                             <span className="hidden sm:inline">Restore</span>
@@ -525,7 +525,7 @@ export function DatabaseBackupsView() {
                               setDeleteModalOpen(true)
                             }}
                             title="Delete backup"
-                            className="h-8 px-2 text-xs text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 rounded-lg"
+                            className="h-8 px-2 text-xs text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 rounded-none"
                           >
                             <Trash2 className="size-3.5" />
                           </Button>
@@ -543,7 +543,7 @@ export function DatabaseBackupsView() {
         <Dialog open={restoreModalOpen} onOpenChange={setRestoreModalOpen}>
           <DialogContent className="max-w-md border-border bg-card">
             <DialogHeader>
-              <div className="size-11 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mb-2">
+              <div className="size-11 rounded-none bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mb-2">
                 <AlertTriangle className="size-6" />
               </div>
               <DialogTitle className="text-base font-bold text-foreground">
@@ -558,7 +558,7 @@ export function DatabaseBackupsView() {
               </DialogDescription>
             </DialogHeader>
 
-            <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3.5 text-xs text-amber-300 space-y-1.5">
+            <div className="rounded-none border border-amber-500/20 bg-amber-500/5 p-3.5 text-xs text-amber-300 space-y-1.5">
               <p className="font-semibold flex items-center gap-1.5">
                 <AlertTriangle className="size-3.5 shrink-0" />
                 Warning: Overwrite Operation
@@ -605,7 +605,7 @@ export function DatabaseBackupsView() {
         <Dialog open={importModalOpen} onOpenChange={setImportModalOpen}>
           <DialogContent className="max-w-md border-border bg-card">
             <DialogHeader>
-              <div className="size-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mb-2">
+              <div className="size-11 rounded-none bg-accent-soft border border-accent text-accent flex items-center justify-center mb-2">
                 <FileUp className="size-6" />
               </div>
               <DialogTitle className="text-base font-bold text-foreground">
@@ -613,13 +613,13 @@ export function DatabaseBackupsView() {
               </DialogTitle>
               <DialogDescription className="text-xs text-muted-foreground leading-relaxed pt-1">
                 Upload a PostgreSQL custom binary dump file (
-                <code className="font-mono text-emerald-400">.dump</code>). It will be restored to
+                <code className="font-mono text-accent">.dump</code>). It will be restored to
                 the database and archived to Cloudflare R2.
               </DialogDescription>
             </DialogHeader>
 
             <div className="space-y-4 pt-2">
-              <div className="border-2 border-dashed border-border/70 hover:border-emerald-500/50 transition-colors rounded-xl p-6 text-center">
+              <div className="border-2 border-dashed border-border/70 hover:border-accent transition-colors rounded-none p-6 text-center">
                 <input
                   type="file"
                   id="backup-file-upload"
@@ -634,12 +634,12 @@ export function DatabaseBackupsView() {
                   htmlFor="backup-file-upload"
                   className="cursor-pointer flex flex-col items-center gap-2"
                 >
-                  <div className="size-10 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+                  <div className="size-10 rounded-full bg-accent-soft text-accent flex items-center justify-center">
                     <Upload className="size-5" />
                   </div>
                   {selectedFile ? (
                     <div className="space-y-1">
-                      <p className="text-xs font-semibold text-emerald-400 font-mono">
+                      <p className="text-xs font-semibold text-accent font-mono">
                         {selectedFile.name}
                       </p>
                       <p className="text-[11px] text-muted-foreground">
@@ -649,7 +649,7 @@ export function DatabaseBackupsView() {
                   ) : (
                     <div className="space-y-1">
                       <p className="text-xs font-medium text-foreground">
-                        Click to select a <span className="text-emerald-400 font-mono">.dump</span>{' '}
+                        Click to select a <span className="text-accent font-mono">.dump</span>{' '}
                         file
                       </p>
                       <p className="text-[11px] text-muted-foreground">
@@ -678,7 +678,7 @@ export function DatabaseBackupsView() {
                 size="sm"
                 onClick={handleImportAndRestore}
                 disabled={!selectedFile || importing}
-                className="text-xs gap-1.5 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold"
+                className="text-xs gap-1.5 bg-accent hover:bg-accent text-black font-semibold"
               >
                 {importing ? (
                   <>

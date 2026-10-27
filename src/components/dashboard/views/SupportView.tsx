@@ -19,7 +19,7 @@ export function SupportView() {
       <div className="flex flex-col gap-6 max-w-4xl">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            <HelpCircle className="size-6 text-emerald-400" />
+            <HelpCircle className="size-6 text-accent" />
             Help & Documentation
           </h1>
           <p className="text-xs text-muted-foreground">
@@ -31,7 +31,7 @@ export function SupportView() {
           <Card className="border-border/80 bg-card/60">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-bold text-foreground flex items-center gap-2">
-                <Mail className="size-4 text-emerald-400" />
+                <Mail className="size-4 text-accent" />
                 Contact Coordinator
               </CardTitle>
               <CardDescription className="text-xs">

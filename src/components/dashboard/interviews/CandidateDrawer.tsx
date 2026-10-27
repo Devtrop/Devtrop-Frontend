@@ -64,10 +64,10 @@ export function CandidateDrawer() {
           variant="outline"
           size="sm"
           onClick={() => openModal('FEEDBACK', item)}
-          className="h-8 gap-1.5 text-xs font-medium rounded-lg border-zinc-800 bg-zinc-900/90 hover:bg-zinc-800 hover:border-zinc-700 text-zinc-200 cursor-pointer shadow-xs"
+          className="h-8 gap-1.5 text-xs font-medium rounded-none border-hairline-light bg-subtle/90 hover:bg-muted hover:border-hairline-light text-muted cursor-pointer"
         >
           <InterviewIcons.Star
-            className={`size-3.5 ${item.feedback ? 'fill-amber-400 text-amber-400' : 'text-zinc-400'}`}
+            className={`size-3.5 ${item.feedback ? 'fill-amber-400 text-amber-400' : 'text-muted'}`}
           />
           <span>{item.feedback ? 'Edit Evaluation' : 'Score Candidate'}</span>
         </Button>
@@ -78,7 +78,7 @@ export function CandidateDrawer() {
           variant="outline"
           size="sm"
           asChild
-          className="h-8 gap-1.5 text-xs font-medium rounded-lg border-emerald-500/30 text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 cursor-pointer shadow-xs"
+          className="h-8 gap-1.5 text-xs font-medium rounded-none border-accent text-accent bg-accent-soft hover:bg-accent-soft cursor-pointer"
         >
           <Link href="/dashboard/onboarding">
             <InterviewIcons.Send className="size-3.5" />
@@ -93,7 +93,7 @@ export function CandidateDrawer() {
           variant="outline"
           disabled={isDispatching}
           onClick={handleDirectOutcome}
-          className="h-8 gap-1.5 text-xs font-medium rounded-lg border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 cursor-pointer shadow-xs"
+          className="h-8 gap-1.5 text-xs font-medium rounded-none border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 cursor-pointer"
         >
           <Mail className="size-3.5" />
           <span>Resend Rejection Notice</span>
@@ -109,7 +109,7 @@ export function CandidateDrawer() {
             size="sm"
             disabled={isDispatching}
             onClick={handleDirectInvite}
-            className="h-8 gap-1.5 text-xs font-medium rounded-lg border-emerald-500/30 text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 cursor-pointer shadow-xs"
+            className="h-8 gap-1.5 text-xs font-medium rounded-none border-accent text-accent bg-accent-soft hover:bg-accent-soft cursor-pointer"
           >
             <InterviewIcons.MailPlus className="size-3.5" />
             <span>{item.token ? 'Resend Invitation Email' : 'Send Booking Token'}</span>

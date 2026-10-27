@@ -197,7 +197,7 @@ export function SubmissionDetailModal({
                 <DialogTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                   <span>Task Submission Review</span>
                   {decision === 'PASS' && (
-                    <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">
+                    <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-accent-soft text-accent border border-accent">
                       <CheckCircle className="size-3" />
                       Passed (Interview Ready)
                     </span>
@@ -233,7 +233,7 @@ export function SubmissionDetailModal({
           <div className="p-5 space-y-5">
             {/* Task Context Card */}
             {submission.jobTask?.title && (
-              <div className="rounded-lg border border-border/80 bg-muted/30 p-3 flex items-center justify-between gap-3 text-xs">
+              <div className="rounded-none border border-border/80 bg-muted/30 p-3 flex items-center justify-between gap-3 text-xs">
                 <div>
                   <span className="text-[11px] text-muted-foreground">Task:</span>
                   <p className="font-medium text-foreground">{submission.jobTask.title}</p>
@@ -255,7 +255,7 @@ export function SubmissionDetailModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {/* Frontend / Main GitHub */}
-                <div className="rounded-xl border border-border/70 bg-card p-3.5 space-y-2 flex flex-col justify-between">
+                <div className="rounded-none border border-border/70 bg-card p-3.5 space-y-2 flex flex-col justify-between">
                   <div className="flex items-center gap-2">
                     <GithubIcon className="size-4 text-muted-foreground" />
                     <span className="text-xs font-medium text-foreground">
@@ -267,7 +267,7 @@ export function SubmissionDetailModal({
                       href={submission.githubRepoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-between w-full rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 px-3 py-2 text-xs font-medium transition-colors"
+                      className="inline-flex items-center justify-between w-full rounded-none bg-accent-soft hover:bg-accent-soft text-accent dark:text-accent px-3 py-2 text-xs font-medium transition-colors"
                     >
                       <span className="truncate max-w-[200px]">View GitHub Repo</span>
                       <ExternalLink className="size-3.5 shrink-0" />
@@ -279,7 +279,7 @@ export function SubmissionDetailModal({
 
                 {/* Backend GitHub */}
                 {submission.backendRepoUrl && (
-                  <div className="rounded-xl border border-border/70 bg-card p-3.5 space-y-2 flex flex-col justify-between">
+                  <div className="rounded-none border border-border/70 bg-card p-3.5 space-y-2 flex flex-col justify-between">
                     <div className="flex items-center gap-2">
                       <GithubIcon className="size-4 text-muted-foreground" />
                       <span className="text-xs font-medium text-foreground">
@@ -290,7 +290,7 @@ export function SubmissionDetailModal({
                       href={submission.backendRepoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-between w-full rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 px-3 py-2 text-xs font-medium transition-colors"
+                      className="inline-flex items-center justify-between w-full rounded-none bg-accent-soft hover:bg-accent-soft text-accent dark:text-accent px-3 py-2 text-xs font-medium transition-colors"
                     >
                       <span className="truncate max-w-[200px]">View Backend Repo</span>
                       <ExternalLink className="size-3.5 shrink-0" />
@@ -299,7 +299,7 @@ export function SubmissionDetailModal({
                 )}
 
                 {/* Live Project */}
-                <div className="rounded-xl border border-border/70 bg-card p-3.5 space-y-2 flex flex-col justify-between">
+                <div className="rounded-none border border-border/70 bg-card p-3.5 space-y-2 flex flex-col justify-between">
                   <div className="flex items-center gap-2">
                     <Globe className="size-4 text-muted-foreground" />
                     <span className="text-xs font-medium text-foreground">Live Project</span>
@@ -309,7 +309,7 @@ export function SubmissionDetailModal({
                       href={submission.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-between w-full rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 px-3 py-2 text-xs font-medium transition-colors"
+                      className="inline-flex items-center justify-between w-full rounded-none bg-accent-soft/10 hover:bg-accent-soft/20 text-accent dark:text-accent px-3 py-2 text-xs font-medium transition-colors"
                     >
                       <span className="truncate max-w-[200px]">Open Live Website</span>
                       <ExternalLink className="size-3.5 shrink-0" />
@@ -323,7 +323,7 @@ export function SubmissionDetailModal({
 
             {/* Candidate Note */}
             {submission.note && (
-              <div className="space-y-1.5 rounded-xl border border-border/70 bg-muted/20 p-3.5">
+              <div className="space-y-1.5 rounded-none border border-border/70 bg-muted/20 p-3.5">
                 <span className="text-[11px] font-semibold text-muted-foreground flex items-center gap-1.5 uppercase tracking-wide">
                   <MessageSquare className="size-3" />
                   Candidate Note
@@ -335,16 +335,16 @@ export function SubmissionDetailModal({
             )}
 
             {/* Evaluation & Marking Section */}
-            <div className="rounded-xl border border-border bg-card p-4 space-y-4">
+            <div className="rounded-none border border-border bg-card p-4 space-y-4">
               <div className="flex items-center justify-between border-b border-border pb-2.5">
                 <div className="flex items-center gap-2">
-                  <Award className="size-4 text-emerald-500" />
+                  <Award className="size-4 text-accent" />
                   <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider">
                     Marking & Evaluation
                   </h3>
                 </div>
                 {submission.score !== null && submission.score !== undefined && (
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-none bg-accent-soft text-accent border border-accent">
                     Current Mark: {submission.score} / 100
                   </span>
                 )}
@@ -372,13 +372,13 @@ export function SubmissionDetailModal({
                   <button
                     type="button"
                     onClick={() => setDecision(decision === 'PASS' ? null : 'PASS')}
-                    className={`flex items-center justify-center gap-2.5 p-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${
+                    className={`flex items-center justify-center gap-2.5 p-3 rounded-none border text-xs font-semibold transition-all cursor-pointer ${
                       decision === 'PASS'
-                        ? 'bg-emerald-600 text-white border-emerald-600 shadow-md ring-2 ring-emerald-500/30'
-                        : 'bg-card border-border/80 text-muted-foreground hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:text-emerald-500'
+                        ? 'bg-accent text-white border-accent ring-2 ring-accent'
+                        : 'bg-card border-border/80 text-muted-foreground hover:border-accent hover:bg-accent-soft hover:text-accent'
                     }`}
                   >
-                    <CheckCircle className={`size-4 shrink-0 ${decision === 'PASS' ? 'text-white' : 'text-emerald-500'}`} />
+                    <CheckCircle className={`size-4 shrink-0 ${decision === 'PASS' ? 'text-white' : 'text-accent'}`} />
                     <span>Pass (Interview Ready)</span>
                   </button>
 
@@ -386,9 +386,9 @@ export function SubmissionDetailModal({
                   <button
                     type="button"
                     onClick={() => setDecision(decision === 'FAIL' ? null : 'FAIL')}
-                    className={`flex items-center justify-center gap-2.5 p-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${
+                    className={`flex items-center justify-center gap-2.5 p-3 rounded-none border text-xs font-semibold transition-all cursor-pointer ${
                       decision === 'FAIL'
-                        ? 'bg-red-600 text-white border-red-600 shadow-md ring-2 ring-red-500/30'
+                        ? 'bg-red-600 text-white border-red-600 ring-2 ring-red-500/30'
                         : 'bg-card border-border/80 text-muted-foreground hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-500'
                     }`}
                   >
@@ -476,12 +476,12 @@ export function SubmissionDetailModal({
                     size="sm"
                     onClick={() => handleEvaluate()}
                     disabled={evaluating}
-                    className={`gap-1.5 text-xs h-8 font-medium shadow-xs ${
+                    className={`gap-1.5 text-xs h-8 font-medium ${
                       decision === 'PASS'
-                        ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                        ? 'bg-accent hover:bg-accent text-white'
                         : decision === 'FAIL'
                           ? 'bg-red-600 hover:bg-red-700 text-white'
-                          : 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                          : 'bg-accent hover:bg-accent text-white'
                     }`}
                   >
                     {evaluating ? (

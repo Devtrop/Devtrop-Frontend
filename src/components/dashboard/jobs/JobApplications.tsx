@@ -289,11 +289,11 @@ export default function JobApplications() {
         </div>
 
         {/* Stats Card */}
-        <Card className="w-full lg:w-auto border-border bg-card/60 backdrop-blur-xs shadow-xs shrink-0">
+        <Card className="w-full lg:w-auto border-border bg-card/60 backdrop-blur-xs shrink-0">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-emerald-500/10">
-                <Users className="size-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="p-2 rounded-none bg-accent-soft">
+                <Users className="size-5 text-accent dark:text-accent" />
               </div>
               <div>
                 <p className="text-xs font-medium text-muted-foreground">Total Applications</p>
@@ -305,7 +305,7 @@ export default function JobApplications() {
       </div>
 
       {/* Filters Bar */}
-      <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+      <div className="rounded-none border border-border bg-card p-3 sm:p-4">
         <div className="grid grid-cols-1 gap-2.5 sm:gap-3 sm:grid-cols-2 lg:grid-cols-6">
           {/* 1. Candidate Name / Email Search */}
           <div className="relative">
@@ -315,7 +315,7 @@ export default function JobApplications() {
               placeholder="Search name, email..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 h-9 text-xs rounded-lg border-border"
+              className="pl-9 h-9 text-xs rounded-none border-border"
             />
           </div>
 
@@ -325,7 +325,7 @@ export default function JobApplications() {
             placeholder="App Code (10000001)..."
             value={applicationCode}
             onChange={(e) => setApplicationCode(e.target.value)}
-            className="h-9 text-xs rounded-lg border-border"
+            className="h-9 text-xs rounded-none border-border"
           />
 
           {/* 3. Status Filter */}
@@ -333,7 +333,7 @@ export default function JobApplications() {
             value={status || 'ALL'}
             onValueChange={(val) => setStatus(val === 'ALL' ? '' : (val as ApplicationStatus))}
           >
-            <SelectTrigger className="h-9 text-xs rounded-lg border-border">
+            <SelectTrigger className="h-9 text-xs rounded-none border-border">
               <SelectValue placeholder="All Statuses" />
             </SelectTrigger>
             <SelectContent>
@@ -351,14 +351,14 @@ export default function JobApplications() {
               type="date"
               value={dateFilter}
               onChange={(e) => setDateFilter(e.target.value)}
-              className="h-9 text-xs rounded-lg border-border"
+              className="h-9 text-xs rounded-none border-border"
               title="Filter by application date"
             />
           </div>
 
           {/* 4. Sort Order */}
           <Select value={sort} onValueChange={(val) => setSort(val as 'latest' | 'oldest')}>
-            <SelectTrigger className="h-9 text-xs rounded-lg border-border">
+            <SelectTrigger className="h-9 text-xs rounded-none border-border">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
@@ -374,7 +374,7 @@ export default function JobApplications() {
             size="sm"
             onClick={handleReset}
             disabled={loading}
-            className="h-9 gap-1.5 rounded-lg border-border text-xs hover:bg-muted"
+            className="h-9 gap-1.5 rounded-none border-border text-xs hover:bg-muted"
           >
             <RotateCcw className={`size-3.5 ${loading ? 'animate-spin' : ''}`} />
             <span>Reset Filters</span>
@@ -387,7 +387,7 @@ export default function JobApplications() {
 
       {/* Loading Skeleton */}
       {loading && applications.length === 0 && (
-        <div className="hidden lg:block rounded-xl border border-border bg-card shadow-xs overflow-hidden">
+        <div className="hidden lg:block rounded-none border border-border bg-card overflow-hidden">
           <Table className="text-xs">
             <TableHeader>
               <TableRow className="bg-muted/40 hover:bg-muted/40">
@@ -405,34 +405,34 @@ export default function JobApplications() {
               {Array.from({ length: 5 }).map((_, i) => (
                 <TableRow key={`app-skel-${i}`}>
                   <TableCell className="px-3 py-3">
-                    <Skeleton className="h-4 w-6 rounded-md" />
+                    <Skeleton className="h-4 w-6 rounded-none" />
                   </TableCell>
                   <TableCell className="px-3 py-3">
                     <div className="flex items-center gap-2.5">
                       <Skeleton className="size-8 rounded-full" />
                       <div className="space-y-1.5">
-                        <Skeleton className="h-4 w-36 rounded-md" />
-                        <Skeleton className="h-3 w-28 rounded-md" />
+                        <Skeleton className="h-4 w-36 rounded-none" />
+                        <Skeleton className="h-3 w-28 rounded-none" />
                       </div>
                     </div>
                   </TableCell>
                   <TableCell className="px-3 py-3">
-                    <Skeleton className="h-5 w-20 rounded-md" />
+                    <Skeleton className="h-5 w-20 rounded-none" />
                   </TableCell>
                   <TableCell className="px-3 py-3">
-                    <Skeleton className="h-4 w-24 rounded-md" />
+                    <Skeleton className="h-4 w-24 rounded-none" />
                   </TableCell>
                   <TableCell className="px-3 py-3">
                     <Skeleton className="h-6 w-20 rounded-full" />
                   </TableCell>
                   <TableCell className="px-3 py-3 text-center">
-                    <Skeleton className="h-4 w-12 mx-auto rounded-md" />
+                    <Skeleton className="h-4 w-12 mx-auto rounded-none" />
                   </TableCell>
                   <TableCell className="px-3 py-3">
-                    <Skeleton className="h-4 w-20 rounded-md" />
+                    <Skeleton className="h-4 w-20 rounded-none" />
                   </TableCell>
                   <TableCell className="px-3 py-3 text-right">
-                    <Skeleton className="h-7 w-14 ml-auto rounded-md" />
+                    <Skeleton className="h-7 w-14 ml-auto rounded-none" />
                   </TableCell>
                 </TableRow>
               ))}
@@ -443,7 +443,7 @@ export default function JobApplications() {
 
       {/* Empty State */}
       {!loading && displayedApplications.length === 0 && (
-        <Card className="border-border bg-card shadow-xs">
+        <Card className="border-border bg-card">
           <CardContent className="p-12 text-center">
             <div className="flex size-16 items-center justify-center rounded-full bg-muted mx-auto text-3xl">
               📄
@@ -469,7 +469,7 @@ export default function JobApplications() {
       {displayedApplications.length > 0 && (
         <>
           {/* Desktop Table */}
-          <div className="hidden lg:block rounded-xl border border-border bg-card shadow-xs overflow-hidden">
+          <div className="hidden lg:block rounded-none border border-border bg-card overflow-hidden">
             <Table className="text-xs">
               <TableHeader>
                 <TableRow className="bg-muted/40 hover:bg-muted/40">
@@ -494,7 +494,7 @@ export default function JobApplications() {
                     {/* Applicant */}
                     <TableCell className="px-3 py-3">
                       <div className="flex items-center gap-2.5">
-                        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-semibold text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent-soft text-xs font-semibold text-accent dark:text-accent border border-accent">
                           {application.applicant?.name?.charAt(0).toUpperCase() || 'A'}
                         </div>
                         <div className="min-w-0">
@@ -511,7 +511,7 @@ export default function JobApplications() {
                     {/* App Code */}
                     <TableCell className="px-3 py-3">
                       {application.applicationCode ? (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-mono font-semibold bg-accent-soft text-accent dark:text-accent border border-accent">
                           #{application.applicationCode}
                         </span>
                       ) : (
@@ -581,7 +581,7 @@ export default function JobApplications() {
                             <DropdownMenuContent align="end" className="w-40">
                               <DropdownMenuItem
                                 onClick={() => handleCloseApplication(application.id)}
-                                className="gap-2 text-xs cursor-pointer text-zinc-400 focus:text-zinc-300"
+                                className="gap-2 text-xs cursor-pointer text-muted focus:text-muted"
                               >
                                 <XCircle className="size-3.5" />
                                 Close Application
@@ -631,14 +631,14 @@ export default function JobApplications() {
           {/* Mobile Cards */}
           <div className="lg:hidden space-y-3">
             {displayedApplications.map((application, index) => (
-              <Card key={application.id} className="border-border bg-card shadow-xs">
+              <Card key={application.id} className="border-border bg-card">
                 <CardContent className="p-4 space-y-3">
                   {/* Header: SL & Applicant */}
                   <div className="flex items-center gap-3">
                     <span className="text-xs font-semibold text-muted-foreground">
                       #{index + 1}
                     </span>
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-sm font-semibold text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent-soft text-sm font-semibold text-accent dark:text-accent border border-accent">
                       {application.applicant?.name?.charAt(0).toUpperCase() || 'A'}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -673,7 +673,7 @@ export default function JobApplications() {
                     {application.applicationCode && (
                       <div>
                         <span className="text-muted-foreground">App Code:</span>
-                        <div className="mt-1 font-mono font-semibold text-emerald-600 dark:text-emerald-400">
+                        <div className="mt-1 font-mono font-semibold text-accent dark:text-accent">
                           #{application.applicationCode}
                         </div>
                       </div>
@@ -709,7 +709,7 @@ export default function JobApplications() {
                         variant="outline"
                         size="sm"
                         onClick={() => handleCloseApplication(application.id)}
-                        className="h-8 gap-1 text-xs border-border text-zinc-400 hover:text-zinc-200"
+                        className="h-8 gap-1 text-xs border-border text-muted hover:text-muted"
                       >
                         <XCircle className="size-3.5" />
                         Close
@@ -721,7 +721,7 @@ export default function JobApplications() {
             ))}
 
             {/* Mobile Load More Footer */}
-            <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-xs">
+            <div className="flex flex-col gap-3 rounded-none border border-border bg-card p-4">
               <div className="text-center text-xs text-muted-foreground">
                 Showing{' '}
                 <span className="font-medium text-foreground">{displayedApplications.length}</span>{' '}
@@ -759,7 +759,7 @@ export default function JobApplications() {
 
 function ApplicationStatusBadge({ status }: { status: ApplicationStatus }) {
   const styles: Record<ApplicationStatus, string> = {
-    APPLIED: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
+    APPLIED: 'bg-accent-soft/10 text-accent dark:text-accent border-blue-500/20',
     SELECTED: 'bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20',
     TASK_ASSIGNED: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
     TASK_SUBMITTED: 'bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20',
@@ -768,12 +768,12 @@ function ApplicationStatusBadge({ status }: { status: ApplicationStatus }) {
     INTERVIEW_SCHEDULED:
       'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20',
     INTERVIEW_COMPLETED: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20',
-    OFFER_PENDING: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
+    OFFER_PENDING: 'bg-accent-soft text-accent dark:text-accent border-accent',
     OFFER_SENT: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20',
     DOCS_SUBMITTED: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
-    HIRED: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
+    HIRED: 'bg-accent-soft text-accent dark:text-accent border-accent',
     REJECTED: 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20',
-    CLOSED: 'bg-zinc-500/10 text-zinc-500 dark:text-zinc-400 border-zinc-500/20',
+    CLOSED: 'bg-zinc-500/10 text-muted dark:text-muted border-hairline-light/20',
   }
 
   return (

@@ -49,18 +49,18 @@ const STATUS_CONFIGS: Record<string, { label: string; color: string; dotColor: s
   },
   OFFER_SENT: {
     label: 'Offer Sent',
-    color: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
-    dotColor: 'bg-blue-400',
+    color: 'text-accent bg-accent-soft/10 border-blue-500/20',
+    dotColor: 'bg-accent-soft',
   },
   DOCS_SUBMITTED: {
     label: 'Docs Submitted',
-    color: 'text-purple-400 bg-purple-500/10 border-purple-500/20',
-    dotColor: 'bg-purple-400',
+    color: 'text-accent bg-accent-soft/10 border-purple-500/20',
+    dotColor: 'bg-accent-soft',
   },
   HIRED: {
     label: 'Hired',
-    color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
-    dotColor: 'bg-emerald-400',
+    color: 'text-accent bg-accent-soft border-accent',
+    dotColor: 'bg-accent',
   },
   REJECTED: {
     label: 'Rejected',
@@ -69,7 +69,7 @@ const STATUS_CONFIGS: Record<string, { label: string; color: string; dotColor: s
   },
   CLOSED: {
     label: 'Closed',
-    color: 'text-zinc-400 bg-zinc-500/10 border-zinc-500/20',
+    color: 'text-muted bg-zinc-500/10 border-hairline-light/20',
     dotColor: 'bg-zinc-400',
   },
 }
@@ -148,7 +148,7 @@ export function OnboardingTableRow({
         <div className="flex items-center gap-2.5">
           <div
             onClick={() => onOpenDrawer(candidate)}
-            className="size-8 rounded-xl bg-primary/10 border border-primary/20 text-primary font-bold text-[11px] flex items-center justify-center shrink-0 cursor-pointer hover:opacity-85 transition-opacity"
+            className="size-8 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[11px] flex items-center justify-center shrink-0 cursor-pointer hover:opacity-85 transition-opacity"
           >
             {getInitials(applicant?.name)}
           </div>
@@ -190,12 +190,12 @@ export function OnboardingTableRow({
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="start"
-            className="w-48 bg-popover border-border text-popover-foreground rounded-xl shadow-xl p-1"
+            className="w-48 bg-popover border-border text-popover-foreground rounded-none p-1"
           >
-            <div className="px-2 py-1 text-xs text-foreground font-medium flex items-center gap-1.5 bg-muted/40 rounded-lg">
+            <div className="px-2 py-1 text-xs text-foreground font-medium flex items-center gap-1.5 bg-muted/40 rounded-none">
               <span className={`size-1.5 rounded-full ${statusConfig.dotColor}`} />
               <span>{statusConfig.label} (Current)</span>
-              <Check className="size-3.5 ml-auto text-emerald-500" />
+              <Check className="size-3.5 ml-auto text-accent" />
             </div>
             <DropdownMenuSeparator className="my-1" />
             {candidate.status !== 'REJECTED' && (
@@ -210,7 +210,7 @@ export function OnboardingTableRow({
             {candidate.status === 'REJECTED' && (
               <DropdownMenuItem
                 onClick={() => handleStatusSelect('OFFER_PENDING')}
-                className="text-xs gap-2 cursor-pointer text-emerald-400 focus:text-emerald-300 focus:bg-emerald-500/10"
+                className="text-xs gap-2 cursor-pointer text-accent focus:text-accent focus:bg-accent-soft"
               >
                 <CheckCircle2 className="size-3.5" />
                 <span>Move to Offer Pending</span>
@@ -218,7 +218,7 @@ export function OnboardingTableRow({
             )}
             <DropdownMenuItem
               onClick={() => handleStatusSelect('CLOSED')}
-              className="text-xs gap-2 cursor-pointer text-zinc-400 focus:text-zinc-300 focus:bg-zinc-500/10"
+              className="text-xs gap-2 cursor-pointer text-muted focus:text-muted focus:bg-zinc-500/10"
             >
               <XCircle className="size-3.5" />
               <span>Close Application</span>
@@ -235,7 +235,7 @@ export function OnboardingTableRow({
           <div className="flex items-center gap-1.5 flex-wrap">
             <button
               onClick={() => onOpenViewer(candidate)}
-              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 cursor-pointer transition-colors"
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-none text-[11px] font-medium bg-accent-soft text-accent border border-accent hover:bg-accent-soft cursor-pointer transition-colors"
             >
               <FileText className="size-3" />
               <span>
@@ -245,7 +245,7 @@ export function OnboardingTableRow({
             {candidate.docsVerifiedAt && (
               <Badge
                 variant="outline"
-                className="text-[10px] text-emerald-400 border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0"
+                className="text-[10px] text-accent border-accent bg-accent-soft px-1.5 py-0"
               >
                 <CheckCircle2 className="size-2.5 mr-1" /> Verified
               </Badge>
@@ -266,14 +266,14 @@ export function OnboardingTableRow({
             <Button
               variant="ghost"
               size="sm"
-              className="size-8 p-0 text-muted-foreground hover:text-foreground cursor-pointer rounded-lg"
+              className="size-8 p-0 text-muted-foreground hover:text-foreground cursor-pointer rounded-none"
             >
               <MoreHorizontal className="size-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="end"
-            className="w-48 bg-popover border-border text-popover-foreground rounded-xl shadow-xl p-1"
+            className="w-48 bg-popover border-border text-popover-foreground rounded-none p-1"
           >
             <DropdownMenuItem
               onClick={() => onOpenViewer(candidate)}
@@ -288,7 +288,7 @@ export function OnboardingTableRow({
                 onClick={() => onSendOffer(candidate)}
                 className="text-xs gap-2 cursor-pointer"
               >
-                <Mail className="size-3.5 text-emerald-500" />
+                <Mail className="size-3.5 text-accent" />
                 <span>
                   {candidate.status === 'OFFER_SENT' ? 'Resend Offer Letter' : 'Send Offer Letter'}
                 </span>
@@ -337,7 +337,7 @@ export function OnboardingTableRow({
             )}
             <DropdownMenuItem
               onClick={() => handleStatusSelect('CLOSED')}
-              className="text-xs gap-2 cursor-pointer text-zinc-400 focus:text-zinc-300 focus:bg-zinc-500/10"
+              className="text-xs gap-2 cursor-pointer text-muted focus:text-muted focus:bg-zinc-500/10"
             >
               <XCircle className="size-3.5" />
               <span>Close Application</span>

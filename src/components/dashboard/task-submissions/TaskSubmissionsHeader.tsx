@@ -28,7 +28,7 @@ export function TaskSubmissionsHeader({
           size="sm"
           onClick={onRefresh}
           disabled={loading}
-          className="gap-1.5 border-border hover:bg-muted text-xs h-8 px-3 rounded-xl"
+          className="gap-1.5 border-border hover:bg-muted text-xs h-8 px-3 rounded-none"
         >
           <RefreshCw className={`size-3.5 ${loading ? 'animate-spin' : ''}`} />
           <span className="hidden sm:inline">Refresh</span>

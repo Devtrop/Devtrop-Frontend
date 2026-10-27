@@ -78,23 +78,23 @@ export function EmailStatusBadge({
       <TooltipProvider delayDuration={100}>
         <Tooltip>
           <TooltipTrigger asChild>
-            <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20 cursor-default select-none transition-colors">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-none text-xs font-medium text-accent bg-accent-soft border border-accent hover:bg-accent-soft cursor-default select-none transition-colors">
               Sent
             </span>
           </TooltipTrigger>
           <TooltipContent
             side="top"
-            className="p-2.5 max-w-xs space-y-1 bg-zinc-950 border-zinc-800 text-zinc-100 shadow-xl rounded-lg text-xs"
+            className="p-2.5 max-w-xs space-y-1 bg-canvas border-hairline-light text-muted rounded-none text-xs"
           >
-            <div className="font-semibold text-emerald-400">
+            <div className="font-semibold text-accent">
               {getEmailTypeLabel(activeLog?.type || expectedType)}
             </div>
             {targetEmail && (
-              <div className="text-[11px] text-zinc-400 font-mono">
-                To: <span className="text-zinc-200">{targetEmail}</span>
+              <div className="text-[11px] text-muted font-mono">
+                To: <span className="text-muted">{targetEmail}</span>
               </div>
             )}
-            <div className="text-[10px] text-zinc-500 font-mono">
+            <div className="text-[10px] text-muted font-mono">
               Sent {formatRelativeTime(activeLog?.sentAt || activeLog?.createdAt)}
             </div>
           </TooltipContent>
@@ -109,23 +109,23 @@ export function EmailStatusBadge({
       <TooltipProvider delayDuration={100}>
         <Tooltip>
           <TooltipTrigger asChild>
-            <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium text-amber-400 bg-amber-500/10 border border-amber-500/25 hover:bg-amber-500/20 cursor-default select-none transition-colors">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-none text-xs font-medium text-amber-400 bg-amber-500/10 border border-amber-500/25 hover:bg-amber-500/20 cursor-default select-none transition-colors">
               Pending
             </span>
           </TooltipTrigger>
           <TooltipContent
             side="top"
-            className="p-2.5 max-w-xs space-y-1 bg-zinc-950 border-zinc-800 text-zinc-100 shadow-xl rounded-lg text-xs"
+            className="p-2.5 max-w-xs space-y-1 bg-canvas border-hairline-light text-muted rounded-none text-xs"
           >
             <div className="font-semibold text-amber-400">
               {getEmailTypeLabel(expectedType || activeLog?.type)} Pending
             </div>
             {targetEmail && (
-              <div className="text-[11px] text-zinc-400 font-mono">
-                To: <span className="text-zinc-200">{targetEmail}</span>
+              <div className="text-[11px] text-muted font-mono">
+                To: <span className="text-muted">{targetEmail}</span>
               </div>
             )}
-            <div className="text-[11px] text-zinc-400">Scheduled or awaiting dispatch</div>
+            <div className="text-[11px] text-muted">Scheduled or awaiting dispatch</div>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
@@ -138,23 +138,23 @@ export function EmailStatusBadge({
       <TooltipProvider delayDuration={100}>
         <Tooltip>
           <TooltipTrigger asChild>
-            <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium text-rose-400 bg-rose-500/10 border border-rose-500/20 hover:bg-rose-500/20 cursor-default select-none transition-colors">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-none text-xs font-medium text-rose-400 bg-rose-500/10 border border-rose-500/20 hover:bg-rose-500/20 cursor-default select-none transition-colors">
               Failed
             </span>
           </TooltipTrigger>
           <TooltipContent
             side="top"
-            className="p-2.5 max-w-xs space-y-1 bg-zinc-950 border-zinc-800 text-zinc-100 shadow-xl rounded-lg text-xs"
+            className="p-2.5 max-w-xs space-y-1 bg-canvas border-hairline-light text-muted rounded-none text-xs"
           >
             <div className="font-semibold text-rose-400">
               {getEmailTypeLabel(activeLog?.type || expectedType)} Delivery Failed
             </div>
             {targetEmail && (
-              <div className="text-[11px] text-zinc-400 font-mono">
-                To: <span className="text-zinc-200">{targetEmail}</span>
+              <div className="text-[11px] text-muted font-mono">
+                To: <span className="text-muted">{targetEmail}</span>
               </div>
             )}
-            <div className="text-[10px] text-zinc-500 font-mono">
+            <div className="text-[10px] text-muted font-mono">
               Attempted {formatRelativeTime(activeLog?.createdAt)}
             </div>
           </TooltipContent>

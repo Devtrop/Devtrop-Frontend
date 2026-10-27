@@ -165,7 +165,7 @@ export function ApplicationStatusTimeline({
   return (
     <div
       className={cn(
-        'p-3.5 rounded-2xl border border-zinc-800 bg-zinc-900/40 space-y-3',
+        'p-3.5 rounded-none border border-hairline-light bg-subtle/40 space-y-3',
         isFlex && 'flex flex-col min-h-0',
         className,
       )}
@@ -186,7 +186,7 @@ export function ApplicationStatusTimeline({
 
       {sortedHistory.length === 0 ? (
         <div className={cn(
-          "p-4 rounded-xl border border-dashed border-border text-center text-muted-foreground text-xs",
+          "p-4 rounded-none border border-dashed border-border text-center text-muted-foreground text-xs",
           isFlex && "flex-1 flex items-center justify-center",
         )}>
           {emptyMessage}
@@ -222,7 +222,7 @@ export function ApplicationStatusTimeline({
                     <span
                       className={`size-2.5 rounded-full ring-4 ring-background shrink-0 mt-1.5 transition-transform group-hover:scale-125 ${
                         isLatest
-                          ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
+                          ? 'bg-accent/50'
                           : 'bg-muted-foreground/50'
                       }`}
                     />
@@ -230,7 +230,7 @@ export function ApplicationStatusTimeline({
                     {/* Hoverable Milestone Card with rich Tooltip */}
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <div className="flex-1 min-w-0 p-2.5 rounded-xl border border-border/60 bg-card/60 hover:bg-card/90 transition-all hover:border-border hover:shadow-xs space-y-1.5 cursor-pointer">
+                        <div className="flex-1 min-w-0 p-2.5 rounded-none border border-border/60 bg-card/60 hover:bg-card/90 transition-all hover:border-border hover:shadow-xs space-y-1.5 cursor-pointer">
                           <div className="flex items-center justify-between gap-2 flex-wrap">
                             <ApplicationStatusBadge status={item.status} />
 
@@ -247,7 +247,7 @@ export function ApplicationStatusTimeline({
                             {isApplicant ? (
                               <Badge
                                 variant="outline"
-                                className="text-[10px] py-0 h-4 gap-1 border-blue-500/30 text-blue-400 bg-blue-500/10 font-normal"
+                                className="text-[10px] py-0 h-4 gap-1 border-blue-500/30 text-accent bg-accent-soft/10 font-normal"
                               >
                                 <User className="size-2.5" />
                                 <span>Candidate</span>
@@ -255,7 +255,7 @@ export function ApplicationStatusTimeline({
                             ) : isSystem ? (
                               <Badge
                                 variant="outline"
-                                className="text-[10px] py-0 h-4 gap-1 border-zinc-700 text-zinc-400 bg-zinc-800 font-normal"
+                                className="text-[10px] py-0 h-4 gap-1 border-hairline-light text-muted bg-muted font-normal"
                               >
                                 <Bot className="size-2.5" />
                                 <span>SYSTEM</span>
@@ -263,7 +263,7 @@ export function ApplicationStatusTimeline({
                             ) : (
                               <Badge
                                 variant="outline"
-                                className="text-[10px] py-0 h-4 gap-1 border-emerald-500/30 text-emerald-400 bg-emerald-500/10 font-normal max-w-[190px] truncate"
+                                className="text-[10px] py-0 h-4 gap-1 border-accent text-accent bg-accent-soft font-normal max-w-[190px] truncate"
                               >
                                 <Shield className="size-2.5 shrink-0" />
                                 <span className="truncate">{actor}</span>
@@ -277,26 +277,26 @@ export function ApplicationStatusTimeline({
                       <TooltipContent
                         side="left"
                         align="center"
-                        className="w-72 p-3 space-y-2 bg-zinc-950/95 backdrop-blur-md border border-zinc-800 text-zinc-100 shadow-2xl rounded-xl text-xs z-50 animate-in fade-in-0 zoom-in-95"
+                        className="w-72 p-3 space-y-2 bg-canvas/95 backdrop-blur-md border border-hairline-light text-muted rounded-none text-xs z-50 animate-in fade-in-0 zoom-in-95"
                       >
-                        <div className="flex items-center justify-between pb-1.5 border-b border-zinc-800/80">
-                          <span className="font-semibold text-zinc-100 flex items-center gap-1.5">
+                        <div className="flex items-center justify-between pb-1.5 border-b border-hairline-light/80">
+                          <span className="font-semibold text-muted flex items-center gap-1.5">
                             <span
-                              className={`size-2 rounded-full ${isLatest ? 'bg-emerald-500' : 'bg-zinc-400'}`}
+                              className={`size-2 rounded-full ${isLatest ? 'bg-accent' : 'bg-zinc-400'}`}
                             />
                             {info.title}
                           </span>
-                          <span className="text-[10px] font-mono text-zinc-400">
+                          <span className="text-[10px] font-mono text-muted">
                             {relativeTime}
                           </span>
                         </div>
 
-                        <p className="text-[11px] text-zinc-300 leading-relaxed">{info.desc}</p>
+                        <p className="text-[11px] text-muted leading-relaxed">{info.desc}</p>
 
-                        <div className="pt-1.5 border-t border-zinc-800/80 space-y-1 text-[10px] text-zinc-400">
+                        <div className="pt-1.5 border-t border-hairline-light/80 space-y-1 text-[10px] text-muted">
                           <div className="flex items-center justify-between">
-                            <span className="text-zinc-500">Triggered by:</span>
-                            <span className="font-medium text-zinc-200 truncate max-w-[160px]">
+                            <span className="text-muted">Triggered by:</span>
+                            <span className="font-medium text-muted truncate max-w-[160px]">
                               {isApplicant
                                 ? 'Candidate (Self-Action)'
                                 : isSystem
@@ -305,8 +305,8 @@ export function ApplicationStatusTimeline({
                             </span>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-zinc-500">Exact Date:</span>
-                            <span className="font-mono text-zinc-300">{fullDate}</span>
+                            <span className="text-muted">Exact Date:</span>
+                            <span className="font-mono text-muted">{fullDate}</span>
                           </div>
                         </div>
                       </TooltipContent>
@@ -323,9 +323,9 @@ export function ApplicationStatusTimeline({
                 className="absolute -bottom-1 inset-x-0 h-9 bg-gradient-to-t from-zinc-950 via-zinc-950/90 to-transparent flex items-end justify-center pb-0.5 cursor-pointer select-none z-10"
                 title="Scroll to see more history"
               >
-                <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-zinc-900/95 border border-zinc-700/60 shadow-lg text-[10px] text-zinc-300 hover:text-emerald-400 hover:border-emerald-500/40 transition-colors">
-                  <span className="text-[10px] font-medium text-zinc-400">More</span>
-                  <ChevronDown className="size-3 text-emerald-400 animate-bounce" />
+                <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-subtle/95 border border-hairline-light/60 text-[10px] text-muted hover:text-accent hover:border-accent transition-colors">
+                  <span className="text-[10px] font-medium text-muted">More</span>
+                  <ChevronDown className="size-3 text-accent animate-bounce" />
                 </div>
               </div>
             )}

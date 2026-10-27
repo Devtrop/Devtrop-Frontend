@@ -353,40 +353,40 @@ export function TaskSubmissionsHub() {
               onValueChange={(v) => setStatus(v === 'ALL' ? '' : (v as TaskAssignmentStatus))}
               className="w-full lg:w-auto"
             >
-              <TabsList className="bg-card border border-border p-1 h-10 w-full sm:w-auto inline-flex justify-start sm:justify-center overflow-x-auto rounded-xl shadow-xs">
+              <TabsList className="bg-card border border-border p-1 h-10 w-full sm:w-auto inline-flex justify-start sm:justify-center overflow-x-auto rounded-none">
                 <TabsTrigger
                   value="ALL"
-                  className="group rounded-lg px-4 py-1.5 text-xs font-medium data-[state=active]:bg-emerald-500/10 data-[state=active]:text-emerald-600 data-[state=active]:shadow-none hover:text-emerald-600 transition-all flex items-center gap-2"
+                  className="group rounded-none px-4 py-1.5 text-xs font-medium data-[state=active]:bg-accent-soft data-[state=active]:text-accent data-[state=active]:shadow-none hover:text-accent transition-all flex items-center gap-2"
                 >
                   All Statuses
-                  <span className="bg-muted text-muted-foreground group-data-[state=active]:bg-emerald-500/20 group-data-[state=active]:text-emerald-600 px-1.5 py-0.5 rounded-full text-[10px] leading-none">
+                  <span className="bg-muted text-muted-foreground group-data-[state=active]:bg-accent-soft group-data-[state=active]:text-accent px-1.5 py-0.5 rounded-full text-[10px] leading-none">
                     {stats.total}
                   </span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="SENT"
-                  className="group rounded-lg px-4 py-1.5 text-xs font-medium data-[state=active]:bg-emerald-500/10 data-[state=active]:text-emerald-600 data-[state=active]:shadow-none hover:text-emerald-600 transition-all flex items-center gap-2"
+                  className="group rounded-none px-4 py-1.5 text-xs font-medium data-[state=active]:bg-accent-soft data-[state=active]:text-accent data-[state=active]:shadow-none hover:text-accent transition-all flex items-center gap-2"
                 >
                   Sent
-                  <span className="bg-muted text-muted-foreground group-data-[state=active]:bg-emerald-500/20 group-data-[state=active]:text-emerald-600 px-1.5 py-0.5 rounded-full text-[10px] leading-none">
+                  <span className="bg-muted text-muted-foreground group-data-[state=active]:bg-accent-soft group-data-[state=active]:text-accent px-1.5 py-0.5 rounded-full text-[10px] leading-none">
                     {stats.sent}
                   </span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="SUBMITTED"
-                  className="group rounded-lg px-4 py-1.5 text-xs font-medium data-[state=active]:bg-emerald-500/10 data-[state=active]:text-emerald-600 data-[state=active]:shadow-none hover:text-emerald-600 transition-all flex items-center gap-2"
+                  className="group rounded-none px-4 py-1.5 text-xs font-medium data-[state=active]:bg-accent-soft data-[state=active]:text-accent data-[state=active]:shadow-none hover:text-accent transition-all flex items-center gap-2"
                 >
                   Submitted
-                  <span className="bg-muted text-muted-foreground group-data-[state=active]:bg-emerald-500/20 group-data-[state=active]:text-emerald-600 px-1.5 py-0.5 rounded-full text-[10px] leading-none">
+                  <span className="bg-muted text-muted-foreground group-data-[state=active]:bg-accent-soft group-data-[state=active]:text-accent px-1.5 py-0.5 rounded-full text-[10px] leading-none">
                     {stats.submitted}
                   </span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="EXPIRED"
-                  className="group rounded-lg px-4 py-1.5 text-xs font-medium data-[state=active]:bg-emerald-500/10 data-[state=active]:text-emerald-600 data-[state=active]:shadow-none hover:text-emerald-600 transition-all flex items-center gap-2"
+                  className="group rounded-none px-4 py-1.5 text-xs font-medium data-[state=active]:bg-accent-soft data-[state=active]:text-accent data-[state=active]:shadow-none hover:text-accent transition-all flex items-center gap-2"
                 >
                   Expired
-                  <span className="bg-muted text-muted-foreground group-data-[state=active]:bg-emerald-500/20 group-data-[state=active]:text-emerald-600 px-1.5 py-0.5 rounded-full text-[10px] leading-none">
+                  <span className="bg-muted text-muted-foreground group-data-[state=active]:bg-accent-soft group-data-[state=active]:text-accent px-1.5 py-0.5 rounded-full text-[10px] leading-none">
                     {stats.expired}
                   </span>
                 </TabsTrigger>
@@ -573,7 +573,7 @@ export function TaskSubmissionsHub() {
                 size="sm"
                 onClick={handleResubmitConfirm}
                 disabled={resubmitting}
-                className="gap-1.5 bg-emerald-600 hover:bg-emerald-500"
+                className="gap-1.5 bg-accent hover:bg-accent"
               >
                 {resubmitting ? (
                   <>

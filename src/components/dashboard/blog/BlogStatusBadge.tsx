@@ -17,7 +17,7 @@ export function BlogStatusBadge({ status, className }: BlogStatusBadgeProps) {
         return {
           label: 'Published',
           className:
-            'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
+            'bg-accent-soft text-accent dark:text-accent border-accent',
         }
       case 'DRAFT':
         return {
@@ -27,7 +27,7 @@ export function BlogStatusBadge({ status, className }: BlogStatusBadgeProps) {
       case 'ARCHIVED':
         return {
           label: 'Archived',
-          className: 'bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20',
+          className: 'bg-zinc-500/10 text-muted dark:text-muted border-hairline-light/20',
         }
       default:
         return {

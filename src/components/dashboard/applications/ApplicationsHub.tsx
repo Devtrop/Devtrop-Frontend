@@ -406,7 +406,7 @@ export function ApplicationsHub() {
         />
 
         {selectedIds.size > 0 && (
-          <div className="flex items-center justify-between rounded-xl border border-border bg-card px-4 py-2.5 shadow-xs">
+          <div className="flex items-center justify-between rounded-none border border-border bg-card px-4 py-2.5">
             <p className="text-xs text-muted-foreground">
               <span className="font-medium text-foreground">{selectedIds.size}</span> selected
               {assignableCount > 0 && (

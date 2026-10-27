@@ -98,9 +98,9 @@ export function PermissionRoute({
 
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] p-6 text-center animate-in fade-in-50">
-        <Card className="max-w-md w-full border-red-500/20 bg-red-950/10 dark:bg-red-950/20 backdrop-blur-md shadow-2xl p-6">
+        <Card className="max-w-md w-full border-red-500/20 bg-red-950/10 dark:bg-red-950/20 backdrop-blur-md p-6">
           <CardContent className="flex flex-col items-center gap-4 p-0">
-            <div className="flex size-14 items-center justify-center rounded-2xl bg-red-500/10 border border-red-500/30 text-red-400 shadow-lg shadow-red-500/10">
+            <div className="flex size-14 items-center justify-center rounded-none bg-red-500/10 border border-red-500/30 text-red-400/10">
               <ShieldAlert className="size-7" />
             </div>
 
@@ -112,11 +112,11 @@ export function PermissionRoute({
               </p>
             </div>
 
-            <div className="w-full rounded-xl bg-background/60 border border-border/80 p-3 text-left flex flex-col gap-1 text-xs">
+            <div className="w-full rounded-none bg-background/60 border border-border/80 p-3 text-left flex flex-col gap-1 text-xs">
               <span className="text-[11px] text-muted-foreground uppercase font-semibold">
                 Privilege Scopes:
               </span>
-              <span className="font-mono font-medium text-emerald-400 break-words">
+              <span className="font-mono font-medium text-accent break-words">
                 {requiredText}
               </span>
             </div>

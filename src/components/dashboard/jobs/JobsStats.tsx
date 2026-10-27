@@ -31,9 +31,9 @@ export function JobsStats({ stats }: StatsProps) {
       shortTitle: 'Active',
       value: stats.active,
       icon: CheckCircle2,
-      color: 'text-emerald-400',
-      bg: 'bg-emerald-500/10',
-      border: 'border-emerald-500/20',
+      color: 'text-accent',
+      bg: 'bg-accent-soft',
+      border: 'border-accent',
     },
     {
       title: 'Draft Jobs',
@@ -62,7 +62,7 @@ export function JobsStats({ stats }: StatsProps) {
         return (
           <Card
             key={card.title}
-            className={`border ${card.border} bg-card/60 backdrop-blur-xs shadow-xs rounded-xl overflow-hidden`}
+            className={`border ${card.border} bg-card/60 backdrop-blur-xs rounded-none overflow-hidden`}
           >
             <CardContent className="p-3 sm:p-4 flex items-center justify-between">
               <div className="min-w-0 pr-2">
@@ -74,7 +74,7 @@ export function JobsStats({ stats }: StatsProps) {
                   {card.value}
                 </h3>
               </div>
-              <div className={`p-2 sm:p-2.5 rounded-xl ${card.bg} ${card.color} shrink-0`}>
+              <div className={`p-2 sm:p-2.5 rounded-none ${card.bg} ${card.color} shrink-0`}>
                 <IconComponent className="size-4 sm:size-5" />
               </div>
             </CardContent>

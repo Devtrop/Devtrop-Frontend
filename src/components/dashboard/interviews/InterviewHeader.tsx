@@ -38,11 +38,11 @@ export function InterviewHeader(props: InterviewHeaderProps) {
           size="sm"
           onClick={() => context.fetchData(true)}
           disabled={context.isLoading}
-          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-xl flex-1 sm:flex-initial"
+          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-none flex-1 sm:flex-initial"
           title="Refresh Interview Records"
         >
           <RotateCcw
-            className={`size-3.5 ${context.isLoading ? 'animate-spin text-emerald-500' : 'text-emerald-400'}`}
+            className={`size-3.5 ${context.isLoading ? 'animate-spin text-accent' : 'text-accent'}`}
           />
           <span>Refresh</span>
         </Button>
@@ -50,9 +50,9 @@ export function InterviewHeader(props: InterviewHeaderProps) {
           variant="outline"
           size="sm"
           onClick={handleOpenSlotsViewer}
-          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-xl flex-1 sm:flex-initial"
+          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-none flex-1 sm:flex-initial"
         >
-          <InterviewIcons.Calendar className="size-3.5 text-emerald-400" />
+          <InterviewIcons.Calendar className="size-3.5 text-accent" />
           <span>Slot Pool</span>
         </Button>
 
@@ -60,16 +60,16 @@ export function InterviewHeader(props: InterviewHeaderProps) {
           variant="outline"
           size="sm"
           onClick={handleOpenCreateSlots}
-          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-xl flex-1 sm:flex-initial"
+          className="gap-1.5 cursor-pointer border-border hover:bg-muted text-xs h-8 px-3 rounded-none flex-1 sm:flex-initial"
         >
-          <InterviewIcons.Plus className="size-3.5 text-emerald-400" />
+          <InterviewIcons.Plus className="size-3.5 text-accent" />
           <span>Generate Slots</span>
         </Button>
 
         <Button
           size="sm"
           onClick={handleOpenSendEmail}
-          className="gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer shadow-md text-xs h-8 px-3.5 rounded-xl w-full sm:w-auto"
+          className="gap-1.5 bg-accent hover:bg-accent text-white cursor-pointer text-xs h-8 px-3.5 rounded-none w-full sm:w-auto"
         >
           <InterviewIcons.Send className="size-3.5" />
           <span>Send / Resend Email {selectedCount > 0 ? `(${selectedCount})` : ''}</span>

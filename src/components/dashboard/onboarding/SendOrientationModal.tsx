@@ -171,13 +171,13 @@ export function SendOrientationModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-lg bg-card border-border text-foreground p-0 overflow-hidden rounded-2xl shadow-2xl">
+      <DialogContent className="sm:max-w-lg bg-card border-border text-foreground p-0 overflow-hidden rounded-none">
         <form onSubmit={handleSubmit}>
           {/* Header */}
           <DialogHeader className="p-5 border-b border-border/80 bg-muted/20">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="size-9 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                <div className="size-9 rounded-none bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
                   <Video className="size-4" />
                 </div>
                 <div>
@@ -191,7 +191,7 @@ export function SendOrientationModal({
               </div>
               <Badge
                 variant="outline"
-                className="text-[10px] text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
+                className="text-[10px] text-accent border-accent bg-accent-soft"
               >
                 <ShieldCheck className="size-3 mr-1" /> Auto-hired
               </Badge>
@@ -200,7 +200,7 @@ export function SendOrientationModal({
 
           <div className="p-5 space-y-4 max-h-[75vh] overflow-y-auto">
             {/* Email Template Selector */}
-            <div className="p-3 rounded-xl border border-border/80 bg-muted/20">
+            <div className="p-3 rounded-none border border-border/80 bg-muted/20">
               <EmailTemplateSelect
                 category="ONBOARDING_ORIENTATION"
                 value={templateId}
@@ -210,7 +210,7 @@ export function SendOrientationModal({
             </div>
 
             {/* Recipients Section with Interactive Picker */}
-            <div className="p-3.5 rounded-xl border border-border/80 bg-muted/20 space-y-2.5">
+            <div className="p-3.5 rounded-none border border-border/80 bg-muted/20 space-y-2.5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
@@ -249,7 +249,7 @@ export function SendOrientationModal({
                   {selectedCandidates.map((c) => (
                     <span
                       key={c.id}
-                      className="inline-flex items-center gap-1 pl-2 pr-1 py-0.5 rounded-md text-[11px] font-medium bg-background border border-border/70 text-foreground group"
+                      className="inline-flex items-center gap-1 pl-2 pr-1 py-0.5 rounded-none text-[11px] font-medium bg-background border border-border/70 text-foreground group"
                     >
                       <span className="truncate max-w-[130px]">
                         {c.applicant?.name || 'Candidate'}
@@ -269,7 +269,7 @@ export function SendOrientationModal({
                   ))}
                 </div>
               ) : (
-                <div className="p-2.5 rounded-lg border border-dashed border-amber-500/40 bg-amber-500/5 text-amber-300 text-xs flex items-center justify-between">
+                <div className="p-2.5 rounded-none border border-dashed border-amber-500/40 bg-amber-500/5 text-amber-300 text-xs flex items-center justify-between">
                   <span>No candidates selected. Please choose recipients below.</span>
                   {candidatePool.length > 0 && (
                     <Button
@@ -322,7 +322,7 @@ export function SendOrientationModal({
                   </div>
 
                   {/* Scrollable candidates list */}
-                  <div className="max-h-40 overflow-y-auto rounded-lg border border-border/70 bg-background divide-y divide-border/50">
+                  <div className="max-h-40 overflow-y-auto rounded-none border border-border/70 bg-background divide-y divide-border/50">
                     {filteredPool.length === 0 ? (
                       <div className="py-4 text-center text-xs text-muted-foreground">
                         No candidates match your search
@@ -351,7 +351,7 @@ export function SendOrientationModal({
                                 onClick={(e) => e.stopPropagation()}
                                 className="cursor-pointer"
                               />
-                              <div className="size-6 rounded-lg bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] flex items-center justify-center shrink-0">
+                              <div className="size-6 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] flex items-center justify-center shrink-0">
                                 {getInitials(c.applicant?.name)}
                               </div>
                               <div className="min-w-0">
@@ -437,7 +437,7 @@ export function SendOrientationModal({
               type="submit"
               size="sm"
               disabled={submitting || !meetingUrl.trim() || selectedCandidates.length === 0}
-              className="text-xs h-8 gap-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-sm cursor-pointer"
+              className="text-xs h-8 gap-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium cursor-pointer"
             >
               {submitting ? (
                 <>

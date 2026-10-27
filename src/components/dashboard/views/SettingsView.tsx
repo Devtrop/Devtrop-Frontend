@@ -100,30 +100,30 @@ function ProfileTab() {
 
   if (isLoading) {
     return (
-      <Card className="border-border/80 bg-card/60 shadow-xs overflow-hidden">
+      <Card className="border-border/80 bg-card/60 overflow-hidden">
         <CardHeader>
-          <Skeleton className="h-5 w-36 rounded-md" />
-          <Skeleton className="h-3.5 w-64 rounded-md" />
+          <Skeleton className="h-5 w-36 rounded-none" />
+          <Skeleton className="h-3.5 w-64 rounded-none" />
         </CardHeader>
         <CardContent className="space-y-4 max-w-lg">
           <div className="space-y-1.5">
-            <Skeleton className="h-3.5 w-16 rounded-md" />
-            <Skeleton className="h-9 w-full rounded-md" />
+            <Skeleton className="h-3.5 w-16 rounded-none" />
+            <Skeleton className="h-9 w-full rounded-none" />
           </div>
           <div className="space-y-1.5">
-            <Skeleton className="h-3.5 w-24 rounded-md" />
-            <Skeleton className="h-9 w-full rounded-md" />
+            <Skeleton className="h-3.5 w-24 rounded-none" />
+            <Skeleton className="h-9 w-full rounded-none" />
           </div>
           <div className="space-y-1.5 pt-1">
-            <Skeleton className="h-3.5 w-24 rounded-md" />
-            <Skeleton className="h-9 w-full rounded-md" />
+            <Skeleton className="h-3.5 w-24 rounded-none" />
+            <Skeleton className="h-9 w-full rounded-none" />
           </div>
           <div className="space-y-1.5 pt-1">
-            <Skeleton className="h-3.5 w-20 rounded-md" />
-            <Skeleton className="h-7 w-28 rounded-lg" />
+            <Skeleton className="h-3.5 w-20 rounded-none" />
+            <Skeleton className="h-7 w-28 rounded-none" />
           </div>
           <div className="pt-2">
-            <Skeleton className="h-9 w-28 rounded-md" />
+            <Skeleton className="h-9 w-28 rounded-none" />
           </div>
         </CardContent>
       </Card>
@@ -163,7 +163,7 @@ function ProfileTab() {
 
           <div className="flex flex-col gap-1.5 pt-1">
             <Label className="text-xs">Email Address</Label>
-            <div className="text-xs text-muted-foreground px-3 py-2 rounded-md border border-border/60 bg-muted/20">
+            <div className="text-xs text-muted-foreground px-3 py-2 rounded-none border border-border/60 bg-muted/20">
               {user?.email}
               <span className="ml-2 text-[10px] text-amber-400">
                 (change email in the Email tab)
@@ -176,7 +176,7 @@ function ProfileTab() {
             <div className="flex items-center gap-2">
               <span
                 className={cn(
-                  'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold border',
+                  'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none text-xs font-bold border',
                   roleBadgeColors.bg,
                   roleBadgeColors.text,
                   roleBadgeColors.border,
@@ -193,7 +193,7 @@ function ProfileTab() {
               type="submit"
               size="sm"
               disabled={isSaving}
-              className="gap-2 bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer"
+              className="gap-2 bg-accent hover:bg-accent text-white cursor-pointer"
             >
               {isSaving ? (
                 <>
@@ -346,7 +346,7 @@ function AvatarTab() {
       <CardContent>
         <div className="flex flex-col gap-6 max-w-lg">
           <div className="flex items-center gap-5">
-            <Avatar className="size-20 ring-2 ring-border shadow-xs">
+            <Avatar className="size-20 ring-2 ring-border">
               {activeAvatar ? (
                 <AvatarImage
                   src={activeAvatar}
@@ -354,7 +354,7 @@ function AvatarTab() {
                   className="object-cover"
                 />
               ) : null}
-              <AvatarFallback className="bg-emerald-950 text-emerald-300 font-bold text-xl">
+              <AvatarFallback className="bg-accent text-accent font-bold text-xl">
                 {userInitials}
               </AvatarFallback>
             </Avatar>
@@ -384,7 +384,7 @@ function AvatarTab() {
           />
 
           {preview && (
-            <div className="flex flex-col gap-3 p-3 rounded-lg border border-border/80 bg-muted/20">
+            <div className="flex flex-col gap-3 p-3 rounded-none border border-border/80 bg-muted/20">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-medium text-foreground truncate max-w-xs">
                   {selectedFile?.name || 'Selected image'}
@@ -400,7 +400,7 @@ function AvatarTab() {
                   size="sm"
                   disabled={isUploading}
                   onClick={handleUpload}
-                  className="gap-2 bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer"
+                  className="gap-2 bg-accent hover:bg-accent text-white cursor-pointer"
                 >
                   {isUploading ? (
                     <>
@@ -430,7 +430,7 @@ function AvatarTab() {
           )}
 
           {activeAvatar && !preview && (
-            <div className="flex items-center gap-2 text-[11px] text-emerald-400 bg-emerald-950/20 border border-emerald-500/20 rounded-md px-3 py-1.5 w-fit">
+            <div className="flex items-center gap-2 text-[11px] text-accent bg-accent-soft border border-accent rounded-none px-3 py-1.5 w-fit">
               <CheckCircle2 className="size-3.5 shrink-0" />
               <span>Active profile avatar connected to Cloudflare R2</span>
             </div>
@@ -497,7 +497,7 @@ function SecurityTab() {
       <CardContent>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-lg">
           {error && (
-            <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-950/20 px-3 py-2 text-xs text-red-400">
+            <div className="flex items-center gap-2 rounded-none border border-red-500/30 bg-red-950/20 px-3 py-2 text-xs text-red-400">
               <AlertCircle className="size-3.5 shrink-0" />
               {error}
             </div>
@@ -578,7 +578,7 @@ function SecurityTab() {
               type="submit"
               size="sm"
               disabled={isSaving}
-              className="gap-2 bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer"
+              className="gap-2 bg-accent hover:bg-accent text-white cursor-pointer"
             >
               {isSaving ? (
                 <>
@@ -636,14 +636,14 @@ function EmailTab() {
     return (
       <Card className="border-border/80 bg-card/60">
         <CardContent className="flex flex-col items-center gap-4 py-10 text-center max-w-sm mx-auto">
-          <div className="size-14 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
-            <CheckCircle2 className="size-7 text-emerald-400" />
+          <div className="size-14 rounded-full bg-accent-soft border border-accent flex items-center justify-center">
+            <CheckCircle2 className="size-7 text-accent" />
           </div>
           <div className="flex flex-col gap-1">
             <p className="text-sm font-semibold text-foreground">Confirmation email sent!</p>
             <p className="text-xs text-muted-foreground leading-relaxed">
               We sent a verification link to{' '}
-              <span className="font-mono text-emerald-400">{newEmail}</span>. Click the link in that
+              <span className="font-mono text-accent">{newEmail}</span>. Click the link in that
               email to complete the change.
             </p>
           </div>
@@ -675,14 +675,14 @@ function EmailTab() {
         <div className="flex flex-col gap-5 max-w-lg">
           <div className="flex flex-col gap-1.5">
             <Label className="text-xs">Current Email</Label>
-            <div className="text-xs text-muted-foreground px-3 py-2 rounded-md border border-border/60 bg-muted/20 font-mono">
+            <div className="text-xs text-muted-foreground px-3 py-2 rounded-none border border-border/60 bg-muted/20 font-mono">
               {user?.email}
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {error && (
-              <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-950/20 px-3 py-2 text-xs text-red-400">
+              <div className="flex items-center gap-2 rounded-none border border-red-500/30 bg-red-950/20 px-3 py-2 text-xs text-red-400">
                 <AlertCircle className="size-3.5 shrink-0" />
                 {error}
               </div>
@@ -705,7 +705,7 @@ function EmailTab() {
                 type="submit"
                 size="sm"
                 disabled={isSaving}
-                className="gap-2 bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer"
+                className="gap-2 bg-accent hover:bg-accent text-white cursor-pointer"
               >
                 {isSaving ? (
                   <>
@@ -751,13 +751,13 @@ function NotificationsTab() {
         ].map((item) => (
           <div
             key={item.title}
-            className="flex items-center justify-between p-3 rounded-lg border border-border/60 bg-muted/20"
+            className="flex items-center justify-between p-3 rounded-none border border-border/60 bg-muted/20"
           >
             <div className="flex flex-col">
               <span className="text-xs font-semibold text-foreground">{item.title}</span>
               <span className="text-[11px] text-muted-foreground">{item.description}</span>
             </div>
-            <span className="text-xs font-semibold text-emerald-400">Enabled</span>
+            <span className="text-xs font-semibold text-accent">Enabled</span>
           </div>
         ))}
       </CardContent>
@@ -778,7 +778,7 @@ export function SettingsView() {
       {/* Page Header */}
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-          <Settings className="size-6 text-emerald-400" />
+          <Settings className="size-6 text-accent" />
           Account Settings
         </h1>
         <p className="text-xs text-muted-foreground">

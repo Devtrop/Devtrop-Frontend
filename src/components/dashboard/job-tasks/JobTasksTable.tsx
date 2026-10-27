@@ -44,34 +44,34 @@ export function JobTasksTable({
 }: JobTasksTableProps) {
   if (loading) {
     return (
-      <div className="rounded-xl border border-border bg-card shadow-xs overflow-hidden w-full">
+      <div className="rounded-none border border-border bg-card overflow-hidden w-full">
         <div className="w-full p-3.5 border-b border-border/80 bg-muted/40 flex items-center justify-between gap-4">
-          <Skeleton className="h-4 w-32 rounded-md min-w-[200px] flex-1" />
-          <Skeleton className="h-4 w-28 rounded-md min-w-[140px]" />
-          <Skeleton className="h-4 w-20 rounded-md min-w-[100px]" />
-          <Skeleton className="h-4 w-24 rounded-md min-w-[120px]" />
-          <Skeleton className="h-4 w-16 rounded-md min-w-[80px]" />
+          <Skeleton className="h-4 w-32 rounded-none min-w-[200px] flex-1" />
+          <Skeleton className="h-4 w-28 rounded-none min-w-[140px]" />
+          <Skeleton className="h-4 w-20 rounded-none min-w-[100px]" />
+          <Skeleton className="h-4 w-24 rounded-none min-w-[120px]" />
+          <Skeleton className="h-4 w-16 rounded-none min-w-[80px]" />
         </div>
         <div className="divide-y divide-border/60">
           {Array.from({ length: 5 }).map((_, i) => (
             <div key={i} className="w-full p-4 flex items-center justify-between gap-4">
               <div className="space-y-1 min-w-[200px] flex-1">
-                <Skeleton className="h-4 w-40 rounded-md" />
-                <Skeleton className="h-3 w-48 rounded-md" />
+                <Skeleton className="h-4 w-40 rounded-none" />
+                <Skeleton className="h-3 w-48 rounded-none" />
               </div>
               <div className="min-w-[140px]">
-                <Skeleton className="h-4 w-28 rounded-md" />
+                <Skeleton className="h-4 w-28 rounded-none" />
               </div>
               <div className="min-w-[100px]">
-                <Skeleton className="h-4 w-16 rounded-md" />
+                <Skeleton className="h-4 w-16 rounded-none" />
               </div>
               <div className="min-w-[120px]">
-                <Skeleton className="h-4 w-20 rounded-md" />
+                <Skeleton className="h-4 w-20 rounded-none" />
               </div>
               <div className="min-w-[80px] flex justify-end gap-1.5">
-                <Skeleton className="size-7 rounded-lg" />
-                <Skeleton className="size-7 rounded-lg" />
-                <Skeleton className="size-7 rounded-lg" />
+                <Skeleton className="size-7 rounded-none" />
+                <Skeleton className="size-7 rounded-none" />
+                <Skeleton className="size-7 rounded-none" />
               </div>
             </div>
           ))}
@@ -82,7 +82,7 @@ export function JobTasksTable({
 
   if (tasks.length === 0) {
     return (
-      <div className="rounded-xl border border-border bg-card p-12 text-center">
+      <div className="rounded-none border border-border bg-card p-12 text-center">
         <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-muted text-2xl">
           📝
         </div>
@@ -93,7 +93,7 @@ export function JobTasksTable({
         <Button
           size="sm"
           onClick={onCreateTask}
-          className="mt-4 gap-1.5 bg-emerald-600 hover:bg-emerald-500"
+          className="mt-4 gap-1.5 bg-accent hover:bg-accent"
         >
           Create Task
         </Button>
@@ -104,7 +104,7 @@ export function JobTasksTable({
   return (
     <>
       {/* Desktop View */}
-      <div className="hidden lg:block rounded-xl border border-border bg-card shadow-xs overflow-hidden">
+      <div className="hidden lg:block rounded-none border border-border bg-card overflow-hidden">
         <div className="border-b border-border px-4 py-3.5 bg-muted/40">
           <h2 className="text-sm font-semibold text-foreground">Job Tasks</h2>
           <p className="mt-0.5 text-xs text-muted-foreground">
@@ -196,7 +196,7 @@ export function JobTasksTable({
         {tasks.map((task) => (
           <div
             key={task.id}
-            className="rounded-xl border border-border bg-card p-4 shadow-xs space-y-3"
+            className="rounded-none border border-border bg-card p-4 space-y-3"
           >
             <div className="space-y-1">
               <div className="text-[11px] uppercase tracking-wide text-muted-foreground">Task</div>

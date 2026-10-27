@@ -27,13 +27,13 @@ export function BlogPostCard({ post, onEdit, onDelete }: BlogPostCardProps) {
   }
 
   return (
-    <Card className="border-border bg-card shadow-xs hover:shadow-md transition-shadow overflow-hidden">
+    <Card className="border-border bg-card hover:shadow-md transition-shadow overflow-hidden">
       <CardContent className="p-4 space-y-3">
         {/* Header */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
             <Link href={`/dashboard/admin/blogs/${post.id}`} className="group">
-              <h3 className="text-base font-semibold text-foreground truncate group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+              <h3 className="text-base font-semibold text-foreground truncate group-hover:text-accent dark:group-hover:text-accent transition-colors">
                 {post.title}
               </h3>
             </Link>
@@ -58,13 +58,13 @@ export function BlogPostCard({ post, onEdit, onDelete }: BlogPostCardProps) {
 
         {/* Category & Tags */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-medium">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-none bg-accent-soft text-accent dark:text-accent text-[10px] font-medium">
             {post.category.name}
           </span>
           {normalizedTags.slice(0, 3).map((tag) => (
             <span
               key={tag.id}
-              className="inline-flex items-center px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-[10px] font-medium"
+              className="inline-flex items-center px-2 py-0.5 rounded-none bg-muted text-muted-foreground text-[10px] font-medium"
             >
               {tag.name}
             </span>

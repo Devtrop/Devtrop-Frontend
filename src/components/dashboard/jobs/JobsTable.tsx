@@ -61,7 +61,7 @@ export function JobsTable({
     return (
       <div className="space-y-3">
         {/* Desktop Table Skeleton */}
-        <div className="hidden lg:block rounded-xl border border-border bg-card shadow-xs overflow-hidden">
+        <div className="hidden lg:block rounded-none border border-border bg-card overflow-hidden">
           <div className="overflow-x-auto">
             <Table className="text-xs">
               <TableHeader>
@@ -79,30 +79,30 @@ export function JobsTable({
                 {Array.from({ length: 8 }).map((_, i) => (
                   <TableRow key={`job-skeleton-${i}`}>
                     <TableCell className="px-3 py-3">
-                      <Skeleton className="h-4 w-6 rounded-md" />
+                      <Skeleton className="h-4 w-6 rounded-none" />
                     </TableCell>
                     <TableCell className="px-3 py-3">
                       <div className="space-y-1.5">
-                        <Skeleton className="h-4 w-44 rounded-md" />
-                        <Skeleton className="h-3 w-28 rounded-md" />
+                        <Skeleton className="h-4 w-44 rounded-none" />
+                        <Skeleton className="h-3 w-28 rounded-none" />
                       </div>
                     </TableCell>
                     <TableCell className="px-3 py-3">
-                      <Skeleton className="h-4 w-16 rounded-md" />
+                      <Skeleton className="h-4 w-16 rounded-none" />
                     </TableCell>
                     <TableCell className="px-3 py-3">
-                      <Skeleton className="h-4 w-20 rounded-md" />
+                      <Skeleton className="h-4 w-20 rounded-none" />
                     </TableCell>
                     <TableCell className="px-3 py-3">
-                      <Skeleton className="h-7 w-28 rounded-md" />
+                      <Skeleton className="h-7 w-28 rounded-none" />
                     </TableCell>
                     <TableCell className="px-3 py-3 text-center">
-                      <Skeleton className="h-7 w-12 mx-auto rounded-md" />
+                      <Skeleton className="h-7 w-12 mx-auto rounded-none" />
                     </TableCell>
                     <TableCell className="px-3 py-3 text-right">
                       <div className="flex justify-end gap-1">
-                        <Skeleton className="h-7 w-7 rounded-md" />
-                        <Skeleton className="h-7 w-7 rounded-md" />
+                        <Skeleton className="h-7 w-7 rounded-none" />
+                        <Skeleton className="h-7 w-7 rounded-none" />
                       </div>
                     </TableCell>
                   </TableRow>
@@ -117,18 +117,18 @@ export function JobsTable({
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={`job-card-skel-${i}`}
-              className="p-4 rounded-xl border border-border bg-card shadow-xs space-y-3"
+              className="p-4 rounded-none border border-border bg-card space-y-3"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-1.5 flex-1">
-                  <Skeleton className="h-4 w-40 rounded-md" />
-                  <Skeleton className="h-3 w-24 rounded-md" />
+                  <Skeleton className="h-4 w-40 rounded-none" />
+                  <Skeleton className="h-3 w-24 rounded-none" />
                 </div>
                 <Skeleton className="h-5 w-16 rounded-full" />
               </div>
               <div className="grid grid-cols-2 gap-2 pt-2 border-t border-border">
-                <Skeleton className="h-4 w-24 rounded-md" />
-                <Skeleton className="h-4 w-20 rounded-md" />
+                <Skeleton className="h-4 w-24 rounded-none" />
+                <Skeleton className="h-4 w-20 rounded-none" />
               </div>
             </div>
           ))}
@@ -139,7 +139,7 @@ export function JobsTable({
 
   if (jobs.length === 0) {
     return (
-      <div className="rounded-xl border border-border bg-card p-12 text-center">
+      <div className="rounded-none border border-border bg-card p-12 text-center">
         <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-muted text-2xl">
           💼
         </div>
@@ -150,7 +150,7 @@ export function JobsTable({
             : 'Try adjusting your filters.'}
         </p>
         <Link href="/dashboard/admin/jobs/create">
-          <Button size="sm" className="mt-4 gap-1.5 bg-emerald-600 hover:bg-emerald-500">
+          <Button size="sm" className="mt-4 gap-1.5 bg-accent hover:bg-accent">
             Create Job
           </Button>
         </Link>
@@ -161,7 +161,7 @@ export function JobsTable({
   return (
     <>
       {/* Desktop View */}
-      <div className="hidden lg:block rounded-xl border border-border bg-card shadow-xs overflow-hidden">
+      <div className="hidden lg:block rounded-none border border-border bg-card overflow-hidden">
         <div className="overflow-x-auto">
           <Table className="text-xs">
             <TableHeader>
@@ -189,7 +189,7 @@ export function JobsTable({
                     <div className="mt-1 flex items-center gap-2 text-[10px] text-muted-foreground">
                       <span>#{job.jobCode}</span>
                       <span>•</span>
-                      <span className="text-emerald-500/90 font-medium">
+                      <span className="text-accent/90 font-medium">
                         {formatJobLocation(job)}
                       </span>
                     </div>
@@ -294,7 +294,7 @@ export function JobsTable({
         {jobs.map((job) => (
           <div
             key={job.id}
-            className="rounded-xl border border-border bg-card p-4 shadow-xs space-y-3"
+            className="rounded-none border border-border bg-card p-4 space-y-3"
           >
             {/* Header */}
             <div className="flex items-start justify-between gap-3">
@@ -303,7 +303,7 @@ export function JobsTable({
                 <div className="mt-1 flex items-center gap-2 text-[10px] text-muted-foreground">
                   <span>#{job.jobCode}</span>
                   <span>•</span>
-                  <span className="text-emerald-500/90 font-medium">{formatJobLocation(job)}</span>
+                  <span className="text-accent/90 font-medium">{formatJobLocation(job)}</span>
                 </div>
               </div>
               <JobStatusBadge status={job.status} />
@@ -353,7 +353,7 @@ export function JobsTable({
         ))}
 
         {/* Mobile Pagination & Count Footer */}
-        <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-xs">
+        <div className="flex flex-col gap-3 rounded-none border border-border bg-card p-4">
           <div className="text-center text-xs text-muted-foreground">
             Showing <span className="font-medium text-foreground">{jobs.length}</span> of{' '}
             <span className="font-medium text-foreground">{total}</span> jobs

@@ -255,7 +255,7 @@ export function SendEmailModal({
       <DialogContent className="w-[95vw] sm:max-w-2xl lg:max-w-3xl max-h-[90dvh] overflow-y-auto p-0">
         {sentSummary ? (
           <div className="flex flex-col items-center justify-center gap-4 p-6 text-center animate-in fade-in">
-            <div className="size-12 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+            <div className="size-12 rounded-full bg-accent-soft text-accent flex items-center justify-center">
               <InterviewIcons.CheckCircle2 className="size-7" />
             </div>
             <div className="space-y-1">
@@ -286,7 +286,7 @@ export function SendEmailModal({
             {/* Body */}
             <div className="flex flex-col gap-4 p-4 sm:p-6">
               {/* Email Template Selector & Slot Group Selection */}
-              <div className="p-3 bg-muted/30 rounded-xl border border-border/60 flex flex-col gap-3">
+              <div className="p-3 bg-muted/30 rounded-none border border-border/60 flex flex-col gap-3">
                 {emailType === 'INVITATION' ? (
                   <>
                     <EmailTemplateSelect
@@ -305,7 +305,7 @@ export function SendEmailModal({
                         {selectedGroupStats ? (
                           <span
                             className={`text-[10px] font-medium ${
-                              overCapacity ? 'text-rose-400' : 'text-emerald-400'
+                              overCapacity ? 'text-rose-400' : 'text-accent'
                             }`}
                           >
                             {newInviteeCount} new invitee(s) vs {selectedGroupStats.availableSlots}{' '}
@@ -330,7 +330,7 @@ export function SendEmailModal({
                             <Button
                               variant="outline"
                               size="sm"
-                              className="w-full h-8 px-3 rounded-xl border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40"
+                              className="w-full h-8 px-3 rounded-none border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40"
                             >
                               <span className="truncate text-foreground font-semibold">
                                 {effectiveGroupName || 'No slot batch available'}
@@ -340,13 +340,13 @@ export function SendEmailModal({
                           </DropdownMenuTrigger>
                           <DropdownMenuContent
                             align="start"
-                            className="w-80 rounded-xl text-xs max-h-60 overflow-y-auto"
+                            className="w-80 rounded-none text-xs max-h-60 overflow-y-auto"
                           >
                             {availableGroups.map((grp) => (
                               <DropdownMenuItem
                                 key={grp.groupName}
                                 onClick={() => setSelectedGroupName(grp.groupName)}
-                                className="cursor-pointer gap-2 rounded-lg justify-between"
+                                className="cursor-pointer gap-2 rounded-none justify-between"
                               >
                                 <div className="flex items-center gap-1.5 truncate">
                                   <span className="truncate">{grp.groupName}</span>
@@ -381,13 +381,13 @@ export function SendEmailModal({
               </div>
 
               {/* Tab Switcher */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-1 bg-muted/30 rounded-lg border border-border/60 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-1 bg-muted/30 rounded-none border border-border/60 text-sm">
                 <button
                   type="button"
                   onClick={() => setEmailTypeOverride('INVITATION')}
-                  className={`py-2.5 px-3 rounded-lg font-medium transition-colors cursor-pointer flex items-center justify-center gap-2 ${
+                  className={`py-2.5 px-3 rounded-none font-medium transition-colors cursor-pointer flex items-center justify-center gap-2 ${
                     emailType === 'INVITATION'
-                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                      ? 'bg-accent-soft text-accent border border-accent'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                   }`}
                 >
@@ -397,9 +397,9 @@ export function SendEmailModal({
                 <button
                   type="button"
                   onClick={() => setEmailTypeOverride('OUTCOME')}
-                  className={`py-2.5 px-3 rounded-lg font-medium transition-colors cursor-pointer flex items-center justify-center gap-2 ${
+                  className={`py-2.5 px-3 rounded-none font-medium transition-colors cursor-pointer flex items-center justify-center gap-2 ${
                     emailType === 'OUTCOME'
-                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                      ? 'bg-accent-soft text-accent border border-accent'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                   }`}
                 >
@@ -409,7 +409,7 @@ export function SendEmailModal({
               </div>
 
               {/* Candidate List */}
-              <div className="max-h-60 overflow-y-auto rounded-lg border border-border/60 divide-y divide-border/60 text-sm bg-muted/20">
+              <div className="max-h-60 overflow-y-auto rounded-none border border-border/60 divide-y divide-border/60 text-sm bg-muted/20">
                 {activeCandidates.length === 0 ? (
                   <div className="py-10 text-center text-sm text-muted-foreground">
                     No candidates match the criteria for {emailType.toLowerCase()} emails.
@@ -443,7 +443,7 @@ export function SendEmailModal({
                             className={`text-[11px] font-medium ${
                               appStatus === 'REJECTED'
                                 ? 'text-rose-400 border-rose-500/30 bg-rose-500/10'
-                                : 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10'
+                                : 'text-accent border-accent bg-accent-soft'
                             }`}
                           >
                             {emailType === 'OUTCOME'
@@ -495,7 +495,7 @@ export function SendEmailModal({
                   disabled={
                     isSubmitting || invitations.length === 0 || overCapacity || !effectiveGroupName
                   }
-                  className="gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs cursor-pointer shadow-xs"
+                  className="gap-1.5 bg-accent hover:bg-accent text-white text-xs cursor-pointer"
                 >
                   {isSubmitting ? (
                     <InterviewIcons.Loader className="size-3.5 animate-spin" />
@@ -509,7 +509,7 @@ export function SendEmailModal({
                   size="sm"
                   onClick={handleSendOutcomes}
                   disabled={isSubmitting || outcomes.length === 0}
-                  className="gap-1.5 bg-purple-600 hover:bg-purple-500 text-white text-xs cursor-pointer shadow-xs"
+                  className="gap-1.5 bg-accent-soft hover:bg-accent-soft text-white text-xs cursor-pointer"
                 >
                   {isSubmitting ? (
                     <InterviewIcons.Loader className="size-3.5 animate-spin" />

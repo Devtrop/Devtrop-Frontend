@@ -163,7 +163,7 @@ export function BlogPostsView() {
               </span>
             </Button>
             <Link href="/dashboard/admin/blogs/create">
-              <Button className="gap-2 bg-emerald-600 hover:bg-emerald-700 h-8 text-xs">
+              <Button className="gap-2 bg-accent hover:bg-accent h-8 text-xs">
                 <Plus className="size-4" />
                 Create Post
               </Button>
@@ -173,10 +173,10 @@ export function BlogPostsView() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
-          <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+          <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10">
-                <FileText className="size-4 sm:size-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-accent-soft">
+                <FileText className="size-4 sm:size-5 text-accent dark:text-accent" />
               </div>
               <div className="min-w-0">
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
@@ -187,10 +187,10 @@ export function BlogPostsView() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+          <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10">
-                <FileText className="size-4 sm:size-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-accent-soft">
+                <FileText className="size-4 sm:size-5 text-accent dark:text-accent" />
               </div>
               <div className="min-w-0">
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
@@ -201,9 +201,9 @@ export function BlogPostsView() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+          <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/10">
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-amber-500/10">
                 <FileText className="size-4 sm:size-5 text-amber-600 dark:text-amber-400" />
               </div>
               <div className="min-w-0">
@@ -215,10 +215,10 @@ export function BlogPostsView() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-xs">
+          <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-lg bg-zinc-500/10">
-                <FileText className="size-4 sm:size-5 text-zinc-600 dark:text-zinc-400" />
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-zinc-500/10">
+                <FileText className="size-4 sm:size-5 text-muted dark:text-muted" />
               </div>
               <div className="min-w-0">
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
@@ -231,7 +231,7 @@ export function BlogPostsView() {
         </div>
 
         {/* Filters */}
-        <div className="rounded-xl border border-border bg-card p-4 shadow-xs space-y-4">
+        <div className="rounded-none border border-border bg-card p-4 space-y-4">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {/* Search */}
             <div className="space-y-2">

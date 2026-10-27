@@ -9,8 +9,8 @@ interface TaskAssignmentStatusBadgeProps {
 
 export function TaskAssignmentStatusBadge({ status }: TaskAssignmentStatusBadgeProps) {
   const styles: Record<TaskAssignmentStatus, string> = {
-    SENT: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 ring-blue-500/20',
-    SUBMITTED: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-emerald-500/20',
+    SENT: 'bg-accent-soft/10 text-accent dark:text-accent ring-blue-500/20',
+    SUBMITTED: 'bg-accent-soft text-accent dark:text-accent ring-accent',
     EXPIRED: 'bg-red-500/10 text-red-600 dark:text-red-400 ring-red-500/20',
   }
 

@@ -310,14 +310,14 @@ export function ClosedApplicationsHub() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-zinc-500/10 text-zinc-400 ring-1 ring-zinc-500/20">
+              <div className="p-2 rounded-none bg-zinc-500/10 text-muted ring-1 ring-zinc-500/20">
                 <ArchiveX className="size-5" />
               </div>
               <h1 className="text-2xl font-bold tracking-tight text-foreground">
                 Closed Applications
               </h1>
               {!loading && (
-                <span className="inline-flex items-center rounded-full bg-zinc-500/10 px-2.5 py-0.5 text-xs font-semibold text-zinc-400 ring-1 ring-inset ring-zinc-500/20">
+                <span className="inline-flex items-center rounded-full bg-zinc-500/10 px-2.5 py-0.5 text-xs font-semibold text-muted ring-1 ring-inset ring-zinc-500/20">
                   {total}
                 </span>
               )}
@@ -349,7 +349,7 @@ export function ClosedApplicationsHub() {
         </div>
 
         {/* Filters Bar */}
-        <Card className="border border-border/80 bg-card/60 backdrop-blur-xs shadow-xs">
+        <Card className="border border-border/80 bg-card/60 backdrop-blur-xs">
           <CardContent className="p-3 sm:p-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex flex-1 flex-col gap-2.5 sm:flex-row sm:items-center">
@@ -423,7 +423,7 @@ export function ClosedApplicationsHub() {
 
         {/* Applications List */}
         {loading ? (
-          <div className="rounded-xl border border-border bg-card p-6 shadow-xs space-y-4">
+          <div className="rounded-none border border-border bg-card p-6 space-y-4">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className="flex items-center justify-between gap-4 py-2 border-b border-border/50 last:border-0">
                 <div className="flex items-center gap-3">
@@ -439,7 +439,7 @@ export function ClosedApplicationsHub() {
             ))}
           </div>
         ) : applications.length === 0 ? (
-          <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-card/40 py-16 px-4 text-center">
+          <div className="flex flex-col items-center justify-center rounded-none border border-dashed border-border bg-card/40 py-16 px-4 text-center">
             <div className="rounded-full bg-muted/60 p-4 ring-1 ring-border">
               <ArchiveX className="size-8 text-muted-foreground" />
             </div>
@@ -466,7 +466,7 @@ export function ClosedApplicationsHub() {
         ) : (
           <div className="space-y-4">
             {/* Desktop Table */}
-            <div className="hidden md:block rounded-xl border border-border bg-card shadow-xs overflow-hidden">
+            <div className="hidden md:block rounded-none border border-border bg-card overflow-hidden">
               <Table>
                 <TableHeader className="bg-muted/40">
                   <TableRow>
@@ -550,7 +550,7 @@ export function ClosedApplicationsHub() {
                               variant="outline"
                               size="sm"
                               onClick={() => openReopenDialog(app)}
-                              className="h-8 gap-1.5 text-xs border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10"
+                              className="h-8 gap-1.5 text-xs border-accent text-accent dark:text-accent hover:bg-accent-soft"
                               title="Re-open Application"
                             >
                               <ArchiveRestore className="size-3.5" />
@@ -586,7 +586,7 @@ export function ClosedApplicationsHub() {
                                 <DropdownMenuSeparator />
 
                                 <DropdownMenuItem
-                                  className="text-emerald-600 dark:text-emerald-400 focus:text-emerald-600 focus:bg-emerald-500/10"
+                                  className="text-accent dark:text-accent focus:text-accent focus:bg-accent-soft"
                                   onClick={() => openReopenDialog(app)}
                                 >
                                   <ArchiveRestore className="mr-2 size-4" />
@@ -608,7 +608,7 @@ export function ClosedApplicationsHub() {
               {applications.map((app) => {
                 const cv = getCvDocument(app)
                 return (
-                  <Card key={app.id} className="border border-border p-4 shadow-xs space-y-3">
+                  <Card key={app.id} className="border border-border p-4 space-y-3">
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2.5">
                         <div className="size-8 rounded-full bg-muted flex items-center justify-center text-xs font-semibold text-foreground">
@@ -648,7 +648,7 @@ export function ClosedApplicationsHub() {
                         variant="outline"
                         size="sm"
                         onClick={() => openReopenDialog(app)}
-                        className="h-8 gap-1.5 text-xs border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10"
+                        className="h-8 gap-1.5 text-xs border-accent text-accent dark:text-accent hover:bg-accent-soft"
                       >
                         <ArchiveRestore className="size-3.5" />
                         Re-open
@@ -675,11 +675,11 @@ export function ClosedApplicationsHub() {
                   variant="outline"
                   onClick={handleLoadMore}
                   disabled={loadingMore}
-                  className="rounded-full px-7 py-2 h-9 text-xs font-medium border border-border/80 bg-card/80 backdrop-blur-xs hover:bg-emerald-500/10 hover:border-emerald-500/30 hover:text-emerald-300 transition-all shadow-xs gap-2 cursor-pointer"
+                  className="rounded-full px-7 py-2 h-9 text-xs font-medium border border-border/80 bg-card/80 backdrop-blur-xs hover:bg-accent-soft hover:border-accent hover:text-accent transition-all gap-2 cursor-pointer"
                 >
                   {loadingMore ? (
                     <>
-                      <Loader2 className="size-3.5 animate-spin text-emerald-400" />
+                      <Loader2 className="size-3.5 animate-spin text-accent" />
                       <span>Loading more...</span>
                     </>
                   ) : (
@@ -715,7 +715,7 @@ export function ClosedApplicationsHub() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
-                <ArchiveRestore className="size-5 text-emerald-500" />
+                <ArchiveRestore className="size-5 text-accent" />
                 Re-open Application
               </DialogTitle>
               <DialogDescription>
@@ -760,7 +760,7 @@ export function ClosedApplicationsHub() {
               <Button
                 disabled={reopening}
                 onClick={() => void handleReopen()}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                className="bg-accent hover:bg-accent text-white"
               >
                 {reopening ? (
                   <>

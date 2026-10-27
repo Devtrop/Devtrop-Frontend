@@ -28,7 +28,7 @@ export function InterviewPagination() {
           <button
             type="button"
             onClick={loadMore}
-            className="group inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium border border-border/80 bg-card text-muted-foreground hover:text-foreground hover:bg-muted/60 hover:border-border transition-colors cursor-pointer shadow-2xs"
+            className="group inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium border border-border/80 bg-card text-muted-foreground hover:text-foreground hover:bg-muted/60 hover:border-border transition-colors cursor-pointer"
           >
             <span>Load more</span>
             <InterviewIcons.CircleArrowDown className="size-3.5 shrink-0 text-muted-foreground group-hover:text-foreground transition-colors" />

@@ -12,7 +12,7 @@ const TiptapEditor = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="min-h-[280px] rounded-lg border border-border/60 bg-muted/20 animate-pulse flex items-center justify-center text-xs text-muted-foreground">
+      <div className="min-h-[280px] rounded-none border border-border/60 bg-muted/20 animate-pulse flex items-center justify-center text-xs text-muted-foreground">
         Loading editor...
       </div>
     ),
@@ -90,7 +90,7 @@ const CATEGORIES: EmailTemplateCategory[] = [
 
 // Single shared style for every token chip (global, category, CTA button)
 const TOKEN_CHIP_CLASS =
-  'px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-500/15 border border-emerald-500/40 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/25 transition-colors cursor-pointer'
+  'px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-accent-soft border border-accent text-accent dark:text-accent hover:bg-accent-soft transition-colors cursor-pointer'
 
 function normalizeImageUrls(html: string): string {
   if (!html) return html
@@ -396,7 +396,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
   if (loading) {
     return (
       <div className="py-24 text-center text-muted-foreground text-xs flex flex-col items-center justify-center gap-2">
-        <Loader2 className="size-5 animate-spin text-emerald-500" />
+        <Loader2 className="size-5 animate-spin text-accent" />
         <span>Loading template editor...</span>
       </div>
     )
@@ -414,7 +414,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                 sessionStorage.setItem('email_templates_active_tab', 'MESSAGES')
               }
             }}
-            className="p-1.5 rounded-lg border border-border/70 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            className="p-1.5 rounded-none border border-border/70 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="size-4" />
           </Link>
@@ -434,7 +434,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
               }
               router.push(getReturnUrl())
             }}
-            className="h-8 text-xs cursor-pointer rounded-lg"
+            className="h-8 text-xs cursor-pointer rounded-none"
           >
             Cancel
           </Button>
@@ -444,7 +444,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
             size="sm"
             onClick={handleSave}
             disabled={saving}
-            className="h-8 text-xs gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium cursor-pointer rounded-lg"
+            className="h-8 text-xs gap-1.5 bg-accent hover:bg-accent text-white font-medium cursor-pointer rounded-none"
           >
             {saving ? <Loader2 className="size-3 animate-spin" /> : <Save className="size-3.5" />}
             <span>Save Message</span>
@@ -464,7 +464,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Standard Technical Interview"
-                className="mt-1 h-9 text-xs bg-card/60 rounded-lg"
+                className="mt-1 h-9 text-xs bg-card/60 rounded-none"
               />
             </div>
 
@@ -474,7 +474,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                 value={category}
                 onValueChange={(val) => setCategory(val as EmailTemplateCategory)}
               >
-                <SelectTrigger className="mt-1 h-9 text-xs bg-card/60 rounded-lg">
+                <SelectTrigger className="mt-1 h-9 text-xs bg-card/60 rounded-none">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="text-xs">
@@ -492,7 +492,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
           <div>
             <Label className="text-xs font-semibold text-foreground">Layout</Label>
             <Select value={layoutId} onValueChange={setLayoutId}>
-              <SelectTrigger className="mt-1 h-9 text-xs bg-card/60 rounded-lg">
+              <SelectTrigger className="mt-1 h-9 text-xs bg-card/60 rounded-none">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="text-xs">
@@ -515,7 +515,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               placeholder="Subject with tokens like {{jobTitle}}"
-              className="mt-1 h-9 text-xs bg-card/60 rounded-lg font-medium"
+              className="mt-1 h-9 text-xs bg-card/60 rounded-none font-medium"
             />
           </div>
 
@@ -531,7 +531,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
               value={headerTitle}
               onChange={(e) => setHeaderTitle(e.target.value)}
               placeholder="Custom banner title, tokens allowed"
-              className="mt-1 h-9 text-xs bg-card/60 rounded-lg font-medium"
+              className="mt-1 h-9 text-xs bg-card/60 rounded-none font-medium"
             />
           </div>
 
@@ -544,7 +544,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
               value={headerSubtitle}
               onChange={(e) => setHeaderSubtitle(e.target.value)}
               placeholder="Custom banner subtitle"
-              className="mt-1 h-9 text-xs bg-card/60 rounded-lg font-medium"
+              className="mt-1 h-9 text-xs bg-card/60 rounded-none font-medium"
             />
           </div>
 
@@ -558,7 +558,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
               value={accentColor || 'DEFAULT'}
               onValueChange={(v) => setAccentColor(v === 'DEFAULT' ? '' : v)}
             >
-              <SelectTrigger className="mt-1 h-9 text-xs bg-card/60 rounded-lg font-medium">
+              <SelectTrigger className="mt-1 h-9 text-xs bg-card/60 rounded-none font-medium">
                 <SelectValue placeholder="Default Emerald" />
               </SelectTrigger>
               <SelectContent>
@@ -591,7 +591,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
             <Label className="text-xs font-semibold text-foreground">
               Available Tokens (Click to insert)
             </Label>
-            <div className="flex flex-wrap gap-1 p-2 rounded-lg bg-muted/40 border border-border/70 max-h-24 overflow-y-auto">
+            <div className="flex flex-wrap gap-1 p-2 rounded-none bg-muted/40 border border-border/70 max-h-24 overflow-y-auto">
               {GLOBAL_TOKENS.map((item) => (
                 <button
                   key={`global-${item.token}`}
@@ -637,13 +637,13 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <Label className="text-xs font-semibold text-foreground">Message Body Copy</Label>
-              <div className="flex items-center gap-1 bg-muted/50 p-0.5 rounded-lg border border-border/60">
+              <div className="flex items-center gap-1 bg-muted/50 p-0.5 rounded-none border border-border/60">
                 <button
                   type="button"
                   onClick={() => setEditorMode('visual')}
                   className={`px-2 py-0.5 text-[11px] rounded font-medium transition-colors flex items-center gap-1 cursor-pointer ${
                     editorMode === 'visual'
-                      ? 'bg-card text-foreground font-semibold shadow-xs'
+                      ? 'bg-card text-foreground font-semibold'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
@@ -655,7 +655,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                   onClick={() => setEditorMode('code')}
                   className={`px-2 py-0.5 text-[11px] rounded font-medium transition-colors flex items-center gap-1 cursor-pointer ${
                     editorMode === 'code'
-                      ? 'bg-card text-foreground font-semibold shadow-xs'
+                      ? 'bg-card text-foreground font-semibold'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
@@ -681,13 +681,13 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                 onChange={(e) => setBodyText(e.target.value)}
                 rows={12}
                 placeholder="Write raw HTML or plain text copy here..."
-                className="text-xs font-mono leading-relaxed bg-card/60 rounded-lg resize-y scrollbar-slim"
+                className="text-xs font-mono leading-relaxed bg-card/60 rounded-none resize-y scrollbar-slim"
               />
             )}
           </div>
 
           {/* Multiple CTA Buttons Section */}
-          <div className="p-3.5 rounded-xl border border-border/70 bg-card space-y-3">
+          <div className="p-3.5 rounded-none border border-border/70 bg-card space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-foreground">CTA Buttons</span>
               <Button
@@ -695,7 +695,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                 variant="outline"
                 size="sm"
                 onClick={addButton}
-                className="h-7 text-xs gap-1 cursor-pointer rounded-md shrink-0"
+                className="h-7 text-xs gap-1 cursor-pointer rounded-none shrink-0"
               >
                 <Plus className="size-3" />
                 <span>Add Button</span>
@@ -709,11 +709,11 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                   return (
                     <div
                       key={idx}
-                      className="p-2.5 rounded-lg border border-border/60 bg-muted/20 space-y-2"
+                      className="p-2.5 rounded-none border border-border/60 bg-muted/20 space-y-2"
                     >
                       <div className="flex items-center justify-between text-xs">
                         <div className="flex items-center gap-2">
-                          <span className="font-mono text-[10px] text-emerald-500 font-semibold bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
+                          <span className="font-mono text-[10px] text-accent font-semibold bg-accent-soft px-1.5 py-0.5 rounded border border-accent">
                             {tokenName}
                           </span>
                           <button
@@ -722,7 +722,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                               insertToken(tokenName)
                               toast.info(`Inserted ${tokenName} at cursor`)
                             }}
-                            className="text-[10px] text-muted-foreground hover:text-emerald-500 flex items-center gap-0.5 cursor-pointer hover:underline"
+                            className="text-[10px] text-muted-foreground hover:text-accent flex items-center gap-0.5 cursor-pointer hover:underline"
                             title="Insert token at cursor in message"
                           >
                             <Plus className="size-2.5" />
@@ -746,7 +746,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                             value={btn.label}
                             onChange={(e) => updateButton(idx, 'label', e.target.value)}
                             placeholder="e.g. Schedule Slot"
-                            className="h-8 text-xs bg-background rounded-md"
+                            className="h-8 text-xs bg-background rounded-none"
                           />
                         </div>
                         <div className="sm:col-span-4">
@@ -755,7 +755,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                             value={btn.url}
                             onChange={(e) => updateButton(idx, 'url', e.target.value)}
                             placeholder="e.g. {{bookingUrl}}"
-                            className="h-8 text-xs bg-background rounded-md font-mono text-[11px]"
+                            className="h-8 text-xs bg-background rounded-none font-mono text-[11px]"
                           />
                         </div>
                         <div className="sm:col-span-3">
@@ -764,7 +764,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                             value={btn.variant || (idx === 0 ? 'primary' : 'secondary')}
                             onValueChange={(val) => updateButton(idx, 'variant', val as any)}
                           >
-                            <SelectTrigger className="h-8 text-xs bg-background rounded-md">
+                            <SelectTrigger className="h-8 text-xs bg-background rounded-none">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="text-xs">
@@ -786,7 +786,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
             <div className="flex items-center gap-2">
               <Label className="text-xs font-semibold">Status:</Label>
               <Select value={status} onValueChange={(val) => setStatus(val as EmailTemplateStatus)}>
-                <SelectTrigger className="h-8 w-32 text-xs bg-card/60 rounded-lg">
+                <SelectTrigger className="h-8 w-32 text-xs bg-card/60 rounded-none">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="text-xs">
@@ -802,7 +802,7 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
                 type="checkbox"
                 checked={isDefault}
                 onChange={(e) => setIsDefault(e.target.checked)}
-                className="rounded border-border text-emerald-600 focus:ring-emerald-500 size-4"
+                className="rounded border-border text-accent focus:ring-accent size-4"
               />
               <span>Set as category default</span>
             </label>
@@ -811,17 +811,17 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
 
         {/* Right Column: Sticky Live Preview (6 cols on desktop) */}
         <div className="lg:col-span-6 sticky top-4 space-y-3">
-          <div className="flex items-center justify-between gap-2 p-1 bg-card rounded-xl border border-border/70 shadow-xs">
+          <div className="flex items-center justify-between gap-2 p-1 bg-card rounded-none border border-border/70">
             <span className="text-xs font-semibold px-2 text-foreground">Live Preview</span>
 
             {/* Viewport Toggles: Desktop, Tablet, Mobile */}
-            <div className="flex items-center gap-1 bg-muted/40 p-0.5 rounded-lg border border-border/60">
+            <div className="flex items-center gap-1 bg-muted/40 p-0.5 rounded-none border border-border/60">
               <button
                 type="button"
                 onClick={() => setViewport('desktop')}
-                className={`px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1 cursor-pointer ${
+                className={`px-2.5 py-1 text-xs rounded-none transition-all flex items-center gap-1 cursor-pointer ${
                   viewport === 'desktop'
-                    ? 'bg-card text-foreground font-semibold shadow-xs'
+                    ? 'bg-card text-foreground font-semibold'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -831,9 +831,9 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
               <button
                 type="button"
                 onClick={() => setViewport('tablet')}
-                className={`px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1 cursor-pointer ${
+                className={`px-2.5 py-1 text-xs rounded-none transition-all flex items-center gap-1 cursor-pointer ${
                   viewport === 'tablet'
-                    ? 'bg-card text-foreground font-semibold shadow-xs'
+                    ? 'bg-card text-foreground font-semibold'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -843,9 +843,9 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
               <button
                 type="button"
                 onClick={() => setViewport('mobile')}
-                className={`px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1 cursor-pointer ${
+                className={`px-2.5 py-1 text-xs rounded-none transition-all flex items-center gap-1 cursor-pointer ${
                   viewport === 'mobile'
-                    ? 'bg-card text-foreground font-semibold shadow-xs'
+                    ? 'bg-card text-foreground font-semibold'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -863,13 +863,13 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
               className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground"
             >
               <RotateCcw
-                className={`size-3 ${previewLoading ? 'animate-spin text-emerald-500' : ''}`}
+                className={`size-3 ${previewLoading ? 'animate-spin text-accent' : ''}`}
               />
             </Button>
           </div>
 
           {/* Subject banner in preview */}
-          <div className="px-3.5 py-2 rounded-lg bg-muted/40 border border-border/60 text-xs flex items-center gap-2">
+          <div className="px-3.5 py-2 rounded-none bg-muted/40 border border-border/60 text-xs flex items-center gap-2">
             <span className="text-[11px] font-semibold text-muted-foreground shrink-0">
               Subject:
             </span>
@@ -879,15 +879,15 @@ export function EmailMessageEditor({ initialTemplate, templateId }: EmailMessage
           </div>
 
           {/* Viewport Frame */}
-          <div className="p-4 bg-muted/20 min-h-[520px] max-h-[75vh] flex items-center justify-center overflow-auto rounded-xl border border-border/70">
+          <div className="p-4 bg-muted/20 min-h-[520px] max-h-[75vh] flex items-center justify-center overflow-auto rounded-none border border-border/70">
             {previewLoading && !previewData ? (
               <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground text-xs">
-                <Loader2 className="size-6 animate-spin text-emerald-500" />
+                <Loader2 className="size-6 animate-spin text-accent" />
                 <span>Rendering preview...</span>
               </div>
             ) : (
               <div
-                className={`transition-all duration-300 rounded-xl overflow-hidden shadow-sm border border-border/80 bg-white h-[560px] ${
+                className={`transition-all duration-300 rounded-none overflow-hidden border border-border/80 bg-white h-[560px] ${
                   viewport === 'mobile'
                     ? 'w-[375px] shrink-0'
                     : viewport === 'tablet'

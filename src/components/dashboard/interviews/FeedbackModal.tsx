@@ -107,7 +107,7 @@ function FeedbackFormContent({ interview, onClose, onSuccess }: FeedbackFormCont
       </DialogHeader>
 
       {!isBooked ? (
-        <div className="flex flex-col items-center justify-center gap-3 py-6 px-4 text-center rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs">
+        <div className="flex flex-col items-center justify-center gap-3 py-6 px-4 text-center rounded-none bg-amber-500/10 border border-amber-500/20 text-xs">
           <div className="size-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center">
             <InterviewIcons.CalendarClock className="size-5" />
           </div>
@@ -131,7 +131,7 @@ function FeedbackFormContent({ interview, onClose, onSuccess }: FeedbackFormCont
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 py-2">
           {/* Score Ratings Grid (1 to 5 Scale) */}
-          <div className="grid grid-cols-2 gap-3 p-3.5 rounded-xl border border-border/80 bg-muted/20 text-xs">
+          <div className="grid grid-cols-2 gap-3 p-3.5 rounded-none border border-border/80 bg-muted/20 text-xs">
             {/* Technical Score (1-5) */}
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
@@ -146,7 +146,7 @@ function FeedbackFormContent({ interview, onClose, onSuccess }: FeedbackFormCont
                     key={score}
                     type="button"
                     onClick={() => setTechnicalSkill(score)}
-                    className={`flex-1 py-1.5 rounded-lg font-semibold text-xs border transition-all cursor-pointer ${
+                    className={`flex-1 py-1.5 rounded-none font-semibold text-xs border transition-all cursor-pointer ${
                       technicalSkill >= score
                         ? 'border-primary bg-primary/20 text-primary'
                         : 'border-border/60 bg-card text-muted-foreground hover:bg-muted'
@@ -172,7 +172,7 @@ function FeedbackFormContent({ interview, onClose, onSuccess }: FeedbackFormCont
                     key={score}
                     type="button"
                     onClick={() => setCommunication(score)}
-                    className={`flex-1 py-1.5 rounded-lg font-semibold text-xs border transition-all cursor-pointer ${
+                    className={`flex-1 py-1.5 rounded-none font-semibold text-xs border transition-all cursor-pointer ${
                       communication >= score
                         ? 'border-sky-500 bg-sky-500/20 text-sky-400'
                         : 'border-border/60 bg-card text-muted-foreground hover:bg-muted'
@@ -207,7 +207,7 @@ function FeedbackFormContent({ interview, onClose, onSuccess }: FeedbackFormCont
               <button
                 type="button"
                 onClick={() => setDecision('NONE')}
-                className={`py-2 px-2.5 rounded-xl border text-xs font-medium cursor-pointer transition-colors ${
+                className={`py-2 px-2.5 rounded-none border text-xs font-medium cursor-pointer transition-colors ${
                   decision === 'NONE'
                     ? 'border-primary bg-primary/15 text-primary'
                     : 'border-border/80 bg-card text-muted-foreground hover:bg-muted'
@@ -218,9 +218,9 @@ function FeedbackFormContent({ interview, onClose, onSuccess }: FeedbackFormCont
               <button
                 type="button"
                 onClick={() => setDecision('OFFER_PENDING')}
-                className={`py-2 px-2.5 rounded-xl border text-xs font-medium cursor-pointer transition-colors ${
+                className={`py-2 px-2.5 rounded-none border text-xs font-medium cursor-pointer transition-colors ${
                   decision === 'OFFER_PENDING'
-                    ? 'border-emerald-500 bg-emerald-500/15 text-emerald-400'
+                    ? 'border-accent bg-accent-soft text-accent'
                     : 'border-border/80 bg-card text-muted-foreground hover:bg-muted'
                 }`}
               >
@@ -229,7 +229,7 @@ function FeedbackFormContent({ interview, onClose, onSuccess }: FeedbackFormCont
               <button
                 type="button"
                 onClick={() => setDecision('REJECTED')}
-                className={`py-2 px-2.5 rounded-xl border text-xs font-medium cursor-pointer transition-colors ${
+                className={`py-2 px-2.5 rounded-none border text-xs font-medium cursor-pointer transition-colors ${
                   decision === 'REJECTED'
                     ? 'border-rose-500 bg-rose-500/15 text-rose-400'
                     : 'border-border/80 bg-card text-muted-foreground hover:bg-muted'

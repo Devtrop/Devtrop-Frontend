@@ -104,7 +104,7 @@ export function InterviewFilters(props: InterviewFiltersProps) {
             placeholder="Search candidates, roles, emails..."
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="pl-8 bg-card/60 border-border text-xs h-8 rounded-xl w-full"
+            className="pl-8 bg-card/60 border-border text-xs h-8 rounded-none w-full"
           />
         </div>
 
@@ -115,7 +115,7 @@ export function InterviewFilters(props: InterviewFiltersProps) {
               <Button
                 variant="outline"
                 size="sm"
-                className="h-8 px-3 rounded-xl border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40 w-[170px]"
+                className="h-8 px-3 rounded-none border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40 w-[170px]"
               >
                 <span className="truncate text-foreground">{selectedJobTitle}</span>
                 <InterviewIcons.ChevronDown className="size-3 text-muted-foreground shrink-0 opacity-70" />
@@ -123,11 +123,11 @@ export function InterviewFilters(props: InterviewFiltersProps) {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="start"
-              className="w-64 rounded-xl text-xs max-h-64 overflow-y-auto"
+              className="w-64 rounded-none text-xs max-h-64 overflow-y-auto"
             >
               <DropdownMenuItem
                 onClick={() => onJobChange('ALL')}
-                className="cursor-pointer gap-2 rounded-lg font-medium"
+                className="cursor-pointer gap-2 rounded-none font-medium"
               >
                 <span className="truncate">All Job Positions</span>
                 {selectedJobId === 'ALL' && (
@@ -138,7 +138,7 @@ export function InterviewFilters(props: InterviewFiltersProps) {
                 <DropdownMenuItem
                   key={job.id}
                   onClick={() => onJobChange(job.id)}
-                  className="cursor-pointer gap-2 rounded-lg"
+                  className="cursor-pointer gap-2 rounded-none"
                 >
                   <span className="truncate">{job.title}</span>
                   {selectedJobId === job.id && (
@@ -157,10 +157,10 @@ export function InterviewFilters(props: InterviewFiltersProps) {
               <Button
                 variant="outline"
                 type="button"
-                className={`h-8 px-3 rounded-xl border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40 w-[150px] ${!selectedDate ? 'text-muted-foreground' : 'text-foreground'}`}
+                className={`h-8 px-3 rounded-none border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40 w-[150px] ${!selectedDate ? 'text-muted-foreground' : 'text-foreground'}`}
               >
                 <span className="flex items-center gap-1.5 truncate">
-                  <InterviewIcons.Calendar className="size-3.5 shrink-0 text-emerald-400" />
+                  <InterviewIcons.Calendar className="size-3.5 shrink-0 text-accent" />
                   <span className="truncate">{displayLabel || 'Filter by date'}</span>
                 </span>
                 {selectedDate && (
@@ -174,7 +174,7 @@ export function InterviewFilters(props: InterviewFiltersProps) {
                 )}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 border-zinc-800 bg-zinc-950 shadow-2xl z-50" align="start">
+            <PopoverContent className="w-auto p-0 border-hairline-light bg-canvas z-50" align="start">
               <Calendar
                 mode="single"
                 selected={selectedDateObj}
@@ -190,16 +190,16 @@ export function InterviewFilters(props: InterviewFiltersProps) {
                   }
                   setDateOpen(false)
                 }}
-                className="rounded-md border-0 bg-zinc-950 p-3 text-zinc-200"
+                className="rounded-none border-0 bg-canvas p-3 text-muted"
               />
               {selectedDate && (
-                <div className="flex items-center justify-between border-t border-zinc-800 px-3 py-2 text-xs bg-zinc-900/50">
-                  <span className="text-zinc-400">{displayLabel}</span>
+                <div className="flex items-center justify-between border-t border-hairline-light px-3 py-2 text-xs bg-subtle/50">
+                  <span className="text-muted">{displayLabel}</span>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => { onDateChange(null); setDateOpen(false) }}
-                    className="h-6 px-2 text-[11px] text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 cursor-pointer"
+                    className="h-6 px-2 text-[11px] text-muted hover:text-muted hover:bg-muted cursor-pointer"
                   >
                     Clear
                   </Button>
@@ -216,18 +216,18 @@ export function InterviewFilters(props: InterviewFiltersProps) {
               <Button
                 variant="outline"
                 size="sm"
-                className="h-8 px-3 rounded-xl border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40 w-[150px]"
+                className="h-8 px-3 rounded-none border border-border bg-card/80 text-xs font-medium justify-between gap-2 cursor-pointer hover:bg-muted/40 w-[150px]"
               >
                 <span className="truncate text-foreground">{currentSortLabel}</span>
                 <InterviewIcons.ChevronDown className="size-3 text-muted-foreground shrink-0 opacity-70" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-52 rounded-xl text-xs">
+            <DropdownMenuContent align="end" className="w-52 rounded-none text-xs">
               {SORT_OPTIONS.map((opt) => (
                 <DropdownMenuItem
                   key={opt.value}
                   onClick={() => onSortChange(opt.value)}
-                  className="cursor-pointer gap-2 rounded-lg text-xs"
+                  className="cursor-pointer gap-2 rounded-none text-xs"
                 >
                   <span>{opt.label}</span>
                   {sortOrder === opt.value && (
@@ -244,20 +244,20 @@ export function InterviewFilters(props: InterviewFiltersProps) {
       <div className="flex items-center gap-2 w-full">
         <div className="flex-1 overflow-x-auto scrollbar-hide">
           <Tabs value={filterTab} onValueChange={onTabChange}>
-            <TabsList className="bg-muted/40 p-1 border border-border/80 h-8 rounded-xl w-max">
-              <TabsTrigger value="ALL" className="text-xs px-2.5 py-1 rounded-lg whitespace-nowrap">
+            <TabsList className="bg-muted/40 p-1 border border-border/80 h-8 rounded-none w-max">
+              <TabsTrigger value="ALL" className="text-xs px-2.5 py-1 rounded-none whitespace-nowrap">
                 All ({stats.total})
               </TabsTrigger>
-              <TabsTrigger value="INTERVIEW_SELECTED" className="text-xs px-2.5 py-1 rounded-lg whitespace-nowrap">
+              <TabsTrigger value="INTERVIEW_SELECTED" className="text-xs px-2.5 py-1 rounded-none whitespace-nowrap">
                 Interview Ready ({stats.selected})
               </TabsTrigger>
-              <TabsTrigger value="PENDING" className="text-xs px-2.5 py-1 rounded-lg whitespace-nowrap">
+              <TabsTrigger value="PENDING" className="text-xs px-2.5 py-1 rounded-none whitespace-nowrap">
                 Pending ({stats.pendingBooking})
               </TabsTrigger>
-              <TabsTrigger value="SCHEDULED" className="text-xs px-2.5 py-1 rounded-lg whitespace-nowrap">
+              <TabsTrigger value="SCHEDULED" className="text-xs px-2.5 py-1 rounded-none whitespace-nowrap">
                 Scheduled ({stats.scheduled})
               </TabsTrigger>
-              <TabsTrigger value="COMPLETED" className="text-xs px-2.5 py-1 rounded-lg whitespace-nowrap">
+              <TabsTrigger value="COMPLETED" className="text-xs px-2.5 py-1 rounded-none whitespace-nowrap">
                 Completed ({stats.completed})
               </TabsTrigger>
             </TabsList>
@@ -268,7 +268,7 @@ export function InterviewFilters(props: InterviewFiltersProps) {
           variant="outline"
           size="icon-xs"
           onClick={onRefresh}
-          className="cursor-pointer shrink-0 border-border h-8 w-8 rounded-xl hover:bg-muted"
+          className="cursor-pointer shrink-0 border-border h-8 w-8 rounded-none hover:bg-muted"
           title="Refresh Data"
         >
           <InterviewIcons.Refresh className="size-3.5" />

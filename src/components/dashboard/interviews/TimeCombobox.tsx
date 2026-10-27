@@ -167,7 +167,7 @@ export function TimeCombobox({ label, value, onChange, options, className }: Tim
           size="sm"
           role="combobox"
           aria-expanded={open}
-          className={`h-8 px-2.5 rounded-lg border border-border bg-card text-xs font-mono justify-between cursor-pointer hover:bg-muted/40 w-full ${className || ''}`}
+          className={`h-8 px-2.5 rounded-none border border-border bg-card text-xs font-mono justify-between cursor-pointer hover:bg-muted/40 w-full ${className || ''}`}
         >
           <span className="truncate">
             {label}: {displayLabel}
@@ -179,7 +179,7 @@ export function TimeCombobox({ label, value, onChange, options, className }: Tim
         align="start"
         onWheel={(e) => e.stopPropagation()}
         onTouchMove={(e) => e.stopPropagation()}
-        className="w-56 p-1.5 rounded-xl shadow-xl border-border bg-popover text-popover-foreground z-50 pointer-events-auto"
+        className="w-56 p-1.5 rounded-none border-border bg-popover text-popover-foreground z-50 pointer-events-auto"
       >
         <div className="relative mb-1.5">
           <InterviewIcons.Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3 text-muted-foreground pointer-events-none" />
@@ -197,7 +197,7 @@ export function TimeCombobox({ label, value, onChange, options, className }: Tim
               }
             }}
             placeholder="Search or type time (e.g. 9pm)..."
-            className="h-7 pl-7 pr-2 text-xs font-mono rounded-lg bg-card/60 border-border"
+            className="h-7 pl-7 pr-2 text-xs font-mono rounded-none bg-card/60 border-border"
             autoFocus
           />
         </div>
@@ -213,10 +213,10 @@ export function TimeCombobox({ label, value, onChange, options, className }: Tim
             <button
               type="button"
               onClick={() => handleSelect(customParsed.value)}
-              className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-mono text-left bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-colors cursor-pointer border border-emerald-500/20 mb-1"
+              className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-none text-xs font-mono text-left bg-accent-soft text-accent hover:bg-accent-soft transition-colors cursor-pointer border border-accent mb-1"
             >
               <div className="flex items-center gap-1.5 truncate">
-                <InterviewIcons.Plus className="size-3 text-emerald-400 shrink-0" />
+                <InterviewIcons.Plus className="size-3 text-accent shrink-0" />
                 <span className="truncate">
                   Set: <strong>{customParsed.label}</strong>
                 </span>
@@ -240,7 +240,7 @@ export function TimeCombobox({ label, value, onChange, options, className }: Tim
                   ref={isSelected ? selectedRef : null}
                   type="button"
                   onClick={() => handleSelect(opt.value)}
-                  className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-mono text-left transition-colors cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-none text-xs font-mono text-left transition-colors cursor-pointer ${
                     isSelected
                       ? 'bg-primary/15 text-primary font-medium'
                       : 'hover:bg-muted/70 text-foreground'

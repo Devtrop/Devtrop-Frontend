@@ -94,7 +94,7 @@ export default function EditJobPage() {
             </p>
             <Button
               onClick={() => router.push('/dashboard/admin/jobs')}
-              className="mt-5 bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="mt-5 bg-accent hover:bg-accent text-white"
             >
               Back to Jobs
             </Button>
@@ -127,7 +127,7 @@ export default function EditJobPage() {
               <Briefcase className="size-4 text-muted-foreground" />
               <span className="text-muted-foreground">{job.title}</span>
               <span className="text-muted-foreground/50">•</span>
-              <span className="rounded-md bg-muted px-2 py-0.5 text-xs font-mono font-medium text-muted-foreground">
+              <span className="rounded-none bg-muted px-2 py-0.5 text-xs font-mono font-medium text-muted-foreground">
                 #{job.jobCode}
               </span>
             </div>

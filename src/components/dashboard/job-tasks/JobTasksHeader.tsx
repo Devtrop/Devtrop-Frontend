@@ -29,7 +29,7 @@ export function JobTasksHeader({ onCreateTask, onRefresh, loading = false }: Job
           size="sm"
           onClick={onRefresh}
           disabled={loading}
-          className="h-8 gap-1.5 border-border hover:bg-muted text-xs px-3 rounded-xl"
+          className="h-8 gap-1.5 border-border hover:bg-muted text-xs px-3 rounded-none"
         >
           <RefreshCw className={`size-3.5 ${loading ? 'animate-spin' : ''}`} />
           Refresh
@@ -39,7 +39,7 @@ export function JobTasksHeader({ onCreateTask, onRefresh, loading = false }: Job
           type="button"
           size="sm"
           onClick={onCreateTask}
-          className="h-8 gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-xs px-3 rounded-xl"
+          className="h-8 gap-1.5 bg-accent hover:bg-accent text-xs px-3 rounded-none"
         >
           <ListTodo className="size-3.5" />
           New Task

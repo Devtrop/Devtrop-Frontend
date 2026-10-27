@@ -344,7 +344,7 @@ export function EmailTemplatesView() {
             return (
               <span
                 key={i}
-                className="inline-flex items-center px-1 py-0 mx-0.5 rounded bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 font-mono text-[10px]"
+                className="inline-flex items-center px-1 py-0 mx-0.5 rounded bg-accent-soft text-accent dark:text-accent font-mono text-[10px]"
               >
                 {part}
               </span>
@@ -366,13 +366,13 @@ export function EmailTemplatesView() {
               <h1 className="text-xl font-bold tracking-tight text-foreground">Email Templates</h1>
 
               {/* Clean Notion-style Segmented Switch */}
-              <div className="flex items-center bg-muted/40 p-0.5 rounded-lg border border-border/60 text-xs">
+              <div className="flex items-center bg-muted/40 p-0.5 rounded-none border border-border/60 text-xs">
                 <button
                   type="button"
                   onClick={() => handleTabChange('MESSAGES')}
-                  className={`px-3 py-1 rounded-md transition-all cursor-pointer ${
+                  className={`px-3 py-1 rounded-none transition-all cursor-pointer ${
                     activeTab === 'MESSAGES'
-                      ? 'bg-card text-foreground shadow-xs font-semibold'
+                      ? 'bg-card text-foreground font-semibold'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
@@ -381,9 +381,9 @@ export function EmailTemplatesView() {
                 <button
                   type="button"
                   onClick={() => handleTabChange('LAYOUTS')}
-                  className={`px-3 py-1 rounded-md transition-all cursor-pointer ${
+                  className={`px-3 py-1 rounded-none transition-all cursor-pointer ${
                     activeTab === 'LAYOUTS'
-                      ? 'bg-card text-foreground shadow-xs font-semibold'
+                      ? 'bg-card text-foreground font-semibold'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
@@ -403,10 +403,10 @@ export function EmailTemplatesView() {
                     fetchTemplates(false, true)
                   }}
                   disabled={loading}
-                  className="text-xs h-8 gap-1.5 cursor-pointer rounded-lg"
+                  className="text-xs h-8 gap-1.5 cursor-pointer rounded-none"
                 >
                   <RotateCcw
-                    className={`size-3.5 ${loading ? 'animate-spin text-emerald-500' : ''}`}
+                    className={`size-3.5 ${loading ? 'animate-spin text-accent' : ''}`}
                   />
                   <span>Refresh</span>
                 </Button>
@@ -421,7 +421,7 @@ export function EmailTemplatesView() {
                     }
                     router.push('/dashboard/email-templates/new')
                   }}
-                  className="text-xs h-8 gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium cursor-pointer rounded-lg"
+                  className="text-xs h-8 gap-1.5 bg-accent hover:bg-accent text-white font-medium cursor-pointer rounded-none"
                 >
                   <Plus className="size-3.5" />
                   <span>New Message</span>
@@ -455,7 +455,7 @@ export function EmailTemplatesView() {
                       key={tab.id}
                       type="button"
                       onClick={() => handleGroupFilterChange(tab.id)}
-                      className={`py-1 px-2.5 rounded-md transition-all cursor-pointer flex items-center gap-1.5 text-xs ${
+                      className={`py-1 px-2.5 rounded-none transition-all cursor-pointer flex items-center gap-1.5 text-xs ${
                         isActive
                           ? 'bg-foreground text-background font-semibold'
                           : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
@@ -476,7 +476,7 @@ export function EmailTemplatesView() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search messages by name or subject..."
-                    className="pl-8 pr-7 h-8 text-xs bg-card/60 rounded-lg"
+                    className="pl-8 pr-7 h-8 text-xs bg-card/60 rounded-none"
                   />
                   {search && (
                     <button
@@ -494,7 +494,7 @@ export function EmailTemplatesView() {
                     value={statusFilter}
                     onValueChange={(val) => setStatusFilter(val as EmailTemplateStatus | '')}
                   >
-                    <SelectTrigger className="h-8 text-xs bg-card/60 rounded-lg">
+                    <SelectTrigger className="h-8 text-xs bg-card/60 rounded-none">
                       <SelectValue placeholder="All Statuses" />
                     </SelectTrigger>
                     <SelectContent className="text-xs">
@@ -508,10 +508,10 @@ export function EmailTemplatesView() {
               </div>
 
               {/* Clean, Structured Messages Table */}
-              <div className="rounded-xl border border-border/80 bg-card/40 overflow-hidden shadow-xs">
+              <div className="rounded-none border border-border/80 bg-card/40 overflow-hidden">
                 {loading ? (
                   <div className="py-16 text-center text-muted-foreground text-xs flex flex-col items-center justify-center gap-2">
-                    <RotateCcw className="size-5 animate-spin text-emerald-500" />
+                    <RotateCcw className="size-5 animate-spin text-accent" />
                     <span>Loading messages...</span>
                   </div>
                 ) : filteredTemplates.length === 0 ? (
@@ -526,7 +526,7 @@ export function EmailTemplatesView() {
                         }
                         router.push('/dashboard/email-templates/new')
                       }}
-                      className="text-xs h-7 gap-1 bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer mt-1 rounded-md"
+                      className="text-xs h-7 gap-1 bg-accent hover:bg-accent text-white cursor-pointer mt-1 rounded-none"
                     >
                       <Plus className="size-3" />
                       <span>New Message</span>
@@ -569,7 +569,7 @@ export function EmailTemplatesView() {
                                     }
                                     router.push(`/dashboard/email-templates/${tmpl.id}`)
                                   }}
-                                  className="font-medium text-xs text-foreground hover:text-emerald-500 transition-colors truncate block text-left cursor-pointer"
+                                  className="font-medium text-xs text-foreground hover:text-accent transition-colors truncate block text-left cursor-pointer"
                                 >
                                   {tmpl.name}
                                 </button>
@@ -601,7 +601,7 @@ export function EmailTemplatesView() {
                                   <SelectTrigger
                                     className={`h-6 text-[10px] font-semibold px-2 py-0 border rounded-full cursor-pointer transition-all inline-flex items-center justify-between gap-1 w-24 mx-auto ${
                                       tmpl.status === 'PUBLISHED'
-                                        ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/30 hover:bg-emerald-500/20'
+                                        ? 'bg-accent-soft text-accent border-accent hover:bg-accent-soft'
                                         : tmpl.status === 'DRAFT'
                                           ? 'bg-amber-500/10 text-amber-500 border-amber-500/30 hover:bg-amber-500/20'
                                           : 'bg-muted text-muted-foreground border-border hover:bg-muted/80'
@@ -660,7 +660,7 @@ export function EmailTemplatesView() {
                                         variant="ghost"
                                         size="sm"
                                         onClick={() => setPreviewTemplate(tmpl)}
-                                        className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground cursor-pointer rounded-md"
+                                        className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground cursor-pointer rounded-none"
                                       >
                                         <Eye className="size-3.5" />
                                       </Button>
@@ -678,7 +678,7 @@ export function EmailTemplatesView() {
                                         size="sm"
                                         onClick={(e) => handleDuplicate(e, tmpl)}
                                         disabled={isCloning}
-                                        className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground cursor-pointer rounded-md"
+                                        className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground cursor-pointer rounded-none"
                                       >
                                         {isCloning ? (
                                           <RotateCcw className="size-3.5 animate-spin" />
@@ -711,7 +711,7 @@ export function EmailTemplatesView() {
                                           }
                                           router.push(`/dashboard/email-templates/${tmpl.id}`)
                                         }}
-                                        className="h-7 px-2 text-xs text-muted-foreground hover:text-emerald-500 cursor-pointer rounded-md"
+                                        className="h-7 px-2 text-xs text-muted-foreground hover:text-accent cursor-pointer rounded-none"
                                       >
                                         <Edit className="size-3.5" />
                                       </Button>
@@ -728,7 +728,7 @@ export function EmailTemplatesView() {
                                         variant="ghost"
                                         size="sm"
                                         onClick={() => setDeleteTarget(tmpl)}
-                                        className="h-7 px-2 text-xs text-muted-foreground hover:text-rose-500 cursor-pointer rounded-md"
+                                        className="h-7 px-2 text-xs text-muted-foreground hover:text-rose-500 cursor-pointer rounded-none"
                                       >
                                         <Trash2 className="size-3.5" />
                                       </Button>
@@ -763,7 +763,7 @@ export function EmailTemplatesView() {
               open={Boolean(deleteTarget)}
               onOpenChange={(open) => !open && setDeleteTarget(null)}
             >
-              <DialogContent className="max-w-md text-xs rounded-xl border border-border/80">
+              <DialogContent className="max-w-md text-xs rounded-none border border-border/80">
                 <DialogHeader>
                   <DialogTitle className="text-base font-bold text-foreground">
                     Delete Email Message?
@@ -780,7 +780,7 @@ export function EmailTemplatesView() {
                     size="sm"
                     onClick={() => setDeleteTarget(null)}
                     disabled={deleting}
-                    className="text-xs cursor-pointer rounded-lg"
+                    className="text-xs cursor-pointer rounded-none"
                   >
                     Cancel
                   </Button>
@@ -790,7 +790,7 @@ export function EmailTemplatesView() {
                     size="sm"
                     onClick={handleDelete}
                     disabled={deleting}
-                    className="text-xs gap-1.5 cursor-pointer rounded-lg"
+                    className="text-xs gap-1.5 cursor-pointer rounded-none"
                   >
                     <Trash2 className="size-3.5" />
                     {deleting ? 'Deleting...' : 'Confirm Delete'}
