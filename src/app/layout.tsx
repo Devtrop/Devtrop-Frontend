@@ -7,6 +7,7 @@ import { Footer } from '@/components/shared/footer/Footer'
 import ChatHub from '@/components/shared/ChatHub'
 import { SITE_CONFIG } from '@/data/site'
 import { whatsappUrl, WHATSAPP_MESSAGES } from '@/lib/whatsapp'
+import { Providers } from '@/components/Providers'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -230,14 +231,16 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-canvas text-body swiss-noise">
-        <Navbar />
-        <main className="flex-1 flex flex-col w-full">{children}</main>
-        <Footer />
-        <ChatHub
+        <Providers>
+          <Navbar />
+          <main className="flex-1 flex flex-col w-full">{children}</main>
+          <Footer />
+          <ChatHub
           whatsappHref={whatsappUrl(WHATSAPP_MESSAGES.default)}
           contactEmail={SITE_CONFIG.contactEmail}
           defaultMessage={WHATSAPP_MESSAGES.default}
-        />
+          />
+        </Providers>
 
         {/* Google Analytics — loaded after page is interactive, zero LCP impact */}
         <Script
