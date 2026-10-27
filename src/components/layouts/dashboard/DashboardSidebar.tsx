@@ -138,12 +138,12 @@ export function DashboardSidebar() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         className={cn(
-          'hidden md:flex fixed top-0 left-0 bottom-0 z-40 flex-col bg-zinc-950/95 border-r border-zinc-800/80 backdrop-blur-xl text-zinc-200 transition-all duration-300 ease-in-out shadow-2xl',
+          'hidden md:flex fixed top-0 left-0 bottom-0 z-40 flex-col bg-canvas border-r border-hairline-light backdrop-blur-xl text-body transition-all duration-300 ease-in-out shadow-[2px_0_0_0_#000]',
           isExpanded ? 'w-67.5' : 'w-18',
         )}
       >
         {/* Top Header: Brand Logo, Title & Interactive Pin Button */}
-        <div className="flex h-16 shrink-0 items-center justify-between px-3.5 border-b border-zinc-800/80">
+        <div className="flex h-16 shrink-0 items-center justify-between px-3.5 border-b border-hairline-light">
           <div className="flex items-center gap-3 overflow-hidden">
             <AnimatePresence initial={false}>
               {isExpanded && (
@@ -157,12 +157,12 @@ export function DashboardSidebar() {
                   <Link
                     href="/"
                     className="group flex items-center gap-2.5 focus:outline-none shrink-0"
-                    aria-label="Rise Together Home"
+                    aria-label="Devtrop Home"
                   >
                     <div className="relative w-12 h-12 sm:w-20 sm:h-20 md:w-24 md:h-24">
                       <Image
-                        src="/RT_Logo.png"
-                        alt="Logo"
+                        src="/devtrop_logo_transparent_bg_resized.png"
+                        alt="Devtrop"
                         fill
                         sizes="(max-width: 640px) 48px, (max-width: 768px) 80px, 96px"
                         className="object-contain"
@@ -172,6 +172,21 @@ export function DashboardSidebar() {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* Collapsed state icon */}
+            {!isExpanded && (
+              <Link href="/" aria-label="Devtrop Home" className="flex items-center justify-center mx-auto">
+                <div className="relative w-8 h-8">
+                  <Image
+                    src="/devtrop_logo_transparent_bg_resized.png"
+                    alt="Devtrop"
+                    fill
+                    sizes="32px"
+                    className="object-contain"
+                  />
+                </div>
+              </Link>
+            )}
           </div>
 
           {/* Pin Button */}
@@ -190,8 +205,8 @@ export function DashboardSidebar() {
                       size="icon"
                       onClick={togglePin}
                       className={cn(
-                        'size-8 rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60 cursor-pointer transition-colors',
-                        isPinned && 'text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20',
+                        'size-8 rounded-none border text-muted hover:text-body hover:bg-subtle cursor-pointer transition-colors',
+                        isPinned && 'text-accent bg-accent-soft border-accent hover:bg-accent-soft',
                       )}
                     >
                       {isPinned ? (
@@ -223,7 +238,7 @@ export function DashboardSidebar() {
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.15 }}
-                      className="px-2.5 pb-1 text-[10px] font-bold uppercase tracking-wider text-zinc-500 select-none truncate"
+                      className="px-2.5 pb-1 text-[10px] font-bold uppercase tracking-wider text-muted select-none truncate"
                     >
                       {group.heading}
                     </motion.div>
@@ -231,7 +246,7 @@ export function DashboardSidebar() {
                 </AnimatePresence>
 
                 {/* Group Items */}
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-0.5">
                   {group.items.map((item) => {
                     const isActive = isItemActive(item)
                     const Icon = item.icon
@@ -242,29 +257,20 @@ export function DashboardSidebar() {
                       <Link
                         href={item.href}
                         className={cn(
-                          'group relative flex items-center gap-3 rounded-xl px-2.5 py-2 text-xs font-medium transition-all duration-200 cursor-pointer',
+                          'group relative flex items-center gap-3 px-2.5 py-2 text-xs font-medium transition-all duration-200 cursor-pointer border-l-2',
                           isActive
-                            ? 'bg-emerald-500/15 text-emerald-300 font-semibold shadow-xs ring-1 ring-emerald-500/30'
-                            : 'text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100',
-                          !isExpanded && 'justify-center px-0 size-11 mx-auto',
+                            ? 'border-l-accent bg-accent-soft text-accent font-semibold'
+                            : 'border-l-transparent text-muted hover:bg-subtle hover:text-body hover:border-l-hairline-light',
+                          !isExpanded && 'justify-center px-0 size-11 mx-auto border-l-0 border-b-2',
                         )}
                       >
-                        {/* Active Accent Glow Pill */}
-                        {isActive && (
-                          <motion.div
-                            layoutId="sidebar-active-indicator"
-                            className="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
-                            transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                          />
-                        )}
-
                         <div className="flex size-6 shrink-0 items-center justify-center">
                           <Icon
                             className={cn(
                               'size-4.5 transition-transform duration-200 group-hover:scale-110',
                               isActive
-                                ? 'text-emerald-400'
-                                : 'text-zinc-400 group-hover:text-zinc-200',
+                                ? 'text-accent'
+                                : 'text-muted group-hover:text-body',
                             )}
                           />
                         </div>
@@ -285,9 +291,9 @@ export function DashboardSidebar() {
                                 {item.badge && (
                                   <span
                                     className={cn(
-                                      'px-1.5 py-0.5 rounded-full text-[9px] font-bold border',
+                                      'px-1.5 py-0.5 rounded-none text-[9px] font-bold border',
                                       item.badge.colorClass ||
-                                        'bg-zinc-800 text-zinc-300 border-zinc-700',
+                                        'bg-subtle text-muted border-hairline-light',
                                     )}
                                   >
                                     {item.badge.text}
@@ -297,7 +303,7 @@ export function DashboardSidebar() {
                                 {hasChildren && (
                                   <button
                                     onClick={(e) => toggleSubMenu(item.id, e)}
-                                    className="p-0.5 text-zinc-500 hover:text-zinc-200 transition-colors"
+                                    className="p-0.5 text-muted hover:text-body transition-colors"
                                     aria-label="Toggle sub-menu"
                                   >
                                     <ChevronDown
@@ -330,7 +336,7 @@ export function DashboardSidebar() {
                           className="flex flex-col"
                         >
                           {navButton}
-                          <CollapsibleContent className="flex flex-col gap-1 pl-8 pr-1 pt-1">
+                          <CollapsibleContent className="flex flex-col gap-0.5 pl-8 pr-1 pt-1">
                             {item.children?.map((child) => {
                               const isChildActive = pathname === child.href
                               return (
@@ -338,18 +344,18 @@ export function DashboardSidebar() {
                                   key={child.href}
                                   href={child.href}
                                   className={cn(
-                                    'flex items-center justify-between rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-colors',
+                                    'flex items-center justify-between px-2.5 py-1.5 text-[11px] font-medium transition-colors border-l-2',
                                     isChildActive
-                                      ? 'text-emerald-400 bg-emerald-500/10 font-semibold'
-                                      : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/60',
+                                      ? 'text-accent bg-accent-soft border-l-accent font-semibold'
+                                      : 'text-muted hover:text-body hover:bg-subtle border-l-transparent',
                                   )}
                                 >
                                   <span className="truncate">{child.title}</span>
                                   {child.badge && (
                                     <span
                                       className={cn(
-                                        'px-1.5 py-0.2 rounded text-[8px] font-bold border',
-                                        child.badge.colorClass || 'bg-zinc-800 text-zinc-300',
+                                        'px-1.5 py-0.5 text-[8px] font-bold border',
+                                        child.badge.colorClass || 'bg-subtle text-muted border-hairline-light',
                                       )}
                                     >
                                       {child.badge.text}
@@ -372,7 +378,7 @@ export function DashboardSidebar() {
                             <div className="flex flex-col gap-0.5">
                               <span className="font-semibold">{item.title}</span>
                               {item.description && (
-                                <span className="text-[10px] text-zinc-400">
+                                <span className="text-[10px] text-muted-foreground">
                                   {item.description}
                                 </span>
                               )}
@@ -390,104 +396,8 @@ export function DashboardSidebar() {
           </div>
         </div>
 
-        {/* Bottom Profile & Settings Section with User Preview and Functional Logout */}
-        {/* <div className="shrink-0 p-3 border-t border-zinc-800/80 bg-zinc-950/90 flex flex-col gap-2"> */}
-        {/* User Profile Summary Card */}
-        {/* <div
-            className={cn(
-              'flex items-center gap-3 p-1.5 rounded-xl transition-colors',
-              isExpanded && 'bg-zinc-900/50 border border-zinc-800/60',
-            )}
-          >
-            <Avatar className="size-9 ring-1 ring-zinc-700/80 shrink-0">
-              <AvatarImage
-                src={user?.avatar || user?.avatarUrl || user?.image}
-                alt={user?.name || 'User'}
-              />
-              <AvatarFallback
-                suppressHydrationWarning
-                className="bg-emerald-950 text-emerald-300 font-bold text-xs"
-              >
-                {userInitials}
-              </AvatarFallback>
-            </Avatar>
-
-            <AnimatePresence initial={false}>
-              {isExpanded && (
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -10 }}
-                  transition={{ duration: 0.15 }}
-                  className="flex flex-col min-w-0 flex-1 overflow-hidden"
-                >
-                  <span
-                    suppressHydrationWarning
-                    className="text-xs font-semibold text-zinc-200 truncate"
-                  >
-                    {user?.name || 'User Account'}
-                  </span>
-                  <div className="flex items-center gap-1.5 mt-0.5">
-                    <span
-                      className={cn(
-                        'size-1.5 rounded-full shrink-0 animate-pulse',
-                        roleBadgeColors.dot,
-                      )}
-                    />
-                    <span
-                      suppressHydrationWarning
-                      className={cn('text-[10px] font-medium truncate', roleBadgeColors.text)}
-                    >
-                      {dynamicRoleName}
-                    </span>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div> */}
-
-        {/* Settings & Logout Buttons */}
-        {/* <div className={cn('flex items-center gap-1.5', !isExpanded && 'flex-col')}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  asChild
-                  className={cn(
-                    'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60 cursor-pointer text-xs justify-start',
-                    isExpanded ? 'flex-1 h-8 px-2.5 gap-2' : 'size-9 p-0 justify-center',
-                  )}
-                >
-                  <Link href="/dashboard/settings">
-                    <Settings className="size-4 shrink-0" />
-                    {isExpanded && <span>Settings</span>}
-                  </Link>
-                </Button>
-              </TooltipTrigger>
-              {!isExpanded && <TooltipContent side="right">Settings</TooltipContent>}
-            </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleLogout}
-                  disabled={isLoggingOut}
-                  className={cn(
-                    'text-red-400/80 hover:text-red-300 hover:bg-red-950/30 cursor-pointer text-xs justify-start',
-                    isExpanded ? 'h-8 px-2.5 gap-2' : 'size-9 p-0 justify-center',
-                  )}
-                >
-                  <LogOut className="size-4 shrink-0" />
-                  {isExpanded && <span>Logout</span>}
-                </Button>
-              </TooltipTrigger>
-              {!isExpanded && <TooltipContent side="right">Log Out</TooltipContent>}
-            </Tooltip>
-          </div> */}
-        {/* </div> */}
+        {/* Bottom border accent line — Swiss structural flourish */}
+        <div className="shrink-0 h-1 bg-obsidian" />
       </aside>
     </TooltipProvider>
   )

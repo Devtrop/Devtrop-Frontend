@@ -104,20 +104,20 @@ export function DashboardMobileSidebar() {
     <Sheet open={isMobileOpen} onOpenChange={setMobileOpen}>
       <SheetContent
         side="left"
-        className="w-75 sm:w-87.5 p-0 bg-zinc-950 border-r border-zinc-800 text-zinc-100 flex flex-col"
+        className="w-75 sm:w-87.5 p-0 bg-canvas border-r border-hairline-light text-body flex flex-col"
       >
         {/* Header */}
-        <div className="p-4 border-b border-zinc-800 flex flex-row items-center justify-between">
+        <div className="p-4 border-b border-hairline-light flex flex-row items-center justify-between">
           <div className="flex items-center gap-3">
             <Link
               href="/"
               className="group flex items-center gap-2.5 focus:outline-none shrink-0"
-              aria-label="Rise Together Home"
+              aria-label="Devtrop Home"
             >
               <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-30 md:h-30">
                 <Image
-                  src="/RT_Logo.png"
-                  alt="Logo"
+                  src="/devtrop_logo_transparent_bg_resized.png"
+                  alt="Devtrop"
                   fill
                   sizes="(max-width: 640px) 64px, (max-width: 768px) 96px, 120px"
                   className="object-contain"
@@ -132,32 +132,32 @@ export function DashboardMobileSidebar() {
           <div className="flex flex-col gap-6">
             {authorizedGroups.map((group) => (
               <div key={group.id} className="flex flex-col gap-1.5">
-                <div className="px-2.5 text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+                <div className="px-2.5 text-[10px] font-bold uppercase tracking-wider text-muted">
                   {group.heading}
                 </div>
 
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-0.5">
                   {group.items.map((item) => {
                     const isActive = isItemActive(item)
                     const Icon = item.icon
 
                     return (
-                      <div key={item.id} className="flex flex-col gap-1">
+                      <div key={item.id} className="flex flex-col gap-0.5">
                         <Link
                           href={item.href}
                           onClick={handleNavClick}
                           className={cn(
-                            'flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition-colors',
+                            'flex items-center justify-between px-3 py-2 text-xs font-medium transition-colors border-l-2',
                             isActive
-                              ? 'bg-emerald-500/15 text-emerald-300 font-semibold ring-1 ring-emerald-500/30'
-                              : 'text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100',
+                              ? 'border-l-accent bg-accent-soft text-accent font-semibold'
+                              : 'border-l-transparent text-muted hover:bg-subtle hover:text-body',
                           )}
                         >
                           <div className="flex items-center gap-3">
                             <Icon
                               className={cn(
                                 'size-4',
-                                isActive ? 'text-emerald-400' : 'text-zinc-400',
+                                isActive ? 'text-accent' : 'text-muted',
                               )}
                             />
                             <span>{item.title}</span>
@@ -166,9 +166,9 @@ export function DashboardMobileSidebar() {
                           {item.badge && (
                             <span
                               className={cn(
-                                'px-1.5 py-0.5 rounded-full text-[9px] font-bold border',
+                                'px-1.5 py-0.5 text-[9px] font-bold border',
                                 item.badge.colorClass ||
-                                  'bg-zinc-800 text-zinc-300 border-zinc-700',
+                                  'bg-subtle text-muted border-hairline-light',
                               )}
                             >
                               {item.badge.text}
@@ -178,7 +178,7 @@ export function DashboardMobileSidebar() {
 
                         {/* Render Submenu Children */}
                         {item.children && item.children.length > 0 && (
-                          <div className="flex flex-col gap-1 pl-7 pr-2">
+                          <div className="flex flex-col gap-0.5 pl-7 pr-2">
                             {item.children.map((child) => {
                               const isChildActive = pathname === child.href
                               return (
@@ -187,18 +187,18 @@ export function DashboardMobileSidebar() {
                                   href={child.href}
                                   onClick={handleNavClick}
                                   className={cn(
-                                    'flex items-center justify-between rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-colors',
+                                    'flex items-center justify-between px-2.5 py-1.5 text-[11px] font-medium transition-colors border-l-2',
                                     isChildActive
-                                      ? 'text-emerald-400 bg-emerald-500/10 font-semibold'
-                                      : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/60',
+                                      ? 'text-accent bg-accent-soft border-l-accent font-semibold'
+                                      : 'text-muted hover:text-body hover:bg-subtle border-l-transparent',
                                   )}
                                 >
                                   <span>{child.title}</span>
                                   {child.badge && (
                                     <span
                                       className={cn(
-                                        'px-1.5 py-0.2 rounded text-[8px] font-bold border',
-                                        child.badge.colorClass || 'bg-zinc-800 text-zinc-300',
+                                        'px-1.5 py-0.5 text-[8px] font-bold border',
+                                        child.badge.colorClass || 'bg-subtle text-muted border-hairline-light',
                                       )}
                                     >
                                       {child.badge.text}
@@ -218,56 +218,8 @@ export function DashboardMobileSidebar() {
           </div>
         </ScrollArea>
 
-        {/* Footer Profile & Logout */}
-        {/* <div className="p-4 border-t border-zinc-800 bg-zinc-950 flex flex-col gap-3">
-          <div className="flex items-center gap-3">
-            <Avatar className="size-10 ring-1 ring-zinc-700">
-              <AvatarImage
-                src={user?.avatar || user?.avatarUrl || user?.image}
-                alt={user?.name || 'User'}
-              />
-              <AvatarFallback
-                suppressHydrationWarning
-                className="bg-emerald-950 text-emerald-300 font-bold text-xs"
-              >
-                {userInitials}
-              </AvatarFallback>
-            </Avatar>
-
-            <div className="flex flex-col min-w-0 flex-1">
-              <span
-                suppressHydrationWarning
-                className="text-xs font-semibold text-zinc-200 truncate"
-              >
-                {user?.name || 'User Account'}
-              </span>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <span
-                  className={cn(
-                    'size-1.5 rounded-full shrink-0 animate-pulse',
-                    roleBadgeColors.dot,
-                  )}
-                />
-                <span
-                  suppressHydrationWarning
-                  className={cn('text-[10px] font-medium truncate', roleBadgeColors.text)}
-                >
-                  {dynamicRoleName}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleLogout}
-            className="w-full text-red-400 border-red-500/30 hover:bg-red-950/20 hover:text-red-300 gap-2 cursor-pointer"
-          >
-            <LogOut className="size-4" />
-            Sign Out
-          </Button>
-        </div> */}
+        {/* Bottom accent bar — Swiss structural flourish */}
+        <div className="shrink-0 h-1 bg-obsidian" />
       </SheetContent>
     </Sheet>
   )

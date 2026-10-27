@@ -83,40 +83,64 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Shadcn CSS custom properties — dashboard dark theme */
+/* ═══════════════════════════════════════════════════════════════
+   SHADCN CSS custom properties — Devtrop Swiss Light theme
+   Canvas: white  |  Ink: black  |  Accent: #ff3000 Swiss Red
+   ═══════════════════════════════════════════════════════════════ */
 :root {
-  --background: oklch(0.02 0 0);
-  --foreground: oklch(0.97 0.01 150);
-  --card: oklch(0.055 0.01 150);
-  --card-foreground: oklch(0.97 0.01 150);
-  --popover: oklch(0.055 0.01 150);
-  --popover-foreground: oklch(0.97 0.01 150);
-  --primary: oklch(0.527 0.154 150.069);
-  --primary-foreground: oklch(0.12 0.02 150);
-  --secondary: oklch(0.12 0.01 150);
-  --secondary-foreground: oklch(0.97 0.01 150);
-  --muted: oklch(0.12 0.01 150);
-  --muted-foreground: oklch(0.65 0.02 150);
-  --accent: oklch(0.12 0.02 150);
-  --accent-foreground: oklch(0.97 0.01 150);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.18 0.01 150);
-  --input: oklch(0.18 0.01 150);
-  --ring: oklch(0.527 0.154 150.069);
-  --chart-1: oklch(0.527 0.154 150.069);
-  --chart-2: oklch(0.715 0.143 150);
-  --chart-3: oklch(0.609 0.126 150);
-  --chart-4: oklch(0.52 0.105 150);
-  --chart-5: oklch(0.45 0.085 150);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.04 0.01 150);
-  --sidebar-foreground: oklch(0.97 0.01 150);
-  --sidebar-primary: oklch(0.627 0.194 149.214);
-  --sidebar-primary-foreground: oklch(0.982 0.018 155.826);
-  --sidebar-accent: oklch(0.12 0.02 150);
-  --sidebar-accent-foreground: oklch(0.97 0.01 150);
-  --sidebar-border: oklch(0.18 0.01 150);
-  --sidebar-ring: oklch(0.527 0.154 150.069);
+  /* Surfaces */
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+
+  /* Primary = Swiss Red accent */
+  --primary: #ff3000;
+  --primary-foreground: #ffffff;
+
+  /* Secondary = near-white canvas tint */
+  --secondary: #f2f2f2;
+  --secondary-foreground: #1a1a1a;
+
+  /* Muted = light grey fill */
+  --muted: #f2f2f2;
+  --muted-foreground: #666666;
+
+  /* Accent = subtle red tint surface */
+  --accent: #fff5f2;
+  --accent-foreground: #ff3000;
+
+  /* Destructive */
+  --destructive: #ff3000;
+
+  /* Borders — hairline black system */
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #ff3000;
+
+  /* Charts — Swiss Red spectrum */
+  --chart-1: #ff3000;
+  --chart-2: #ff6633;
+  --chart-3: #cc2600;
+  --chart-4: #ff9966;
+  --chart-5: #991a00;
+
+  /* Border radius — minimal, Swiss-precise */
+  --radius: 0.25rem;
+
+  /* Sidebar — pure white with black borders */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #ff3000;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #fff5f2;
+  --sidebar-accent-foreground: #ff3000;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #ff3000;
 }
 
 /* ═══════════════════════════════════════════════════════════════

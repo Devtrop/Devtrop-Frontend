@@ -19,7 +19,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
 
   if (isDocumentViewer) {
     return (
-      <div className="fixed inset-0 z-50 h-screen w-screen bg-zinc-950 overflow-hidden flex flex-col">
+      <div className="fixed inset-0 z-50 h-screen w-screen bg-canvas overflow-hidden flex flex-col">
         {children}
       </div>
     )

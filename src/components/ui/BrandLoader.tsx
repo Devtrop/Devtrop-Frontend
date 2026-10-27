@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 export interface BrandLoaderProps {
   /** Size variant: sm (cards/modals), md (sections/guards), lg (pages/routes), xl (hero) */
   size?: 'sm' | 'md' | 'lg' | 'xl'
-  /** Occupies full viewport height with OLED black background */
+  /** Occupies full viewport height with white canvas background */
   fullScreen?: boolean
   /** Optional status message underneath */
   message?: string
@@ -60,50 +60,50 @@ export function BrandLoader({
       aria-label="Loading..."
       role="status"
     >
-      {/* 1. Ambient Core Glow */}
+      {/* 1. Ambient Core Glow — Swiss Red */}
       <motion.div
-        animate={{ scale: [0.9, 1.2, 0.9], opacity: [0.3, 0.6, 0.3] }}
+        animate={{ scale: [0.9, 1.2, 0.9], opacity: [0.15, 0.35, 0.15] }}
         transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
         className={cn(
-          'absolute rounded-full bg-emerald-400/25 blur-3xl pointer-events-none',
+          'absolute rounded-full bg-accent/20 blur-3xl pointer-events-none',
           config.blur,
         )}
       />
 
-      {/* 2. Orbit 1: Clockwise Tilted Ellipse */}
+      {/* 2. Orbit 1: Clockwise — Swiss Red border */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 6, ease: 'linear' }}
         className={cn(
-          'absolute rounded-full border border-emerald-500/30 border-t-emerald-300 shadow-[0_0_15px_rgba(39,255,150,0.3)] -rotate-12',
+          'absolute rounded-full border border-accent/20 border-t-accent -rotate-12',
           config.orbit,
         )}
       />
 
-      {/* 3. Orbit 2: Counter-Clockwise Opposing Tilted Ellipse */}
+      {/* 3. Orbit 2: Counter-Clockwise — Obsidian black border */}
       <motion.div
         animate={{ rotate: -360 }}
         transition={{ repeat: Infinity, duration: 4.5, ease: 'linear' }}
         className={cn(
-          'absolute rounded-full border border-teal-400/30 border-b-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.3)] rotate-45',
+          'absolute rounded-full border border-obsidian/15 border-b-obsidian rotate-45',
           config.orbit,
         )}
       />
 
-      {/* 4. Floating Pure Logo Emblem */}
+      {/* 4. Floating Devtrop Logo */}
       <motion.div
         animate={{ scale: [0.94, 1.06, 0.94] }}
         transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
         className="relative z-10 flex items-center justify-center"
       >
         <Image
-          src="/RT_Logo.png"
-          alt="RiseTogether"
+          src="/devtrop_logo_transparent_bg_resized.png"
+          alt="Devtrop"
           width={config.logo}
           height={config.logo}
           priority
           style={{ width: 'auto', height: 'auto' }}
-          className="w-auto h-auto object-contain drop-shadow-[0_0_18px_rgba(39,255,150,0.7)]"
+          className="w-auto h-auto object-contain"
         />
       </motion.div>
     </div>
@@ -113,13 +113,13 @@ export function BrandLoader({
     return (
       <div
         className={cn(
-          'min-h-[calc(100vh-80px)] w-full flex flex-col items-center justify-center p-6 bg-black text-center animate-in fade-in duration-300',
+          'min-h-[calc(100vh-80px)] w-full flex flex-col items-center justify-center p-6 bg-canvas text-center animate-in fade-in duration-300',
           className,
         )}
       >
         {loaderVisual}
         {message && (
-          <p className="mt-4 text-xs font-mono tracking-wider text-emerald-400/90 uppercase animate-pulse">
+          <p className="mt-4 text-xs font-mono tracking-[0.15em] text-muted uppercase animate-pulse">
             {message}
           </p>
         )}
@@ -131,7 +131,7 @@ export function BrandLoader({
     <div className={cn('flex flex-col items-center justify-center p-4 text-center', className)}>
       {loaderVisual}
       {message && (
-        <p className="mt-3 text-xs font-mono tracking-wider text-emerald-400/80 uppercase">
+        <p className="mt-3 text-xs font-mono tracking-[0.15em] text-muted uppercase">
           {message}
         </p>
       )}
