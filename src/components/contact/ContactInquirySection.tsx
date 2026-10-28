@@ -59,13 +59,7 @@ function SocialPlatformIcon({
   }
 }
 
-export function ContactInquirySection({
-  email,
-  whatsapp,
-}: {
-  email?: string
-  whatsapp?: string
-}) {
+export function ContactInquirySection({ email, whatsapp }: { email?: string; whatsapp?: string }) {
   const { headline, subhead } = CONTACT_PAGE_CONTENT.inquiry
   const { cards: directCards } = CONTACT_PAGE_CONTENT.directContact
   const { items: socialItems } = CONTACT_PAGE_CONTENT.social
@@ -76,12 +70,14 @@ export function ContactInquirySection({
   const locationCard = directCards.find((c) => c.label === 'LOCATION')
 
   // Override with server-injected real values when provided
-  const emailCard = rawEmailCard && email
-    ? { ...rawEmailCard, title: email, href: `mailto:${email}` }
-    : rawEmailCard
-  const phoneCard = rawPhoneCard && whatsapp
-    ? { ...rawPhoneCard, title: whatsapp, href: `https://wa.me/${whatsapp}` }
-    : rawPhoneCard
+  const emailCard =
+    rawEmailCard && email
+      ? { ...rawEmailCard, title: email, href: `mailto:${email}` }
+      : rawEmailCard
+  const phoneCard =
+    rawPhoneCard && whatsapp
+      ? { ...rawPhoneCard, title: whatsapp, href: `https://wa.me/${whatsapp}` }
+      : rawPhoneCard
 
   // Form State
   const [fullName, setFullName] = useState('')
@@ -165,7 +161,7 @@ export function ContactInquirySection({
                       </span>
                     </div>
                   </div>
-                  <ArrowUpRight className="h-5 w-5 shrink-0 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all ml-2" />
+                  <ArrowUpRight className="h-4 w-5 shrink-0 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all ml-2" />
                 </a>
               )}
 
@@ -197,7 +193,7 @@ export function ContactInquirySection({
                       </span>
                     </div>
                   </div>
-                  <ArrowUpRight className="h-4 w-4 shrink-0 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all ml-2" />
+                  <ArrowUpRight className="h-4 w-5 shrink-0 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all ml-2" />
                 </a>
               )}
 
