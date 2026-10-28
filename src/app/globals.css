@@ -44,7 +44,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -148,7 +148,7 @@
    ═══════════════════════════════════════════════════════════════ */
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   /* Always reserve scrollbar gutter so its appearance/disappearance never
      shifts the layout width — eliminates the horizontal border blink on
      page transitions caused by CLS from the scrollbar toggling. */

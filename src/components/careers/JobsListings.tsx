@@ -35,7 +35,7 @@ export function JobsListings() {
       <SectionContainer className="py-20 lg:py-28">
         {/* Section heading */}
         <div className="mb-12">
-          <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tighter text-display">
+          <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter text-display">
             Open Positions
           </h2>
           <p className="mt-3 text-sm text-muted max-w-2xl">

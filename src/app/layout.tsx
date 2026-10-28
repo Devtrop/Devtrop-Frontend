@@ -220,7 +220,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={`${inter.variable} h-full`} data-scroll-behavior="smooth">
+    <html lang="en" className={`${inter.variable} h-full`}>
       <head>
         <script
           type="application/ld+json"
