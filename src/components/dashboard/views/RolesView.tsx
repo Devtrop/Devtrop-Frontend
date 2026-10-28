@@ -1200,7 +1200,7 @@ function PermissionsPanel({
             Loading permissions from server...
           </div>
         ) : (
-          <ScrollArea data-lenis-prevent="true" className="flex-1 min-h-0 h-full w-full">
+          <ScrollArea className="flex-1 min-h-0 h-full w-full">
             <div className="flex flex-col gap-4 sm:gap-5 px-3 sm:px-5 py-3 sm:py-4 pr-3 sm:pr-5">
               {displayedSections.map((section) => {
                 const sectionColorMap: Record<

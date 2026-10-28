@@ -12,13 +12,11 @@ function ScrollArea({
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area"
-      data-lenis-prevent="true"
       className={cn('relative overflow-hidden', className)}
       {...props}
     >
       <ScrollAreaPrimitive.Viewport
         data-slot="scroll-area-viewport"
-        data-lenis-prevent="true"
         className="size-full rounded-[inherit] outline-none overscroll-contain [&>div]:!block [&>div]:!min-w-full"
       >
         {children}
@@ -37,7 +35,6 @@ function ScrollBar({
   return (
     <ScrollAreaPrimitive.ScrollAreaScrollbar
       data-slot="scroll-area-scrollbar"
-      data-lenis-prevent="true"
       orientation={orientation}
       className={cn(
         'flex touch-none p-0.5 select-none transition-colors duration-150 ease-out',
