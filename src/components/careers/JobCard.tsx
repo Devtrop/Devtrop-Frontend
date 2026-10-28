@@ -33,7 +33,7 @@ export function JobCard({ job }: JobCardProps) {
             {job.experience && (
               <div className="flex items-center gap-1.5">
                 <Briefcase className="size-3.5 shrink-0" />
-                <span>{job.experience}</span>
+                <span>Experience: {job.experience}</span>
               </div>
             )}
             {job.deadline && (
@@ -54,7 +54,7 @@ export function JobCard({ job }: JobCardProps) {
           {/* Salary */}
           {job.salaryRange && (
             <div className="mt-3 inline-flex items-center border-2 border-display px-3 py-1 text-xs font-bold uppercase tracking-wider text-display">
-              {job.salaryRange}
+              Salary: {job.salaryRange}
             </div>
           )}
         </div>

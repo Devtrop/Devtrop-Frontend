@@ -191,11 +191,12 @@ export async function applyForJob(jobId: string, payload: ApplyJobPayload | Form
     formData.append('email', payload.email.trim().toLowerCase())
     formData.append('phone', payload.phone.trim())
 
-    const tokenOrOtp = (payload.verificationToken || payload.otp || '').trim()
-    if (tokenOrOtp) {
-      formData.append('verificationToken', tokenOrOtp)
-      formData.append('otp', tokenOrOtp)
-    }
+    // Removed verificationToken requirement - now verified after submission
+    // const tokenOrOtp = (payload.verificationToken || payload.otp || '').trim()
+    // if (tokenOrOtp) {
+    //   formData.append('verificationToken', tokenOrOtp)
+    //   formData.append('otp', tokenOrOtp)
+    // }
 
     formData.append('github', payload.github.trim())
     formData.append('portfolio', payload.portfolio.trim())
@@ -216,6 +217,59 @@ export async function applyForJob(jobId: string, payload: ApplyJobPayload | Form
     }
     throw err
   }
+}
+
+/**
+ * Verify application using OTP sent after submission
+ * POST /api/v1/applications/verify-application
+ */
+export interface VerifyApplicationPayload {
+  applicationId: string
+  email: string
+  otp: string
+}
+
+export interface VerifyApplicationResponse {
+  success?: boolean
+  verified?: boolean
+  message?: string
+  applicationCode?: string
+  status?: string
+  appliedAt?: string
+}
+
+export async function verifyApplication(
+  payload: VerifyApplicationPayload,
+): Promise<VerifyApplicationResponse> {
+  return await api.post<VerifyApplicationResponse>('/applications/verify-application', {
+    applicationId: payload.applicationId,
+    email: payload.email.trim().toLowerCase(),
+    otp: payload.otp.trim(),
+  })
+}
+
+/**
+ * Resend verification OTP for pending application
+ * POST /api/v1/applications/resend-verification-otp
+ */
+export interface ResendVerificationOtpPayload {
+  applicationId: string
+  email: string
+}
+
+export interface ResendVerificationOtpResponse {
+  success?: boolean
+  message?: string
+  expiresInMinutes?: number
+}
+
+export async function resendVerificationOtp(
+  payload: ResendVerificationOtpPayload,
+): Promise<ResendVerificationOtpResponse> {
+  return await api.post<ResendVerificationOtpResponse>('/applications/resend-verification-otp', {
+    applicationId: payload.applicationId,
+    email: payload.email.trim().toLowerCase(),
+  })
 }
 
 export interface GetJobApplicationsParams {

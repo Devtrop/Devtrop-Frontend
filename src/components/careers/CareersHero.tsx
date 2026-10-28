@@ -19,17 +19,9 @@ export function CareersHero() {
             </span>
           </div>
 
-          {/* Massive Typography */}
-          <h1 className="flex flex-col">
-            <span className="block font-black uppercase leading-[0.85] tracking-tighter text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-display">
-              Build
-            </span>
-            <span className="block font-black uppercase leading-[0.85] tracking-tighter text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-accent">
-              Software
-            </span>
-            <span className="block font-black uppercase leading-[0.85] tracking-tighter text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-display">
-              That Matters
-            </span>
+          {/* Main Heading */}
+          <h1 className="font-black uppercase leading-[0.95] tracking-tighter text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-display">
+            Join Our Team
           </h1>
 
           {/* Subhead */}

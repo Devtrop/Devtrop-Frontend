@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { PageShell } from '@/components/shared/layout/PageShell'
-import { CareersHero } from '@/components/careers/CareersHero'
 import { JobsListings } from '@/components/careers/JobsListings'
 
 export const metadata: Metadata = {
@@ -30,7 +29,6 @@ export const metadata: Metadata = {
 export default function CareersPage() {
   return (
     <PageShell>
-      <CareersHero />
       <JobsListings />
     </PageShell>
   )
