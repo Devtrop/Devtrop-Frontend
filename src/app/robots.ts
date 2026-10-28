@@ -22,7 +22,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: [
           "/api/",     // Never index API routes
-          "/auth/",    // Sign-in flows are not search results
         ],
       },
     ],

@@ -3,25 +3,25 @@
  *
  * Server-side environment variable validation using Zod.
  * Imported by server components and lib utilities only.
- * Provides defaults for optional variables to prevent build failures.
+ * Throws at startup if any required variable is missing or malformed —
+ * catching misconfiguration at build time rather than runtime.
  */
 import { z } from "zod";
 
 const envSchema = z.object({
   // Contact
-  GMAIL_INFO: z.string().email("GMAIL_INFO must be a valid email address").default("hello@devtrop.com"),
+  GMAIL_INFO: z.string().email("GMAIL_INFO must be a valid email address"),
   WHATSAPP: z
     .string()
     .min(7, "WHATSAPP must be a valid phone number (digits only, no +)")
-    .regex(/^\d+$/, "WHATSAPP must contain only digits (no + or spaces)")
-    .default("8801897208737"),
+    .regex(/^\d+$/, "WHATSAPP must contain only digits (no + or spaces)"),
 
   // WhatsApp pre-filled messages
-  WHATSAPP_MSG_DEFAULT: z.string().min(1).default("Hi, I'd like to discuss a project with Devtrop."),
-  WHATSAPP_MSG_DISCOVERY: z.string().min(1).default("Hi, I'd like to book a 30-minute discovery call with Devtrop to discuss my project."),
-  WHATSAPP_MSG_SQUAD: z.string().min(1).default("Hi, I'm interested in the Dedicated Engineering Squad plan. I'd like to discuss deploying a squad for my project."),
-  WHATSAPP_MSG_MILESTONE: z.string().min(1).default("Hi, I'm interested in the Fixed-Scope Milestone Build. I'd like to scope out an MVP project with Devtrop."),
-  WHATSAPP_MSG_AUDIT: z.string().min(1).default("Hi, I'm interested in the 2-Week Architecture & Code Audit. I'd like to request an audit for my codebase."),
+  WHATSAPP_MSG_DEFAULT: z.string().min(1),
+  WHATSAPP_MSG_DISCOVERY: z.string().min(1),
+  WHATSAPP_MSG_SQUAD: z.string().min(1),
+  WHATSAPP_MSG_MILESTONE: z.string().min(1),
+  WHATSAPP_MSG_AUDIT: z.string().min(1),
   WHATSAPP_MSG_BOOK_A_CALL: z
     .string()
     .min(1)
@@ -31,12 +31,10 @@ const envSchema = z.object({
 function validateEnv() {
   const result = envSchema.safeParse(process.env);
   if (!result.success) {
-    console.warn("⚠️  Some environment variables are missing, using defaults:");
-    result.error.issues.forEach((issue) => {
-      console.warn(`  • ${issue.path.join(".")}: ${issue.message}`);
-    });
-    // Return parsed data with defaults
-    return envSchema.parse({});
+    const formatted = result.error.issues
+      .map((i) => `  • ${i.path.join(".")}: ${i.message}`)
+      .join("\n");
+    throw new Error(`\n\n❌ Invalid environment variables:\n${formatted}\n`);
   }
   return result.data;
 }
