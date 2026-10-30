@@ -1,7 +1,7 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "../styles/tiptap.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '../styles/tiptap.css';
 
 /* ═══════════════════════════════════════════════════════════════
    DEVTROP — Swiss International Typographic Style
@@ -165,7 +165,12 @@ div[id] {
 body {
   background-color: var(--color-canvas);
   color: var(--color-body);
-  font-family: var(--font-sans), "Inter", system-ui, -apple-system, sans-serif;
+  font-family:
+    var(--font-sans),
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
   min-height: 100vh;
 }
 
@@ -189,11 +194,7 @@ body {
 
 /* Radial dot matrix — print technique homage */
 .swiss-dots {
-  background-image: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 0.06) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
   background-size: 16px 16px;
 }
 
@@ -214,7 +215,7 @@ body {
 }
 
 .swiss-noise::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   opacity: 0.02;
@@ -241,8 +242,12 @@ body {
    ═══════════════════════════════════════════════════════════════ */
 
 @keyframes page-enter {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 main > * {
@@ -261,5 +266,35 @@ main > * {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Medium-large balanced Calendly modal */
+.calendly-overlay .calendly-popup {
+  width: 100vw !important;
+  max-width: 1400px !important; /* Balanced width for date + time side-by-side view */
+  height: 100vh !important;
+  max-height: 700px !important; /* Slightly taller for easy scrolling */
+}
+
+.calendly-overlay .calendly-popup-content {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+}
+
+.calendly-overlay iframe {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+}
+
+/* Mobile responsive fallback */
+@media (max-width: 640px) {
+  .calendly-overlay .calendly-popup {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
   }
 }
