@@ -165,7 +165,7 @@ function ProfileTab() {
             <Label className="text-xs">Email Address</Label>
             <div className="text-xs text-muted-foreground px-3 py-2 rounded-none border border-border/60 bg-muted/20">
               {user?.email}
-              <span className="ml-2 text-[10px] text-amber-400">
+              <span className="ml-2 text-[10px] text-accent">
                 (change email in the Email tab)
               </span>
             </div>
@@ -193,7 +193,7 @@ function ProfileTab() {
               type="submit"
               size="sm"
               disabled={isSaving}
-              className="gap-2 bg-accent hover:bg-accent text-white cursor-pointer"
+              className="gap-2 bg-accent hover:bg-accent-hover text-white cursor-pointer"
             >
               {isSaving ? (
                 <>
@@ -400,7 +400,7 @@ function AvatarTab() {
                   size="sm"
                   disabled={isUploading}
                   onClick={handleUpload}
-                  className="gap-2 bg-accent hover:bg-accent text-white cursor-pointer"
+                  className="gap-2 bg-accent hover:bg-accent-hover text-white cursor-pointer"
                 >
                   {isUploading ? (
                     <>
@@ -497,7 +497,7 @@ function SecurityTab() {
       <CardContent>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-lg">
           {error && (
-            <div className="flex items-center gap-2 rounded-none border border-red-500/30 bg-red-950/20 px-3 py-2 text-xs text-red-400">
+            <div className="flex items-center gap-2 rounded-none border border-accent bg-accent-soft/20 px-3 py-2 text-xs text-accent">
               <AlertCircle className="size-3.5 shrink-0" />
               {error}
             </div>
@@ -578,7 +578,7 @@ function SecurityTab() {
               type="submit"
               size="sm"
               disabled={isSaving}
-              className="gap-2 bg-accent hover:bg-accent text-white cursor-pointer"
+              className="gap-2 bg-accent hover:bg-accent-hover text-white cursor-pointer"
             >
               {isSaving ? (
                 <>
@@ -682,7 +682,7 @@ function EmailTab() {
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {error && (
-              <div className="flex items-center gap-2 rounded-none border border-red-500/30 bg-red-950/20 px-3 py-2 text-xs text-red-400">
+              <div className="flex items-center gap-2 rounded-none border border-accent bg-accent-soft/20 px-3 py-2 text-xs text-accent">
                 <AlertCircle className="size-3.5 shrink-0" />
                 {error}
               </div>
@@ -705,7 +705,7 @@ function EmailTab() {
                 type="submit"
                 size="sm"
                 disabled={isSaving}
-                className="gap-2 bg-accent hover:bg-accent text-white cursor-pointer"
+                className="gap-2 bg-accent hover:bg-accent-hover text-white cursor-pointer"
               >
                 {isSaving ? (
                   <>

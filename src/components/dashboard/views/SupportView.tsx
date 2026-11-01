@@ -48,7 +48,7 @@ export function SupportView() {
           <Card className="border-border/80 bg-card/60">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-bold text-foreground flex items-center gap-2">
-                <MessageSquare className="size-4 text-sky-400" />
+                <MessageSquare className="size-4 text-accent" />
                 Live Discord / Community
               </CardTitle>
               <CardDescription className="text-xs">

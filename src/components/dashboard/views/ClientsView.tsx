@@ -477,8 +477,8 @@ export function ClientsView() {
 
           <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-amber-500/10">
-                <EyeOff className="size-4 sm:size-5 text-amber-600 dark:text-amber-400" />
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-subtle">
+                <EyeOff className="size-4 sm:size-5 text-muted dark:text-muted" />
               </div>
               <div className="min-w-0">
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
@@ -548,7 +548,7 @@ export function ClientsView() {
                         </TableCell>
                         <TableCell className="px-4 py-3">
                           {client.isHidden ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-500/10 text-amber-600">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-subtle text-muted">
                               <EyeOff className="size-3" />
                               Hidden
                             </span>
@@ -634,7 +634,7 @@ export function ClientsView() {
                           #{client.order}
                         </span>
                         {client.isHidden ? (
-                          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-amber-500/10 text-amber-600">
+                          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-subtle text-muted">
                             <EyeOff className="size-3" />
                             Hidden
                           </span>

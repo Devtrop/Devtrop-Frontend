@@ -546,7 +546,7 @@ function RoleFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm bg-canvas border-hairline-light text-muted">
+      <DialogContent className="max-w-sm bg-canvas border-hairline-light">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2">
             <Shield className="size-4 text-accent" />
@@ -561,7 +561,7 @@ function RoleFormDialog({
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-1">
           {error && (
-            <div className="flex items-center gap-2 rounded-none border border-red-500/30 bg-red-950/20 px-3 py-2 text-xs text-red-400">
+            <div className="flex items-center gap-2 rounded-none border border-accent bg-accent-soft/20 px-3 py-2 text-xs text-accent">
               <AlertTriangle className="size-3.5 shrink-0" />
               {error}
             </div>
@@ -605,7 +605,7 @@ function RoleFormDialog({
               type="submit"
               size="sm"
               disabled={isSaving}
-              className="bg-accent-soft hover:bg-accent-soft text-white cursor-pointer gap-2"
+              className="bg-accent hover:bg-accent-hover text-white cursor-pointer gap-2"
             >
               {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
               {isEditing ? 'Save Changes' : 'Create Role'}
@@ -644,7 +644,7 @@ function DeleteRoleDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm bg-canvas border-hairline-light text-muted">
+      <DialogContent className="max-w-sm bg-canvas border-hairline-light">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2">
             <AlertTriangle className="size-4 text-red-400" />
@@ -669,16 +669,16 @@ function DeleteRoleDialog({
           >
             Cancel
           </Button>
-          <Button
-            type="button"
-            size="sm"
-            disabled={isSaving}
-            onClick={handleConfirm}
-            className="bg-red-600 hover:bg-red-500 text-white cursor-pointer gap-2"
-          >
-            {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
-            Delete Role
-          </Button>
+            <Button
+              type="button"
+              size="sm"
+              disabled={isSaving}
+              onClick={handleConfirm}
+              className="bg-accent hover:bg-accent-hover text-white cursor-pointer gap-2"
+            >
+              {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
+              Delete Role
+            </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -1124,11 +1124,11 @@ function PermissionsPanel({
                 setSectionFilter(val)
               }}
             >
-              <SelectTrigger className="h-7 text-[11px] bg-subtle/60 border-hairline-light text-muted flex-1 min-w-0">
-                <Filter className="size-3 mr-1 text-muted shrink-0" />
+              <SelectTrigger className="h-7 text-[11px] bg-canvas border-hairline-light text-body flex-1 min-w-0">
+                <Filter className="size-3 mr-1 text-body shrink-0" />
                 <SelectValue placeholder="All Sections" />
               </SelectTrigger>
-              <SelectContent className="bg-subtle border-hairline-light text-muted max-h-64">
+              <SelectContent className="bg-canvas border-hairline-light text-body max-h-64">
                 <SelectItem value="all" className="text-xs font-medium">
                   All Sections (1 - 4)
                 </SelectItem>
@@ -1154,11 +1154,11 @@ function PermissionsPanel({
                 setPage(1)
               }}
             >
-              <SelectTrigger className="h-7 text-[11px] bg-subtle/60 border-hairline-light text-muted w-full sm:w-36 shrink-0">
-                <ArrowUpDown className="size-3 mr-1 text-muted shrink-0" />
+              <SelectTrigger className="h-7 text-[11px] bg-canvas border-hairline-light text-body w-full sm:w-36 shrink-0">
+                <ArrowUpDown className="size-3 mr-1 text-body shrink-0" />
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-subtle border-hairline-light text-muted">
+              <SelectContent className="bg-canvas border-hairline-light text-body">
                 <SelectItem value="asc" className="text-xs">
                   Name (A → Z)
                 </SelectItem>
@@ -1214,28 +1214,28 @@ function PermissionsPanel({
                     dot: 'bg-accent',
                   },
                   2: {
-                    bg: 'bg-sky-500/10',
-                    border: 'border-sky-500/30',
-                    text: 'text-sky-300',
-                    dot: 'bg-sky-400',
+                    bg: 'bg-accent-soft/10',
+                    border: 'border-accent',
+                    text: 'text-accent',
+                    dot: 'bg-accent',
                   },
                   3: {
-                    bg: 'bg-amber-500/10',
-                    border: 'border-amber-500/30',
-                    text: 'text-amber-300',
-                    dot: 'bg-amber-400',
+                    bg: 'bg-accent-soft/10',
+                    border: 'border-accent',
+                    text: 'text-accent',
+                    dot: 'bg-accent',
                   },
                   4: {
                     bg: 'bg-accent-soft/10',
-                    border: 'border-purple-500/30',
+                    border: 'border-accent',
                     text: 'text-accent',
-                    dot: 'bg-accent-soft',
+                    dot: 'bg-accent',
                   },
                   5: {
-                    bg: 'bg-zinc-500/10',
-                    border: 'border-hairline-light/30',
+                    bg: 'bg-subtle',
+                    border: 'border-hairline-light',
                     text: 'text-muted',
-                    dot: 'bg-zinc-400',
+                    dot: 'bg-muted',
                   },
                 }
                 const color = sectionColorMap[section.number] || sectionColorMap[4]
@@ -1340,15 +1340,15 @@ function PermissionsPanel({
                                     className={cn(
                                       'flex items-start gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-none border transition-colors cursor-pointer',
                                       isChecked
-                                        ? 'border-purple-500/40 bg-accent-soft/10'
-                                        : 'border-hairline-light/60 bg-subtle/30 hover:bg-muted/40',
+                                      ? 'border-accent bg-accent-soft'
+                                      : 'border-hairline-light/60 bg-subtle/30 hover:bg-muted/40',
                                     )}
                                     onClick={() => togglePermission(perm)}
                                   >
                                     <Checkbox
                                       checked={isChecked}
                                       onCheckedChange={() => togglePermission(perm)}
-                                      className="mt-0.5 shrink-0 border-hairline-light data-[state=checked]:bg-accent-soft data-[state=checked]:border-purple-600"
+                                      className="mt-0.5 shrink-0 border-hairline-light data-[state=checked]:bg-accent-soft data-[state=checked]:border-accent"
                                     />
                                     <div className="flex flex-col gap-0.5 min-w-0 flex-1">
                                       <div className="flex items-center justify-between gap-2">
@@ -1365,7 +1365,7 @@ function PermissionsPanel({
                                         {isChecked && (
                                           <Badge
                                             variant="outline"
-                                            className="text-[9px] h-4 px-1.5 py-0 shrink-0 bg-accent-soft/20 text-accent border-purple-500/30"
+                                            className="text-[9px] h-4 px-1.5 py-0 shrink-0 bg-accent-soft/20 text-accent border-accent"
                                           >
                                             Assigned
                                           </Badge>
@@ -1672,7 +1672,7 @@ export function RolesView() {
               return (
                 <Card
                   key={role.id}
-                  className="border-border/80 bg-card/60 flex flex-col gap-0 overflow-hidden hover:border-purple-500/40 transition-colors"
+                  className="border-border/80 bg-card/60 flex flex-col gap-0 overflow-hidden hover:border-accent/40 transition-colors"
                 >
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between gap-2">
@@ -1690,7 +1690,7 @@ export function RolesView() {
                       {permCount !== null && (
                         <Badge
                           variant="outline"
-                          className="text-[9px] shrink-0 bg-accent-soft/10 text-accent border-purple-500/30"
+                          className="text-[9px] shrink-0 bg-accent-soft/10 text-accent border-accent"
                         >
                           {permCount} perm{permCount !== 1 ? 's' : ''}
                         </Badge>
