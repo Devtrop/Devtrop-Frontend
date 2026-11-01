@@ -149,35 +149,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = useCallback(async (): Promise<void> => {
     try {
-      // Call backend logout to clear HTTP-only cookies
-      await fetch('/api/v1/auth/logout', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem(AUTH_TOKEN_KEY)}`,
-        },
-      }).catch(() => {
-        // ignore errors
-      })
+      await api.logout()
     } catch {
-      // ignore
+      // ignore logout errors
     }
-    lastFetchedTokenRef.current = null
-    localStorage.removeItem(AUTH_TOKEN_KEY)
+
     localStorage.removeItem('dt_auth_refresh_token')
     localStorage.removeItem('rt_refresh_token')
     localStorage.removeItem('refresh_token')
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('token')
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem(AUTH_USER_KEY)
-
-    // Clear all cookies by setting them to expire
-    document.cookie.split(';').forEach((c) => {
-      document.cookie = c
-        .replace(/^ +/, '')
-        .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`)
-    })
 
     notifyAuthChange()
   }, [])
