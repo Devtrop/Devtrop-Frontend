@@ -70,7 +70,7 @@ export function CalendlyModal({ url, onClose }: CalendlyModalProps) {
     /* Backdrop */
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 lg:p-0"
+      className="fixed inset-0 z-200 flex items-center justify-center p-4 sm:p-6 lg:p-0"
       style={{ background: 'rgba(0,0,0,0.65)' }}
       onClick={(e) => {
         if (e.target === overlayRef.current) onClose()
@@ -98,7 +98,7 @@ export function CalendlyModal({ url, onClose }: CalendlyModalProps) {
         {/* Calendly inline widget */}
         <div
           ref={containerRef}
-          className="flex-1 min-h-0 overflow-hidden [&>div]:!h-full [&>div]:!w-full [&>div]:!m-0 [&>div]:!p-0 [&_iframe]:!w-full [&_iframe]:!h-full [&_iframe]:!min-w-0 [&_iframe]:!min-h-0 [&_iframe]:!m-0 [&_iframe]:!p-0 [&_iframe]:!border-0"
+          className="flex-1 min-h-0 overflow-hidden [&>div]:h-full! [&>div]:w-full! [&>div]:m-0! [&>div]:p-0! [&_iframe]:w-full! [&_iframe]:h-full! [&_iframe]:min-w-0! [&_iframe]:min-h-0! [&_iframe]:m-0! [&_iframe]:p-0! [&_iframe]:border-0!"
         />
       </div>
     </div>

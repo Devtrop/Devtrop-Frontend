@@ -204,7 +204,7 @@ export function normalizePermissionList(raw: unknown): PermissionItem[] {
             o.key ||
             o.slug ||
             o.title ||
-            '',
+            ''
         ).trim()
 
         if (!name || name === '[object Object]') return null
@@ -244,7 +244,7 @@ export function normalizePermissionList(raw: unknown): PermissionItem[] {
       return null
     })
     .filter(
-      (p): p is PermissionItem => p !== null && p.name.length > 0 && p.name !== '[object Object]',
+      (p): p is PermissionItem => p !== null && p.name.length > 0 && p.name !== '[object Object]'
     )
 }
 
@@ -271,7 +271,7 @@ export function extractPermissionPaginationMeta(raw: unknown): {
     const page = Number(metaObj.page ?? metaObj.currentPage ?? 1)
     const limit = Number(metaObj.limit ?? metaObj.pageSize ?? 20)
     const totalPages = Number(
-      metaObj.totalPages ?? metaObj.pageCount ?? Math.max(1, Math.ceil(total / (limit || 1))),
+      metaObj.totalPages ?? metaObj.pageCount ?? Math.max(1, Math.ceil(total / (limit || 1)))
     )
     return { page, limit, total, totalPages }
   }
@@ -308,7 +308,7 @@ export interface PermissionSectionGroup {
  */
 export function groupPermissionsBySections(
   permissions: PermissionItem[],
-  isPermissionChecked: (p: PermissionItem) => boolean,
+  isPermissionChecked: (p: PermissionItem) => boolean
 ): PermissionSectionGroup[] {
   const sectionDefs = [
     {
@@ -526,7 +526,7 @@ function RoleFormDialog({
           onError: (err) => {
             setError(err.message)
           },
-        },
+        }
       )
     } else {
       createRole(
@@ -539,7 +539,7 @@ function RoleFormDialog({
           onError: (err) => {
             setError(err.message)
           },
-        },
+        }
       )
     }
   }
@@ -669,16 +669,16 @@ function DeleteRoleDialog({
           >
             Cancel
           </Button>
-            <Button
-              type="button"
-              size="sm"
-              disabled={isSaving}
-              onClick={handleConfirm}
-              className="bg-accent hover:bg-accent-hover text-white cursor-pointer gap-2"
-            >
-              {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
-              Delete Role
-            </Button>
+          <Button
+            type="button"
+            size="sm"
+            disabled={isSaving}
+            onClick={handleConfirm}
+            className="bg-accent hover:bg-accent-hover text-white cursor-pointer gap-2"
+          >
+            {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
+            Delete Role
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -794,7 +794,7 @@ function PermissionsPanel({
             : (res as Record<string, unknown>)?.data &&
                 typeof (res as Record<string, unknown>).data === 'object' &&
                 Array.isArray(
-                  ((res as Record<string, unknown>).data as Record<string, unknown>).permissions,
+                  ((res as Record<string, unknown>).data as Record<string, unknown>).permissions
                 )
               ? (((res as Record<string, unknown>).data as Record<string, unknown>)
                   .permissions as unknown[])
@@ -877,7 +877,7 @@ function PermissionsPanel({
         msg.toLowerCase().includes('401')
       ) {
         console.warn(
-          '[PermissionsPanel] Using static fallback permissions (API returned auth error)',
+          '[PermissionsPanel] Using static fallback permissions (API returned auth error)'
         )
         setPanelPerms(STATIC_PERMISSIONS)
         setTotalCount(STATIC_PERMISSIONS.length)
@@ -917,7 +917,7 @@ function PermissionsPanel({
         (Boolean(perm.id) && assigned.has(String(perm.id)))
       )
     },
-    [assigned],
+    [assigned]
   )
 
   const togglePermission = (perm: PermissionItem) => {
@@ -1045,7 +1045,7 @@ function PermissionsPanel({
           onSuccess?.()
           onClose()
         },
-      },
+      }
     )
   }
 
@@ -1060,11 +1060,11 @@ function PermissionsPanel({
           (sec) =>
             sec.id === sectionFilter ||
             String(sec.number) === sectionFilter ||
-            sec.modules.some((m) => m.key === sectionFilter),
+            sec.modules.some((m) => m.key === sectionFilter)
         )
 
   const totalSelectedCount = Array.from(assigned).filter(
-    (k) => !k.includes('-') || k.length < 32,
+    (k) => !k.includes('-') || k.length < 32
   ).length
 
   return (
@@ -1072,7 +1072,7 @@ function PermissionsPanel({
       <SheetContent
         side="right"
         showCloseButton={false}
-        className="w-full max-w-full sm:max-w-[92vw] md:max-w-[760px] lg:max-w-[820px] bg-canvas border-l border-hairline-light text-muted flex flex-col p-0 gap-0 h-full max-h-screen overflow-hidden"
+        className="w-full max-w-full sm:max-w-[92vw] md:max-w-190 lg:max-w-205 bg-canvas border-l border-hairline-light text-muted flex flex-col p-0 gap-0 h-full max-h-screen overflow-hidden"
       >
         <SheetHeader className="border-b border-hairline-light p-3.5 sm:p-5 pb-3 shrink-0">
           <div className="flex items-center justify-between gap-2 sm:gap-3">
@@ -1249,7 +1249,7 @@ function PermissionsPanel({
                       className={cn(
                         'flex items-center justify-between px-3 sm:px-4 py-2.5 border-b',
                         color.bg,
-                        color.border,
+                        color.border
                       )}
                     >
                       <div className="flex items-center gap-2 min-w-0">
@@ -1257,7 +1257,7 @@ function PermissionsPanel({
                         <span
                           className={cn(
                             'text-[11px] sm:text-xs font-bold uppercase tracking-wider truncate',
-                            color.text,
+                            color.text
                           )}
                         >
                           [{section.number}] {section.title}
@@ -1267,7 +1267,7 @@ function PermissionsPanel({
                           className={cn(
                             'text-[10px] h-4 px-1.5 py-0 shrink-0 font-mono',
                             color.border,
-                            color.text,
+                            color.text
                           )}
                         >
                           {section.assignedCount}/{section.totalPermissions}
@@ -1340,8 +1340,8 @@ function PermissionsPanel({
                                     className={cn(
                                       'flex items-start gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-none border transition-colors cursor-pointer',
                                       isChecked
-                                      ? 'border-accent bg-accent-soft'
-                                      : 'border-hairline-light/60 bg-subtle/30 hover:bg-muted/40',
+                                        ? 'border-accent bg-accent-soft'
+                                        : 'border-hairline-light/60 bg-subtle/30 hover:bg-muted/40'
                                     )}
                                     onClick={() => togglePermission(perm)}
                                   >
@@ -1355,9 +1355,7 @@ function PermissionsPanel({
                                         <span
                                           className={cn(
                                             'text-[11px] sm:text-xs font-mono break-all',
-                                            isChecked
-                                              ? 'font-semibold text-accent'
-                                              : 'text-muted',
+                                            isChecked ? 'font-semibold text-accent' : 'text-muted'
                                           )}
                                         >
                                           {perm.name}
@@ -1372,7 +1370,7 @@ function PermissionsPanel({
                                         )}
                                       </div>
                                       {perm.description && perm.description !== perm.name && (
-                                        <span className="text-[10px] text-muted leading-relaxed break-words">
+                                        <span className="text-[10px] text-muted leading-relaxed wrap-break-word">
                                           {perm.description}
                                         </span>
                                       )}
@@ -1446,12 +1444,12 @@ function PermissionsPanel({
                         'h-7 w-7 text-[11px] rounded font-medium transition-colors cursor-pointer',
                         page === p
                           ? 'bg-accent-soft text-white'
-                          : 'text-muted hover:bg-muted hover:text-white',
+                          : 'text-muted hover:bg-muted hover:text-white'
                       )}
                     >
                       {p}
                     </button>
-                  ),
+                  )
                 )}
               <Button
                 variant="ghost"

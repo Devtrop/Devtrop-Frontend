@@ -222,7 +222,7 @@ function RoleBadge({
         'text-[10px] font-semibold gap-1',
         cfg.badgeColor.bg,
         cfg.badgeColor.text,
-        cfg.badgeColor.border,
+        cfg.badgeColor.border
       )}
     >
       <span className={cn('size-1.5 rounded-full', cfg.badgeColor.dot)} />
@@ -310,7 +310,7 @@ function UserDetailSheet({
           first?.roleName ||
           first?.name ||
           (first?.roleId && rolesMap[String(first.roleId)]) ||
-          '',
+          ''
       )
       if (name) return name
     }
@@ -319,7 +319,7 @@ function UserDetailSheet({
       if (typeof first === 'string') return first
       if (first && typeof first === 'object') {
         const name = String(
-          first.name || first.roleName || (first.id && rolesMap[String(first.id)]) || '',
+          first.name || first.roleName || (first.id && rolesMap[String(first.id)]) || ''
         )
         if (name) return name
       }
@@ -377,7 +377,7 @@ function UserDetailSheet({
     <Sheet open={open} onOpenChange={onClose}>
       <SheetContent
         side="right"
-        className="w-[360px] sm:w-[440px] bg-canvas border-l border-hairline-light/70 text-muted flex flex-col p-0 gap-0"
+        className="w-90 sm:w-110 bg-canvas border-l border-hairline-light/70 text-muted flex flex-col p-0 gap-0"
       >
         <SheetHeader className="sr-only">
           <SheetTitle>User Details</SheetTitle>
@@ -409,7 +409,7 @@ function UserDetailSheet({
                   <span
                     className={cn(
                       'absolute bottom-0.5 right-0.5 size-3 rounded-full border-2 border-hairline-light',
-                      sColor.dot,
+                      sColor.dot
                     )}
                   />
                 </div>
@@ -423,7 +423,7 @@ function UserDetailSheet({
                       className={cn(
                         'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold',
                         sColor.bg,
-                        sColor.text,
+                        sColor.text
                       )}
                     >
                       <span className={cn('size-1.5 rounded-full', sColor.dot)} />
@@ -433,7 +433,7 @@ function UserDetailSheet({
                       className={cn(
                         'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold',
                         rColor.bg,
-                        rColor.text,
+                        rColor.text
                       )}
                     >
                       {roleLabel}
@@ -441,9 +441,9 @@ function UserDetailSheet({
                     <span
                       className={cn(
                         'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold',
-                          (user.isEmailVerified as boolean)
-                            ? 'bg-accent-soft text-accent'
-                            : 'bg-subtle text-muted',
+                        (user.isEmailVerified as boolean)
+                          ? 'bg-accent-soft text-accent'
+                          : 'bg-subtle text-muted'
                       )}
                     >
                       {(user.isEmailVerified as boolean) ? '✓ Verified' : '✗ Unverified'}
@@ -457,9 +457,7 @@ function UserDetailSheet({
                   <div className="flex items-center gap-2.5 text-xs text-accent">
                     <Archive className="size-4 shrink-0 text-accent" />
                     <div>
-                      <span className="font-semibold block text-accent">
-                        Account Soft-Deleted
-                      </span>
+                      <span className="font-semibold block text-accent">Account Soft-Deleted</span>
                       <span className="text-[11px] text-accent/80">
                         Deleted on{' '}
                         {new Date(String(rawUser?.deletedAt)).toLocaleDateString(undefined, {
@@ -546,14 +544,12 @@ function UserDetailSheet({
                   </p>
                   <div className="rounded-none border border-hairline-light/60 bg-subtle/40 overflow-hidden divide-y divide-zinc-800/50">
                     <div className="flex items-center justify-between px-4 py-3">
-                      <span className="text-[10px] uppercase font-semibold text-muted">
-                        Role
-                      </span>
+                      <span className="text-[10px] uppercase font-semibold text-muted">Role</span>
                       <span
                         className={cn(
                           'inline-flex items-center px-2.5 py-1 rounded-none text-[11px] font-bold',
                           rColor.bg,
-                          rColor.text,
+                          rColor.text
                         )}
                       >
                         {roleLabel}
@@ -566,7 +562,7 @@ function UserDetailSheet({
                       <span
                         className={cn(
                           'text-xs font-semibold',
-                          (user.isEmailVerified as boolean) ? 'text-accent' : 'text-muted',
+                          (user.isEmailVerified as boolean) ? 'text-accent' : 'text-muted'
                         )}
                       >
                         {(user.isEmailVerified as boolean) ? 'Yes' : 'No'}
@@ -580,7 +576,7 @@ function UserDetailSheet({
                         className={cn(
                           'inline-flex items-center gap-1 px-2 py-0.5 rounded-none text-[11px] font-semibold',
                           sColor.bg,
-                          sColor.text,
+                          sColor.text
                         )}
                       >
                         <span className={cn('size-1.5 rounded-full', sColor.dot)} />
@@ -611,7 +607,7 @@ function UserDetailSheet({
                           </span>
                           <span className="text-xs text-muted">
                             {new Date(
-                              (rawUser?.invitation as UserInvitationSummary).expiresAt,
+                              (rawUser?.invitation as UserInvitationSummary).expiresAt
                             ).toLocaleDateString(undefined, {
                               month: 'short',
                               day: 'numeric',
@@ -672,9 +668,7 @@ function UserDetailSheet({
                 <details className="group rounded-none border border-hairline-light/60 bg-subtle/30 overflow-hidden text-xs">
                   <summary className="px-4 py-3 cursor-pointer text-[10px] font-bold uppercase tracking-widest text-muted hover:text-muted transition select-none flex items-center justify-between">
                     <span>Developer Data (JSON)</span>
-                    <span className="text-muted group-open:rotate-90 transition-transform">
-                      ›
-                    </span>
+                    <span className="text-muted group-open:rotate-90 transition-transform">›</span>
                   </summary>
                   <pre className="p-4 text-[10px] text-muted font-mono overflow-x-auto bg-canvas border-t border-hairline-light/60 leading-relaxed max-h-48">
                     {JSON.stringify(sanitizedUser, null, 2)}
@@ -810,7 +804,7 @@ function UpdateStatusDialog({
           const error = err as { response?: { data?: { message?: string } }; message?: string }
           toast.error(error.response?.data?.message || error.message || 'Failed to update status')
         },
-      },
+      }
     )
   }
 
@@ -920,7 +914,7 @@ function UpdateRoleDialog({
               'text-[10px] font-semibold gap-1',
               cfg.badgeColor.bg,
               cfg.badgeColor.text,
-              cfg.badgeColor.border,
+              cfg.badgeColor.border
             )}
           >
             <span className={cn('size-1.5 rounded-full', cfg.badgeColor.dot)} />
@@ -953,7 +947,7 @@ function UpdateRoleDialog({
           const error = err as { response?: { data?: { message?: string } }; message?: string }
           toast.error(error.response?.data?.message || error.message || 'Failed to update role')
         },
-      },
+      }
     )
   }
 
@@ -1046,7 +1040,7 @@ function DeleteUserDialog({
           onSuccess?.()
           onClose()
         },
-      },
+      }
     )
   }
 
@@ -1133,14 +1127,14 @@ function DeleteUserDialog({
             size="sm"
             disabled={isConfirmDisabled}
             onClick={handleConfirm}
-              className={cn(
-                'text-white cursor-pointer gap-2',
-                isPermanent
-                  ? isConfirmDisabled
-                    ? 'bg-accent-soft text-accent/40 cursor-not-allowed'
-                    : 'bg-accent hover:bg-accent-hover'
-                  : 'bg-accent hover:bg-accent-hover',
-              )}
+            className={cn(
+              'text-white cursor-pointer gap-2',
+              isPermanent
+                ? isConfirmDisabled
+                  ? 'bg-accent-soft text-accent/40 cursor-not-allowed'
+                  : 'bg-accent hover:bg-accent-hover'
+                : 'bg-accent hover:bg-accent-hover'
+            )}
           >
             {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
             {isPermanent ? 'Permanently Delete' : 'Soft Delete'}
@@ -1294,7 +1288,7 @@ function CreateUserDialog({
           const apiErr = err as ApiError
           setFormError(apiErr?.message || 'Failed to create user. Please try again.')
         },
-      },
+      }
     )
   }
 
@@ -1577,7 +1571,7 @@ export function UserManagementView() {
   const [statusFilter, setStatusFilter] = useState('ALL')
   const [roleFilter, setRoleFilter] = useState('ALL')
   const [sortBy, setSortBy] = useState<'name' | 'email' | 'createdAt' | 'updatedAt' | 'status'>(
-    'createdAt',
+    'createdAt'
   )
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
   const [page, setPage] = useState(1)
@@ -1704,7 +1698,7 @@ export function UserManagementView() {
               'text-[10px] font-semibold gap-1',
               cfg.badgeColor.bg,
               cfg.badgeColor.text,
-              cfg.badgeColor.border,
+              cfg.badgeColor.border
             )}
           >
             <span className={cn('size-1.5 rounded-full', cfg.badgeColor.dot)} />
@@ -1789,7 +1783,7 @@ export function UserManagementView() {
             first?.roleName ||
             first?.name ||
             (first?.roleId && rMap[String(first.roleId)]) ||
-            '',
+            ''
         )
         if (name)
           return {
@@ -1805,7 +1799,7 @@ export function UserManagementView() {
         }
         if (first && typeof first === 'object') {
           const name = String(
-            first.name || first.roleName || (first.id && rMap[String(first.id)]) || '',
+            first.name || first.roleName || (first.id && rMap[String(first.id)]) || ''
           )
           if (name)
             return { ...u, roleId: rId || (first.id ? String(first.id) : undefined), role: name }
@@ -1816,7 +1810,7 @@ export function UserManagementView() {
       if (rId && (rMap[rId] || !u.role)) return { ...u, roleId: rId, role: rMap[rId] || u.role }
       return { ...u, roleId: rId || undefined }
     },
-    [],
+    []
   )
 
   const handleInlineStatusChange = useCallback(
@@ -1832,16 +1826,16 @@ export function UserManagementView() {
           onError: (err: unknown) => {
             const error = err as { response?: { data?: { message?: string } }; message?: string }
             toast.error(
-              error?.response?.data?.message || error?.message || 'Failed to update status',
+              error?.response?.data?.message || error?.message || 'Failed to update status'
             )
           },
           onSettled: () => {
             setUpdatingStatusUserId(null)
           },
-        },
+        }
       )
     },
-    [updateStatus, handleRefresh],
+    [updateStatus, handleRefresh]
   )
 
   const handleInlineRoleChange = useCallback(
@@ -1862,17 +1856,18 @@ export function UserManagementView() {
           onSettled: () => {
             setUpdatingRoleUserId(null)
           },
-        },
+        }
       )
     },
-    [assignRole, rolesMap, handleRefresh],
+    [assignRole, rolesMap, handleRefresh]
   )
 
   const { users, totalPages, total } = useMemo(() => {
     if (!usersRes) return { users: [], totalPages: 1, total: 0 }
     let rawList: UserListItem[] = []
     let rawMeta:
-      { total?: number; totalPages?: number; totalPage?: number; page?: number } | undefined
+      | { total?: number; totalPages?: number; totalPage?: number; page?: number }
+      | undefined
 
     if (Array.isArray(usersRes.users)) {
       rawList = usersRes.users
@@ -1931,7 +1926,8 @@ export function UserManagementView() {
     if (!deletedUsersRes) return { deletedUsers: [], totalDeletedPages: 1, totalDeleted: 0 }
     let rawList: UserListItem[] = []
     let rawMeta:
-      { total?: number; totalPages?: number; totalPage?: number; page?: number } | undefined
+      | { total?: number; totalPages?: number; totalPage?: number; page?: number }
+      | undefined
 
     if (Array.isArray(deletedUsersRes.users)) {
       rawList = deletedUsersRes.users
@@ -2016,7 +2012,7 @@ export function UserManagementView() {
   const openAction = (
     user: UserListItem,
     action: 'status' | 'role' | 'delete' | 'detail',
-    permanent: boolean = false,
+    permanent: boolean = false
   ) => {
     setSelectedUser(user)
     if (action === 'detail') setShowDetail(true)
@@ -2114,7 +2110,7 @@ export function UserManagementView() {
               <RefreshCw
                 className={cn(
                   'size-3.5',
-                  (loading || isFetching || deletedLoading || deletedIsFetching) && 'animate-spin',
+                  (loading || isFetching || deletedLoading || deletedIsFetching) && 'animate-spin'
                 )}
               />
               Refresh
@@ -2233,7 +2229,7 @@ export function UserManagementView() {
                         setPage(1)
                       }}
                     >
-                      <SelectTrigger className="h-9 text-xs w-[150px] bg-subtle/70 border-hairline-light">
+                      <SelectTrigger className="h-9 text-xs w-37.5 bg-subtle/70 border-hairline-light">
                         <div className="flex items-center gap-1.5 truncate">
                           <SlidersHorizontal className="size-3 text-muted-foreground" />
                           <span className="truncate">
@@ -2705,7 +2701,7 @@ export function UserManagementView() {
                             'size-8 p-0 text-xs cursor-pointer',
                             page === pageNum
                               ? 'bg-accent hover:bg-accent text-white font-bold'
-                              : 'border-border text-muted-foreground hover:text-foreground',
+                              : 'border-border text-muted-foreground hover:text-foreground'
                           )}
                         >
                           {pageNum}
@@ -2799,7 +2795,7 @@ export function UserManagementView() {
                           }}
                           className={cn(
                             'cursor-pointer text-xs justify-between',
-                            deletedLimit === l && 'font-bold text-accent',
+                            deletedLimit === l && 'font-bold text-accent'
                           )}
                         >
                           {l} rows
@@ -2849,7 +2845,7 @@ export function UserManagementView() {
                 <Table>
                   <TableHeader>
                     <TableRow className="border-border/60 hover:bg-transparent bg-muted/20">
-                      <TableHead className="w-[280px] text-xs font-semibold">User</TableHead>
+                      <TableHead className="w-70 text-xs font-semibold">User</TableHead>
                       <TableHead className="text-xs font-semibold">Phone</TableHead>
                       <TableHead className="text-xs font-semibold">Role</TableHead>
                       <TableHead className="text-xs font-semibold">Status</TableHead>
@@ -3116,7 +3112,7 @@ export function UserManagementView() {
                             'size-8 p-0 text-xs cursor-pointer',
                             deletedPage === pageNum
                               ? 'bg-accent hover:bg-accent text-white font-bold'
-                              : 'border-border text-muted-foreground hover:text-foreground',
+                              : 'border-border text-muted-foreground hover:text-foreground'
                           )}
                         >
                           {pageNum}
