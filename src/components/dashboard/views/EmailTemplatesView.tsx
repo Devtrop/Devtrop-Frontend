@@ -159,7 +159,7 @@ export function EmailTemplatesView() {
         {
           limit: 100,
         },
-        forceRefresh,
+        forceRefresh
       )
       setTemplates(res?.data || [])
     } catch (err: any) {
@@ -251,7 +251,7 @@ export function EmailTemplatesView() {
     try {
       await emailTemplatesApi.setDefault(tmpl.id)
       toast.success(
-        `"${tmpl.name}" is now default for ${CATEGORY_DISPLAY_CONFIG[tmpl.category]?.label || tmpl.category}`,
+        `"${tmpl.name}" is now default for ${CATEGORY_DISPLAY_CONFIG[tmpl.category]?.label || tmpl.category}`
       )
       setTemplates((prev) => {
         const updated = prev.map((t) => {
@@ -405,9 +405,7 @@ export function EmailTemplatesView() {
                   disabled={loading}
                   className="text-xs h-8 gap-1.5 cursor-pointer rounded-none"
                 >
-                  <RotateCcw
-                    className={`size-3.5 ${loading ? 'animate-spin text-accent' : ''}`}
-                  />
+                  <RotateCcw className={`size-3.5 ${loading ? 'animate-spin text-accent' : ''}`} />
                   <span>Refresh</span>
                 </Button>
 
@@ -553,18 +551,18 @@ export function EmailTemplatesView() {
                           return (
                             <tr key={tmpl.id} className="group hover:bg-muted/20 transition-colors">
                               {/* 1. Template Name & Subject */}
-                              <td className="py-3 px-4 min-w-[220px]">
+                              <td className="py-3 px-4 min-w-55">
                                 <button
                                   type="button"
                                   onClick={() => {
                                     if (typeof window !== 'undefined') {
                                       sessionStorage.setItem(
                                         'email_templates_active_tab',
-                                        'MESSAGES',
+                                        'MESSAGES'
                                       )
                                       sessionStorage.setItem(
                                         'email_templates_group_filter',
-                                        groupFilter,
+                                        groupFilter
                                       )
                                     }
                                     router.push(`/dashboard/email-templates/${tmpl.id}`)
@@ -603,7 +601,7 @@ export function EmailTemplatesView() {
                                       tmpl.status === 'PUBLISHED'
                                         ? 'bg-accent-soft text-accent border-accent hover:bg-accent-soft'
                                         : tmpl.status === 'DRAFT'
-                                          ? 'bg-amber-500/10 text-amber-500 border-amber-500/30 hover:bg-amber-500/20'
+                                          ? 'bg-subtle text-muted border-hairline-light hover:bg-subtle/80'
                                           : 'bg-muted text-muted-foreground border-border hover:bg-muted/80'
                                     }`}
                                   >
@@ -626,8 +624,8 @@ export function EmailTemplatesView() {
                                       onClick={(e) => handleToggleDefault(e, tmpl)}
                                       className={`p-1.5 rounded-full transition-all cursor-pointer inline-flex items-center justify-center ${
                                         tmpl.isDefault
-                                          ? 'text-amber-400 bg-amber-400/10 hover:bg-amber-400/20'
-                                          : 'text-muted-foreground/30 hover:text-amber-400 hover:bg-amber-400/10'
+                                          ? 'text-accent bg-accent-soft/10 hover:bg-accent-soft/20'
+                                          : 'text-muted-foreground/30 hover:text-accent hover:bg-accent-soft/10'
                                       }`}
                                       aria-label={
                                         tmpl.isDefault ? 'Default template' : 'Set as default'
@@ -636,7 +634,7 @@ export function EmailTemplatesView() {
                                       <Star
                                         className={`size-4 ${
                                           tmpl.isDefault
-                                            ? 'fill-amber-400 text-amber-400'
+                                            ? 'fill-accent text-accent'
                                             : 'fill-none stroke-current'
                                         }`}
                                       />
@@ -702,11 +700,11 @@ export function EmailTemplatesView() {
                                           if (typeof window !== 'undefined') {
                                             sessionStorage.setItem(
                                               'email_templates_active_tab',
-                                              'MESSAGES',
+                                              'MESSAGES'
                                             )
                                             sessionStorage.setItem(
                                               'email_templates_group_filter',
-                                              groupFilter,
+                                              groupFilter
                                             )
                                           }
                                           router.push(`/dashboard/email-templates/${tmpl.id}`)
@@ -728,7 +726,7 @@ export function EmailTemplatesView() {
                                         variant="ghost"
                                         size="sm"
                                         onClick={() => setDeleteTarget(tmpl)}
-                                        className="h-7 px-2 text-xs text-muted-foreground hover:text-rose-500 cursor-pointer rounded-none"
+                                        className="h-7 px-2 text-xs text-muted-foreground hover:text-accent cursor-pointer rounded-none"
                                       >
                                         <Trash2 className="size-3.5" />
                                       </Button>

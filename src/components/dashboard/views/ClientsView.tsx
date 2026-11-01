@@ -251,9 +251,7 @@ export function ClientsView() {
       <Dialog open={dialogOpen} onOpenChange={handleCloseDialog}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle>
-              {editingClient ? 'Edit Client' : 'Create Client'}
-            </DialogTitle>
+            <DialogTitle>{editingClient ? 'Edit Client' : 'Create Client'}</DialogTitle>
             <DialogDescription>
               {editingClient
                 ? 'Update the client details below.'
@@ -266,9 +264,7 @@ export function ClientsView() {
               <Input
                 id="name"
                 value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="e.g., TechCorp Inc."
               />
             </div>
@@ -279,21 +275,15 @@ export function ClientsView() {
                 id="order"
                 type="number"
                 value={formData.order}
-                onChange={(e) =>
-                  setFormData({ ...formData, order: parseInt(e.target.value) || 0 })
-                }
+                onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })}
                 placeholder="0"
                 min="0"
               />
-              <p className="text-xs text-muted-foreground">
-                Lower numbers appear first
-              </p>
+              <p className="text-xs text-muted-foreground">Lower numbers appear first</p>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="image">
-                Client Logo {!editingClient && '*'}
-              </Label>
+              <Label htmlFor="image">Client Logo {!editingClient && '*'}</Label>
               <div className="space-y-3">
                 {imagePreview && (
                   <div className="relative w-full h-32 rounded-none border border-border bg-muted flex items-center justify-center overflow-hidden">
@@ -377,8 +367,8 @@ export function ClientsView() {
             <DialogTitle>Delete Client</DialogTitle>
             <DialogDescription>
               Are you sure you want to delete{' '}
-              <span className="font-semibold">"{clientToDelete?.name}"</span>? This
-              action cannot be undone and will also delete the client logo.
+              <span className="font-semibold">"{clientToDelete?.name}"</span>? This action cannot be
+              undone and will also delete the client logo.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -452,9 +442,7 @@ export function ClientsView() {
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
                   Total Clients
                 </p>
-                <p className="text-lg sm:text-2xl font-bold text-foreground">
-                  {clients.length}
-                </p>
+                <p className="text-lg sm:text-2xl font-bold text-foreground">{clients.length}</p>
               </div>
             </div>
           </div>
@@ -468,25 +456,21 @@ export function ClientsView() {
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
                   Visible
                 </p>
-                <p className="text-lg sm:text-2xl font-bold text-foreground">
-                  {visibleCount}
-                </p>
+                <p className="text-lg sm:text-2xl font-bold text-foreground">{visibleCount}</p>
               </div>
             </div>
           </div>
 
           <div className="rounded-none border border-border bg-card p-3 sm:p-4">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-amber-500/10">
-                <EyeOff className="size-4 sm:size-5 text-amber-600 dark:text-amber-400" />
+              <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-none bg-subtle">
+                <EyeOff className="size-4 sm:size-5 text-muted dark:text-muted" />
               </div>
               <div className="min-w-0">
                 <p className="text-[11px] sm:text-xs font-medium text-muted-foreground truncate">
                   Hidden
                 </p>
-                <p className="text-lg sm:text-2xl font-bold text-foreground">
-                  {hiddenCount}
-                </p>
+                <p className="text-lg sm:text-2xl font-bold text-foreground">{hiddenCount}</p>
               </div>
             </div>
           </div>
@@ -498,9 +482,7 @@ export function ClientsView() {
             <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-muted text-2xl">
               🏢
             </div>
-            <h2 className="mt-4 text-base font-semibold text-foreground">
-              No clients found
-            </h2>
+            <h2 className="mt-4 text-base font-semibold text-foreground">No clients found</h2>
             <p className="mt-1 text-sm text-muted-foreground">
               Get started by adding your first client.
             </p>
@@ -513,7 +495,7 @@ export function ClientsView() {
             {/* Desktop Table */}
             <div className="hidden lg:block rounded-none border border-border bg-card overflow-hidden">
               <div className="overflow-x-auto">
-                <Table className="text-xs min-w-[700px]">
+                <Table className="text-xs min-w-175">
                   <TableHeader>
                     <TableRow className="bg-muted/40 hover:bg-muted/40">
                       <TableHead className="w-20 px-4">Order</TableHead>
@@ -527,9 +509,7 @@ export function ClientsView() {
                     {clients.map((client) => (
                       <TableRow key={client.id} className="hover:bg-muted/30">
                         <TableCell className="px-4 py-3">
-                          <span className="text-muted-foreground font-medium">
-                            {client.order}
-                          </span>
+                          <span className="text-muted-foreground font-medium">{client.order}</span>
                         </TableCell>
                         <TableCell className="px-4 py-3">
                           <div className="relative w-20 h-10 rounded border border-border bg-muted flex items-center justify-center overflow-hidden">
@@ -539,7 +519,12 @@ export function ClientsView() {
                               width={80}
                               height={32}
                               className="object-contain"
-                              style={{ width: 'auto', height: 'auto', maxHeight: '32px', maxWidth: '80px' }}
+                              style={{
+                                width: 'auto',
+                                height: 'auto',
+                                maxHeight: '32px',
+                                maxWidth: '80px',
+                              }}
                             />
                           </div>
                         </TableCell>
@@ -548,7 +533,7 @@ export function ClientsView() {
                         </TableCell>
                         <TableCell className="px-4 py-3">
                           {client.isHidden ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-500/10 text-amber-600">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-subtle text-muted">
                               <EyeOff className="size-3" />
                               Hidden
                             </span>
@@ -625,7 +610,12 @@ export function ClientsView() {
                         width={64}
                         height={64}
                         className="object-contain"
-                        style={{ width: 'auto', height: 'auto', maxHeight: '64px', maxWidth: '64px' }}
+                        style={{
+                          width: 'auto',
+                          height: 'auto',
+                          maxHeight: '64px',
+                          maxWidth: '64px',
+                        }}
                       />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -634,7 +624,7 @@ export function ClientsView() {
                           #{client.order}
                         </span>
                         {client.isHidden ? (
-                          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-amber-500/10 text-amber-600">
+                          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-subtle text-muted">
                             <EyeOff className="size-3" />
                             Hidden
                           </span>

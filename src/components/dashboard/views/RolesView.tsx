@@ -204,7 +204,7 @@ export function normalizePermissionList(raw: unknown): PermissionItem[] {
             o.key ||
             o.slug ||
             o.title ||
-            '',
+            ''
         ).trim()
 
         if (!name || name === '[object Object]') return null
@@ -244,7 +244,7 @@ export function normalizePermissionList(raw: unknown): PermissionItem[] {
       return null
     })
     .filter(
-      (p): p is PermissionItem => p !== null && p.name.length > 0 && p.name !== '[object Object]',
+      (p): p is PermissionItem => p !== null && p.name.length > 0 && p.name !== '[object Object]'
     )
 }
 
@@ -271,7 +271,7 @@ export function extractPermissionPaginationMeta(raw: unknown): {
     const page = Number(metaObj.page ?? metaObj.currentPage ?? 1)
     const limit = Number(metaObj.limit ?? metaObj.pageSize ?? 20)
     const totalPages = Number(
-      metaObj.totalPages ?? metaObj.pageCount ?? Math.max(1, Math.ceil(total / (limit || 1))),
+      metaObj.totalPages ?? metaObj.pageCount ?? Math.max(1, Math.ceil(total / (limit || 1)))
     )
     return { page, limit, total, totalPages }
   }
@@ -308,7 +308,7 @@ export interface PermissionSectionGroup {
  */
 export function groupPermissionsBySections(
   permissions: PermissionItem[],
-  isPermissionChecked: (p: PermissionItem) => boolean,
+  isPermissionChecked: (p: PermissionItem) => boolean
 ): PermissionSectionGroup[] {
   const sectionDefs = [
     {
@@ -526,7 +526,7 @@ function RoleFormDialog({
           onError: (err) => {
             setError(err.message)
           },
-        },
+        }
       )
     } else {
       createRole(
@@ -539,14 +539,14 @@ function RoleFormDialog({
           onError: (err) => {
             setError(err.message)
           },
-        },
+        }
       )
     }
   }
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm bg-canvas border-hairline-light text-muted">
+      <DialogContent className="max-w-sm bg-canvas border-hairline-light">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2">
             <Shield className="size-4 text-accent" />
@@ -561,7 +561,7 @@ function RoleFormDialog({
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-1">
           {error && (
-            <div className="flex items-center gap-2 rounded-none border border-red-500/30 bg-red-950/20 px-3 py-2 text-xs text-red-400">
+            <div className="flex items-center gap-2 rounded-none border border-accent bg-accent-soft/20 px-3 py-2 text-xs text-accent">
               <AlertTriangle className="size-3.5 shrink-0" />
               {error}
             </div>
@@ -605,7 +605,7 @@ function RoleFormDialog({
               type="submit"
               size="sm"
               disabled={isSaving}
-              className="bg-accent-soft hover:bg-accent-soft text-white cursor-pointer gap-2"
+              className="bg-accent hover:bg-accent-hover text-white cursor-pointer gap-2"
             >
               {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
               {isEditing ? 'Save Changes' : 'Create Role'}
@@ -644,7 +644,7 @@ function DeleteRoleDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm bg-canvas border-hairline-light text-muted">
+      <DialogContent className="max-w-sm bg-canvas border-hairline-light">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2">
             <AlertTriangle className="size-4 text-red-400" />
@@ -674,7 +674,7 @@ function DeleteRoleDialog({
             size="sm"
             disabled={isSaving}
             onClick={handleConfirm}
-            className="bg-red-600 hover:bg-red-500 text-white cursor-pointer gap-2"
+            className="bg-accent hover:bg-accent-hover text-white cursor-pointer gap-2"
           >
             {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
             Delete Role
@@ -794,7 +794,7 @@ function PermissionsPanel({
             : (res as Record<string, unknown>)?.data &&
                 typeof (res as Record<string, unknown>).data === 'object' &&
                 Array.isArray(
-                  ((res as Record<string, unknown>).data as Record<string, unknown>).permissions,
+                  ((res as Record<string, unknown>).data as Record<string, unknown>).permissions
                 )
               ? (((res as Record<string, unknown>).data as Record<string, unknown>)
                   .permissions as unknown[])
@@ -877,7 +877,7 @@ function PermissionsPanel({
         msg.toLowerCase().includes('401')
       ) {
         console.warn(
-          '[PermissionsPanel] Using static fallback permissions (API returned auth error)',
+          '[PermissionsPanel] Using static fallback permissions (API returned auth error)'
         )
         setPanelPerms(STATIC_PERMISSIONS)
         setTotalCount(STATIC_PERMISSIONS.length)
@@ -917,7 +917,7 @@ function PermissionsPanel({
         (Boolean(perm.id) && assigned.has(String(perm.id)))
       )
     },
-    [assigned],
+    [assigned]
   )
 
   const togglePermission = (perm: PermissionItem) => {
@@ -1045,7 +1045,7 @@ function PermissionsPanel({
           onSuccess?.()
           onClose()
         },
-      },
+      }
     )
   }
 
@@ -1060,11 +1060,11 @@ function PermissionsPanel({
           (sec) =>
             sec.id === sectionFilter ||
             String(sec.number) === sectionFilter ||
-            sec.modules.some((m) => m.key === sectionFilter),
+            sec.modules.some((m) => m.key === sectionFilter)
         )
 
   const totalSelectedCount = Array.from(assigned).filter(
-    (k) => !k.includes('-') || k.length < 32,
+    (k) => !k.includes('-') || k.length < 32
   ).length
 
   return (
@@ -1072,7 +1072,7 @@ function PermissionsPanel({
       <SheetContent
         side="right"
         showCloseButton={false}
-        className="w-full max-w-full sm:max-w-[92vw] md:max-w-[760px] lg:max-w-[820px] bg-canvas border-l border-hairline-light text-muted flex flex-col p-0 gap-0 h-full max-h-screen overflow-hidden"
+        className="w-full max-w-full sm:max-w-[92vw] md:max-w-190 lg:max-w-205 bg-canvas border-l border-hairline-light text-muted flex flex-col p-0 gap-0 h-full max-h-screen overflow-hidden"
       >
         <SheetHeader className="border-b border-hairline-light p-3.5 sm:p-5 pb-3 shrink-0">
           <div className="flex items-center justify-between gap-2 sm:gap-3">
@@ -1124,11 +1124,11 @@ function PermissionsPanel({
                 setSectionFilter(val)
               }}
             >
-              <SelectTrigger className="h-7 text-[11px] bg-subtle/60 border-hairline-light text-muted flex-1 min-w-0">
-                <Filter className="size-3 mr-1 text-muted shrink-0" />
+              <SelectTrigger className="h-7 text-[11px] bg-canvas border-hairline-light text-body flex-1 min-w-0">
+                <Filter className="size-3 mr-1 text-body shrink-0" />
                 <SelectValue placeholder="All Sections" />
               </SelectTrigger>
-              <SelectContent className="bg-subtle border-hairline-light text-muted max-h-64">
+              <SelectContent className="bg-canvas border-hairline-light text-body max-h-64">
                 <SelectItem value="all" className="text-xs font-medium">
                   All Sections (1 - 4)
                 </SelectItem>
@@ -1154,11 +1154,11 @@ function PermissionsPanel({
                 setPage(1)
               }}
             >
-              <SelectTrigger className="h-7 text-[11px] bg-subtle/60 border-hairline-light text-muted w-full sm:w-36 shrink-0">
-                <ArrowUpDown className="size-3 mr-1 text-muted shrink-0" />
+              <SelectTrigger className="h-7 text-[11px] bg-canvas border-hairline-light text-body w-full sm:w-36 shrink-0">
+                <ArrowUpDown className="size-3 mr-1 text-body shrink-0" />
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-subtle border-hairline-light text-muted">
+              <SelectContent className="bg-canvas border-hairline-light text-body">
                 <SelectItem value="asc" className="text-xs">
                   Name (A → Z)
                 </SelectItem>
@@ -1214,28 +1214,28 @@ function PermissionsPanel({
                     dot: 'bg-accent',
                   },
                   2: {
-                    bg: 'bg-sky-500/10',
-                    border: 'border-sky-500/30',
-                    text: 'text-sky-300',
-                    dot: 'bg-sky-400',
+                    bg: 'bg-accent-soft/10',
+                    border: 'border-accent',
+                    text: 'text-accent',
+                    dot: 'bg-accent',
                   },
                   3: {
-                    bg: 'bg-amber-500/10',
-                    border: 'border-amber-500/30',
-                    text: 'text-amber-300',
-                    dot: 'bg-amber-400',
+                    bg: 'bg-accent-soft/10',
+                    border: 'border-accent',
+                    text: 'text-accent',
+                    dot: 'bg-accent',
                   },
                   4: {
                     bg: 'bg-accent-soft/10',
-                    border: 'border-purple-500/30',
+                    border: 'border-accent',
                     text: 'text-accent',
-                    dot: 'bg-accent-soft',
+                    dot: 'bg-accent',
                   },
                   5: {
-                    bg: 'bg-zinc-500/10',
-                    border: 'border-hairline-light/30',
+                    bg: 'bg-subtle',
+                    border: 'border-hairline-light',
                     text: 'text-muted',
-                    dot: 'bg-zinc-400',
+                    dot: 'bg-muted',
                   },
                 }
                 const color = sectionColorMap[section.number] || sectionColorMap[4]
@@ -1249,7 +1249,7 @@ function PermissionsPanel({
                       className={cn(
                         'flex items-center justify-between px-3 sm:px-4 py-2.5 border-b',
                         color.bg,
-                        color.border,
+                        color.border
                       )}
                     >
                       <div className="flex items-center gap-2 min-w-0">
@@ -1257,7 +1257,7 @@ function PermissionsPanel({
                         <span
                           className={cn(
                             'text-[11px] sm:text-xs font-bold uppercase tracking-wider truncate',
-                            color.text,
+                            color.text
                           )}
                         >
                           [{section.number}] {section.title}
@@ -1267,7 +1267,7 @@ function PermissionsPanel({
                           className={cn(
                             'text-[10px] h-4 px-1.5 py-0 shrink-0 font-mono',
                             color.border,
-                            color.text,
+                            color.text
                           )}
                         >
                           {section.assignedCount}/{section.totalPermissions}
@@ -1340,24 +1340,22 @@ function PermissionsPanel({
                                     className={cn(
                                       'flex items-start gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-none border transition-colors cursor-pointer',
                                       isChecked
-                                        ? 'border-purple-500/40 bg-accent-soft/10'
-                                        : 'border-hairline-light/60 bg-subtle/30 hover:bg-muted/40',
+                                        ? 'border-accent bg-accent-soft'
+                                        : 'border-hairline-light/60 bg-subtle/30 hover:bg-muted/40'
                                     )}
                                     onClick={() => togglePermission(perm)}
                                   >
                                     <Checkbox
                                       checked={isChecked}
                                       onCheckedChange={() => togglePermission(perm)}
-                                      className="mt-0.5 shrink-0 border-hairline-light data-[state=checked]:bg-accent-soft data-[state=checked]:border-purple-600"
+                                      className="mt-0.5 shrink-0 border-hairline-light data-[state=checked]:bg-accent-soft data-[state=checked]:border-accent"
                                     />
                                     <div className="flex flex-col gap-0.5 min-w-0 flex-1">
                                       <div className="flex items-center justify-between gap-2">
                                         <span
                                           className={cn(
                                             'text-[11px] sm:text-xs font-mono break-all',
-                                            isChecked
-                                              ? 'font-semibold text-accent'
-                                              : 'text-muted',
+                                            isChecked ? 'font-semibold text-accent' : 'text-muted'
                                           )}
                                         >
                                           {perm.name}
@@ -1365,14 +1363,14 @@ function PermissionsPanel({
                                         {isChecked && (
                                           <Badge
                                             variant="outline"
-                                            className="text-[9px] h-4 px-1.5 py-0 shrink-0 bg-accent-soft/20 text-accent border-purple-500/30"
+                                            className="text-[9px] h-4 px-1.5 py-0 shrink-0 bg-accent-soft/20 text-accent border-accent"
                                           >
                                             Assigned
                                           </Badge>
                                         )}
                                       </div>
                                       {perm.description && perm.description !== perm.name && (
-                                        <span className="text-[10px] text-muted leading-relaxed break-words">
+                                        <span className="text-[10px] text-muted leading-relaxed wrap-break-word">
                                           {perm.description}
                                         </span>
                                       )}
@@ -1446,12 +1444,12 @@ function PermissionsPanel({
                         'h-7 w-7 text-[11px] rounded font-medium transition-colors cursor-pointer',
                         page === p
                           ? 'bg-accent-soft text-white'
-                          : 'text-muted hover:bg-muted hover:text-white',
+                          : 'text-muted hover:bg-muted hover:text-white'
                       )}
                     >
                       {p}
                     </button>
-                  ),
+                  )
                 )}
               <Button
                 variant="ghost"
@@ -1672,7 +1670,7 @@ export function RolesView() {
               return (
                 <Card
                   key={role.id}
-                  className="border-border/80 bg-card/60 flex flex-col gap-0 overflow-hidden hover:border-purple-500/40 transition-colors"
+                  className="border-border/80 bg-card/60 flex flex-col gap-0 overflow-hidden hover:border-accent/40 transition-colors"
                 >
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between gap-2">
@@ -1690,7 +1688,7 @@ export function RolesView() {
                       {permCount !== null && (
                         <Badge
                           variant="outline"
-                          className="text-[9px] shrink-0 bg-accent-soft/10 text-accent border-purple-500/30"
+                          className="text-[9px] shrink-0 bg-accent-soft/10 text-accent border-accent"
                         >
                           {permCount} perm{permCount !== 1 ? 's' : ''}
                         </Badge>

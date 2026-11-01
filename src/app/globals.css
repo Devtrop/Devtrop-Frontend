@@ -112,7 +112,7 @@
 
   /* Accent = subtle red tint surface */
   --accent: #fff5f2;
-  --accent-foreground: #ff3000;
+  --accent-foreground: #ffffff;
 
   /* Destructive */
   --destructive: #ff3000;

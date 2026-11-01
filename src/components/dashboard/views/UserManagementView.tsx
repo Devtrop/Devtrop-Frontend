@@ -124,9 +124,9 @@ import { createUserInvitationSchema } from '@/lib/validations'
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
     ACTIVE: 'text-accent bg-accent-soft border-accent',
-    INACTIVE: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-    SUSPENDED: 'text-red-400 bg-red-500/10 border-red-500/30',
-    DELETED: 'text-muted bg-zinc-500/10 border-hairline-light/30',
+    INACTIVE: 'text-muted bg-subtle border-hairline-light',
+    SUSPENDED: 'text-muted bg-subtle border-hairline-light',
+    DELETED: 'text-muted bg-subtle border-hairline-light',
   }
   const cls = map[status?.toUpperCase()] || map.INACTIVE
   return (
@@ -148,8 +148,8 @@ function InvitationBadge({ invitation }: { invitation?: UserInvitationSummary | 
   const map: Record<string, { label: string; cls: string; dot: string }> = {
     PENDING: {
       label: 'Invitation Pending',
-      cls: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-      dot: 'bg-amber-400',
+      cls: 'text-muted bg-subtle border-hairline-light',
+      dot: 'bg-muted',
     },
     ACCEPTED: {
       label: 'Accepted',
@@ -158,20 +158,20 @@ function InvitationBadge({ invitation }: { invitation?: UserInvitationSummary | 
     },
     EXPIRED: {
       label: 'Invitation Expired',
-      cls: 'text-rose-400 bg-rose-500/10 border-rose-500/30',
-      dot: 'bg-rose-400',
+      cls: 'text-muted bg-subtle border-hairline-light',
+      dot: 'bg-muted',
     },
     REVOKED: {
       label: 'Invitation Revoked',
-      cls: 'text-muted bg-zinc-700/20 border-hairline-light/40',
-      dot: 'bg-zinc-500',
+      cls: 'text-muted bg-subtle border-hairline-light',
+      dot: 'bg-muted',
     },
   }
 
   const cfg = map[status] || {
     label: invitation.status || '—',
-    cls: 'text-muted bg-muted/40 border-hairline-light',
-    dot: 'bg-zinc-500',
+    cls: 'text-muted bg-subtle border-hairline-light',
+    dot: 'bg-muted',
   }
 
   const expiresDate = invitation.expiresAt
@@ -222,7 +222,7 @@ function RoleBadge({
         'text-[10px] font-semibold gap-1',
         cfg.badgeColor.bg,
         cfg.badgeColor.text,
-        cfg.badgeColor.border,
+        cfg.badgeColor.border
       )}
     >
       <span className={cn('size-1.5 rounded-full', cfg.badgeColor.dot)} />
@@ -310,7 +310,7 @@ function UserDetailSheet({
           first?.roleName ||
           first?.name ||
           (first?.roleId && rolesMap[String(first.roleId)]) ||
-          '',
+          ''
       )
       if (name) return name
     }
@@ -319,7 +319,7 @@ function UserDetailSheet({
       if (typeof first === 'string') return first
       if (first && typeof first === 'object') {
         const name = String(
-          first.name || first.roleName || (first.id && rolesMap[String(first.id)]) || '',
+          first.name || first.roleName || (first.id && rolesMap[String(first.id)]) || ''
         )
         if (name) return name
       }
@@ -344,16 +344,16 @@ function UserDetailSheet({
 
   const statusColors: Record<string, { bg: string; text: string; dot: string }> = {
     ACTIVE: { bg: 'bg-accent-soft', text: 'text-accent', dot: 'bg-accent' },
-    INACTIVE: { bg: 'bg-amber-500/15', text: 'text-amber-300', dot: 'bg-amber-400' },
-    SUSPENDED: { bg: 'bg-red-500/15', text: 'text-red-300', dot: 'bg-red-400' },
-    DELETED: { bg: 'bg-zinc-500/15', text: 'text-muted', dot: 'bg-zinc-500' },
+    INACTIVE: { bg: 'bg-subtle', text: 'text-muted', dot: 'bg-muted' },
+    SUSPENDED: { bg: 'bg-subtle', text: 'text-muted', dot: 'bg-muted' },
+    DELETED: { bg: 'bg-subtle', text: 'text-muted', dot: 'bg-muted' },
   }
   const sColor = statusColors[(user?.status || '').toUpperCase()] || statusColors.INACTIVE
 
   const roleColors: Record<string, { bg: string; text: string }> = {
     SUPER_ADMIN: { bg: 'bg-accent-soft/15', text: 'text-accent' },
     ADMIN: { bg: 'bg-accent-soft/15', text: 'text-accent' },
-    USER: { bg: 'bg-zinc-500/15', text: 'text-muted' },
+    USER: { bg: 'bg-subtle/15', text: 'text-muted' },
   }
   const rKey = roleName ? roleName.toUpperCase().replace(/\s+/g, '_') : 'USER'
   const rColor = roleColors[rKey] || roleColors.USER
@@ -377,7 +377,7 @@ function UserDetailSheet({
     <Sheet open={open} onOpenChange={onClose}>
       <SheetContent
         side="right"
-        className="w-[360px] sm:w-[440px] bg-canvas border-l border-hairline-light/70 text-muted flex flex-col p-0 gap-0"
+        className="w-90 sm:w-110 bg-canvas border-l border-hairline-light/70 text-muted flex flex-col p-0 gap-0"
       >
         <SheetHeader className="sr-only">
           <SheetTitle>User Details</SheetTitle>
@@ -396,20 +396,20 @@ function UserDetailSheet({
           </div>
         ) : (
           <div className="flex flex-col flex-1 overflow-hidden">
-            <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800 px-6 pt-8 pb-6 border-b border-hairline-light/70">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-purple-500/5 pointer-events-none" />
+            <div className="relative bg-canvas px-6 pt-8 pb-6 border-b border-hairline-light">
+              <div className="absolute inset-0 swiss-grid-pattern opacity-20 pointer-events-none" />
               <div className="relative flex items-start gap-4">
                 <div className="relative shrink-0">
                   <Avatar className="size-16 ring-2 ring-zinc-700/80">
                     <AvatarImage src={avatarSrc} alt={user.name} />
-                    <AvatarFallback className="bg-gradient-to-br from-accent to-teal-800 text-accent font-bold text-xl">
+                    <AvatarFallback className="bg-accent-soft text-accent font-bold text-xl">
                       {initials}
                     </AvatarFallback>
                   </Avatar>
                   <span
                     className={cn(
                       'absolute bottom-0.5 right-0.5 size-3 rounded-full border-2 border-hairline-light',
-                      sColor.dot,
+                      sColor.dot
                     )}
                   />
                 </div>
@@ -423,7 +423,7 @@ function UserDetailSheet({
                       className={cn(
                         'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold',
                         sColor.bg,
-                        sColor.text,
+                        sColor.text
                       )}
                     >
                       <span className={cn('size-1.5 rounded-full', sColor.dot)} />
@@ -433,7 +433,7 @@ function UserDetailSheet({
                       className={cn(
                         'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold',
                         rColor.bg,
-                        rColor.text,
+                        rColor.text
                       )}
                     >
                       {roleLabel}
@@ -442,8 +442,8 @@ function UserDetailSheet({
                       className={cn(
                         'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold',
                         (user.isEmailVerified as boolean)
-                          ? 'bg-sky-500/15 text-sky-300'
-                          : 'bg-zinc-700/40 text-muted',
+                          ? 'bg-accent-soft text-accent'
+                          : 'bg-subtle text-muted'
                       )}
                     >
                       {(user.isEmailVerified as boolean) ? '✓ Verified' : '✗ Unverified'}
@@ -453,14 +453,12 @@ function UserDetailSheet({
               </div>
 
               {Boolean(rawUser?.deletedAt) && (
-                <div className="mt-4 p-3 rounded-none bg-amber-500/15 border border-amber-500/40 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2.5 text-xs text-amber-200">
-                    <Archive className="size-4 shrink-0 text-amber-400" />
+                <div className="mt-4 p-3 rounded-none bg-accent-soft/20 border border-accent flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5 text-xs text-accent">
+                    <Archive className="size-4 shrink-0 text-accent" />
                     <div>
-                      <span className="font-semibold block text-amber-100">
-                        Account Soft-Deleted
-                      </span>
-                      <span className="text-[11px] text-amber-300/80">
+                      <span className="font-semibold block text-accent">Account Soft-Deleted</span>
+                      <span className="text-[11px] text-accent/80">
                         Deleted on{' '}
                         {new Date(String(rawUser?.deletedAt)).toLocaleDateString(undefined, {
                           month: 'short',
@@ -546,14 +544,12 @@ function UserDetailSheet({
                   </p>
                   <div className="rounded-none border border-hairline-light/60 bg-subtle/40 overflow-hidden divide-y divide-zinc-800/50">
                     <div className="flex items-center justify-between px-4 py-3">
-                      <span className="text-[10px] uppercase font-semibold text-muted">
-                        Role
-                      </span>
+                      <span className="text-[10px] uppercase font-semibold text-muted">Role</span>
                       <span
                         className={cn(
                           'inline-flex items-center px-2.5 py-1 rounded-none text-[11px] font-bold',
                           rColor.bg,
-                          rColor.text,
+                          rColor.text
                         )}
                       >
                         {roleLabel}
@@ -566,7 +562,7 @@ function UserDetailSheet({
                       <span
                         className={cn(
                           'text-xs font-semibold',
-                          (user.isEmailVerified as boolean) ? 'text-accent' : 'text-amber-400',
+                          (user.isEmailVerified as boolean) ? 'text-accent' : 'text-muted'
                         )}
                       >
                         {(user.isEmailVerified as boolean) ? 'Yes' : 'No'}
@@ -580,7 +576,7 @@ function UserDetailSheet({
                         className={cn(
                           'inline-flex items-center gap-1 px-2 py-0.5 rounded-none text-[11px] font-semibold',
                           sColor.bg,
-                          sColor.text,
+                          sColor.text
                         )}
                       >
                         <span className={cn('size-1.5 rounded-full', sColor.dot)} />
@@ -611,7 +607,7 @@ function UserDetailSheet({
                           </span>
                           <span className="text-xs text-muted">
                             {new Date(
-                              (rawUser?.invitation as UserInvitationSummary).expiresAt,
+                              (rawUser?.invitation as UserInvitationSummary).expiresAt
                             ).toLocaleDateString(undefined, {
                               month: 'short',
                               day: 'numeric',
@@ -633,7 +629,7 @@ function UserDetailSheet({
                                 if (!user) return
                                 resendInv(user.id, { onSuccess: () => onSuccess?.() })
                               }}
-                              className="bg-sky-600 hover:bg-sky-500 text-white text-xs h-7 gap-1.5 cursor-pointer"
+                              className="bg-accent hover:bg-accent-hover text-white text-xs h-7 gap-1.5 cursor-pointer"
                             >
                               {isResendingInv ? (
                                 <Loader2 className="size-3 animate-spin" />
@@ -653,7 +649,7 @@ function UserDetailSheet({
                                 if (!user) return
                                 revokeInv(user.id, { onSuccess: () => onSuccess?.() })
                               }}
-                              className="border-red-500/40 text-red-300 hover:bg-red-500/10 text-xs h-7 gap-1.5 cursor-pointer"
+                              className="border-accent text-accent hover:bg-accent-soft text-xs h-7 gap-1.5 cursor-pointer"
                             >
                               {isRevokingInv ? (
                                 <Loader2 className="size-3 animate-spin" />
@@ -672,9 +668,7 @@ function UserDetailSheet({
                 <details className="group rounded-none border border-hairline-light/60 bg-subtle/30 overflow-hidden text-xs">
                   <summary className="px-4 py-3 cursor-pointer text-[10px] font-bold uppercase tracking-widest text-muted hover:text-muted transition select-none flex items-center justify-between">
                     <span>Developer Data (JSON)</span>
-                    <span className="text-muted group-open:rotate-90 transition-transform">
-                      ›
-                    </span>
+                    <span className="text-muted group-open:rotate-90 transition-transform">›</span>
                   </summary>
                   <pre className="p-4 text-[10px] text-muted font-mono overflow-x-auto bg-canvas border-t border-hairline-light/60 leading-relaxed max-h-48">
                     {JSON.stringify(sanitizedUser, null, 2)}
@@ -749,7 +743,7 @@ const STATUS_OPTIONS: ComboboxOption[] = [
     badge: (
       <Badge
         variant="outline"
-        className="text-[10px] font-semibold gap-1 text-amber-400 bg-amber-500/10 border-amber-500/30"
+        className="text-[10px] font-semibold gap-1 text-muted bg-subtle border-hairline-light"
       >
         <span className="size-1.5 rounded-full bg-current" />
         INACTIVE
@@ -763,7 +757,7 @@ const STATUS_OPTIONS: ComboboxOption[] = [
     badge: (
       <Badge
         variant="outline"
-        className="text-[10px] font-semibold gap-1 text-red-400 bg-red-500/10 border-red-500/30"
+        className="text-[10px] font-semibold gap-1 text-muted bg-subtle border-hairline-light"
       >
         <span className="size-1.5 rounded-full bg-current" />
         SUSPENDED
@@ -810,13 +804,13 @@ function UpdateStatusDialog({
           const error = err as { response?: { data?: { message?: string } }; message?: string }
           toast.error(error.response?.data?.message || error.message || 'Failed to update status')
         },
-      },
+      }
     )
   }
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm bg-canvas border-hairline-light text-muted">
+      <DialogContent className="max-w-sm bg-canvas border-hairline-light">
         <DialogHeader>
           <DialogTitle className="text-sm">Update User Status</DialogTitle>
           <DialogDescription className="text-xs text-muted">
@@ -832,7 +826,7 @@ function UpdateStatusDialog({
               value={status}
               options={STATUS_OPTIONS}
               onValueChange={(v) => setStatus(v as UpdateUserStatusPayload['status'])}
-              triggerClassName="h-9 w-full bg-subtle border-hairline-light text-xs"
+              triggerClassName="h-9 w-full bg-canvas border-hairline-light text-body"
               placeholder="Select status..."
               searchPlaceholder="Search status..."
             />
@@ -920,7 +914,7 @@ function UpdateRoleDialog({
               'text-[10px] font-semibold gap-1',
               cfg.badgeColor.bg,
               cfg.badgeColor.text,
-              cfg.badgeColor.border,
+              cfg.badgeColor.border
             )}
           >
             <span className={cn('size-1.5 rounded-full', cfg.badgeColor.dot)} />
@@ -953,13 +947,13 @@ function UpdateRoleDialog({
           const error = err as { response?: { data?: { message?: string } }; message?: string }
           toast.error(error.response?.data?.message || error.message || 'Failed to update role')
         },
-      },
+      }
     )
   }
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm bg-canvas border-hairline-light text-muted">
+      <DialogContent className="max-w-sm bg-canvas border-hairline-light">
         <DialogHeader>
           <DialogTitle className="text-sm">Update User Role</DialogTitle>
           <DialogDescription className="text-xs text-muted">
@@ -979,7 +973,7 @@ function UpdateRoleDialog({
                 value={selectedRoleId}
                 options={roleOptions}
                 onValueChange={setSelectedRoleId}
-                triggerClassName="h-9 w-full bg-subtle border-hairline-light text-xs"
+                triggerClassName="h-9 w-full bg-canvas border-hairline-light text-body"
                 placeholder="Choose a role..."
                 searchPlaceholder="Search roles..."
                 emptyText="No roles found."
@@ -1046,7 +1040,7 @@ function DeleteUserDialog({
           onSuccess?.()
           onClose()
         },
-      },
+      }
     )
   }
 
@@ -1054,7 +1048,7 @@ function DeleteUserDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-canvas border-hairline-light text-muted">
+      <DialogContent className="max-w-md bg-canvas border-hairline-light">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2">
             <AlertTriangle
@@ -1088,15 +1082,15 @@ function DeleteUserDialog({
 
         {isPermanent ? (
           <div className="flex flex-col gap-2 my-1">
-            <div className="p-2.5 rounded-none border border-red-500/20 bg-red-950/20 text-red-300 text-[11px] leading-relaxed">
+            <div className="p-2.5 rounded-none border border-accent bg-accent-soft/20 text-accent text-[11px] leading-relaxed">
               Irreversibly wipes user from the database, removes storage files, and flushes cache.{' '}
-              <span className="font-semibold text-red-400">Cannot be undone.</span>
+              <span className="font-semibold text-accent">Cannot be undone.</span>
             </div>
 
-            <div className="flex flex-col gap-1.5 p-3 rounded-none border border-red-500/30 bg-red-950/20">
-              <Label className="text-xs text-red-300 font-medium">
+            <div className="flex flex-col gap-1.5 p-3 rounded-none border border-accent bg-accent-soft/20">
+              <Label className="text-xs text-accent font-medium">
                 To confirm permanent deletion, type{' '}
-                <span className="font-mono font-bold text-white bg-red-900/60 px-1 py-0.5 rounded">
+                <span className="font-mono font-bold text-white bg-accent px-1 py-0.5 rounded">
                   DELETE
                 </span>{' '}
                 below:
@@ -1105,13 +1099,13 @@ function DeleteUserDialog({
                 value={confirmDeleteInput}
                 onChange={(e) => setConfirmDeleteInput(e.target.value)}
                 placeholder="Type DELETE to confirm"
-                className="h-8 text-xs bg-subtle border-red-500/40 text-red-100 placeholder:text-muted focus-visible:ring-red-500"
+                className="h-8 text-xs bg-subtle border-accent text-accent placeholder:text-muted focus-visible:ring-accent"
                 autoFocus
               />
             </div>
           </div>
         ) : (
-          <div className="p-2.5 rounded-none border border-amber-500/20 bg-amber-950/20 text-amber-300 text-[11px] leading-relaxed my-1">
+          <div className="p-2.5 rounded-none border border-accent bg-accent-soft text-accent text-[11px] leading-relaxed my-1">
             The account status will be set to <strong>DELETED</strong>. User profile and data will
             be preserved in Deleted Users and can be restored at any time.
           </div>
@@ -1137,9 +1131,9 @@ function DeleteUserDialog({
               'text-white cursor-pointer gap-2',
               isPermanent
                 ? isConfirmDisabled
-                  ? 'bg-red-900/60 text-red-300/40 cursor-not-allowed'
-                  : 'bg-red-600 hover:bg-red-500'
-                : 'bg-amber-600 hover:bg-amber-500',
+                  ? 'bg-accent-soft text-accent/40 cursor-not-allowed'
+                  : 'bg-accent hover:bg-accent-hover'
+                : 'bg-accent hover:bg-accent-hover'
             )}
           >
             {isSaving ? <Loader2 className="size-3.5 animate-spin" /> : null}
@@ -1178,7 +1172,7 @@ function RestoreUserDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-canvas border-hairline-light text-muted">
+      <DialogContent className="max-w-md bg-canvas border-hairline-light">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2 text-accent">
             <RotateCcw className="size-4" />
@@ -1294,13 +1288,13 @@ function CreateUserDialog({
           const apiErr = err as ApiError
           setFormError(apiErr?.message || 'Failed to create user. Please try again.')
         },
-      },
+      }
     )
   }
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-canvas border-hairline-light text-muted">
+      <DialogContent className="max-w-md bg-canvas border-hairline-light">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2 text-white">
             <UserPlus className="size-4 text-accent" />
@@ -1313,8 +1307,8 @@ function CreateUserDialog({
         </DialogHeader>
 
         {formError && (
-          <div className="p-2.5 rounded-none border border-red-500/30 bg-red-950/30 text-red-300 text-xs flex items-center gap-2">
-            <AlertCircle className="size-4 text-red-400 shrink-0" />
+          <div className="p-2.5 rounded-none border border-accent bg-accent-soft/20 text-accent text-xs flex items-center gap-2">
+            <AlertCircle className="size-4 text-accent shrink-0" />
             <span>{formError}</span>
           </div>
         )}
@@ -1322,7 +1316,7 @@ function CreateUserDialog({
         <form onSubmit={handleSubmit} className="flex flex-col gap-3.5 pt-1">
           <div className="flex flex-col gap-1.5">
             <Label className="text-xs font-medium text-muted">
-              Full Name <span className="text-red-400">*</span>
+              Full Name <span className="text-accent">*</span>
             </Label>
             <Input
               value={name}
@@ -1335,7 +1329,7 @@ function CreateUserDialog({
 
           <div className="flex flex-col gap-1.5">
             <Label className="text-xs font-medium text-muted">
-              Email Address <span className="text-red-400">*</span>
+              Email Address <span className="text-accent">*</span>
             </Label>
             <Input
               type="email"
@@ -1361,13 +1355,13 @@ function CreateUserDialog({
 
           <div className="flex flex-col gap-1.5">
             <Label className="text-xs font-medium text-muted">
-              Assign Role <span className="text-red-400">*</span>
+              Assign Role <span className="text-accent">*</span>
             </Label>
             <Combobox
               value={roleId}
               options={roleOptions}
               onValueChange={setRoleId}
-              triggerClassName="h-8 w-full bg-subtle border-hairline-light text-xs"
+              triggerClassName="h-8 w-full bg-canvas border-hairline-light text-body"
               placeholder="Select a role..."
               searchPlaceholder="Search roles..."
               emptyText="No roles found."
@@ -1440,7 +1434,7 @@ function ResendInvitationDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-canvas border-hairline-light text-muted">
+      <DialogContent className="max-w-md bg-canvas border-hairline-light">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2 text-sky-400">
             <Mail className="size-4" />
@@ -1521,7 +1515,7 @@ function RevokeInvitationDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-canvas border-hairline-light text-muted">
+      <DialogContent className="max-w-md bg-canvas border-hairline-light">
         <DialogHeader>
           <DialogTitle className="text-sm flex items-center gap-2 text-amber-400">
             <Ban className="size-4" />
@@ -1577,7 +1571,7 @@ export function UserManagementView() {
   const [statusFilter, setStatusFilter] = useState('ALL')
   const [roleFilter, setRoleFilter] = useState('ALL')
   const [sortBy, setSortBy] = useState<'name' | 'email' | 'createdAt' | 'updatedAt' | 'status'>(
-    'createdAt',
+    'createdAt'
   )
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
   const [page, setPage] = useState(1)
@@ -1704,7 +1698,7 @@ export function UserManagementView() {
               'text-[10px] font-semibold gap-1',
               cfg.badgeColor.bg,
               cfg.badgeColor.text,
-              cfg.badgeColor.border,
+              cfg.badgeColor.border
             )}
           >
             <span className={cn('size-1.5 rounded-full', cfg.badgeColor.dot)} />
@@ -1789,7 +1783,7 @@ export function UserManagementView() {
             first?.roleName ||
             first?.name ||
             (first?.roleId && rMap[String(first.roleId)]) ||
-            '',
+            ''
         )
         if (name)
           return {
@@ -1805,7 +1799,7 @@ export function UserManagementView() {
         }
         if (first && typeof first === 'object') {
           const name = String(
-            first.name || first.roleName || (first.id && rMap[String(first.id)]) || '',
+            first.name || first.roleName || (first.id && rMap[String(first.id)]) || ''
           )
           if (name)
             return { ...u, roleId: rId || (first.id ? String(first.id) : undefined), role: name }
@@ -1816,7 +1810,7 @@ export function UserManagementView() {
       if (rId && (rMap[rId] || !u.role)) return { ...u, roleId: rId, role: rMap[rId] || u.role }
       return { ...u, roleId: rId || undefined }
     },
-    [],
+    []
   )
 
   const handleInlineStatusChange = useCallback(
@@ -1832,16 +1826,16 @@ export function UserManagementView() {
           onError: (err: unknown) => {
             const error = err as { response?: { data?: { message?: string } }; message?: string }
             toast.error(
-              error?.response?.data?.message || error?.message || 'Failed to update status',
+              error?.response?.data?.message || error?.message || 'Failed to update status'
             )
           },
           onSettled: () => {
             setUpdatingStatusUserId(null)
           },
-        },
+        }
       )
     },
-    [updateStatus, handleRefresh],
+    [updateStatus, handleRefresh]
   )
 
   const handleInlineRoleChange = useCallback(
@@ -1862,17 +1856,18 @@ export function UserManagementView() {
           onSettled: () => {
             setUpdatingRoleUserId(null)
           },
-        },
+        }
       )
     },
-    [assignRole, rolesMap, handleRefresh],
+    [assignRole, rolesMap, handleRefresh]
   )
 
   const { users, totalPages, total } = useMemo(() => {
     if (!usersRes) return { users: [], totalPages: 1, total: 0 }
     let rawList: UserListItem[] = []
     let rawMeta:
-      { total?: number; totalPages?: number; totalPage?: number; page?: number } | undefined
+      | { total?: number; totalPages?: number; totalPage?: number; page?: number }
+      | undefined
 
     if (Array.isArray(usersRes.users)) {
       rawList = usersRes.users
@@ -1931,7 +1926,8 @@ export function UserManagementView() {
     if (!deletedUsersRes) return { deletedUsers: [], totalDeletedPages: 1, totalDeleted: 0 }
     let rawList: UserListItem[] = []
     let rawMeta:
-      { total?: number; totalPages?: number; totalPage?: number; page?: number } | undefined
+      | { total?: number; totalPages?: number; totalPage?: number; page?: number }
+      | undefined
 
     if (Array.isArray(deletedUsersRes.users)) {
       rawList = deletedUsersRes.users
@@ -2016,7 +2012,7 @@ export function UserManagementView() {
   const openAction = (
     user: UserListItem,
     action: 'status' | 'role' | 'delete' | 'detail',
-    permanent: boolean = false,
+    permanent: boolean = false
   ) => {
     setSelectedUser(user)
     if (action === 'detail') setShowDetail(true)
@@ -2114,7 +2110,7 @@ export function UserManagementView() {
               <RefreshCw
                 className={cn(
                   'size-3.5',
-                  (loading || isFetching || deletedLoading || deletedIsFetching) && 'animate-spin',
+                  (loading || isFetching || deletedLoading || deletedIsFetching) && 'animate-spin'
                 )}
               />
               Refresh
@@ -2233,7 +2229,7 @@ export function UserManagementView() {
                         setPage(1)
                       }}
                     >
-                      <SelectTrigger className="h-9 text-xs w-[150px] bg-subtle/70 border-hairline-light">
+                      <SelectTrigger className="h-9 text-xs w-37.5 bg-subtle/70 border-hairline-light">
                         <div className="flex items-center gap-1.5 truncate">
                           <SlidersHorizontal className="size-3 text-muted-foreground" />
                           <span className="truncate">
@@ -2705,7 +2701,7 @@ export function UserManagementView() {
                             'size-8 p-0 text-xs cursor-pointer',
                             page === pageNum
                               ? 'bg-accent hover:bg-accent text-white font-bold'
-                              : 'border-border text-muted-foreground hover:text-foreground',
+                              : 'border-border text-muted-foreground hover:text-foreground'
                           )}
                         >
                           {pageNum}
@@ -2799,7 +2795,7 @@ export function UserManagementView() {
                           }}
                           className={cn(
                             'cursor-pointer text-xs justify-between',
-                            deletedLimit === l && 'font-bold text-accent',
+                            deletedLimit === l && 'font-bold text-accent'
                           )}
                         >
                           {l} rows
@@ -2849,7 +2845,7 @@ export function UserManagementView() {
                 <Table>
                   <TableHeader>
                     <TableRow className="border-border/60 hover:bg-transparent bg-muted/20">
-                      <TableHead className="w-[280px] text-xs font-semibold">User</TableHead>
+                      <TableHead className="w-70 text-xs font-semibold">User</TableHead>
                       <TableHead className="text-xs font-semibold">Phone</TableHead>
                       <TableHead className="text-xs font-semibold">Role</TableHead>
                       <TableHead className="text-xs font-semibold">Status</TableHead>
@@ -3116,7 +3112,7 @@ export function UserManagementView() {
                             'size-8 p-0 text-xs cursor-pointer',
                             deletedPage === pageNum
                               ? 'bg-accent hover:bg-accent text-white font-bold'
-                              : 'border-border text-muted-foreground hover:text-foreground',
+                              : 'border-border text-muted-foreground hover:text-foreground'
                           )}
                         >
                           {pageNum}

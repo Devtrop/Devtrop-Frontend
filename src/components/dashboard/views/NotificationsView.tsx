@@ -23,7 +23,7 @@ export function NotificationsView() {
       desc: 'Super Admin updated security role permissions for candidate evaluation access.',
       time: '1 hour ago',
       icon: ShieldCheck,
-      color: 'text-accent bg-accent-soft/10 border-purple-500/30',
+      color: 'text-accent bg-accent-soft/10 border-accent',
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ export function NotificationsView() {
       desc: '12 candidate invitations were dispatched for Software Engineer opening.',
       time: '4 hours ago',
       icon: Mail,
-      color: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+      color: 'text-muted bg-subtle border-hairline-light',
     },
   ]
 
