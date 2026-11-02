@@ -16,7 +16,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
          */}
         <PermissionProvider>
           {children}
-          <Toaster richColors position="top-right" theme="dark" closeButton />
+          <Toaster richColors position="top-right" theme="dark" />
         </PermissionProvider>
       </AuthProvider>
     </QueryProvider>

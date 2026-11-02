@@ -5,6 +5,8 @@ import { ArrowUpRight, CheckCircle2, RotateCcw, Mail, Phone, MapPin, Send } from
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { CONTACT_PAGE_CONTENT, type SocialPlatform } from '@/data/contact'
 import { openBooking } from '@/lib/booking'
+import { submitContactForm } from '@/lib/contact'
+import { toast } from 'sonner'
 
 /**
  * GA4 CTA tracking helper.
@@ -82,6 +84,7 @@ export function ContactInquirySection({ email, whatsapp }: { email?: string; wha
   // Form State
   const [fullName, setFullName] = useState('')
   const [workEmail, setWorkEmail] = useState('')
+  const [subject, setSubject] = useState('')
   const [phone, setPhone] = useState('')
   const [company, setCompany] = useState('')
   const [message, setMessage] = useState('')
@@ -94,28 +97,64 @@ export function ContactInquirySection({ email, whatsapp }: { email?: string; wha
     timestamp: string
   } | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const toastStyle = {
+    background: '#fff5f2',
+    color: '#000000',
+    border: '1px solid #ff3000',
+    boxShadow: '4px 4px 0 0 #000000',
+  } as React.CSSProperties
+
+  const errorToastStyle = {
+    background: '#fff5f2',
+    color: '#000000',
+    border: '1px solid #ff3000',
+    boxShadow: '4px 4px 0 0 #000000',
+  } as React.CSSProperties
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // IMPORTANT: This handler currently simulates submission; it does not send
-    // the inquiry to an API/email service. Do NOT fire `generate_lead` here yet.
-    // Add `generate_lead` only after the real backend confirms successful delivery.
+    try {
+      const result = await submitContactForm({
+        name: fullName.trim(),
+        email: workEmail.trim(),
+        phone: phone.trim(),
+        subject: subject.trim(),
+        message: message.trim(),
+      })
 
-    // Simulate reliable engineering dispatch
-    setTimeout(() => {
       const receiptId = `DEV-${Math.floor(100000 + Math.random() * 900000)}`
       const timestamp = new Date().toISOString()
       setSubmissionReceipt({ id: receiptId, timestamp })
       setIsSubmitting(false)
       setIsSubmitted(true)
-    }, 600)
+
+      toast.success(result.message || 'Inquiry dispatched successfully.', {
+        className:
+          'bg-accent-soft border border-accent shadow-[4px_4px_0_0_var(--color-display)] text-display',
+        style: toastStyle,
+        icon: '✔',
+      })
+    } catch (error) {
+      setIsSubmitting(false)
+      toast.error(
+        error instanceof Error ? error.message : 'Failed to send inquiry. Please try again.',
+        {
+          className:
+            'bg-accent-soft border border-accent shadow-[4px_4px_0_0_var(--color-display)] text-display',
+          style: errorToastStyle,
+          icon: '✖',
+        }
+      )
+    }
   }
 
   const handleReset = () => {
     setIsSubmitted(false)
     setFullName('')
     setWorkEmail('')
+    setSubject('')
     setPhone('')
     setCompany('')
     setMessage('')
@@ -270,8 +309,8 @@ export function ContactInquirySection({ email, whatsapp }: { email?: string; wha
               {isSubmitted && submissionReceipt ? (
                 /* Success Receipt Terminal */
                 <div className="py-6 select-text" role="status" aria-live="polite">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-800 border border-emerald-300 text-xs font-mono font-bold uppercase tracking-wider mb-6">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent-soft text-accent border border-accent/30 text-xs font-mono font-bold uppercase tracking-wider mb-6 shadow-[2px_2px_0_0_var(--color-display)]">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
                     Inquiry Dispatched Successfully
                   </div>
 
@@ -282,32 +321,6 @@ export function ContactInquirySection({ email, whatsapp }: { email?: string; wha
                     Our engineering team will review your requirements and respond within 1 business
                     day at <span className="font-bold text-display">{workEmail}</span>.
                   </p>
-
-                  {/* Technical Receipt Frame */}
-                  <div className="mt-8 border border-display bg-subtle p-5 font-mono text-xs space-y-2">
-                    <div className="flex justify-between border-b border-display/20 pb-2">
-                      <span className="text-muted">TRANSACTION ID:</span>
-                      <span className="font-bold text-display">{submissionReceipt.id}</span>
-                    </div>
-                    <div className="flex justify-between border-b border-display/20 pb-2">
-                      <span className="text-muted">TIMESTAMP:</span>
-                      <span className="text-display">{submissionReceipt.timestamp}</span>
-                    </div>
-                    <div className="flex justify-between border-b border-display/20 pb-2">
-                      <span className="text-muted">CHANNEL:</span>
-                      <span className="font-bold text-accent">Direct Engineering Inquiry</span>
-                    </div>
-                    {company && (
-                      <div className="flex justify-between border-b border-display/20 pb-2">
-                        <span className="text-muted">ORGANIZATION:</span>
-                        <span className="text-display">{company}</span>
-                      </div>
-                    )}
-                    <div className="flex justify-between">
-                      <span className="text-muted">NEXT STEP:</span>
-                      <span className="text-display">Architecture evaluation &amp; response</span>
-                    </div>
-                  </div>
 
                   {/* Next Actions */}
                   <div className="mt-8 flex flex-wrap gap-4">
@@ -375,6 +388,27 @@ export function ContactInquirySection({ email, whatsapp }: { email?: string; wha
                     </div>
                   </div>
 
+                  {/* SUBJECT */}
+                  <div>
+                    <label
+                      htmlFor="subject"
+                      className="block font-mono text-xs font-bold uppercase tracking-wider text-display mb-2"
+                    >
+                      SUBJECT <span className="text-accent">*</span>
+                    </label>
+                    <input
+                      id="subject"
+                      type="text"
+                      required
+                      minLength={5}
+                      maxLength={200}
+                      value={subject}
+                      onChange={(e) => setSubject(e.target.value)}
+                      placeholder="e.g. Inquiry about SaaS development"
+                      className="w-full rounded-none border border-display bg-white px-4 py-3 text-sm text-display placeholder:text-muted/60 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors duration-150"
+                    />
+                  </div>
+
                   {/* Row 2: Phone & Company */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
@@ -422,13 +456,15 @@ export function ContactInquirySection({ email, whatsapp }: { email?: string; wha
                         MESSAGE <span className="text-accent">*</span>
                       </label>
                       <span className="font-mono text-[10px] text-muted">
-                        Max measure: ~1000 characters
+                        Min 5 characters • Max measure: ~1000 characters
                       </span>
                     </div>
                     <textarea
                       id="message"
                       rows={5}
                       required
+                      minLength={5}
+                      maxLength={2000}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Tell us about your product goals, target timeline, key technical challenges, or platform modernization needs..."
