@@ -230,6 +230,14 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
+        <Script strategy="beforeInteractive">
+          {`
+            function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+            o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+            o.onload=function(){window.trackingFunctions.onLoad({appId:"6adece61e719950014366b85"})},
+            document.head.appendChild(o)}initApollo();
+          `}
+        </Script>
       </head>
       <body className="min-h-full flex flex-col font-sans bg-canvas text-body swiss-noise">
         <Providers>
