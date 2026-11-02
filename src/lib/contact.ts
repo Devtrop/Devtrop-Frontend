@@ -16,6 +16,11 @@ export interface ContactResponse {
   message: string
 }
 
+interface ApiErrorBody {
+  message?: string | string[]
+  error?: string
+}
+
 export async function submitContactForm(data: ContactFormData): Promise<ContactResponse> {
   try {
     const url = `${API_BASE_URL}/contact`
@@ -32,39 +37,46 @@ export async function submitContactForm(data: ContactFormData): Promise<ContactR
     // Get response text first
     const text = await response.text()
 
-    // Check if it's JSON
-    if (response.headers.get('content-type')?.includes('application/json')) {
+    // Try to parse JSON response
+    let errorBody: ApiErrorBody | null = null
+    const isJson = response.headers.get('content-type')?.includes('application/json')
+    if (isJson) {
       try {
-        const result = JSON.parse(text)
-
-        if (!response.ok) {
-          // Extract error message from backend
-          const errorMsg = result.message || result.error || `Server error: ${response.status}`
-          throw new Error(errorMsg)
-        }
-
-        return result
-      } catch (parseError) {
-        if (parseError instanceof Error && parseError.message.includes('Server error')) {
-          throw parseError
-        }
-        throw new Error('Invalid response from server')
+        errorBody = JSON.parse(text) as ApiErrorBody
+      } catch {
+        errorBody = null
       }
-    } else {
-      // Not JSON - backend error
-      let errorMessage = 'Backend error occurred'
+    }
 
-      if (text.includes('Cannot POST')) {
-        errorMessage = 'Contact endpoint not found. Please ensure the backend is running.'
-      } else if (response.status === 404) {
-        errorMessage = 'Contact endpoint not found (404).'
+    if (!response.ok) {
+      // Extract error message from backend
+      let errorMsg: string
+
+      if (errorBody?.message) {
+        errorMsg =
+          typeof errorBody.message === 'string'
+            ? errorBody.message
+            : Array.isArray(errorBody.message)
+              ? errorBody.message.join(', ')
+              : String(errorBody.message)
+      } else if (errorBody?.error) {
+        errorMsg = errorBody.error
+      } else if (text.trim()) {
+        errorMsg = text
+      } else if (response.status === 400) {
+        errorMsg = 'Required at least 5 characters'
       } else if (response.status >= 500) {
-        errorMessage = `Backend server error (${response.status}). Please try again later.`
-      } else if (response.status === 405) {
-        errorMessage = 'Method not allowed.'
+        errorMsg = `Backend server error (${response.status}). Please try again later.`
+      } else {
+        errorMsg = `Server error: ${response.status}`
       }
 
-      throw new Error(errorMessage)
+      throw new Error(errorMsg)
+    }
+
+    return {
+      success: true,
+      message: typeof errorBody?.message === 'string' ? errorBody.message : 'Success',
     }
   } catch (error) {
     if (error instanceof Error) {
