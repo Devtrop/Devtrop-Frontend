@@ -7,7 +7,11 @@ import Link from 'next/link'
 
 export function CaseStudies({ featuredOnly = false }: { featuredOnly?: boolean }) {
   const { headline, subhead, builds: allBuilds } = WORK_CONTENT
-  const builds = featuredOnly ? allBuilds.filter((build) => build.featured) : allBuilds
+  let builds = featuredOnly ? allBuilds.filter((build) => build.featured) : allBuilds
+
+  // Desired order: feletrip, biponiq, uparzo
+  const order = ['feletrip', 'biponiq', 'uparzo']
+  builds = [...builds].sort((a, b) => order.indexOf(a.slug) - order.indexOf(b.slug))
 
   return (
     <section className="border-b-4 border-display" id="work">
