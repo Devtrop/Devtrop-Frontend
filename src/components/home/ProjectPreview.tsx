@@ -60,7 +60,7 @@ export function ProjectPreview({
 
   // Container height matches the content so there is no gap below it.
   const containerHeight =
-    isMobileDevice && isDesktop ? 768 * desktopScale : isMobileDevice ? 500 : 500
+    isMobileDevice && isDesktop ? 768 * desktopScale : isMobileDevice ? 600 : 500
 
   const buttonBase = `flex items-center gap-1.5 rounded-md transition-colors text-xs font-bold uppercase tracking-wider ${
     isMobileDevice ? 'px-2 py-0.5' : 'px-2.5 py-1'
