@@ -88,11 +88,38 @@ export default async function CaseStudyPage({ params }: PageProps) {
     ],
   }
 
+  // CreativeWork: describes each production build as a portfolio piece authored
+  // by Devtrop. Links the case study to the Organization schema in the root layout.
+  const creativeWorkJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    '@id': `${SITE_CONFIG.url}/work/${build.slug}`,
+    name: build.title,
+    headline: build.outcome,
+    description: build.summary,
+    url: `${SITE_CONFIG.url}/work/${build.slug}`,
+    image: `${SITE_CONFIG.url}${build.image}`,
+    author: { '@id': `${SITE_CONFIG.url}/#organization` },
+    publisher: { '@id': `${SITE_CONFIG.url}/#organization` },
+    about: build.category,
+    keywords: build.stackTags.join(', '),
+    isPartOf: { '@id': `${SITE_CONFIG.url}/work` },
+    mainEntityOfPage: `${SITE_CONFIG.url}/work/${build.slug}`,
+    // Links to the live production deployment documented in this case study
+    citation: [build.liveUrl],
+    isAccessibleForFree: true,
+    inLanguage: 'en',
+  }
+
   return (
     <PageShell>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkJsonLd) }}
       />
       <section className="border-b-4 border-display">
         <SectionContainer className="py-16 lg:py-24">
