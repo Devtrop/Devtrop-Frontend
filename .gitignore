@@ -38,3 +38,5 @@ next-env.d.ts
 config.bat
 
 RiseTogetherBD_Frontend
+
+.env
