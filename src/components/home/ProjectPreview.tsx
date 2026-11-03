@@ -58,9 +58,8 @@ export function ProjectPreview({
     ? Math.min(0.9, (typeof window !== 'undefined' ? window.innerWidth - 100 : 375) / 1024)
     : 1
 
-  // Container height matches the content so there is no gap below it.
-  const containerHeight =
-    isMobileDevice && isDesktop ? 768 * desktopScale : isMobileDevice ? 600 : 500
+  // Container height matches the scaled desktop content so there is no gap below it.
+  const containerHeight = isMobileDevice && isDesktop ? 768 * desktopScale : isDesktop ? 500 : 600
 
   const buttonBase = `flex items-center gap-1.5 rounded-md transition-colors text-xs font-bold uppercase tracking-wider ${
     isMobileDevice ? 'px-2 py-0.5' : 'px-2.5 py-1'
@@ -71,9 +70,7 @@ export function ProjectPreview({
   return (
     <div className="flex flex-col gap-2 pt-2">
       {/* Top: view toggles (desktop also shows Read Case Study + Open live here) */}
-      <div
-        className={`px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-display flex items-center gap-1 justify-between`}
-      >
+      <div className={`px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-display flex items-center gap-1 justify-between`}>
         <div className="flex gap-1">
           <button
             onClick={() => setManualView('desktop')}
@@ -94,7 +91,10 @@ export function ProjectPreview({
         </div>
         {!isMobileDevice && (
           <div className="flex gap-1 ml-auto">
-            <Link href={caseStudyUrl} className={inactiveBase}>
+            <Link
+              href={caseStudyUrl}
+              className={inactiveBase}
+            >
               <ArrowUpRight className="h-3 w-3" />
               <span>Read Case Study</span>
             </Link>
@@ -115,9 +115,7 @@ export function ProjectPreview({
         className={`relative rounded-2xl border border-display bg-white shadow-[8px_8px_0_0_var(--color-display)] ${
           isDesktop && !isMobileDevice
             ? 'w-full max-w-[1440px] mx-auto'
-            : isMobileDevice
-              ? 'w-full max-w-lg mx-auto'
-              : 'w-full max-w-xs mx-auto'
+            : 'w-full max-w-xs mx-auto'
         } ${isMobileDevice ? 'overflow-scroll touch-auto -webkit-overflow-scrolling-touch' : 'overflow-hidden'}`}
         suppressHydrationWarning
         style={{
@@ -139,32 +137,32 @@ export function ProjectPreview({
               Live preview embedding is restricted by the source site. Open the live site instead.
             </p>
           </div>
-        ) : isMobileDevice && isDesktop ? (
-          <div className="w-full h-full relative overflow-scroll touch-auto -webkit-overflow-scrolling-touch">
-            <div
-              className="absolute top-0 left-0"
-              style={{
-                transform: `scale(${desktopScale})`,
-                transformOrigin: 'top left',
-                width: '1024px',
-                height: '768px',
-              }}
-            >
-              <iframe
-                className="w-full h-full"
-                src={liveUrl}
-                title={`Live preview of ${title ?? ''}`}
-                referrerPolicy="no-referrer"
-                sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-modals"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                loading="eager"
-                scrolling="yes"
-                onError={() => setError(true)}
-              />
+        ) : (
+          isMobileDevice && isDesktop ? (
+            <div className="w-full h-full relative overflow-scroll touch-auto -webkit-overflow-scrolling-touch">
+              <div
+                className="absolute top-0 left-0"
+                style={{
+                  transform: `scale(${desktopScale})`,
+                  transformOrigin: 'top left',
+                  width: '1024px',
+                  height: '768px',
+                }}
+              >
+                <iframe
+                  className="w-full h-full"
+                  src={liveUrl}
+                  title={`Live preview of ${title ?? ''}`}
+                  referrerPolicy="no-referrer"
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-modals"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  loading="eager"
+                  scrolling="yes"
+                  onError={() => setError(true)}
+                />
+              </div>
             </div>
-          </div>
-        ) : isMobileDevice && !isDesktop ? (
-          <div className="w-full h-full relative overflow-hidden">
+          ) : (
             <iframe
               className="w-full h-full"
               src={liveUrl}
@@ -176,26 +174,17 @@ export function ProjectPreview({
               scrolling="yes"
               onError={() => setError(true)}
             />
-          </div>
-        ) : (
-          <iframe
-            className="w-full h-full"
-            src={liveUrl}
-            title={`Live preview of ${title ?? ''}`}
-            referrerPolicy="no-referrer"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-modals"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            loading="eager"
-            scrolling="yes"
-            onError={() => setError(true)}
-          />
+          )
         )}
       </div>
 
       {/* Bottom: Case Study + Open Live buttons (mobile only, precise text) */}
       {isMobileDevice && (
         <div className="px-3 py-1.5 flex items-center gap-2 justify-between">
-          <Link href={caseStudyUrl} className={`${inactiveBase} flex-1 justify-center py-1`}>
+          <Link
+            href={caseStudyUrl}
+            className={`${inactiveBase} flex-1 justify-center py-1`}
+          >
             <ArrowUpRight className="h-3 w-3" />
             <span className="text-xs">Case Study</span>
           </Link>
