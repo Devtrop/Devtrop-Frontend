@@ -58,8 +58,15 @@ export function ProjectPreview({
     ? Math.min(0.9, (typeof window !== 'undefined' ? window.innerWidth - 100 : 375) / 1024)
     : 1
 
-  // Container height matches the scaled desktop content so there is no gap below it.
-  const containerHeight = isMobileDevice && isDesktop ? 768 * desktopScale : isDesktop ? 500 : 600
+  // When a mobile device user views Mobile view, scale down so the
+  // full width of the mobile site fits within the container.
+  const mobileScale = isMobileDevice && !isDesktop
+    ? Math.min(0.85, (typeof window !== 'undefined' ? window.innerWidth - 40 : 414) / 414)
+    : 1
+
+  // Container height matches the scaled content so there is no gap below it.
+  const containerHeight =
+    isMobileDevice && isDesktop ? 768 * desktopScale : isMobileDevice ? 600 * mobileScale : 500
 
   const buttonBase = `flex items-center gap-1.5 rounded-md transition-colors text-xs font-bold uppercase tracking-wider ${
     isMobileDevice ? 'px-2 py-0.5' : 'px-2.5 py-1'
@@ -115,7 +122,9 @@ export function ProjectPreview({
         className={`relative rounded-2xl border border-display bg-white shadow-[8px_8px_0_0_var(--color-display)] ${
           isDesktop && !isMobileDevice
             ? 'w-full max-w-[1440px] mx-auto'
-            : 'w-full max-w-xs mx-auto'
+            : isMobileDevice
+              ? 'w-full max-w-lg mx-auto'
+              : 'w-full max-w-xs mx-auto'
         } ${isMobileDevice ? 'overflow-scroll touch-auto -webkit-overflow-scrolling-touch' : 'overflow-hidden'}`}
         suppressHydrationWarning
         style={{
@@ -163,19 +172,45 @@ export function ProjectPreview({
               </div>
             </div>
           ) : (
-            <iframe
-              className="w-full h-full"
-              src={liveUrl}
-              title={`Live preview of ${title ?? ''}`}
-              referrerPolicy="no-referrer"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-modals"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              loading="eager"
-              scrolling="yes"
-              onError={() => setError(true)}
-            />
-          )
-        )}
+            isMobileDevice && !isDesktop ? (
+              <div className="w-full h-full relative overflow-hidden">
+                <div
+                  className="absolute top-0 left-0"
+                  style={{
+                    transform: `scale(${mobileScale})`,
+                    transformOrigin: 'top left',
+                    width: '414px',
+                    height: '600px',
+                  }}
+                >
+                  <iframe
+                    className="w-full h-full"
+                    src={liveUrl}
+                    title={`Live preview of ${title ?? ''}`}
+                    referrerPolicy="no-referrer"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-modals"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    loading="eager"
+                    scrolling="yes"
+                    onError={() => setError(true)}
+                  />
+                </div>
+              </div>
+            ) : (
+              <iframe
+                className="w-full h-full"
+                src={liveUrl}
+                title={`Live preview of ${title ?? ''}`}
+                referrerPolicy="no-referrer"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-modals"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                loading="eager"
+                scrolling="yes"
+                onError={() => setError(true)}
+              />
+            )
+          ))
+}
       </div>
 
       {/* Bottom: Case Study + Open Live buttons (mobile only, precise text) */}
