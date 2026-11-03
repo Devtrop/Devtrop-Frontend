@@ -49,8 +49,11 @@ export function ProjectPreview({
     window.open(liveUrl, '_blank', 'noopener,noreferrer')
   }
 
-  const buttonBase =
-    'flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-colors text-xs font-bold uppercase tracking-wider'
+  const isMobileDevice = deviceView === 'mobile'
+
+  const buttonBase = `flex items-center gap-1.5 rounded-md transition-colors text-xs font-bold uppercase tracking-wider ${
+    isMobileDevice ? 'px-2 py-0.5' : 'px-2.5 py-1'
+  }`
   const activeBase = `${buttonBase} bg-display text-inverse`
   const inactiveBase = `${buttonBase} text-display border border-display hover:bg-display hover:text-inverse`
 
@@ -63,37 +66,42 @@ export function ProjectPreview({
             className={`${isDesktop ? activeBase : inactiveBase}`}
             aria-pressed={isDesktop}
           >
-            <Monitor className="h-3 w-3" /> Desktop
+            <Monitor className="h-3 w-3" />
+            {!isMobileDevice && <span>Desktop</span>}
           </button>
           <button
             onClick={() => setManualView('mobile')}
             className={`${!isDesktop ? activeBase : inactiveBase}`}
             aria-pressed={!isDesktop}
           >
-            <Smartphone className="h-3 w-3" /> Mobile
+            <Smartphone className="h-3 w-3" />
+            {!isMobileDevice && <span>Mobile</span>}
           </button>
         </div>
         <div className="flex gap-1 ml-auto">
           <Link href={caseStudyUrl} className={inactiveBase}>
-            Read Case Study <ArrowUpRight className="h-3 w-3" />
+            <ArrowUpRight className="h-3 w-3" />
+            {!isMobileDevice && <span>Read Case Study</span>}
           </Link>
           <button
             onClick={handleOpenLive}
             className={inactiveBase}
             aria-label={`Open live site for ${title ?? ''}`}
           >
-            <ExternalLink className="h-3 w-3" /> Open live
+            <ExternalLink className="h-3 w-3" />
+            {!isMobileDevice && <span>Open live</span>}
           </button>
         </div>
       </div>
 
       <div
-        className={`relative overflow-hidden rounded-2xl border border-display bg-white shadow-[8px_8px_0_0_var(--color-display)] ${
+        className={`relative overflow-hidden overflow-scroll touch-auto -webkit-overflow-scrolling-touch rounded-2xl border border-display bg-white shadow-[8px_8px_0_0_var(--color-display)] ${
           isDesktop
             ? 'w-full max-w-[1440px] h-[500px] mx-auto'
             : 'w-full max-w-xs max-h-[75vh] h-[600px] mx-auto'
         }`}
         suppressHydrationWarning
+        style={{ touchAction: 'auto' }}
       >
         {error ? (
           <div className="flex h-full w-full flex-col items-center justify-center text-muted p-6">
@@ -114,8 +122,10 @@ export function ProjectPreview({
             src={liveUrl}
             title={`Live preview of ${title ?? ''}`}
             referrerPolicy="no-referrer"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-modals"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             loading="eager"
+            scrolling="yes"
             onError={() => setError(true)}
           />
         )}
