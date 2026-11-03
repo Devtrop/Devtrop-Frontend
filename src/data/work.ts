@@ -51,7 +51,7 @@ export const WORK_CONTENT = {
       imageAlt:
         "Screenshot of the Uparzo homepage showing the hero and merchant dashboard preview",
       liveUrl: "https://uparzo.com",
-      featured: true,
+      featured: false,
       summary:
         "Uparzo is a multi-tenant e-commerce SaaS built in Bangladesh: merchants launch branded storefronts, connect their own domains, and sell through local payment gateways and couriers. This case study covers how the platform models tenancy, billing, and fulfillment.",
       sections: [
@@ -163,7 +163,7 @@ export const WORK_CONTENT = {
       imageAlt:
         "Screenshot of the Biponiq homepage showing the Bengali hero copy and vendor store dashboard preview",
       liveUrl: "https://biponiq.com",
-      featured: false,
+      featured: true,
       summary:
         "Biponiq is a multi-vendor storefront builder: vendors create branded shops on subdomains or custom domains, sell through local payments including cash-on-delivery, and get paid out by the platform. This case study covers the builder, the payout economy, and the AI assistant.",
       sections: [
