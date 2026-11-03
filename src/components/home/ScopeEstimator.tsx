@@ -105,7 +105,7 @@ export function ScopeEstimator() {
               }}
               className="mt-6 w-full bg-accent px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-all duration-150 cursor-pointer active:scale-95 active:translate-y-1 md:active:scale-100 md:active:translate-y-0"
             >
-              Schedule call for this scope →
+              Schedule call for this scope
             </button>
           </>
         )}
