@@ -52,9 +52,10 @@ export function ProjectPreview({
   const isMobileDevice = deviceView === 'mobile'
 
   // When a mobile device user toggles Desktop view, scale the desktop site down
-  // to fit the phone screen width instead of overflowing horizontally.
+  // to fit the phone screen width (accounting for container padding + borders)
+  // instead of overflowing horizontally.
   const desktopScale = isMobileDevice && isDesktop
-    ? Math.min(1, (typeof window !== 'undefined' ? window.innerWidth : 375) / 1024)
+    ? Math.min(0.9, (typeof window !== 'undefined' ? window.innerWidth - 100 : 375) / 1024)
     : 1
 
   // Container height matches the scaled desktop content so there is no gap below it.
@@ -111,11 +112,11 @@ export function ProjectPreview({
 
       {/* Preview */}
       <div
-        className={`relative overflow-scroll touch-auto -webkit-overflow-scrolling-touch rounded-2xl border border-display bg-white shadow-[8px_8px_0_0_var(--color-display)] ${
-          isDesktop
+        className={`relative rounded-2xl border border-display bg-white shadow-[8px_8px_0_0_var(--color-display)] ${
+          isDesktop && !isMobileDevice
             ? 'w-full max-w-[1440px] mx-auto'
             : 'w-full max-w-xs mx-auto'
-        }`}
+        } ${isMobileDevice ? 'overflow-scroll touch-auto -webkit-overflow-scrolling-touch' : 'overflow-hidden'}`}
         suppressHydrationWarning
         style={{
           touchAction: 'pan-y pan-x',
@@ -137,8 +138,8 @@ export function ProjectPreview({
             </p>
           </div>
         ) : (
-          <div className="w-full h-full relative overflow-hidden">
-            {isMobileDevice && isDesktop ? (
+          isMobileDevice && isDesktop ? (
+            <div className="w-full h-full relative overflow-scroll touch-auto -webkit-overflow-scrolling-touch">
               <div
                 className="absolute top-0 left-0"
                 style={{
@@ -160,20 +161,20 @@ export function ProjectPreview({
                   onError={() => setError(true)}
                 />
               </div>
-            ) : (
-              <iframe
-                className="w-full h-full"
-                src={liveUrl}
-                title={`Live preview of ${title ?? ''}`}
-                referrerPolicy="no-referrer"
-                sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-modals"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                loading="eager"
-                scrolling="yes"
-                onError={() => setError(true)}
-              />
-            )}
-          </div>
+            </div>
+          ) : (
+            <iframe
+              className="w-full h-full"
+              src={liveUrl}
+              title={`Live preview of ${title ?? ''}`}
+              referrerPolicy="no-referrer"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-modals"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              loading="eager"
+              scrolling="yes"
+              onError={() => setError(true)}
+            />
+          )
         )}
       </div>
 
