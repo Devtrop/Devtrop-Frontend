@@ -26,6 +26,62 @@ export const WORK_CONTENT = {
     "Every claim below links to something live: a production app you can open in a new tab right now.",
   builds: [
     {
+      slug: "uparzo",
+      category: "Multi-Tenant SaaS",
+      title: "Uparzo: Multi-Tenant E-Commerce SaaS",
+      outcome:
+        "A live platform where merchants spin up branded storefronts, connect custom domains, and sell without writing code.",
+      stackTags: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Express",
+        "PostgreSQL (Prisma)",
+        "Redis + BullMQ",
+        "Stripe",
+        "SSLCommerz",
+        "Socket.IO",
+        "Tailwind CSS",
+        "Zustand",
+        "Zod",
+        "Cloudinary",
+        "OpenAPI",
+      ],
+      image: "/work-uparzo-v2.png",
+      imageAlt:
+        "Screenshot of the Uparzo homepage showing the hero and merchant dashboard preview",
+      liveUrl: "https://uparzo.com",
+      featured: false,
+      summary:
+        "Uparzo is a multi-tenant e-commerce SaaS built in Bangladesh: merchants launch branded storefronts, connect their own domains, and sell through local payment gateways and couriers. This case study covers how the platform models tenancy, billing, and fulfillment.",
+      sections: [
+        {
+          heading: "The Problem",
+          body: "Small merchants in Bangladesh are stuck between DIY page builders and enterprise commerce suites. Page builders are cheap but generic: no subscription plans, no local payment rails, no courier handoff. Enterprise suites have the features but cost more than a new store earns in its first year. Neither path gives a merchant a real storefront, recurring billing, and fulfillment out of the box. Uparzo set out to close that gap: a store can be live in minutes and still grow into serious commerce.",
+        },
+        {
+          heading: "Tenancy and Domains",
+          body: "Every store on Uparzo is a first-class tenant. The platform resolves each request to the right store through subdomains and fully custom domains, including the DNS plumbing to verify and attach a domain the merchant already owns. Products, orders, customers, and storefront settings all hang off the tenant, so one merchant's catalog and analytics never mix with another's. On top of tenancy, a template system lets each store pick a visual style without touching code.",
+        },
+        {
+          heading: "Money: Subscriptions, Payments, and Fulfillment",
+          body: "Billing runs on subscription plans with Stripe and SSLCommerz, covering both Uparzo's own SaaS revenue and the merchant's storefront checkout. Orders hand off to Pathao for courier pickup, and order state tracks the handoff so merchants see fulfillment status instead of guessing. Revenue, expenses, and conversion analytics are built into the merchant dashboard, and CSV and PDF exports cover the accounting reality most local businesses still live in.",
+        },
+        {
+          heading: "Platform Engineering",
+          body: "The frontend is a Next.js App Router application; the API is an Express service on PostgreSQL through Prisma. Redis and BullMQ carry background work like email, notifications, and scheduled jobs so checkout never waits on them. Support chat runs over Socket.IO, media uploads go to S3-compatible storage and Cloudinary, and auth combines JWT sessions, OTP verification, and role-based permissions that separate super-admin, merchant staff, and customers. The API is documented with OpenAPI for integrators.",
+        },
+        {
+          heading: "Where It Stands",
+          body: "Uparzo is live at uparzo.com with merchant and super-admin dashboards in production, a seeded subscription catalog, and a storefront template system.",
+        },
+      ],
+      deliverables: [
+        "Live production site at uparzo.com",
+        "Merchant and super-admin dashboards",
+      ],
+    },
+    {
       slug: "feletrip",
       category: "Travel Marketplace",
       title: "Feletrip: Hotel & Travel Booking Marketplace",
