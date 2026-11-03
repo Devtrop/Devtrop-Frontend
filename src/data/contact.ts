@@ -193,7 +193,7 @@ export const CONTACT_PAGE_CONTENT = {
     accentWord: 'PROJECT',
     subhead:
       "Tell us what you're building. We'll help you figure out the right architecture, scope, and next step.",
-    primaryCta: 'BOOK A DISCOVERY CALL',
-    secondaryCta: 'SEND AN INQUIRY',
+    primaryCta: 'BOOK A DISCOVERY CALL →',
+    secondaryCta: 'SEND AN INQUIRY →',
   },
 } as const
