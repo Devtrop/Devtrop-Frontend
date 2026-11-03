@@ -95,13 +95,13 @@ export function ProjectPreview({
       </div>
 
       <div
-        className={`relative overflow-hidden overflow-scroll touch-auto -webkit-overflow-scrolling-touch rounded-2xl border border-display bg-white shadow-[8px_8px_0_0_var(--color-display)] ${
+        className={`relative overflow-scroll touch-auto -webkit-overflow-scrolling-touch rounded-2xl border border-display bg-white shadow-[8px_8px_0_0_var(--color-display)] ${
           isDesktop
             ? 'w-full max-w-[1440px] h-[500px] mx-auto'
             : 'w-full max-w-xs max-h-[75vh] h-[600px] mx-auto'
         }`}
         suppressHydrationWarning
-        style={{ touchAction: 'auto' }}
+        style={{ touchAction: 'pan-y pan-x', WebkitOverflowScrolling: 'touch' }}
       >
         {error ? (
           <div className="flex h-full w-full flex-col items-center justify-center text-muted p-6">
