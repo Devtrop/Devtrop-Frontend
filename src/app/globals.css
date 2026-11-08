@@ -255,6 +255,57 @@ main > * {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   NAV BADGE — sparkle icon on "Packages" nav link
+   Gentle scale-pulse + opacity twinkle so it catches the eye
+   without being distracting. 2 s loop.
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes nav-badge {
+  0%, 100% { transform: scale(1)    rotate(0deg);  opacity: 1;    }
+  20%       { transform: scale(1.35) rotate(15deg); opacity: 1;    }
+  40%       { transform: scale(0.85) rotate(-10deg);opacity: 0.7;  }
+  60%       { transform: scale(1.2)  rotate(8deg);  opacity: 1;    }
+  80%       { transform: scale(1)    rotate(0deg);  opacity: 0.85; }
+}
+
+.animate-nav-badge {
+  animation: nav-badge 2s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform, opacity;
+  display: inline-block;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SUPPORT BADGE — attention-grabbing pulse + micro-bounce
+   Used on the "Free X month maintenance" badge in PackagesSection.
+   Three-phase loop: rest → scale-up bounce → gentle side-sway →
+   back to rest. Total cycle ~3 s so it stays lively without
+   becoming distracting.
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes support-badge {
+  0%   { transform: scale(1)    rotate(0deg);   }
+  10%  { transform: scale(1.12) rotate(-2deg);  }
+  18%  { transform: scale(1.08) rotate(2deg);   }
+  26%  { transform: scale(1.12) rotate(-2deg);  }
+  34%  { transform: scale(1)    rotate(0deg);   }
+  /* rest for a beat, then a subtle side-sway */
+  50%  { transform: scale(1)    rotate(0deg);   }
+  56%  { transform: scale(1)    translateX(-3px); }
+  62%  { transform: scale(1)    translateX(3px);  }
+  68%  { transform: scale(1)    translateX(-2px); }
+  74%  { transform: scale(1)    translateX(0px);  }
+  100% { transform: scale(1)    rotate(0deg);   }
+}
+
+.animate-support-badge {
+  animation: support-badge 3s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform;
+  display: inline-block; /* transform needs block/inline-block context */
+}
+
+/* ═══════════════════════════════════════════════════════════════
    REDUCED MOTION — accessibility
    ═══════════════════════════════════════════════════════════════ */
 

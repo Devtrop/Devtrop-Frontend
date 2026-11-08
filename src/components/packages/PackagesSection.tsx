@@ -3,6 +3,7 @@ import { SectionHeading } from '@/components/shared/layout/SectionHeading'
 import { PACKAGES_CONTENT, type PackagePlan, type FeatureItem } from '@/data/packages'
 import { whatsappUrl, WHATSAPP_MESSAGES } from '@/lib/whatsapp'
 import { cn } from '@/lib/utils'
+import { SupportBadge } from './SupportBadge'
 
 /** Map each package to its pre-filled WhatsApp message. */
 const PACKAGE_WHATSAPP: Record<PackagePlan['id'], string> = {
@@ -99,14 +100,7 @@ function TopPackageCard({ plan }: { plan: PackagePlan }) {
 
           {/* Top-right support badge */}
           {plan.supportBadge && (
-            <span
-              className={cn(
-                'shrink-0 inline-block bg-accent px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.1em] leading-tight text-inverse',
-                featured ? 'bg-accent' : 'bg-accent'
-              )}
-            >
-              {plan.supportBadge}
-            </span>
+            <SupportBadge text={plan.supportBadge} featured={featured} />
           )}
         </div>
 

@@ -20,8 +20,6 @@ export function NavbarClient() {
     setIsMobileMenuOpen(false)
   }
 
-  // Sync --navbar-height via ResizeObserver so MobileDrawer backdrop always
-  // starts below the bar.
   useEffect(() => {
     if (!barRef.current) return
     const setHeight = (el: Element) => {
@@ -36,10 +34,6 @@ export function NavbarClient() {
     return () => ro.disconnect()
   }, [])
 
-  /**
-   * Active check: exact match for "/" home; prefix match for all others so
-   * nested routes (e.g. /services/something) still light up the parent link.
-   */
   function isActive(href: string) {
     if (href === '/') return pathname === '/'
     return pathname === href || pathname.startsWith(href + '/')
@@ -61,25 +55,31 @@ export function NavbarClient() {
                   key={link.href}
                   href={link.href}
                   aria-current={active ? 'page' : undefined}
-                  className="group relative pb-1 text-xs font-bold uppercase tracking-[0.15em] text-display overflow-hidden"
+                  className={`group relative pb-1 text-xs font-bold uppercase tracking-[0.15em] text-display ${link.badge ? 'pr-3' : ''}`}
                 >
-                  {/* Text flip on hover */}
-                  <span
-                    className={`block transition-transform duration-150 ease-linear ${active ? '' : 'group-hover:-translate-y-full'}`}
-                  >
-                    {link.label}
-                  </span>
-                  {!active && (
-                    <span className="absolute inset-0 flex items-center text-accent translate-y-full transition-transform duration-150 ease-linear group-hover:translate-y-0">
+                  {/* Inner clip zone for the flip animation only */}
+                  <span className="relative block overflow-hidden">
+                    <span
+                      className={`block transition-transform duration-150 ease-linear ${active ? '' : 'group-hover:-translate-y-full'}`}
+                    >
                       {link.label}
                     </span>
-                  )}
-                  {/* Active indicator — Swiss accent red bar under the label */}
+                    {!active && (
+                      <span className="absolute inset-0 flex items-center text-accent translate-y-full transition-transform duration-150 ease-linear group-hover:translate-y-0">
+                        {link.label}
+                      </span>
+                    )}
+                  </span>
+                  {/* Active indicator */}
                   {active && (
                     <span
                       className="absolute bottom-0 left-0 w-full h-0.5 bg-accent"
                       aria-hidden="true"
                     />
+                  )}
+                  {/* Orange box badge — top-right corner */}
+                  {link.badge === 'new' && (
+                    <span className="absolute -top-1 right-0 h-2 w-2 bg-accent" aria-label="New" />
                   )}
                 </Link>
               )

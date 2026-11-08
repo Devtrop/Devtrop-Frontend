@@ -167,7 +167,12 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                           : 'text-display hover:bg-display hover:text-inverse'
                       }`}
                     >
-                      {link.label}
+                      <span className="flex items-center gap-2">
+                        {link.label}
+                        {link.badge === 'new' && (
+                          <span className="h-2 w-2 shrink-0 bg-accent" aria-label="New" />
+                        )}
+                      </span>
                       {/* Active accent dot */}
                       {active && <span className="h-2 w-2 bg-accent shrink-0" aria-hidden="true" />}
                     </Link>
