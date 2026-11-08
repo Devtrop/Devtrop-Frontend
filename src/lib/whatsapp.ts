@@ -21,4 +21,7 @@ export const WHATSAPP_MESSAGES = {
   milestone: env.WHATSAPP_MSG_MILESTONE,
   audit: env.WHATSAPP_MSG_AUDIT,
   bookACall: env.WHATSAPP_MSG_BOOK_A_CALL,
+  standard: env.WHATSAPP_MSG_STANDARD,
+  premium: env.WHATSAPP_MSG_PREMIUM,
+  maintenance: env.WHATSAPP_MSG_MAINTENANCE,
 } as const;

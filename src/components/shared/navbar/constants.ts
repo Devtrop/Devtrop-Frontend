@@ -3,6 +3,7 @@ import { NavLinkItem } from './types'
 export const NAV_LINKS: NavLinkItem[] = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
+  { label: 'Packages', href: '/packages' },
   { label: 'Work', href: '/work' },
   { label: 'About', href: '/about' },
   { label: 'Careers', href: '/careers' },
