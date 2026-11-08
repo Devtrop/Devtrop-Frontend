@@ -7,6 +7,7 @@ import { WORK_CONTENT } from "@/data/work";
 const DATES = {
   home:     new Date("2026-10-08"),
   services: new Date("2026-10-01"),
+  packages: new Date("2026-11-09"),
   work:     new Date("2026-10-08"),
   about:    new Date("2026-10-01"),
   contact:  new Date("2026-10-01"),
@@ -30,6 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: DATES.services,
       changeFrequency: "monthly",
       priority: 0.9,
+    },
+    {
+      url: `${base}/packages`,
+      lastModified: DATES.packages,
+      changeFrequency: "monthly",
+      priority: 0.85,
     },
     {
       url: `${base}/work`,
@@ -69,4 +76,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 }
-

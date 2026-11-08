@@ -26,6 +26,20 @@ const envSchema = z.object({
     .string()
     .min(1)
     .default("Hi, I'd like to book a call with Devtrop to discuss my project."),
+
+  // Package inquiry messages
+  WHATSAPP_MSG_STANDARD: z
+    .string()
+    .min(1)
+    .default("Hi, I'm interested in the Standard — Business Web Solutions package from Devtrop. I'd like to discuss my project."),
+  WHATSAPP_MSG_PREMIUM: z
+    .string()
+    .min(1)
+    .default("Hi, I'm interested in the Premium — Custom Applications & SaaS package from Devtrop. I'd like to discuss my project."),
+  WHATSAPP_MSG_MAINTENANCE: z
+    .string()
+    .min(1)
+    .default("Hi, I'm interested in the Dedicated Maintenance plan from Devtrop. I'd like to discuss ongoing support for my website or app."),
 });
 
 function validateEnv() {

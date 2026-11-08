@@ -14,50 +14,50 @@ export const PROCESS_CONTENT = {
   phases: [
     {
       number: '01',
-      title: 'Planning & Strategy',
+      title: 'Discovery & Planning',
       timeline: 'Week 1',
       narrative:
-        'We learn about your business, understand your goals, and agree on what to build before development begins.',
+        'We learn about your business, your goals, and the package that fits your needs. Together we define exactly what to build, agree on priorities, and set clear expectations before a single line of code is written.',
       deliverables: [
-        'A clear project plan',
-        'Agreed features and priorities',
-        'A design direction for your project',
+        'Clear project scope and feature list',
+        'Agreed timeline and milestones',
+        'Design direction aligned to your brand',
       ],
     },
     {
       number: '02',
-      title: 'Building Your Product',
-      timeline: 'Throughout Development',
+      title: 'Design & Development',
+      timeline: 'Throughout the Build',
       narrative:
-        'We bring your ideas to life and share working previews so you can see the progress and give feedback along the way.',
+        'We build your website, application, or SaaS platform with regular working previews so you can see progress and give feedback. Every feature is built to the agreed scope — no surprises, no scope creep.',
       deliverables: [
-        'Working previews of your website or app',
+        'Working previews at every milestone',
         'Regular progress updates',
-        'Opportunities to review and share feedback',
+        'Admin dashboard and core features delivered first',
       ],
     },
     {
       number: '03',
       title: 'Testing & Refinement',
-      timeline: 'Throughout Development',
+      timeline: 'Before Launch',
       narrative:
-        'We check that everything works as expected, fix problems, and refine the experience before your product goes live.',
+        'Before anything goes live, we test thoroughly, fix issues, and refine the experience. You review and approve the final product — we only launch when you are satisfied.',
       deliverables: [
-        'Feature and functionality checks',
-        'Bug fixes and improvements',
-        'Final quality checks before launch',
+        'Full functionality and compatibility testing',
+        'Bug fixes and final adjustments',
+        'Your sign-off before launch',
       ],
     },
     {
       number: '04',
-      title: 'Launch & Ongoing Support',
+      title: 'Launch & Post-Launch Support',
       timeline: 'Launch Day & Beyond',
       narrative:
-        'We help get your product online, hand over the necessary files and access, and provide support according to your agreement.',
+        'We handle deployment and get your product live. Depending on your package — Standard, Premium, or Dedicated Maintenance — you receive free post-launch support, bug fixes, and technical guidance to keep everything running smoothly.',
       deliverables: [
-        'Your website or app launched online',
-        'Project files and handover documentation',
-        'Post-launch support as agreed',
+        'Full deployment and go-live assistance',
+        'Handover of project files and access',
+        'Free post-launch support included with your package',
       ],
     },
   ] satisfies ProcessPhase[],

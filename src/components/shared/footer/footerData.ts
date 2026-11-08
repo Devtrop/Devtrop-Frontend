@@ -13,6 +13,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: 'Services',
     links: [
+      { label: 'Our Packages', href: '/packages' },
       { label: 'Web App Architecture', href: '/#services' },
       { label: '0-to-1 SaaS MVP', href: '/#services' },
       { label: 'Platform Modernization', href: '/#services' },

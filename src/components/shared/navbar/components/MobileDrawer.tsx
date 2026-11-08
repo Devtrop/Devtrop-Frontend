@@ -161,13 +161,22 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                         alignItems: 'center',
                         justifyContent: 'space-between',
                       }}
-                      className={`px-4 py-3 text-base font-bold uppercase tracking-wider transition-colors duration-150 ${
+                      className={`relative px-4 py-3 text-base font-bold uppercase tracking-wider transition-colors duration-150 ${
                         active
                           ? 'bg-display text-inverse'
                           : 'text-display hover:bg-display hover:text-inverse'
                       }`}
                     >
-                      {link.label}
+                      {/* Label with badge pinned to its top-right corner */}
+                      <span className="relative inline-block pr-3">
+                        {link.label}
+                        {link.badge === 'new' && (
+                          <span
+                            className="absolute -top-1 right-0 h-2 w-2 bg-accent"
+                            aria-label="New"
+                          />
+                        )}
+                      </span>
                       {/* Active accent dot */}
                       {active && <span className="h-2 w-2 bg-accent shrink-0" aria-hidden="true" />}
                     </Link>
