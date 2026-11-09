@@ -99,9 +99,7 @@ function TopPackageCard({ plan }: { plan: PackagePlan }) {
           </span>
 
           {/* Top-right support badge */}
-          {plan.supportBadge && (
-            <SupportBadge text={plan.supportBadge} featured={featured} />
-          )}
+          {plan.supportBadge && <SupportBadge text={plan.supportBadge} featured={featured} />}
         </div>
 
         <h2
