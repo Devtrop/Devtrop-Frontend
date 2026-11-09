@@ -2,7 +2,11 @@ import { ReactNode } from 'react'
 
 export interface FeatureItem {
   text: string
-  /** When true the item is only in Premium — Standard shows it struck-through. */
+  /**
+   * When true the item is exclusive to Premium.
+   * On the Standard card it renders struck-through to show it exists but is
+   * not included in that tier.
+   */
   premiumOnly?: boolean
 }
 
@@ -11,22 +15,23 @@ export interface PackagePlan {
   tier?: string
   title: string
   tagline: string
-  /** Small badge shown at the top-right corner of the card (e.g. free support duration). */
+  /** Small badge shown at the top-right corner of the card. */
   supportBadge?: ReactNode
   description: string
-  /** Shared feature list (shown in both Standard & Premium). */
   whatYouGet: FeatureItem[]
   benefits: string[]
   ctaLabel: string
-  /** Full-width card placed on its own row (vs. half-width in the top row). */
+  /** Full-width card placed on its own row. */
   span?: 'full'
   /** Featured tier rendered with the inverted (dark) treatment. */
   isFeatured?: boolean
 }
 
-/** Combined feature list shown in BOTH Standard and Premium.
- *  Items marked premiumOnly render as strikethrough on the Standard card. */
-const SHARED_FEATURES: FeatureItem[] = [
+// ─── Feature building blocks ──────────────────────────────────────────────────
+// Split into three groups so per-plan text (e.g. page count) can differ freely.
+
+/** Items included in Standard — text specific to the Standard tier. */
+const STANDARD_OWN: FeatureItem[] = [
   { text: 'Up to 10 professionally designed, responsive website pages.' },
   { text: 'Custom website design tailored to your brand and business goals.' },
   { text: 'Personalized admin dashboard to manage your website and business content.' },
@@ -37,8 +42,29 @@ const SHARED_FEATURES: FeatureItem[] = [
   { text: 'Essential business analytics and reporting.' },
   { text: 'Search-engine-friendly website structure.' },
   { text: 'Complete deployment and launch assistance.' },
-  { text: 'Unlimited Revisions' },
-  // Premium-only items — shown struck-through on Standard
+  { text: 'Unlimited revisions.' },
+]
+
+/** Items included in Premium — text specific to the Premium tier. */
+const PREMIUM_OWN: FeatureItem[] = [
+  { text: 'Unlimited professionally designed, responsive website pages.' },
+  { text: 'Custom website design tailored to your brand and business goals.' },
+  { text: 'Personalized admin dashboard to manage your website and business content.' },
+  { text: 'User accounts and access management.' },
+  { text: 'Contact forms and potential customer (lead) management.' },
+  { text: 'Database integration and structured data management.' },
+  { text: 'Third-party service integrations.' },
+  { text: 'Advanced business analytics and reporting.' },
+  { text: 'Search-engine-friendly website structure.' },
+  { text: 'Complete deployment and launch assistance.' },
+  { text: 'Unlimited revisions.' },
+]
+
+/**
+ * Premium-exclusive items shown on BOTH cards.
+ * On Standard they render struck-through; on Premium they render normally.
+ */
+const PREMIUM_EXCLUSIVE: FeatureItem[] = [
   { text: 'Fully customized web application development.', premiumOnly: true },
   { text: 'SaaS platform development tailored to your business model.', premiumOnly: true },
   { text: 'Advanced admin dashboard with business insights and analytics.', premiumOnly: true },
@@ -55,6 +81,19 @@ const SHARED_FEATURES: FeatureItem[] = [
   { text: 'Scalable architecture designed for future expansion.', premiumOnly: true },
   { text: 'Complete deployment, launch, and technical handover.', premiumOnly: true },
 ]
+
+// ─── Composed feature lists ───────────────────────────────────────────────────
+
+/** Standard: its own items + premium-exclusive shown struck-through */
+const STANDARD_FEATURES: FeatureItem[] = [...STANDARD_OWN, ...PREMIUM_EXCLUSIVE]
+
+/** Premium: its own items + premium-exclusive shown normally (no strikethrough) */
+const PREMIUM_FEATURES: FeatureItem[] = [
+  ...PREMIUM_OWN,
+  ...PREMIUM_EXCLUSIVE.map((f) => ({ ...f, premiumOnly: false })),
+]
+
+// ─── Content export ───────────────────────────────────────────────────────────
 
 export const PACKAGES_CONTENT = {
   sectionNumber: '05',
@@ -75,7 +114,7 @@ export const PACKAGES_CONTENT = {
       ),
       description:
         'A complete digital solution for businesses that want a professional online presence and better control over their daily operations.',
-      whatYouGet: SHARED_FEATURES,
+      whatYouGet: STANDARD_FEATURES,
       benefits: [
         '1 month of free post-launch maintenance.',
         'Free bug fixes during the maintenance period.',
@@ -98,7 +137,7 @@ export const PACKAGES_CONTENT = {
       ),
       description:
         'Turn your business idea into a powerful digital product. Get a custom-built application designed around your business processes, customers, and future growth.',
-      whatYouGet: SHARED_FEATURES,
+      whatYouGet: PREMIUM_FEATURES,
       benefits: [
         '3 months of free post-launch maintenance.',
         'Free bug fixes and technical troubleshooting.',
@@ -113,7 +152,6 @@ export const PACKAGES_CONTENT = {
     },
     {
       id: 'maintenance',
-      // tier: 'Dedicated Maintenance',
       title: 'Maintenance Support',
       tagline: 'Continuous Technical Support',
       description:
