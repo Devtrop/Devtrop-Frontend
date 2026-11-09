@@ -8,7 +8,7 @@ export interface FeatureItem {
 
 export interface PackagePlan {
   id: 'standard' | 'premium' | 'maintenance'
-  tier: string
+  tier?: string
   title: string
   tagline: string
   /** Small badge shown at the top-right corner of the card (e.g. free support duration). */
@@ -37,6 +37,7 @@ const SHARED_FEATURES: FeatureItem[] = [
   { text: 'Essential business analytics and reporting.' },
   { text: 'Search-engine-friendly website structure.' },
   { text: 'Complete deployment and launch assistance.' },
+  { text: 'Unlimited Revisions' },
   // Premium-only items — shown struck-through on Standard
   { text: 'Fully customized web application development.', premiumOnly: true },
   { text: 'SaaS platform development tailored to your business model.', premiumOnly: true },
@@ -112,8 +113,8 @@ export const PACKAGES_CONTENT = {
     },
     {
       id: 'maintenance',
-      tier: 'Dedicated Maintenance',
-      title: 'Ongoing Website & Application Care',
+      // tier: 'Dedicated Maintenance',
+      title: 'Maintenance Support',
       tagline: 'Continuous Technical Support',
       description:
         "Your website shouldn't stop improving after launch. Let us handle the technical side while you focus on running your business.",

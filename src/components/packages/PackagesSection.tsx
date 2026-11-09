@@ -88,7 +88,7 @@ function TopPackageCard({ plan }: { plan: PackagePlan }) {
       {/* Header */}
       <div className="px-5 pt-5 pb-4 sm:px-6">
         {/* Tier label row — badge floats to the top-right */}
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex items-center justify-between gap-3">
           <span
             className={cn(
               'text-[12px] font-black uppercase tracking-[0.2em]',
