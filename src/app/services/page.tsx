@@ -96,7 +96,7 @@ export default function ServicesPage() {
             </div>
             <Link
               href="/packages"
-              className="group inline-flex items-center gap-3 border-2 border-display bg-accent px-7 py-4 text-sm font-bold uppercase tracking-wider text-accent-soft hover:bg-accent-hover hover:text-inverse transition-all duration-150 shrink-0"
+              className="group self-start inline-flex items-center gap-3 border-2 border-display bg-display px-7 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent hover:border-accent transition-all duration-150 shrink-0"
             >
               View Our Packages
               <ArrowUpRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

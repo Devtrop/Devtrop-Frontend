@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 export interface FeatureItem {
   text: string
   /** When true the item is only in Premium — Standard shows it struck-through. */
@@ -10,7 +12,7 @@ export interface PackagePlan {
   title: string
   tagline: string
   /** Small badge shown at the top-right corner of the card (e.g. free support duration). */
-  supportBadge?: string
+  supportBadge?: ReactNode
   description: string
   /** Shared feature list (shown in both Standard & Premium). */
   whatYouGet: FeatureItem[]
@@ -25,7 +27,7 @@ export interface PackagePlan {
 /** Combined feature list shown in BOTH Standard and Premium.
  *  Items marked premiumOnly render as strikethrough on the Standard card. */
 const SHARED_FEATURES: FeatureItem[] = [
-  { text: 'Up to 10 or more professionally designed, responsive website pages.' },
+  { text: 'Up to 10 professionally designed, responsive website pages.' },
   { text: 'Custom website design tailored to your brand and business goals.' },
   { text: 'Personalized admin dashboard to manage your website and business content.' },
   { text: 'User accounts and access management.' },
@@ -65,7 +67,11 @@ export const PACKAGES_CONTENT = {
       tier: 'Standard',
       title: 'Business Web Solutions',
       tagline: '1 Month Free Support & Maintenance',
-      supportBadge: 'Free 1 month post-launch maintenance support',
+      supportBadge: (
+        <>
+          Free <span className="text-lg">1</span> months maintenance
+        </>
+      ),
       description:
         'A complete digital solution for businesses that want a professional online presence and better control over their daily operations.',
       whatYouGet: SHARED_FEATURES,
@@ -84,7 +90,11 @@ export const PACKAGES_CONTENT = {
       tier: 'Premium',
       title: 'Custom Applications & SaaS',
       tagline: '3 Months Free Support & Maintenance',
-      supportBadge: 'Free 3 months post-launch maintenance support',
+      supportBadge: (
+        <>
+          Free <span className="text-lg">3</span> months maintenance
+        </>
+      ),
       description:
         'Turn your business idea into a powerful digital product. Get a custom-built application designed around your business processes, customers, and future growth.',
       whatYouGet: SHARED_FEATURES,
