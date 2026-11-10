@@ -165,6 +165,7 @@ export const PACKAGES_CONTENT = {
       description:
         "Your website shouldn't stop improving after launch. Let us handle the technical side while you focus on running your business.",
       whatYouGet: [
+        { text: 'Up to 5 hours of technical support per month.' },
         { text: 'Regular website and application maintenance.' },
         { text: 'Timely bug fixes and troubleshooting.' },
         { text: 'Security updates and vulnerability fixes.' },
@@ -172,7 +173,6 @@ export const PACKAGES_CONTENT = {
         { text: 'Regular database and backup maintenance.' },
         { text: 'Server and deployment support.' },
         { text: 'Content and minor design updates.' },
-        { text: 'Technical assistance whenever issues arise.' },
         { text: 'Ongoing recommendations to improve your digital product.' },
         { text: 'Feature enhancements based on an agreed scope.' },
       ],
