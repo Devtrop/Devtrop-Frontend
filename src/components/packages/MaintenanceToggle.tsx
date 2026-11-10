@@ -54,24 +54,40 @@ export function MaintenanceToggle({ plan }: { plan: PackagePlan }) {
             {plan.price && (
               <div className="mt-3 flex items-baseline gap-2.5">
                 {/* Monthly price — dimmed + struck when yearly */}
-                <div className={cn('flex items-baseline gap-1 transition-opacity duration-150', yearly && 'opacity-30')}>
-                  <span className={cn('text-3xl font-black tracking-tight text-display sm:text-4xl', yearly && 'line-through decoration-display')}>
+                <div
+                  className={cn(
+                    'flex items-baseline gap-1 transition-opacity duration-150',
+                    yearly && 'opacity-30'
+                  )}
+                >
+                  <span
+                    className={cn(
+                      'text-3xl font-black tracking-tight text-display sm:text-4xl',
+                      yearly && 'line-through decoration-display'
+                    )}
+                  >
                     {plan.price.amount}
                   </span>
                   {plan.price.suffix && (
-                    <span className="text-base font-bold text-display/60">
-                      {plan.price.suffix}
-                    </span>
+                    <span className="text-base font-bold text-display/60">{plan.price.suffix}</span>
                   )}
                 </div>
 
                 {/* Yearly price — fades in */}
                 {yearly && (
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-3xl font-black tracking-tight text-display sm:text-4xl">
-                      {YEARLY_PRICE}
+                  <div className="flex items-baseline gap-2">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl font-black tracking-tight text-display sm:text-4xl">
+                        {YEARLY_PRICE}
+                      </span>
+                      <span className="text-base font-bold text-display/60">/mo</span>
+                    </div>
+                    {/* <span className="text-[10px] font-black uppercase tracking-[0.1em] text-white px-1 py-0.5 bg-accent">
+                      Save 16%
+                    </span> */}
+                    <span className="inline-block bg-accent px-1.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-inverse">
+                      SAVE 16%
                     </span>
-                    <span className="text-base font-bold text-display/60">/mo</span>
                   </div>
                 )}
               </div>
