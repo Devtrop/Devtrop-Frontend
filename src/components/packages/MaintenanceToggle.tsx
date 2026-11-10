@@ -85,7 +85,7 @@ export function MaintenanceToggle({ plan }: { plan: PackagePlan }) {
                     {/* <span className="text-[10px] font-black uppercase tracking-[0.1em] text-white px-1 py-0.5 bg-accent">
                       Save 16%
                     </span> */}
-                    <span className="inline-block bg-accent px-1.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-inverse">
+                    <span className="animate-shine inline-block bg-accent px-1.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-inverse">
                       SAVE 16%
                     </span>
                   </div>
