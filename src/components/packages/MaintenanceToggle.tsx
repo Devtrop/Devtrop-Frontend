@@ -52,7 +52,7 @@ export function MaintenanceToggle({ plan }: { plan: PackagePlan }) {
 
             {/* Price */}
             {plan.price && (
-              <div className="mt-3 flex items-baseline gap-2.5">
+              <div className="mt-3 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
                 {/* Monthly price — dimmed + struck when yearly */}
                 <div
                   className={cn(
