@@ -17,6 +17,11 @@ export interface PackagePlan {
   tagline: string
   /** Small badge shown at the top-right corner of the card. */
   supportBadge?: ReactNode
+  /** Price display: amount string + optional suffix label. */
+  price?: {
+    amount: string
+    suffix?: string
+  }
   description: string
   whatYouGet: FeatureItem[]
   benefits: string[]
@@ -38,11 +43,11 @@ const STANDARD_OWN: FeatureItem[] = [
   { text: 'User accounts and access management.' },
   { text: 'Contact forms and potential customer (lead) management.' },
   { text: 'Database integration and structured data management.' },
-  { text: 'Third-party service integrations.' },
+  { text: 'Subscription plans and payment gateway integration.' },
   { text: 'Essential business analytics and reporting.' },
   { text: 'Search-engine-friendly website structure.' },
-  { text: 'Complete deployment and launch assistance.' },
   { text: 'Unlimited revisions.' },
+  { text: 'Complete deployment and launch assistance.' },
 ]
 
 /** Items included in Premium — text specific to the Premium tier. */
@@ -53,11 +58,11 @@ const PREMIUM_OWN: FeatureItem[] = [
   { text: 'User accounts and access management.' },
   { text: 'Contact forms and potential customer (lead) management.' },
   { text: 'Database integration and structured data management.' },
-  { text: 'Third-party service integrations.' },
+  { text: 'Subscription plans and payment gateway integration.' },
   { text: 'Advanced business analytics and reporting.' },
   { text: 'Search-engine-friendly website structure.' },
-  { text: 'Complete deployment and launch assistance.' },
   { text: 'Unlimited revisions.' },
+  { text: 'Complete deployment and launch assistance.' },
 ]
 
 /**
@@ -74,7 +79,6 @@ const PREMIUM_EXCLUSIVE: FeatureItem[] = [
     premiumOnly: true,
   },
   { text: 'Advanced user management and role-based permissions.', premiumOnly: true },
-  { text: 'Subscription plans and payment gateway integration.', premiumOnly: true },
   { text: 'Automated business workflows to reduce repetitive tasks.', premiumOnly: true },
   { text: 'Real-time notifications and communication features.', premiumOnly: true },
   { text: 'Custom API development and third-party integrations.', premiumOnly: true },
@@ -109,9 +113,10 @@ export const PACKAGES_CONTENT = {
       tagline: '1 Month Free Support & Maintenance',
       supportBadge: (
         <>
-          Free <span className="text-lg">1</span> months maintenance
+          Free <span className="text-lg">1</span> month maintenance
         </>
       ),
+      price: { amount: '$4,999' },
       description:
         'A complete digital solution for businesses that want a professional online presence and better control over their daily operations.',
       whatYouGet: STANDARD_FEATURES,
@@ -135,6 +140,7 @@ export const PACKAGES_CONTENT = {
           Free <span className="text-lg">3</span> months maintenance
         </>
       ),
+      price: { amount: '$14,999', suffix: '+' },
       description:
         'Turn your business idea into a powerful digital product. Get a custom-built application designed around your business processes, customers, and future growth.',
       whatYouGet: PREMIUM_FEATURES,
@@ -154,9 +160,11 @@ export const PACKAGES_CONTENT = {
       id: 'maintenance',
       title: 'Maintenance Support',
       tagline: 'Continuous Technical Support',
+      price: { amount: '$499', suffix: '/mo' },
       description:
         "Your website shouldn't stop improving after launch. Let us handle the technical side while you focus on running your business.",
       whatYouGet: [
+        { text: 'Up to 5 hours of technical support per month.' },
         { text: 'Regular website and application maintenance.' },
         { text: 'Timely bug fixes and troubleshooting.' },
         { text: 'Security updates and vulnerability fixes.' },
@@ -164,7 +172,6 @@ export const PACKAGES_CONTENT = {
         { text: 'Regular database and backup maintenance.' },
         { text: 'Server and deployment support.' },
         { text: 'Content and minor design updates.' },
-        { text: 'Technical assistance whenever issues arise.' },
         { text: 'Ongoing recommendations to improve your digital product.' },
         { text: 'Feature enhancements based on an agreed scope.' },
       ],
