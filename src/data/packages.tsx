@@ -113,7 +113,7 @@ export const PACKAGES_CONTENT = {
       tagline: '1 Month Free Support & Maintenance',
       supportBadge: (
         <>
-          Free <span className="text-lg">1</span> months maintenance
+          Free <span className="text-lg">1</span> month maintenance
         </>
       ),
       price: { amount: '$4,999' },

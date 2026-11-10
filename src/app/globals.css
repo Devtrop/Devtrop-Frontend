@@ -303,44 +303,60 @@ main > * {
   0% {
     transform: scale(1) rotate(0deg);
   }
-  10% {
+  3% {
     transform: scale(1.12) rotate(-2deg);
   }
-  18% {
+  6% {
     transform: scale(1.08) rotate(2deg);
   }
-  26% {
+  9% {
     transform: scale(1.12) rotate(-2deg);
   }
-  34% {
-    transform: scale(1) rotate(0deg);
-  }
-  /* rest for a beat, then a subtle side-sway */
-  50% {
-    transform: scale(1) rotate(0deg);
-  }
-  56% {
-    transform: scale(1) translateX(-3px);
-  }
-  62% {
-    transform: scale(1) translateX(3px);
-  }
-  68% {
-    transform: scale(1) translateX(-2px);
-  }
-  74% {
-    transform: scale(1) translateX(0px);
-  }
+  13%,
   100% {
     transform: scale(1) rotate(0deg);
   }
 }
 
+@keyframes support-badge-shine {
+  0%,
+  13% {
+    transform: translateX(-140%) skewX(-20deg);
+  }
+  48% {
+    transform: translateX(260%) skewX(-20deg);
+  }
+  48.001%,
+  100% {
+    transform: translateX(-140%) skewX(-20deg);
+  }
+}
+
 .animate-support-badge {
-  animation: support-badge 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+  animation: support-badge 6s ease-in-out infinite;
   transform-origin: center;
   will-change: transform;
-  display: inline-block; /* transform needs block/inline-block context */
+  display: inline-block;
+}
+
+.animate-support-badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 42%,
+    rgba(255, 255, 255, 0.52) 50%,
+    rgba(255, 255, 255, 0.18) 58%,
+    transparent 70%
+  );
+  transform: translateX(-140%) skewX(-20deg);
+  animation: support-badge-shine 6s linear infinite;
+  pointer-events: none;
+  will-change: transform;
 }
 
 /* ═══════════════════════════════════════════════════════════════
