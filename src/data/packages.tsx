@@ -43,11 +43,11 @@ const STANDARD_OWN: FeatureItem[] = [
   { text: 'User accounts and access management.' },
   { text: 'Contact forms and potential customer (lead) management.' },
   { text: 'Database integration and structured data management.' },
-  { text: 'Third-party service integrations.' },
+  { text: 'Subscription plans and payment gateway integration.' },
   { text: 'Essential business analytics and reporting.' },
   { text: 'Search-engine-friendly website structure.' },
-  { text: 'Complete deployment and launch assistance.' },
   { text: 'Unlimited revisions.' },
+  { text: 'Complete deployment and launch assistance.' },
 ]
 
 /** Items included in Premium — text specific to the Premium tier. */
@@ -58,11 +58,11 @@ const PREMIUM_OWN: FeatureItem[] = [
   { text: 'User accounts and access management.' },
   { text: 'Contact forms and potential customer (lead) management.' },
   { text: 'Database integration and structured data management.' },
-  { text: 'Third-party service integrations.' },
+  { text: 'Subscription plans and payment gateway integration.' },
   { text: 'Advanced business analytics and reporting.' },
   { text: 'Search-engine-friendly website structure.' },
-  { text: 'Complete deployment and launch assistance.' },
   { text: 'Unlimited revisions.' },
+  { text: 'Complete deployment and launch assistance.' },
 ]
 
 /**
@@ -79,7 +79,6 @@ const PREMIUM_EXCLUSIVE: FeatureItem[] = [
     premiumOnly: true,
   },
   { text: 'Advanced user management and role-based permissions.', premiumOnly: true },
-  { text: 'Subscription plans and payment gateway integration.', premiumOnly: true },
   { text: 'Automated business workflows to reduce repetitive tasks.', premiumOnly: true },
   { text: 'Real-time notifications and communication features.', premiumOnly: true },
   { text: 'Custom API development and third-party integrations.', premiumOnly: true },

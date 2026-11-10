@@ -4,6 +4,7 @@ import { PACKAGES_CONTENT, type PackagePlan, type FeatureItem } from '@/data/pac
 import { whatsappUrl, WHATSAPP_MESSAGES } from '@/lib/whatsapp'
 import { cn } from '@/lib/utils'
 import { SupportBadge } from './SupportBadge'
+import { MaintenanceToggle } from './MaintenanceToggle'
 
 /** Map each package to its pre-filled WhatsApp message. */
 const PACKAGE_WHATSAPP: Record<PackagePlan['id'], string> = {
@@ -203,79 +204,6 @@ function TopPackageCard({ plan }: { plan: PackagePlan }) {
   )
 }
 
-// ─── Maintenance card (full-width) ────────────────────────────────────────────
-
-function MaintenanceCard({ plan }: { plan: PackagePlan }) {
-  return (
-    <div className="flex flex-col border-2 border-display bg-canvas">
-      {/* Tagline strip */}
-      {/* <div className="bg-display px-5 py-2.5 sm:px-6">
-        <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-inverse">
-          {plan.tagline}
-        </p>
-      </div> */}
-
-      {/* Body — stacks on mobile, side-by-side on lg */}
-      <div className="flex flex-col lg:flex-row flex-1">
-        {/* Left: header */}
-        <div className="px-5 pt-5 pb-4 sm:px-6 lg:w-[38%] lg:border-r-2 lg:border-display">
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted">
-            {plan.tier}
-          </span>
-
-          <h2 className="mt-1.5 text-xl font-black uppercase tracking-tight leading-tight text-display sm:text-2xl">
-            {plan.title}
-          </h2>
-
-          {/* Price tag */}
-          {plan.price && (
-            <div className="mt-3 flex items-baseline gap-1">
-              <span className="text-3xl font-black tracking-tight text-display sm:text-4xl">
-                {plan.price.amount}
-              </span>
-              {plan.price.suffix && (
-                <span className="text-base font-bold text-display/60">
-                  {plan.price.suffix}
-                </span>
-              )}
-            </div>
-          )}
-
-          <p className="mt-2 text-xs leading-relaxed text-muted">{plan.description}</p>
-
-          {/* Mobile divider */}
-          <div className="mt-4 h-px bg-black/10 lg:hidden" />
-        </div>
-
-        {/* Right: 2-col features */}
-        <div className="px-5 pt-4 pb-4 sm:px-6 lg:w-[62%] lg:pt-5">
-          <h3 className="mb-3 text-[10px] font-black uppercase tracking-[0.2em] text-display/50">
-            What you get
-          </h3>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
-            {plan.whatYouGet.map((item) => (
-              <li key={item.text} className="flex items-start gap-2.5 text-xs leading-relaxed">
-                <span className="mt-[5px] h-1.5 w-1.5 shrink-0 bg-accent" />
-                <span className="text-display/80">{item.text}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* CTA */}
-      <a
-        href={whatsappUrl(PACKAGE_WHATSAPP[plan.id])}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-auto block w-full px-5 py-3.5 text-center text-[11px] font-bold uppercase tracking-wider bg-display text-inverse hover:bg-accent transition-colors duration-150"
-      >
-        {plan.ctaLabel}
-      </a>
-    </div>
-  )
-}
-
 // ─── Section ──────────────────────────────────────────────────────────────────
 
 export function PackagesSection() {
@@ -301,12 +229,10 @@ export function PackagesSection() {
           ))}
         </div>
 
-        {/* ── Bottom row: Maintenance — full-width card with a gap above ── */}
-        <div className="mt-4 lg:mt-6">
-          {bottomRow.map((plan) => (
-            <MaintenanceCard key={plan.id} plan={plan} />
-          ))}
-        </div>
+        {/* ── Bottom row: Maintenance with monthly/yearly toggle ── */}
+        {bottomRow.map((plan) => (
+          <MaintenanceToggle key={plan.id} plan={plan} />
+        ))}
       </SectionContainer>
     </section>
   )
