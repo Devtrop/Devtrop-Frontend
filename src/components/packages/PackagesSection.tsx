@@ -111,6 +111,30 @@ function TopPackageCard({ plan }: { plan: PackagePlan }) {
           {plan.title}
         </h2>
 
+        {/* Price tag */}
+        {plan.price && (
+          <div className="mt-3 flex items-baseline gap-1">
+            <span
+              className={cn(
+                'text-3xl font-black tracking-tight sm:text-4xl',
+                featured ? 'text-inverse' : 'text-display'
+              )}
+            >
+              {plan.price.amount}
+            </span>
+            {plan.price.suffix && (
+              <span
+                className={cn(
+                  'text-base font-bold',
+                  featured ? 'text-inverse/60' : 'text-display/60'
+                )}
+              >
+                {plan.price.suffix}
+              </span>
+            )}
+          </div>
+        )}
+
         <p
           className={cn(
             'mt-2 text-xs leading-relaxed',
@@ -202,6 +226,20 @@ function MaintenanceCard({ plan }: { plan: PackagePlan }) {
           <h2 className="mt-1.5 text-xl font-black uppercase tracking-tight leading-tight text-display sm:text-2xl">
             {plan.title}
           </h2>
+
+          {/* Price tag */}
+          {plan.price && (
+            <div className="mt-3 flex items-baseline gap-1">
+              <span className="text-3xl font-black tracking-tight text-display sm:text-4xl">
+                {plan.price.amount}
+              </span>
+              {plan.price.suffix && (
+                <span className="text-base font-bold text-display/60">
+                  {plan.price.suffix}
+                </span>
+              )}
+            </div>
+          )}
 
           <p className="mt-2 text-xs leading-relaxed text-muted">{plan.description}</p>
 

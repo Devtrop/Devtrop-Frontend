@@ -17,6 +17,11 @@ export interface PackagePlan {
   tagline: string
   /** Small badge shown at the top-right corner of the card. */
   supportBadge?: ReactNode
+  /** Price display: amount string + optional suffix label. */
+  price?: {
+    amount: string
+    suffix?: string
+  }
   description: string
   whatYouGet: FeatureItem[]
   benefits: string[]
@@ -112,6 +117,7 @@ export const PACKAGES_CONTENT = {
           Free <span className="text-lg">1</span> months maintenance
         </>
       ),
+      price: { amount: '$4,999' },
       description:
         'A complete digital solution for businesses that want a professional online presence and better control over their daily operations.',
       whatYouGet: STANDARD_FEATURES,
@@ -135,6 +141,7 @@ export const PACKAGES_CONTENT = {
           Free <span className="text-lg">3</span> months maintenance
         </>
       ),
+      price: { amount: '$14,999', suffix: '+' },
       description:
         'Turn your business idea into a powerful digital product. Get a custom-built application designed around your business processes, customers, and future growth.',
       whatYouGet: PREMIUM_FEATURES,
@@ -154,6 +161,7 @@ export const PACKAGES_CONTENT = {
       id: 'maintenance',
       title: 'Maintenance Support',
       tagline: 'Continuous Technical Support',
+      price: { amount: '$499', suffix: '/mo' },
       description:
         "Your website shouldn't stop improving after launch. Let us handle the technical side while you focus on running your business.",
       whatYouGet: [
